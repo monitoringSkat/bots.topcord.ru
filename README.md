@@ -22,3 +22,7 @@
     <td>Images with design</td>
   </tr>
 </table>
+
+## Branches
+- __prod__ -> production version.
+- __dev__ -> branch for developers and new features.
