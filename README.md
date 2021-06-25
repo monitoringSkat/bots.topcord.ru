@@ -1,5 +1,7 @@
 # bots.topcord.ru
 
+
+## Structure
 <table>
   <tr>
      <td>Folder</td>
@@ -26,3 +28,12 @@
 ## Branches
 - __prod__ -> production version.
 - __dev__ -> branch for developers and new features.
+
+## How run locally
+1. Clone the repo.
+2. soon...
+
+## Languages
+- 🇷🇺 Русский
+- 🇺🇦 Українська
+- 🇬🇧 English
