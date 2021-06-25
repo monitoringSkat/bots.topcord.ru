@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-     <td>Code base</td>
+     <td>Folder</td>
      <td>Description</td>
   </tr>
   <tr>
@@ -16,5 +16,9 @@
   <tr>
     <td><a href="docs">/docs</a></td>
     <td>API documentation</td>
+  </tr>
+  <tr>
+    <td><a href="desing">/design</a></td>
+    <td>Images with design</td>
   </tr>
 </table>
