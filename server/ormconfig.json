@@ -1,0 +1,13 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "13092005",
+    "database": "topcord",
+    "synchronize": true,
+    "logging": false,
+    "entities": ["./src/entities/**/*.{ts,js}"],
+    "migrations": ["./src/migration/**/*.{ts,js}"],
+    "subscribers": ["./src/subscriber/**/*.{ts,js}"]
+}
