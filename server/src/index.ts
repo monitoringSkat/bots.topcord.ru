@@ -1,11 +1,10 @@
 import "reflect-metadata"
-import express, { Request, Response } from "express"
+import express from "express"
 import session from "express-session"
 import passport from "passport"
 import * as orm from "typeorm"
 import cors from "cors"
 import bodyParser from "body-parser"
-import profileRouter from "./routes/profile.route"
 import DiscordStrategy from "./strategies/discord.strategy"
 import botsRouter from "./routes/bots.route"
 import authRouter from "./routes/auth.route"
@@ -16,6 +15,8 @@ import dotenv from 'dotenv'
 import compression from "compression"
 import swagger from "swagger-ui-express"
 import swaggerJSDoc from "swagger-jsdoc"
+import usersRouter from "./routes/users.route"
+import tagsRouter from "./routes/tags.route"
 
 dotenv.config()
 const PORT = process.env.PORT || 5000
@@ -72,8 +73,9 @@ orm.createConnection().then(async() => {
         },
         credentials: true
     }))
-    
-    app.use("/", profileRouter)
+
+    app.use("/users", usersRouter)
+    app.use("/tags", tagsRouter)
     app.use("/bots", botsRouter)
     app.use("/auth/discord", authRouter)
     app.use("/docs", swagger.serve, swagger.setup(openapiSpecification))

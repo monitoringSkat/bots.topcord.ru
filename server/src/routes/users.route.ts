@@ -14,4 +14,13 @@ usersRouter.get(
     }
 )
 
-usersRouter.get("/:id", () => {})
+usersRouter.get(
+    "/:id", 
+    async (req: Request, res: Response) => {
+        const userId = req.params.id
+        const user = await User.findOne(userId, { relations: ['bots'] })
+        res.send(user)
+    }
+)
+
+export default usersRouter

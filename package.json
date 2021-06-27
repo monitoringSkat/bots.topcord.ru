@@ -1,0 +1,23 @@
+{
+  "name": "bots.topcord.ru",
+  "version": "1.0.0",
+  "description": "<table>\r   <tr>\r      <td>Folder</td>\r      <td>Description</td>\r   </tr>\r   <tr>\r     <td><a href=\"web\">/web</a></td>\r     <td>React.js frontend</td>\r   </tr>\r   <tr>\r     <td><a href=\"server\">/server</a></td>\r     <td>Node.js API</td>\r   </tr>\r   <tr>\r     <td><a href=\"docs\">/docs</a></td>\r     <td>API documentation</td>\r   </tr>\r   <tr>\r     <td><a href=\"desing\">/design</a></td>\r     <td>Images with design</td>\r   </tr>\r </table>",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TopCord-Team/bots.topcord.ru.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TopCord-Team/bots.topcord.ru/issues"
+  },
+  "homepage": "https://github.com/TopCord-Team/bots.topcord.ru#readme"
+}

@@ -1,7 +1,8 @@
-import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm'
+import { BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryColumn, UpdateDateColumn, CreateDateColumn, ManyToMany, JoinTable } from 'typeorm'
 import User from './User'
 import Comment from './Comment'
 import BotLibrary from '../types/bot-library.type'
+import Tag from './Tag'
 
 @Entity("bots")
 class Bot extends BaseEntity {
@@ -50,14 +51,15 @@ class Bot extends BaseEntity {
     @Column({ nullable: true })
     inviteURL: string
 
-    @Column('text', { array: true, default: [] })
-    tags: Array<string>
-
     @ManyToOne(() => User, (user) => user.bots)
     owner: User
 
     @OneToMany(() => Comment, (comment) => comment.bot)
     comments: Comment[]
+
+    @ManyToMany(() => Tag, tag => tag.bots)
+    @JoinTable()
+    tags: Tag[]
 }
 
 export default Bot

@@ -11,6 +11,8 @@ import rateLimit from "express-rate-limit"
 import User from "../entities/User";
 import BotNotFoundException from "../exceptions/bot-not-found.exception";
 import Minutes from "../enums/minutes.enum";
+import Tag from "../entities/Tag";
+import SameBotException from "../exceptions/same-bot.exception";
 
 
 const botsRouter = Router();
@@ -68,26 +70,35 @@ botsRouter.post(
     if (!errors.isEmpty()) return res.send({ errors: errors.array() })
     const owner = await User.findOne((req.user as any).id)
     const sameBot = await Bot.findOne(req.body.id)
-    if (sameBot) return res.send("Same bot!")
+    if (sameBot) return res.send(new SameBotException())
     const avatar = await getBotAvatarURL(req.body.id)
     const bot = Bot.create({
         name: req.body.name,
         id: req.body.id,
         prefix: req.body.prefix,
         description: req.body.description,
-        tags: req.body.tags,
         supportServerURL: req.body.supportServerURL || null,
         websiteURL: req.body.websiteURL || null,
         githubURL: req.body.githubURL || null,
         inviteURL: req.body.inviteURL || null,
-        owner,
+        // owner,
         votes: [],
         comments: [],
         avatar: avatar
     })
+    const tags: Tag[] = await Promise.all(req.body.tags.map(async name => {
+      const oldTag = await Tag.find({ where: { name } })
+      if (oldTag.length) return oldTag[0]
+      else {
+        const newTag = Tag.create({ name })
+        await newTag.save()
+        return newTag
+      }
+    }))
+    bot.tags = tags
     await bot.save();
-
     (req as any).client.emit("create-bot", (req as any).client, bot, owner)
+
     res.send({ bot })
   }
 );

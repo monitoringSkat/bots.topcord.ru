@@ -8,3 +8,5 @@ class SameBotException  extends Exception {
         super(m, HttpStatus.CONFLICT)
     }
 }
+
+export default SameBotException
