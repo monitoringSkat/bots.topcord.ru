@@ -1,8 +1,8 @@
-import Bot from "./bot.interface";
+import Bot from './bot.interface'
 
-interface Tag { 
-    id: number 
-    name: string 
+interface Tag {
+    id: number
+    name: string
     bots?: Bot[]
 }
 

@@ -1,4 +1,6 @@
-.input, .textarea, .search input {
+.input,
+.textarea,
+.search input {
     width: 100%;
     border: none;
     border-radius: 5px;
@@ -19,7 +21,7 @@
 }
 
 .icon {
-    background: #5865F2;
+    background: #5865f2;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 7.5px 10px;

@@ -22,7 +22,7 @@ footer {
 }
 
 .footer-links-group-name {
-    color: #5865F2;
+    color: #5865f2;
     font-size: 25px;
     text-decoration: underline;
 }
@@ -30,7 +30,6 @@ footer {
 .footer-links-group a {
     font-size: 18px;
 }
-
 
 .footer-bottom {
     display: flex;
@@ -41,7 +40,7 @@ footer {
 
 .footer-bottom hr {
     width: 90.5%;
-    background-color: #5865F2;
+    background-color: #5865f2;
 }
 
 .footer-wumpus {

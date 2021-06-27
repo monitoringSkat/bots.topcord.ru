@@ -1,15 +1,27 @@
-# bots.topcord.ru
+<div style="background: #5865F2; padding: 5%; margin: 2.5%; 0" align="center">
+    <img src="./github-logo.png" />
+</div>
+
+
+<div align="center">
+    <a href="https://discord.gg/ryk4K5kRJq">
+        <img src="https://img.shields.io/discord/761596363795988561" />
+    </a>
+       <a href="https://github.com/vitaliyirtlach/riod.js">
+        <img src="https://img.shields.io/github/stars/TopCord-Team/bots.topcord.ru?style=social" />
+    </a>
+</div>
 
 ## Structure
 
-<table>
+<table> 
   <tr>
      <td>Folder</td>
      <td>Description</td>
   </tr>
   <tr>
     <td><a href="web">/web</a></td>
-    <td>React.js frontend</td>
+    <td>Next.js frontend</td>
   </tr>
   <tr>
     <td><a href="server">/server</a></td>

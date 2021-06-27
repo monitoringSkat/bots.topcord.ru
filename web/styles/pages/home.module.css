@@ -30,14 +30,12 @@
 .tags * {
     padding: 5px 7.5px;
     border-radius: 2.5px;
-    background: #5865F2;
+    background: #5865f2;
     margin-top: 2.5px;
     margin-right: 7.5px;
     font-size: 18px;
     color: white;
 }
-
-
 
 .wumpus {
     width: 400px;
@@ -47,9 +45,19 @@
 }
 
 @keyframes wumpusFly {
-    0%   {top:-20px;}
-    25%  {top:-10px;}
-    50%  {top:0px;}
-    75%  {top:10px;}
-    100% {top:20px;}
-} 
+    0% {
+        top: -20px;
+    }
+    25% {
+        top: -10px;
+    }
+    50% {
+        top: 0px;
+    }
+    75% {
+        top: 10px;
+    }
+    100% {
+        top: 20px;
+    }
+}

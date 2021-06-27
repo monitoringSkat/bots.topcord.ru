@@ -1,4 +1,4 @@
-import Bot from "./bot.interface";
+import Bot from './bot.interface'
 
 interface User {
     id: string

@@ -1,5 +1,5 @@
-import Bot from "./bot.interface";
-import User from "./user.interface";
+import Bot from './bot.interface'
+import User from './user.interface'
 
 interface Comment {
     id: number | string

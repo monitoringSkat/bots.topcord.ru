@@ -1,5 +1,5 @@
-import Tag from "./tag.interface";
-import User from "./user.interface";
+import Tag from './tag.interface'
+import User from './user.interface'
 
 interface Bot {
     name: string
@@ -17,7 +17,7 @@ interface Bot {
     description: string
     guildsCount: number
     websiteURL?: string
-    votes: { 
+    votes: {
         user_id: string
         mark: number
     }[]

@@ -1,23 +1,13 @@
-# Server for bots.topcord.ru
+<div style="background: #5865F2; padding: 5%; margin: 2.5%; 0" align="center">
+    <img src="../github-logo.png" />
+</div>
+<h1 align="center">Server for TopCord</h1>
 
-## Todo
-
--   [x] Rate limit server
--   [x] Static files
--   [x] Guilds count
--   [x] Same ID in bots
--   [x] Access token in bot
--   [ ] Form errors
--   [ ] Add more server exceptions
--   [ ] ...
-
-## Ideas
-
--   [ ] Bot developers
--   [ ] User profile
--   [ ] User follows
--   [ ] User following
--   [ ] Comments replies
--   [ ] Comments likes and dislikes
-
-## Contributing
+<div align="center">
+    <a href="https://discord.gg/ryk4K5kRJq">
+        <img src="https://img.shields.io/discord/761596363795988561" />
+    </a>
+       <a href="https://github.com/vitaliyirtlach/riod.js">
+        <img src="https://img.shields.io/github/stars/TopCord-Team/bots.topcord.ru?style=social" />
+    </a>
+</div>
