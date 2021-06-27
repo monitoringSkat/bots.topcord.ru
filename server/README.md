@@ -1,4 +1,4 @@
-<div style="background: #5865F2; padding: 5%; margin: 2.5%; 0" align="center">
+<div style="padding: 5%; margin: 2.5%; 0" align="center">
     <img src="../github-logo.png" />
 </div>
 <h1 align="center">Server for TopCord</h1>

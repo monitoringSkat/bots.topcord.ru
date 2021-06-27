@@ -1,8 +1,8 @@
-<div style="background: #5865F2; padding: 5%; margin: 2.5%; 0" align="center">
+<div style="padding: 5%; margin: 2.5%; 0" align="center">
     <img src="./github-logo.png" />
 </div>
 
-<div align="center">
+<div align="center"> 
     <a href="https://discord.gg/ryk4K5kRJq">
         <img src="https://img.shields.io/discord/761596363795988561" />
     </a>
