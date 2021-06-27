@@ -2,7 +2,6 @@
     <img src="./github-logo.png" />
 </div>
 
-
 <div align="center">
     <a href="https://discord.gg/ryk4K5kRJq">
         <img src="https://img.shields.io/discord/761596363795988561" />
