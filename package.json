@@ -12,7 +12,9 @@
     "scripts": {
         "prettier": "npx prettier --write .",
         "prettier-lint": "npx prettier --check .",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "web": "cd web && npm run dev",
+        "server": "cd server && npm run dev"
     },
     "repository": {
         "type": "git",

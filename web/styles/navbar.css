@@ -5,20 +5,27 @@
     box-shadow: 0px 0.5px 10px black;
 }
 
-.nav-link {
+.navbar-links {
+    margin-left: 0.5%;
+}
+
+.navbar-links a {
     color: white !important;
     font-weight: 600 !important;
     font-size: 20px;
     position: relative;
     transition: 0.4s;
-}
-
-.navbar-links {
-    margin-left: 0.5%;
+    margin-right: 15px;
 }
 
 .navbar-login a {
     text-decoration: underline !important;
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 20px;
+    position: relative;
+    transition: 0.4s;
+    margin-right: 15px;
 }
 
 .nav-logo {

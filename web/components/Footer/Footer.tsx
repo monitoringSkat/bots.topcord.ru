@@ -20,10 +20,10 @@ const Footer = () => (
                     <Link href="">TopInfo</Link>
                 </div>
             </div>
-            <img src="/wumpus-rocket.png" className="footer-wumpus" />
+            <img src="/assets/wumpus-rocket.png" className="footer-wumpus" />
         </div>
         <div className="footer-bottom">
-            <img src="/logo.png" style={{ width: '150px' }} />
+            <img src="/assets/logo.png" style={{ width: '150px' }} />
             <hr />
         </div>
     </footer>

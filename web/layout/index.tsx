@@ -18,7 +18,9 @@ const Layout: FC<Props> = ({ children, title }) => (
             <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
         </Head>
         <Header></Header>
-        <div style={{ height: '80vh' }}>{children}</div>
+        <div style={{ minHeight: '80vh' }}>
+            {children}
+        </div>
         <Footer></Footer>
     </div>
 )

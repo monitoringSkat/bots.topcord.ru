@@ -27,14 +27,14 @@ const botsRouter = Router()
  */
 
 botsRouter.get('/', async (req, res) => {
-    res.send(
-        await Bot.find({
-            relations: ['owner'],
-            where: {
-                verified: true
-            }
-        })
-    )
+    const bots = await Bot.find({
+        // where: { verified: true } 
+        order: {
+            createdAt: "ASC"
+        }   
+    })
+    console.log(bots)
+    res.send(bots.slice(0, 20))
 })
 
 botsRouter.get(
@@ -58,7 +58,7 @@ botsRouter.post(
             windowMs: Minutes.FIFTEEN,
             max: 100
         }),
-        checkAuth,
+        // checkAuth,
         body('name').notEmpty().isString(),
         body('id').notEmpty().isString(),
         body('prefix').notEmpty().isString(),
@@ -68,7 +68,7 @@ botsRouter.post(
     async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) return res.send({ errors: errors.array() })
-        const owner = await User.findOne((req.user as any).id)
+        // const owner = await User.findOne((req.user as any).id)
         const sameBot = await Bot.findOne(req.body.id)
         if (sameBot) return res.send(new SameBotException())
         const avatar = await getBotAvatarURL(req.body.id)
@@ -99,7 +99,7 @@ botsRouter.post(
         )
         bot.tags = tags
         await bot.save()
-        ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
+        // ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
 
         res.send({ bot })
     }

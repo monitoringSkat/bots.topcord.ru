@@ -2,6 +2,7 @@ import Tag from './tag.interface'
 import User from './user.interface'
 
 interface Bot {
+    id: string
     name: string
     prefix: string
     tags: Tag[]
@@ -10,13 +11,14 @@ interface Bot {
     library: string
     githubURL?: string
     supportServerURL?: string
-    inviteURL?: string
+    inviteURL: string
     createdAt: string
     updateAt: string
-    avatar: string | null
+    avatar: string
     description: string
     guildsCount: number
     websiteURL?: string
+    backgroundURL?: string
     votes: {
         user_id: string
         mark: number

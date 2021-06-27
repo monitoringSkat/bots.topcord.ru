@@ -2,8 +2,14 @@ import Layout from '../layout'
 import styles from '../styles/pages/home.module.css'
 import Input from '../components/Input/Input'
 import Link from 'next/link'
+import config from '../config'
+import Bot from '../interfaces/bot.interface'
+import BotCard from "../components/BotCard/BotCard"
+interface Props {
+    bots: Bot[]
+}
 
-const Home = () => (
+const Home = ({ bots }: Props) => (
     <Layout title="Главная">
         <div className={styles.intro}>
             <div className={styles.text}>
@@ -18,9 +24,21 @@ const Home = () => (
                     <Link href="/tags/moderation">Moderation</Link>
                 </div>
             </div>
-            <img src="/wumpus-jet.png" className={styles.wumpus} />
+            <img src="/assets/wumpus-jet.png" className={styles.wumpus} />
+        </div>
+        <div className={styles.bots}>
+            <h2>Новые боты</h2>
+            {bots.map(bot => <BotCard key={bot.id} bot={bot} />)}
         </div>
     </Layout>
 )
+
+Home.getInitialProps = async (): Promise<Props> => {
+    const res = await fetch(`${config.SERVER_URL}/bots`)
+    const bots = await res.json()
+    return {
+        bots: bots || []
+    }
+}
 
 export default Home

@@ -1,5 +1,6 @@
+import Layout from "../../layout"
 function BotsPage() {
-    return <div>Bots Page</div>
+    return <Layout title="Боты">Bots Page</Layout>
 }
 
 export default BotsPage
