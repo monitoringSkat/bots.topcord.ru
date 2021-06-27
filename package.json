@@ -1,13 +1,18 @@
 {
   "name": "bots.topcord.ru",
   "version": "1.0.0",
-  "description": "<table>\r   <tr>\r      <td>Folder</td>\r      <td>Description</td>\r   </tr>\r   <tr>\r     <td><a href=\"web\">/web</a></td>\r     <td>React.js frontend</td>\r   </tr>\r   <tr>\r     <td><a href=\"server\">/server</a></td>\r     <td>Node.js API</td>\r   </tr>\r   <tr>\r     <td><a href=\"docs\">/docs</a></td>\r     <td>API documentation</td>\r   </tr>\r   <tr>\r     <td><a href=\"desing\">/design</a></td>\r     <td>Images with design</td>\r   </tr>\r </table>",
+  "description": "",
   "main": "index.js",
   "directories": {
-    "doc": "docs"
+    "doc": "docs",
+    "server": "server",
+    "web": "web",
+    "design": "design"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prettier": "npx prettier --write .",
+    "prettier-lint": "npx prettier --check .",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -19,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/TopCord-Team/bots.topcord.ru/issues"
   },
-  "homepage": "https://github.com/TopCord-Team/bots.topcord.ru#readme"
+  "homepage": "https://github.com/TopCord-Team/bots.topcord.ru#readme",
+  "devDependencies": {
+    "husky": "^6.0.0",
+    "prettier": "2.3.2"
+  }
 }
