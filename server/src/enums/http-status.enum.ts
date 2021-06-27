@@ -1,5 +1,4 @@
-// thanks to https://github.com/nestjs/nest/blob/master/packages/common/enums/http-status.enum.ts 
-
+// thanks to https://github.com/nestjs/nest/blob/master/packages/common/enums/http-status.enum.ts
 
 export enum HttpStatus {
     CONTINUE = 100,
@@ -48,5 +47,5 @@ export enum HttpStatus {
     BAD_GATEWAY = 502,
     SERVICE_UNAVAILABLE = 503,
     GATEWAY_TIMEOUT = 504,
-    HTTP_VERSION_NOT_SUPPORTED = 505,
-  }
+    HTTP_VERSION_NOT_SUPPORTED = 505
+}

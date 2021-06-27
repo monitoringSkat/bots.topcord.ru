@@ -1,10 +1,8 @@
-import { HttpStatus } from "../enums";
-import Exception from "./exception";
+import { HttpStatus } from '../enums'
+import Exception from './exception'
 
 class AuthException extends Exception {
-    constructor(
-        message: string = "Unauthorized"
-    ) {
+    constructor(message: string = 'Unauthorized') {
         super(message, HttpStatus.UNAUTHORIZED)
     }
 }

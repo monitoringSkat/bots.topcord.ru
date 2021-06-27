@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 @Entity()
 class BlackList extends BaseEntity {
@@ -9,7 +9,7 @@ class BlackList extends BaseEntity {
     ip: string
 
     @Column()
-    user_id: string 
+    user_id: string
 }
 
 export default BlackList

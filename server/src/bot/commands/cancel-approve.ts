@@ -7,22 +7,25 @@ const cancelApprove: Command = {
     name: 'cancel-approve',
     async execute(client, message, [id, ...reason]) {
         const bot = await Bot.findOne(id, { relations: ['owner'] })
-        if (!bot) return message.channel.send(JSON.stringify(new BotNotFoundException()))
+        if (!bot)
+            return message.channel.send(
+                JSON.stringify(new BotNotFoundException())
+            )
         bot.verified = false
         await bot.save()
         const embed = new MessageEmbed()
-        .addField('Причина', reason.join(' ') || "without reason")
-        .addField('Бот', bot.name)
-        .addField('ID', bot.id, true)
-        .addField('Префикс', bot.prefix, true)
-        .addField('Владелец', `<@${bot.owner.id}>`, true)
-        .setThumbnail(bot.avatar)
-        .setTimestamp()
-        .setTitle('Отмена верифицорания бота')
-        .setColor('#e74c3c')
+            .addField('Причина', reason.join(' ') || 'without reason')
+            .addField('Бот', bot.name)
+            .addField('ID', bot.id, true)
+            .addField('Префикс', bot.prefix, true)
+            .addField('Владелец', `<@${bot.owner.id}>`, true)
+            .setThumbnail(bot.avatar)
+            .setTimestamp()
+            .setTitle('Отмена верифицорания бота')
+            .setColor('#e74c3c')
 
         const channel: any = client.channels.cache.get('846093367485923348')
-        
+
         channel.send(embed)
     }
 }

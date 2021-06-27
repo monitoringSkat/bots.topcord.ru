@@ -1,0 +1,35 @@
+.input, .textarea, .search input {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background: white;
+    padding: 7px;
+    font-size: 18px;
+    margin: 5px 0;
+    outline: none;
+}
+
+.textarea {
+    resize: vertical;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    background: #5865F2;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 7.5px 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.search input {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}

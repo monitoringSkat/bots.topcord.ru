@@ -1,3 +1,3 @@
-type BotLibrary = "discord.js" | "discord.py" 
+type BotLibrary = 'discord.js' | 'discord.py'
 
-export default BotLibrary 
+export default BotLibrary

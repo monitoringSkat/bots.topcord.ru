@@ -1,10 +1,8 @@
-import { HttpStatus } from "../enums";
-import Exception from "./exception";
+import { HttpStatus } from '../enums'
+import Exception from './exception'
 
 class TooManyCommentsPerUserException extends Exception {
-    constructor(
-        message: string = "You have many comments on this page"
-    ) {
+    constructor(message: string = 'You have many comments on this page') {
         super(message, HttpStatus.SERVICE_UNAVAILABLE)
     }
 }

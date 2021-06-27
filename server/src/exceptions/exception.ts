@@ -5,10 +5,14 @@ class Exception {
         private readonly statusCode: number
     ) {}
     public toString(): string {
-        return JSON.stringify({ 
-            message: this.message, 
-            statusCode: this.statusCode 
-        }, null, this._jsonSpaces)
+        return JSON.stringify(
+            {
+                message: this.message,
+                statusCode: this.statusCode
+            },
+            null,
+            this._jsonSpaces
+        )
     }
 }
 

@@ -1,9 +1,9 @@
-import Event from "../../interfaces/bot/event.interface";
+import Event from '../../interfaces/bot/event.interface'
 
 const ready: Event = {
-    name: "ready",
+    name: 'ready',
     execute() {
-        console.log("Client is ready!")
+        console.log('Client is ready!')
     }
 }
 

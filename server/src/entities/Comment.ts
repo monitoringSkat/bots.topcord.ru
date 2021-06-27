@@ -3,12 +3,12 @@ import {
     Column,
     Entity,
     ManyToOne,
-    PrimaryGeneratedColumn,
+    PrimaryGeneratedColumn
 } from 'typeorm'
 import Bot from './Bot'
 import User from './User'
 
-@Entity("comments")
+@Entity('comments')
 class Comment extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
@@ -16,13 +16,13 @@ class Comment extends BaseEntity {
     @Column()
     text: string
 
-    @ManyToOne(() => User, (user) => user.comments)
+    @ManyToOne(() => User, user => user.comments)
     author: User
 
     @Column({ default: new Date().toLocaleDateString() })
     date: string
 
-    @ManyToOne(() => Bot, (bot) => bot.comments)
+    @ManyToOne(() => Bot, bot => bot.comments)
     bot: Bot
 }
 

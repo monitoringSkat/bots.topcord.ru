@@ -1,10 +1,8 @@
-import { HttpStatus } from "../enums";
-import Exception from "./exception";
+import { HttpStatus } from '../enums'
+import Exception from './exception'
 
 class BotNotFoundException extends Exception {
-    constructor(
-        message: string = "Bot not found!"
-    ) {
+    constructor(message: string = 'Bot not found!') {
         super(message, HttpStatus.NOT_FOUND)
     }
 }

@@ -1,9 +1,14 @@
-import { BaseEntity, Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm"
-import Bot from "./Bot"
+import {
+    BaseEntity,
+    Column,
+    Entity,
+    ManyToMany,
+    PrimaryGeneratedColumn
+} from 'typeorm'
+import Bot from './Bot'
 
 @Entity()
 class Tag extends BaseEntity {
-    
     @PrimaryGeneratedColumn()
     id: number
 
