@@ -1,10 +1,10 @@
 .card {
     width: 325px;
     height: 400px;
-    background: #23272A;
+    background: #23272a;
     border-radius: 10px;
     margin-right: 20px;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .card * {
@@ -17,7 +17,7 @@
     background: white;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    border: 2px solid #23272A;
+    border: 2px solid #23272a;
 }
 
 .info {
@@ -45,7 +45,8 @@
     color: white;
 }
 
-.statistics, .stat {
+.statistics,
+.stat {
     display: flex;
     align-items: center;
 }
@@ -70,7 +71,6 @@
     overflow: hidden;
 }
 
-
 .buttons {
     display: flex;
     align-items: center;
@@ -85,13 +85,13 @@
 .invite {
     width: 50%;
     border-bottom-left-radius: 10px;
-    background: #57F287;
+    background: #57f287;
     color: white;
 }
 
 .view {
     width: 50%;
     border-bottom-right-radius: 10px;
-    background: #5865F2;
+    background: #5865f2;
     color: white;
 }

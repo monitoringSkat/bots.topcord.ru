@@ -1,4 +1,4 @@
-import Layout from "../../layout"
+import Layout from '../../layout'
 
 function TagsPage() {
     return <Layout>Tags</Layout>

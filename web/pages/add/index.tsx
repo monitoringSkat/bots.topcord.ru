@@ -1,6 +1,3 @@
-const AddPage = () => 
-<div>
-    
-</div>
+const AddPage = () => <div></div>
 
 export default AddPage

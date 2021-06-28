@@ -4,7 +4,7 @@ import Input from '../components/Input/Input'
 import Link from 'next/link'
 import config from '../config'
 import Bot from '../interfaces/bot.interface'
-import BotCard from "../components/BotCard/BotCard"
+import Bots from '../components/Bots/Bots'
 interface Props {
     bots: Bot[]
 }
@@ -28,7 +28,7 @@ const Home = ({ bots }: Props) => (
         </div>
         <div className={styles.bots}>
             <h2>Новые боты</h2>
-            {bots.map(bot => <BotCard key={bot.id} bot={bot} />)}
+            <Bots bots={bots}/>
         </div>
     </Layout>
 )

@@ -10,7 +10,14 @@
     text-decoration: none;
     font-family: 'Inter', sans-serif;
     scrollbar-width: thin;
-    scrollbar-color: #1d1f23 #23272A;
+    scrollbar-color: #1d1f23 #23272a;
+}
+
+input::placeholder{
+    color: black;
+}
+
+h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 

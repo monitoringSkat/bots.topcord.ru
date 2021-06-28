@@ -1,0 +1,11 @@
+{
+    "header": {
+        "links": {
+            "main": "Main",
+            "bots": "Bots",
+            "addBot": "Add bot",
+            "community": "Community",
+            "login": "Login"
+        }
+    }
+}

@@ -24,6 +24,9 @@ class Comment extends BaseEntity {
 
     @ManyToOne(() => Bot, bot => bot.comments)
     bot: Bot
+
+    @Column({ nullable: true })
+    rating: number
 }
 
 export default Comment

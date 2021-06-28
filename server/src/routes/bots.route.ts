@@ -28,12 +28,11 @@ const botsRouter = Router()
 
 botsRouter.get('/', async (req, res) => {
     const bots = await Bot.find({
-        // where: { verified: true } 
+        // where: { verified: true }
         order: {
-            createdAt: "ASC"
-        }   
+            createdAt: 'ASC'
+        }
     })
-    console.log(bots)
     res.send(bots.slice(0, 20))
 })
 
