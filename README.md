@@ -2,6 +2,8 @@
     <img src="./github-logo.png" />
 </div>
 
+<h1 align="center">bots.topcord.ru</h1>
+
 <div align="center"> 
     <a href="https://discord.gg/ryk4K5kRJq">
         <img src="https://img.shields.io/discord/761596363795988561" />
@@ -44,7 +46,21 @@
 ## How run locally
 
 1. Clone the repo.
-2. soon...
+```git
+git clone "https://github.com/TopCord-Team/bots.topcord.ru"
+```
+2. Install dependencies
+```bash
+  npm install # in root directory
+  cd web && npm install # in web directory
+  cd server && npm install # in server directory
+```
+
+3. Run server and frontend
+```bash
+  npm run server # in root directory
+  npm run web # in other terminal
+```
 
 ## Languages
 

@@ -13,11 +13,16 @@
     scrollbar-color: #1d1f23 #23272a;
 }
 
-input::placeholder{
+input::placeholder {
     color: black;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: white;
 }
 

@@ -28,7 +28,7 @@ const Home = ({ bots }: Props) => (
         </div>
         <div className={styles.bots}>
             <h2>Новые боты</h2>
-            <Bots bots={bots}/>
+            <Bots bots={bots} />
         </div>
     </Layout>
 )
