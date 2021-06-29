@@ -1,8 +1,6 @@
-import { string, object, array }  from "yup"
+import { string, object, array } from 'yup'
 
-
-const addFormSchema = object()
-.shape({
+const addFormSchema = object().shape({
     id: string().required('Required'),
     name: string().required('Required'),
     prefix: string().required('Required'),
@@ -14,7 +12,7 @@ const addFormSchema = object()
     supportServerURL: string().url(),
     githubURL: string().url(),
     developers: array(),
-    library: string(),
-});
+    library: string()
+})
 
 export default addFormSchema

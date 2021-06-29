@@ -31,7 +31,9 @@ const AddPage = () => {
                             </div>
                             {hint && <div className={styles.hint}>{hint}</div>}
                         </div>
-                        <div className={styles.error}>{(errors as any)[name]}</div>
+                        <div className={styles.error}>
+                            {(errors as any)[name]}
+                        </div>
                         <Input
                             onChange={handleChange}
                             value={(values as any)[name]}

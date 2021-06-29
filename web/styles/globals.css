@@ -42,3 +42,15 @@ body {
 .form-check {
     margin: 10px 0;
 }
+
+.dropdown-toggle {
+    background: #5865f2 !important;
+}
+
+.dropdown-item {
+    color: black !important;
+}
+
+*:focus {
+    border: 1px solid #5865f2 !important;
+}
