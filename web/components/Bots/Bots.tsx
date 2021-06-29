@@ -10,7 +10,7 @@ interface Props {
 const Bots: FC<Props> = ({ bots }) =>
     bots.length ? (
         <div className={styles.bots}>
-            {[...bots, ...bots].map(bot => (
+            {bots.map(bot => (
                 <BotCard key={bot.id} bot={bot} />
             ))}
         </div>

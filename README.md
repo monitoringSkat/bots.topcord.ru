@@ -46,10 +46,13 @@
 ## How run locally
 
 1. Clone the repo.
+
 ```git
 git clone "https://github.com/TopCord-Team/bots.topcord.ru"
 ```
+
 2. Install dependencies
+
 ```bash
   npm install # in root directory
   cd web && npm install # in web directory
@@ -57,6 +60,7 @@ git clone "https://github.com/TopCord-Team/bots.topcord.ru"
 ```
 
 3. Run server and frontend
+
 ```bash
   npm run server # in root directory
   npm run web # in other terminal

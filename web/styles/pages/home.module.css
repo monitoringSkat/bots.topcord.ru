@@ -66,3 +66,14 @@
 .bots {
     padding: 20px;
 }
+
+.bots h2 {
+    margin-left: 3.5%;
+}
+
+.empty {
+    font-size: 36px;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+}

@@ -18,22 +18,21 @@ const botsRouter = Router()
 
 // GET
 
-/**
- * @swagger
- * /bots:
- *   get:
- *     summary: Retrieve a list of JSONPlaceholder users
- *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing   an API.
- */
-
 botsRouter.get('/', async (req, res) => {
-    const bots = await Bot.find({
-        // where: { verified: true }
-        order: {
-            createdAt: 'ASC'
-        }
-    })
-    res.send(bots.slice(0, 20))
+    const newBots = (await Bot.find({
+        where: { verified: true },
+        order: { createdAt: "DESC" } // new bots filter 
+    })).slice(0, 20)
+    
+    const topBots = (await Bot.find({ 
+        where: { verified: true },
+        order: { votes: "DESC" } 
+    })).slice(0, 20)
+
+    res.send({
+        newBots,
+        topBots
+    }) 
 })
 
 botsRouter.get(
@@ -57,7 +56,7 @@ botsRouter.post(
             windowMs: Minutes.FIFTEEN,
             max: 100
         }),
-        // checkAuth,
+        checkAuth,
         body('name').notEmpty().isString(),
         body('id').notEmpty().isString(),
         body('prefix').notEmpty().isString(),
@@ -67,7 +66,7 @@ botsRouter.post(
     async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) return res.send({ errors: errors.array() })
-        // const owner = await User.findOne((req.user as any).id)
+        const owner = await User.findOne((req.user as any).id)
         const sameBot = await Bot.findOne(req.body.id)
         if (sameBot) return res.send(new SameBotException())
         const avatar = await getBotAvatarURL(req.body.id)
@@ -80,7 +79,7 @@ botsRouter.post(
             websiteURL: req.body.websiteURL || null,
             githubURL: req.body.githubURL || null,
             inviteURL: req.body.inviteURL || null,
-            // owner,
+            owner,
             votes: [],
             comments: [],
             avatar: avatar
@@ -98,7 +97,7 @@ botsRouter.post(
         )
         bot.tags = tags
         await bot.save()
-        // ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
+        ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
 
         res.send({ bot })
     }
@@ -118,7 +117,8 @@ botsRouter.post(
         const bot = (req as any).bot
         const userId = (req.user as any).id
         if (bot.votes.includes(userId)) return res.send(true)
-        bot.votes = [...bot.votes, userId]
+        const votes =  [...bot.votes, userId]
+        bot.votes = votes
         await bot.save()
         res.send(true)
     }
@@ -136,7 +136,7 @@ botsRouter.post(
     ],
     async (req: Request, res: Response) => {
         const bot = (req as any).bot
-        bot.votes = bot.votes.filter(userId => userId !== '832590237497950309')
+        bot.votes = bot.votes.filter(userId => userId !== ((req.user as any).id))
         await bot.save()
         res.send(true)
     }

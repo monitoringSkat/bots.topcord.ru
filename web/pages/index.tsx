@@ -6,10 +6,11 @@ import config from '../config'
 import Bot from '../interfaces/bot.interface'
 import Bots from '../components/Bots/Bots'
 interface Props {
-    bots: Bot[]
+    topBots: Bot[]
+    newBots: Bot[]
 }
 
-const Home = ({ bots }: Props) => (
+const Home = ({ newBots, topBots }: Props) => (
     <Layout title="Главная">
         <div className={styles.intro}>
             <div className={styles.text}>
@@ -27,8 +28,16 @@ const Home = ({ bots }: Props) => (
             <img src="/assets/wumpus-jet.png" className={styles.wumpus} />
         </div>
         <div className={styles.bots}>
-            <h2>Новые боты</h2>
-            <Bots bots={bots} />
+            {newBots.length === 0 && topBots.length === 0 && <div className={styles.empty}>Лист ботов пуст!</div>}
+            {newBots.length > 0 && <>
+                <h2>Новые боты</h2>
+                <Bots bots={newBots} />
+            </>}
+
+            {topBots.length > 0 && <>
+                <h2>Топ боты</h2>
+                <Bots bots={newBots} />
+            </>}
         </div>
     </Layout>
 )
@@ -36,9 +45,7 @@ const Home = ({ bots }: Props) => (
 Home.getInitialProps = async (): Promise<Props> => {
     const res = await fetch(`${config.SERVER_URL}/bots`)
     const bots = await res.json()
-    return {
-        bots: bots || []
-    }
+    return bots
 }
 
 export default Home

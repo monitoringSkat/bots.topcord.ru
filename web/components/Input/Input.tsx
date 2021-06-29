@@ -1,11 +1,13 @@
-import { FC, InputHTMLAttributes } from 'react'
+import { FC, InputHTMLAttributes, useState } from 'react'
 import styles from './Input.module.css'
+import ReactMarkdown from 'react-markdown'
 
 interface Props extends InputHTMLAttributes<any> {
     type?: 'search' | 'textarea'
 }
 
 const Input: FC<Props> = props => {
+    const [isEdit, setEdit] = useState(true)
     switch (props.type) {
         case 'search':
             return (
@@ -25,7 +27,16 @@ const Input: FC<Props> = props => {
                 </div>
             )
         case 'textarea':
-            return <textarea {...props} className={styles.textarea}></textarea>
+            return (
+                <div className={styles.textareaContainer}>
+                    <div className={styles.buttons}>
+                        <div onClick={() => setEdit(true)}>Редактировать</div>
+                        <div onClick={() => setEdit(false)}>Просмотреть</div>
+                    </div>
+                    {isEdit && <textarea {...props} className={styles.textarea}></textarea>}
+                    {!isEdit && <ReactMarkdown className={styles.preview} children={props.value as any} />}
+                </div>
+            )
         default:
             return <input {...props} className={styles.input} />
     }
