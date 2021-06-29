@@ -38,3 +38,7 @@ a:hover {
 body {
     background: #36393e;
 }
+
+.form-check {
+    margin: 10px 0;
+}

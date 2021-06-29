@@ -23,21 +23,28 @@ const Home = ({ newBots, topBots }: Props) => (
                 <div className={styles.tags}>
                     <Link href="/tags/fun">Fun</Link>
                     <Link href="/tags/moderation">Moderation</Link>
+                    <Link href="/tags">Список тегов</Link>
                 </div>
             </div>
             <img src="/assets/wumpus-jet.png" className={styles.wumpus} />
         </div>
         <div className={styles.bots}>
-            {newBots.length === 0 && topBots.length === 0 && <div className={styles.empty}>Лист ботов пуст!</div>}
-            {newBots.length > 0 && <>
-                <h2>Новые боты</h2>
-                <Bots bots={newBots} />
-            </>}
+            {newBots.length === 0 && topBots.length === 0 && (
+                <div className={styles.empty}>Лист ботов пуст!</div>
+            )}
+            {newBots.length > 0 && (
+                <>
+                    <h2>Новые боты</h2>
+                    <Bots bots={newBots} />
+                </>
+            )}
 
-            {topBots.length > 0 && <>
-                <h2>Топ боты</h2>
-                <Bots bots={newBots} />
-            </>}
+            {topBots.length > 0 && (
+                <>
+                    <h2>Топ боты</h2>
+                    <Bots bots={newBots} />
+                </>
+            )}
         </div>
     </Layout>
 )

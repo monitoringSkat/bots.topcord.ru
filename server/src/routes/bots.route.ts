@@ -19,20 +19,24 @@ const botsRouter = Router()
 // GET
 
 botsRouter.get('/', async (req, res) => {
-    const newBots = (await Bot.find({
-        where: { verified: true },
-        order: { createdAt: "DESC" } // new bots filter 
-    })).slice(0, 20)
-    
-    const topBots = (await Bot.find({ 
-        where: { verified: true },
-        order: { votes: "DESC" } 
-    })).slice(0, 20)
+    const newBots = (
+        await Bot.find({
+            where: { verified: true },
+            order: { createdAt: 'DESC' } // new bots filter
+        })
+    ).slice(0, 20)
+
+    const topBots = (
+        await Bot.find({
+            where: { verified: true },
+            order: { votes: 'DESC' }
+        })
+    ).slice(0, 20)
 
     res.send({
         newBots,
         topBots
-    }) 
+    })
 })
 
 botsRouter.get(
@@ -117,7 +121,7 @@ botsRouter.post(
         const bot = (req as any).bot
         const userId = (req.user as any).id
         if (bot.votes.includes(userId)) return res.send(true)
-        const votes =  [...bot.votes, userId]
+        const votes = [...bot.votes, userId]
         bot.votes = votes
         await bot.save()
         res.send(true)
@@ -136,7 +140,7 @@ botsRouter.post(
     ],
     async (req: Request, res: Response) => {
         const bot = (req as any).bot
-        bot.votes = bot.votes.filter(userId => userId !== ((req.user as any).id))
+        bot.votes = bot.votes.filter(userId => userId !== (req.user as any).id)
         await bot.save()
         res.send(true)
     }

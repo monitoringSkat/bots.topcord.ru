@@ -10,7 +10,7 @@
 -   [x] Same ID in bots
 -   [x] Add more server exceptions
 -   [x] Rate limit POST method
--   [X] API close
+-   [x] API close
 -   [ ] IP bans
 -   [x] Swagger
 -   [x] gzip (commpression)
@@ -27,6 +27,6 @@
 -   [ ] Likes, dislikes comments
 -   [ ] Bot developers
 -   [ ] User profile
--   [X] Bot tags
+-   [x] Bot tags
 -   [ ] Delete, edit user profile
 -   [ ] Premium

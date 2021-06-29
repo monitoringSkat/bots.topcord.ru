@@ -1,6 +1,6 @@
 import { FC, InputHTMLAttributes, useState } from 'react'
 import styles from './Input.module.css'
-import ReactMarkdown from 'react-markdown'
+import Markdown from '../Markdown/Markdown'
 
 interface Props extends InputHTMLAttributes<any> {
     type?: 'search' | 'textarea'
@@ -33,8 +33,18 @@ const Input: FC<Props> = props => {
                         <div onClick={() => setEdit(true)}>Редактировать</div>
                         <div onClick={() => setEdit(false)}>Просмотреть</div>
                     </div>
-                    {isEdit && <textarea {...props} className={styles.textarea}></textarea>}
-                    {!isEdit && <ReactMarkdown className={styles.preview} children={props.value as any} />}
+                    {isEdit && (
+                        <textarea
+                            {...props}
+                            className={styles.textarea}
+                        ></textarea>
+                    )}
+                    {!isEdit && (
+                        <Markdown
+                            className={styles.preview}
+                            text={props.value as any}
+                        />
+                    )}
                 </div>
             )
         default:

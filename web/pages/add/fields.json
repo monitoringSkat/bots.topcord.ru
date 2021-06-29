@@ -41,6 +41,13 @@
     },
     {
         "type": "input",
+        "name": "inviteURL",
+        "required": true,
+        "hint": "ссылка на добавления бота на сервер пользователя",
+        "placeholder": "Ссылка на добавления бота"
+    },
+    {
+        "type": "input",
         "name": "Задний фон в карточке бота",
         "required": false,
         "hint": "ссылка на изображение",
@@ -66,13 +73,6 @@
         "required": false,
         "hint": "ID пользователя. “запятая” - разделитель",
         "placeholder": "Исходный код "
-    },
-    {
-        "type": "input",
-        "name": "inviteURL",
-        "required": true,
-        "hint": "ссылка на добавления бота на сервер пользователя",
-        "placeholder": "Ссылка на добавления бота"
     },
     {
         "type": "input",

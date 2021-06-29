@@ -1,5 +1,3 @@
-const SettingsPage = () => {
-    
-}
+const SettingsPage = () => {}
 
 export default SettingsPage
