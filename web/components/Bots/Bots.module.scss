@@ -1,4 +1,4 @@
-.bots {
+.bots, .navigation {
     display: flex;
     flex-wrap: wrap;
     padding: 0 3.75%;
@@ -9,4 +9,21 @@
     color: white;
     text-align: center;
     font-weight: 600;
+}
+
+.navigation {
+    justify-content: center;
+    margin-top: 2.5%;
+    div {
+        color: white;
+        padding: 5px 12.5px;
+        cursor: pointer;
+        margin: 10px 5px;
+        background: #5865f2;
+        font-size: 18px;
+    }
+    .active {
+        border: 1px solid #5865f2;
+        background: #1d1f23;
+    }
 }

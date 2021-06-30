@@ -51,9 +51,6 @@ body {
     color: black !important;
 }
 
-*:focus {
-    border: 1px solid #5865f2 !important;
-}
 
 .dropdown-item {
     background-color: #5865f2;

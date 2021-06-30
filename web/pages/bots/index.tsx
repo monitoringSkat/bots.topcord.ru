@@ -2,8 +2,15 @@ import Layout from '../../layout'
 import styles from '../../styles/pages/bots.module.scss'
 import Input from '../../components/Input/Input'
 import { Dropdown, DropdownButton } from 'react-bootstrap'
+import Bot from '../../interfaces/bot.interface'
+import config from '../../config'
+import Bots from '../../components/Bots/Bots'
 
-function BotsPage() {
+interface Props {
+    bots: Bot[]
+}
+
+function BotsPage({ bots }: Props) {
     return (
         <Layout title="Боты">
             <div className={styles.intro}>
@@ -35,8 +42,15 @@ function BotsPage() {
                     </DropdownButton>
                 </div>
             </div>
+            <Bots bots={bots} />
         </Layout>
     )
+}
+
+BotsPage.getInitialProps = async (): Promise<Props> => {
+    const res = await fetch(`${config.SERVER_URL}/bots?c=all`)
+    const bots = await res.json()
+    return { bots: bots }
 }
 
 export default BotsPage
