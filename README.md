@@ -36,6 +36,10 @@
     <td><a href="desing">/design</a></td>
     <td>Images with design</td>
   </tr>
+  <tr>
+    <td><a href="desing">/api-bot</a></td>
+    <td>Bot for convenient use TopCord API in Disord</td>
+  </tr>
 </table>
 
 ## Branches
