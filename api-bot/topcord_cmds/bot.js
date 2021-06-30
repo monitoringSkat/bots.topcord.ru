@@ -3,13 +3,13 @@ const { MessageButton, MessageActionRow } = require('discord-buttons');
 const fetch = require('node-fetch');
 
 module.exports = {
-    name: 'topcord',
+    name: 'bot',
     description: 'Topcord API',
     async execute(client, message, args) {
 
         if(!args[0]) {
 
-      return message.channel.send(`<:db_red:816728953661161542> Укажите ID бота с TopCord`)
+      return message.channel.send(`Укажите ID бота с TopCord`)
 
         } else {
 
@@ -20,7 +20,7 @@ module.exports = {
 
             
               if(info.error == 'Unknown bot') {
-                  return message.channel.send(`<:db_red:816728953661161542> Бот \`${bot}\` не найден.`)
+                  return message.channel.send(`Бот \`${bot}\` не найден.`)
               }
 
               if(429 == 'Too Many Requests') {
