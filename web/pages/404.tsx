@@ -1,6 +1,3 @@
-const PageNotFound = () => 
-<div>
-    
-</div>
+const PageNotFound = () => <div></div>
 
 export default PageNotFound
