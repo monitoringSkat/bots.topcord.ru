@@ -54,3 +54,16 @@ body {
 *:focus {
     border: 1px solid #5865f2 !important;
 }
+
+.dropdown-item {
+    background-color: #5865f2;
+    color: white !important;
+}
+
+.dropdown-item:hover {
+    background-color: #5865f2;
+}
+
+.dropdown-menu {
+    background-color: #5865f2 !important; 
+} 

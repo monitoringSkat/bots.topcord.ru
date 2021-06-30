@@ -7,5 +7,20 @@
             "community": "Сообщество",
             "login": "Войти"
         }
+    },
+    "footer": {
+        "categories": {
+            "info": "Информация",
+            "politics": "",
+            "links": ""
+        },
+        "links": {
+            "developers": "",
+            "documentation-api": "",
+            "donate": "",
+            "rules": "",
+            "topinfo": "",
+            "support-server": ""
+        }
     }
 }
