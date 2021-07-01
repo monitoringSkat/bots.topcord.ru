@@ -19,7 +19,7 @@ import usersRouter from './routes/users.route'
 import tagsRouter from './routes/tags.route'
 
 dotenv.config()
-const PORT = process.env.PORT || 5000
+const PORT = Number(process.env.PORT || 5000)
 const mode = process.env.NODE_ENV
 
 const swaggerOptions = {
@@ -87,9 +87,9 @@ orm.createConnection()
         app.use('/bots', botsRouter)
         app.use('/auth/discord', authRouter)
         app.use('/docs', swagger.serve, swagger.setup(openapiSpecification))
-
+            
         app.listen(PORT, () => {
-            console.log(`Server is running: http://localhost:${PORT}`)
+            console.log(`[NODEJS]: http://localhost:${PORT}`)
         })
     })
     .catch(e => console.log(e))

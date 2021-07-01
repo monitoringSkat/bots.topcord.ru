@@ -1,0 +1,17 @@
+[
+    {
+        "name": "english",
+        "id": "en",
+        "icon": "🇬🇧"
+    },
+    {
+        "name": "russia",
+        "id": "ru",
+        "icon": "🇷🇺"
+    },
+    {
+        "name": "ukrainian",
+        "id": "ua",
+        "icon": "🇺🇦"
+    }
+]

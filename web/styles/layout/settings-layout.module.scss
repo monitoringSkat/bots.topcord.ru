@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.home {
+    position: absolute;
+    border-radius: 50px;
+    background: #282b30;
+    padding: 15px;
+    right: 40px;
+    top: 40px;
+    cursor: pointer;
+}
+
+.menu {
+    width: 25%;
+    height: 100vh;
+    background: #282B30;
+    padding: 6.5% 3%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    h1 {
+        padding: .5% 0;
+    }
+    a {
+        display: block;
+        font-size: 22px;
+        padding: 5px 0;
+        transition: 0.4s;
+        border-radius: 5px;
+        &:hover {
+            background: #36393e;
+            transition: 0.4s;
+            
+        }
+    }
+    hr {
+        margin: 20px 0;
+        background-color: white;
+    }
+}
+
+.information * {
+    color: #99AAB5;
+    font-size: 15px;
+    user-select: none;
+}
+
+.logout {
+    color: #ED4245;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+    width: 75%;
+}
