@@ -1,8 +1,8 @@
 .info {
-    display: flex; 
+    display: flex;
     flex-wrap: wrap;
     padding: 2% 2.5%;
-    background: #282B30;
+    background: #282b30;
     color: white;
     .avatar {
         margin-right: 1.5%;
@@ -19,7 +19,7 @@
         margin-top: -4%;
     }
     .tags a {
-        color: #5865F2 !important;
+        color: #5865f2 !important;
         font-size: 18px !important;
         margin-right: 5px;
         &:hover {
@@ -43,7 +43,7 @@
         div {
             font-size: 18px;
             span {
-                color: #99AAB5;
+                color: #99aab5;
             }
         }
     }
@@ -63,10 +63,9 @@
     }
 }
 
-
 .description {
     width: 100%;
-    background: #282B30;
+    background: #282b30;
     padding: 1% 2.5%;
     margin: 1% 0;
     font-size: 18px;
@@ -75,7 +74,7 @@
 
 .comments {
     width: 100%;
-    background: #282B30;
+    background: #282b30;
     padding: 1% 2.5%;
     margin: 1% 0;
     font-size: 18px;
