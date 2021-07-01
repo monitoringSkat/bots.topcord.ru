@@ -1,20 +1,20 @@
 {
-  "name": "api-bot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon ./src/index.js",
-    "start": "node ./src/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "discord-buttons": "^3.2.1",
-    "discord.js": "^12.5.3",
-    "dotenv": "^10.0.0",
-    "node-fetch": "^2.6.1",
-    "nodemon": "^2.0.9"
-  }
+    "name": "api-bot",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon ./src/index.js",
+        "start": "node ./src/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "discord-buttons": "^3.2.1",
+        "discord.js": "^12.5.3",
+        "dotenv": "^10.0.0",
+        "node-fetch": "^2.6.1",
+        "nodemon": "^2.0.9"
+    }
 }
