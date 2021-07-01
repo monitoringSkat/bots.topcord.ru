@@ -14,7 +14,7 @@ usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
 usersRouter.get('/:id', async (req: Request, res: Response) => {
     const userId = req.params.id
     const user = await User.findOne(userId, { relations: ['bots'] })
-    if (!user) return res.send(new UserNotFoundException()) 
+    if (!user) return res.send(new UserNotFoundException())
     res.send(user)
 })
 

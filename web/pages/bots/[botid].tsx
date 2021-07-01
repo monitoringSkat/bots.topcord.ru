@@ -1,25 +1,21 @@
-import { NextPageContext } from "next"
-import config from "../../config"
-import Bot from "../../interfaces/bot.interface"
-import Layout from "../../layout"
+import { NextPageContext } from 'next'
+import config from '../../config'
+import Bot from '../../interfaces/bot.interface'
+import Layout from '../../layout'
 
 interface Props {
     bot: Bot
 }
 
 function BotPage({ bot }: Props) {
-    return ( 
-    <Layout>
-        
-    </Layout> 
-    )
+    return <Layout></Layout>
 }
 
 BotPage.getInitialProps = async ({ query }: NextPageContext) => {
     const { botid } = query
     const res = await fetch(`${config.SERVER_URL}/bots/${botid}`)
     const bot = await res.json()
-    return { bot } 
+    return { bot }
 }
 
 export default BotPage
