@@ -1,0 +1,54 @@
+.profile {
+    background-color: #282b30;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 3%;
+    display: flex;
+    color: white;
+    .avatar {
+        margin-top: -3%;
+        width: 75px;
+        height: 75px;
+        border-radius: 100%;
+        outline: 10px solid #282b30;
+        margin-right: 1.5%;
+    }
+    .header {
+        width: 100%;
+        margin-top: -1%;
+        height: 35px;
+        display: flex;
+        justify-content: space-between;
+        button {
+            padding: 5px 10px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            background-color: #5865F2;
+        }
+    }
+    .username {
+        font-size: 22px;
+        font-weight: 500;
+        span {
+            color: silver;
+        }
+    }
+    textarea {
+        border: 1px solid #282b30;
+        color: silver;
+        background: #36393e; 
+        max-height: 200px;
+    }
+    .save {
+        float: right;
+        color: white;
+        background: #57F287;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+    }
+    .bio {
+        margin: 10px 0;
+    }
+}
