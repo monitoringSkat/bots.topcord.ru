@@ -16,13 +16,13 @@
 .menu {
     width: 25%;
     height: 100vh;
-    background: #282B30;
+    background: #282b30;
     padding: 6.5% 3%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     h1 {
-        padding: .5% 0;
+        padding: 0.5% 0;
     }
     a {
         display: block;
@@ -33,7 +33,6 @@
         &:hover {
             background: #36393e;
             transition: 0.4s;
-            
         }
     }
     hr {
@@ -43,13 +42,13 @@
 }
 
 .information * {
-    color: #99AAB5;
+    color: #99aab5;
     font-size: 15px;
     user-select: none;
 }
 
 .logout {
-    color: #ED4245;
+    color: #ed4245;
     font-size: 20px;
     cursor: pointer;
 }

@@ -1,12 +1,10 @@
-import SettingsLayout from "../../layout/settings-layout"
+import SettingsLayout from '../../layout/settings-layout'
 
 const SettingsPage = () => {
     return (
-    <SettingsLayout>
-        <div>
-            
-        </div>
-    </SettingsLayout>
+        <SettingsLayout>
+            <div></div>
+        </SettingsLayout>
     )
 }
 

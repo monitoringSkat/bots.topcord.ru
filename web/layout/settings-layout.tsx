@@ -3,10 +3,13 @@ import styles from '../styles/layout/settings-layout.module.scss'
 import Link from 'next/link'
 
 const SettingsLayout: FC = ({ children }) => {
-    const [[browser, system], setNavigator] = useState(["", ""])
+    const [[browser, system], setNavigator] = useState(['', ''])
     useEffect(() => {
         if (window && window.navigator) {
-            setNavigator([window.navigator.appCodeName, (window.navigator as any).oscpu])
+            setNavigator([
+                window.navigator.appCodeName,
+                (window.navigator as any).oscpu
+            ])
         }
     }, [browser, system])
     return (
@@ -14,7 +17,7 @@ const SettingsLayout: FC = ({ children }) => {
             <Link href="/">
                 <div className={styles.home}>
                     <img src="/assets/home.svg" />
-                </div>  
+                </div>
             </Link>
             <div className={styles.menu}>
                 <h1>Настройки</h1>
@@ -29,9 +32,7 @@ const SettingsLayout: FC = ({ children }) => {
                     <div>Операционная система: {system}</div>
                 </div>
             </div>
-            <div className={styles.content}>
-                {children}
-            </div>
+            <div className={styles.content}>{children}</div>
         </div>
     )
 }

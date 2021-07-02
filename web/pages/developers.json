@@ -1,0 +1,43 @@
+[
+    {
+        "username": "d1m0s23",
+        "avatar": "https://avatars.githubusercontent.com/u/61113540?v=4",
+        "role": "Founder",
+        "bio": "Погромист. Хз че написать , я не заполнял био никада и не буду кроме этого текста больше писать ничего. Гыг ;)",
+        "social": {
+            "github": "https://github.com/d1m0s23"
+        }
+    },
+    {
+        "username": "Vitaliy Irtlach",
+        "avatar": "https://avatars.githubusercontent.com/u/63682036?v=4",
+        "role": "Team lead",
+        "bio": "self-taught developer since 2020.",
+        "social": {
+            "github": "https://github.com/vitaliyirtlach",
+            "website": "https://vitaliyirtlach.netlify.app/",
+            "gitlab": "https://gitlab.com/vitaliyirtlach"
+        }
+    },
+    {
+        "username": "Vadim Irlach",
+        "avatar": "https://storage.googleapis.com/kaggle-avatars/images/5753671-kg.jpg",
+        "role": "Design helper",
+        "bio": "no bio",
+        "social": {
+            "github": "https://github.com/vad13irt",
+            "kaggle": "https://www.kaggle.com/vad13irt",
+            "twitter": "https://twitter.com/vad13irt",
+            "linkedin": "https://www.linkedin.com/in/vadim-irtlach-6a49aa1b7/"
+        }
+    },
+    {
+        "username": "evgen1y",
+        "avatar": "https://avatars.githubusercontent.com/u/70522999?v=4",
+        "role": "API bot developer",
+        "bio": "no bio",
+        "social": {
+            "github": "https://github.com/evgeniy-btw"
+        }
+    }
+]

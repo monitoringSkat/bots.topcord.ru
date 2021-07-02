@@ -6,7 +6,7 @@ const Footer = () => (
             <div className="footer-links">
                 <div className="footer-links-group">
                     <div className="footer-links-group-name">Информация</div>
-                    <Link href="">Разработчики</Link>
+                    <Link href="/developers">Разработчики</Link>
                     <Link href="">Руководство по API</Link>
                     <Link href="">Пожертвовать</Link>
                 </div>

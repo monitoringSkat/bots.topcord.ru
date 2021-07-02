@@ -87,7 +87,7 @@ orm.createConnection()
         app.use('/bots', botsRouter)
         app.use('/auth/discord', authRouter)
         app.use('/docs', swagger.serve, swagger.setup(openapiSpecification))
-            
+
         app.listen(PORT, () => {
             console.log(`[NODEJS]: http://localhost:${PORT}`)
         })

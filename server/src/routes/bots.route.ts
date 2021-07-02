@@ -21,7 +21,7 @@ const botsRouter = Router()
 botsRouter.get('/', async (req, res) => {
     const { c } = req.query
     if (c === 'all') {
-        return res.send(await Bot.find())
+        return res.send(await Bot.find({ order: { votes: 'DESC' } }))
     }
     const newBots = (
         await Bot.find({
