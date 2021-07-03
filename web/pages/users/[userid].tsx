@@ -10,24 +10,20 @@ interface Props {
 const UserPage = ({ user }: Props) => {
     return (
         <Layout>
-            {user ? (
-                <div className={styles.profile}>
-                    <img src={user.avatar} className={styles.avatar} />
-                    <div className={styles.info}>
-                        <div className={styles.passport}>
-                            {user.verified && (
-                                <img src="" className={styles.verified} />
-                            )}
-                            <div className={styles.username}>
-                                {user.username}#{user.discriminator}
-                            </div>
-                        </div>
-                        <div className={styles.intergrations}></div>
-                    </div>
+            <div className={styles.profile}>
+                <div className={styles.avatar}>
+                    <img src="https://pbs.twimg.com/media/Erjoda3XcAILDgH.png" />
+                    <button>Редактировать</button>
                 </div>
-            ) : (
-                <div>User not found</div>
-            )}
+                <div className={styles.info}>
+                    <div className={styles.passport}>
+                        <img src="/assets/verified.png" className={styles.verified} />
+                        <div className={styles.username}>-vitaliyirtlach#6564</div>
+                        <div className={styles.role}>Admin</div>
+                    </div>
+                    <div className={styles.intergrations}></div>
+                </div>
+            </div>
         </Layout>
     )
 }

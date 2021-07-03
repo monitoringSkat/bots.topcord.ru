@@ -51,7 +51,6 @@ botsRouter.get(
         })
     ],
     async (req, res) => {
-        console.log(req.bot)
         res.send(req.bot)
     }
 )

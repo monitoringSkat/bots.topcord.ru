@@ -5,17 +5,20 @@ import Tag from '../entities/Tag'
 const tagsRouter = Router()
 
 tagsRouter.get('/', async (req: Request, res: Response) => {
-    const tags = await Tag.find({ relations: ['bots'] })
-    res.send(tags)
+    const tags = await Tag.find({ 
+        relations: ['bots'], 
+    })
+    const result = tags.map(tag => ({ tag: tag.name, count: tag.bots.length }))
+    res.send(result)
 })
 
 tagsRouter.get('/:name', async (req: Request, res: Response) => {
     const { name } = req.params
-    const bots = await Tag.findAndCount({
+    const [ { bots } ] = await Tag.find({
         where: { name },
         relations: ['bots']
     })
-    res.send({ count: bots[bots.length - 1], bots: bots[0] })
+    res.send({ bots })
 })
 
 export default tagsRouter

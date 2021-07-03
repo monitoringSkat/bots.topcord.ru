@@ -14,7 +14,7 @@ const BotCard: FC<Props> = ({ bot }) => (
             style={{
                 backgroundImage: bot.backgroundURL
                     ? `url(${bot.backgroundURL})`
-                    : `url(assets/default-bot-background.svg)`
+                    : `url(/assets/default-bot-background.svg)`
             }}
         />
         <div className={styles.info}>
