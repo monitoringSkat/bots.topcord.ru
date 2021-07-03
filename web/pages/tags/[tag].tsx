@@ -1,12 +1,12 @@
-import React from "react"
-import Input from "../../components/Input/Input"
-import { Dropdown, DropdownButton } from "react-bootstrap"
-import Layout from "../../layout"
-import styles from "../../styles/pages/tag.module.scss"
-import Bot from "../../interfaces/bot.interface"
-import Bots from "../../components/Bots/Bots"
-import { NextPageContext } from "next"
-import config from "../../config"
+import React from 'react'
+import Input from '../../components/Input/Input'
+import { Dropdown, DropdownButton } from 'react-bootstrap'
+import Layout from '../../layout'
+import styles from '../../styles/pages/tag.module.scss'
+import Bot from '../../interfaces/bot.interface'
+import Bots from '../../components/Bots/Bots'
+import { NextPageContext } from 'next'
+import config from '../../config'
 
 interface Props {
     bots: Bot[]
@@ -53,8 +53,8 @@ function TagPage({ tag, bots }: Props) {
 TagPage.getInitialProps = async ({ query }: NextPageContext) => {
     const res = await fetch(`${config.SERVER_URL}/tags/${query.tag}`)
     const data = await res.json()
-    return { 
-        tag: query.tag, 
+    return {
+        tag: query.tag,
         bots: data.bots
     }
 }

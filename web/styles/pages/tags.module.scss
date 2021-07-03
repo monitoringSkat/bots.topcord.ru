@@ -2,7 +2,7 @@
     width: 100%;
     padding: 1% 2.5%;
     padding-top: 2%;
-    background: #2C2F33;
+    background: #2c2f33;
 }
 .tags {
     display: flex;
@@ -21,17 +21,17 @@
             transition: 0.4s;
         }
         .name {
-            background: #5865F2;
+            background: #5865f2;
             padding: 5px 10px;
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
             &::before {
-                content: "#";
+                content: '#';
             }
         }
         .count {
             padding: 5px 10px;
-            background: #4F545C;
+            background: #4f545c;
             border-top-right-radius: 5px;
             border-bottom-right-radius: 5px;
         }
