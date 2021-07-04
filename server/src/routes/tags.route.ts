@@ -1,5 +1,4 @@
 import { Router, Request, Response } from 'express'
-import Bot from '../entities/Bot'
 import Tag from '../entities/Tag'
 
 const tagsRouter = Router()

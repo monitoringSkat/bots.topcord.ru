@@ -7,6 +7,7 @@ import Bot from '../../interfaces/bot.interface'
 import Bots from '../../components/Bots/Bots'
 import { NextPageContext } from 'next'
 import config from '../../config'
+import Link from 'next/link'
 
 interface Props {
     bots: Bot[]
@@ -17,33 +18,8 @@ function TagPage({ tag, bots }: Props) {
     return (
         <Layout>
             <div className={styles.intro}>
-                <div className={styles.title}>Лист ботов по тегу {tag}.</div>
-                <Input placeholder="Найти бота" type="search" />
-                <div className={styles.options}>
-                    <DropdownButton
-                        id="dropdown-basic-button"
-                        title="Сортировоть по"
-                    >
-                        <Dropdown.Item href="#/action-1">Голосам</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                            Количеству серверов
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                            По дате обновления
-                        </Dropdown.Item>
-                    </DropdownButton>
-                    <DropdownButton
-                        id="dropdown-basic-button"
-                        title="Библиотека"
-                    >
-                        <Dropdown.Item href="#/action-1">
-                            discord.js
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                            discord.py
-                        </Dropdown.Item>
-                    </DropdownButton>
-                </div>
+                <h1>Боты по тегу {tag}</h1>
+                <Link href="/bots">Вернуться к списку ботов</Link>
             </div>
             <Bots bots={bots} />
         </Layout>

@@ -18,6 +18,7 @@ function BotsPage({ bots }: Props) {
                 <Input placeholder="Найти бота" type="search" />
                 <div className={styles.options}>
                     <DropdownButton
+                        onSelect={e => console.log(e)}
                         id="dropdown-basic-button"
                         title="Сортировоть по"
                     >
@@ -25,9 +26,7 @@ function BotsPage({ bots }: Props) {
                         <Dropdown.Item href="#/action-2">
                             Количеству серверов
                         </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                            По дате обновления
-                        </Dropdown.Item>
+                        <Dropdown.Item>По дате обновления</Dropdown.Item>
                     </DropdownButton>
                     <DropdownButton
                         id="dropdown-basic-button"
@@ -39,6 +38,12 @@ function BotsPage({ bots }: Props) {
                         <Dropdown.Item href="#/action-2">
                             discord.py
                         </Dropdown.Item>
+                    </DropdownButton>
+                    <DropdownButton id="dropdown-basic-button" title="Тег">
+                        <Dropdown.Item href="#/action-1">
+                            Модерация
+                        </Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">Фан</Dropdown.Item>
                     </DropdownButton>
                 </div>
             </div>
