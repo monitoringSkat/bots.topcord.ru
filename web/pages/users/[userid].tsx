@@ -29,23 +29,54 @@ const UserPage = ({ user }: Props) => {
                         <div className={styles.role}>Admin</div>
                     </div>
                     <div className={styles.integrations}>
-                        <Link href="https://github.com/vitaliyirtlach"><img src="/assets/github-logo.svg" /></Link>
-                        <Link href="fdfdssd"><img src="/assets/spotify.png" /></Link>
-                        <Link href="fdfdssd"><img className={styles.twitter} src="/assets/twitter.png" /></Link>
-                        <Link href="fdfdssd"><img src="/assets/facebook.png" /></Link>
-                        <Link href="fdfdssd"><img src="/assets/reddit.png" /></Link>
-                        <Link href="fdfdssd"><img className={styles.steam} src="/assets/steam.png" /></Link>
-                        <Link href="fdfdssd"><img src="/assets/youtube.png" /></Link>
+                        <Link href="https://github.com/vitaliyirtlach">
+                            <img src="/assets/github-logo.svg" />
+                        </Link>
+                        <Link href="fdfdssd">
+                            <img src="/assets/spotify.png" />
+                        </Link>
+                        <Link href="fdfdssd">
+                            <img
+                                className={styles.twitter}
+                                src="/assets/twitter.png"
+                            />
+                        </Link>
+                        <Link href="fdfdssd">
+                            <img src="/assets/facebook.png" />
+                        </Link>
+                        <Link href="fdfdssd">
+                            <img src="/assets/reddit.png" />
+                        </Link>
+                        <Link href="fdfdssd">
+                            <img
+                                className={styles.steam}
+                                src="/assets/steam.png"
+                            />
+                        </Link>
+                        <Link href="fdfdssd">
+                            <img src="/assets/youtube.png" />
+                        </Link>
                     </div>
                     <div className={styles.followers}>100 подписчиков</div>
                     <div className={styles.following}>9 подписок</div>
                     <div className={styles.bio}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas voluptas labore, error incidunt corporis, qui sunt dolorem atque nesciunt quasi laboriosam id quisquam excepturi consequuntur rerum est iste deleniti vero.
-                        Sequi est laudantium, impedit doloremque quos corrupti quia quas repudiandae enim tempora harum blanditiis rerum adipisci reprehenderit quasi ea nihil doloribus laboriosam ratione. Pariatur tempora ipsam, magnam eos voluptates minus.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Quas voluptas labore, error incidunt corporis, qui sunt
+                        dolorem atque nesciunt quasi laboriosam id quisquam
+                        excepturi consequuntur rerum est iste deleniti vero.
+                        Sequi est laudantium, impedit doloremque quos corrupti
+                        quia quas repudiandae enim tempora harum blanditiis
+                        rerum adipisci reprehenderit quasi ea nihil doloribus
+                        laboriosam ratione. Pariatur tempora ipsam, magnam eos
+                        voluptates minus.
                     </div>
                 </div>
             </div>
-            {[].length > 0 ? <Bots bots={[]}/> : <div className={styles.bots}>Лист ботов пользователя пуст!</div>}
+            {[].length > 0 ? (
+                <Bots bots={[]} />
+            ) : (
+                <div className={styles.bots}>Лист ботов пользователя пуст!</div>
+            )}
         </Layout>
     )
 }

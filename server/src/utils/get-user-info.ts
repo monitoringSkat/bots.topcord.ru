@@ -1,5 +1,5 @@
-import { config } from "dotenv"
-import CreateUser from "../interfaces/user/create-user.interface"
+import { config } from 'dotenv'
+import CreateUser from '../interfaces/user/create-user.interface'
 
 const { parsed } = config()
 
@@ -13,7 +13,7 @@ async function getUserInfo(id: string): Promise<CreateUser | null> {
         })
         const info = await res.json()
         return info
-    } catch(e) {
+    } catch (e) {
         return null
     }
 }

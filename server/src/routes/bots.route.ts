@@ -21,14 +21,15 @@ const botsRouter = Router()
 
 botsRouter.get('/', async (req, res) => {
     const { c, q } = req.query
-    if (c === 'all') return res.send(await Bot.find({ order: { votes: 'DESC' } }))
+    if (c === 'all')
+        return res.send(await Bot.find({ order: { votes: 'DESC' } }))
     if (q) {
         const bots = await getConnection()
-        .getRepository(Bot)
-        .createQueryBuilder()
-        .select()
-        .where('name ILIKE :q', { q: `%${q}%` })
-        .getMany();
+            .getRepository(Bot)
+            .createQueryBuilder()
+            .select()
+            .where('name ILIKE :q', { q: `%${q}%` })
+            .getMany()
         return res.send(bots)
     }
 
@@ -73,7 +74,7 @@ botsRouter.post(
             windowMs: Minutes.FIFTEEN,
             max: 100
         }),
-        checkAuth,
+        // checkAuth,
         body('name').notEmpty().isString(),
         body('id').notEmpty().isString(),
         body('prefix').notEmpty().isString(),
@@ -83,9 +84,9 @@ botsRouter.post(
     async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) return res.send({ errors: errors.array() })
-        const owner = await User.findOne((req.user as any).id)
-        const sameBot = await Bot.findOne(req.body.id)
-        if (sameBot) return res.send(new SameBotException())
+        // const owner = await User.findOne((req.user as any).id)
+        // const sameBot = await Bot.findOne(req.body.id)
+        // if (sameBot) return res.send(new SameBotException())
         const avatar = await getBotAvatarURL(req.body.id)
         const bot = Bot.create({
             name: req.body.name,
@@ -96,7 +97,7 @@ botsRouter.post(
             websiteURL: req.body.websiteURL || null,
             githubURL: req.body.githubURL || null,
             inviteURL: req.body.inviteURL || null,
-            owner,
+            // owner,
             votes: [],
             comments: [],
             avatar: avatar
@@ -114,7 +115,7 @@ botsRouter.post(
         )
         bot.tags = tags
         await bot.save()
-        ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
+        // ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
 
         res.send({ bot })
     }

@@ -22,5 +22,15 @@
             "topinfo": "",
             "support-server": ""
         }
+    },
+    "title": "Лист ботов в Дискорд.",
+    "subtitle": "Добавляйте ботов, голосуйте за них. Выбирайте ботов. И все это на TopCord.",
+    "addBot": {
+        "client_id": "Клиент ID",
+        "client_id_hint": "находиться на Discord Developer Portal",
+        "name": "Имя бота"
+    },
+    "tags": {
+        "moderation": "Модерация"
     }
 }

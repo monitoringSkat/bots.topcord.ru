@@ -62,7 +62,7 @@
     display: flex;
     align-items: center;
     margin: 10px 0;
-    img { 
+    img {
         margin-right: 10px;
         width: 22.5px;
         height: 22.5px;
@@ -79,7 +79,8 @@
     border-radius: 50px;
 }
 
-.followers, .following {
+.followers,
+.following {
     width: 30%;
     margin-bottom: 10px;
     display: block;

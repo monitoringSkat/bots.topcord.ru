@@ -1,13 +1,12 @@
-import User from "../entities/User"
-import CreateUser from "../interfaces/user/create-user.interface"
+import User from '../entities/User'
+import CreateUser from '../interfaces/user/create-user.interface'
 
 class UserService {
-
     /**
      * @param { CreateUser } profile
      * @returns {Promise<User | null>}
      */
-     static async findOrCreate(user: CreateUser): Promise<User | null> {
+    static async findOrCreate(user: CreateUser): Promise<User | null> {
         try {
             const createdUser = await User.findOne(user.id)
             const avatar = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`
@@ -25,20 +24,16 @@ class UserService {
             })
             await newUser.save()
             return newUser
-        } catch(e) {
+        } catch (e) {
             return null
         }
     }
 
-    async update() {
+    async update() {}
 
-    }
-    
-    async getById(): Promise< User | null > {
+    async getById(): Promise<User | null> {
         return null
     }
-
 }
-
 
 export default UserService
