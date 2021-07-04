@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express'
+import { getConnection } from 'typeorm'
 import { body, validationResult } from 'express-validator'
 import Bot from '../entities/Bot'
 import checkAuth from '../middlewares/checkAuth.middleware'
@@ -19,10 +20,18 @@ const botsRouter = Router()
 // GET
 
 botsRouter.get('/', async (req, res) => {
-    const { c } = req.query
-    if (c === 'all') {
-        return res.send(await Bot.find({ order: { votes: 'DESC' } }))
+    const { c, q } = req.query
+    if (c === 'all') return res.send(await Bot.find({ order: { votes: 'DESC' } }))
+    if (q) {
+        const bots = await getConnection()
+        .getRepository(Bot)
+        .createQueryBuilder()
+        .select()
+        .where('name ILIKE :q', { q: `%${q}%` })
+        .getMany();
+        return res.send(bots)
     }
+
     const newBots = (
         await Bot.find({
             where: { verified: true },
@@ -135,11 +144,11 @@ botsRouter.post(
 botsRouter.post(
     '/:id/unvote',
     [
+        checkAuth,
         rateLimit({
             windowMs: Minutes.FIFTEEN,
             max: 200
         }),
-        checkAuth,
         findBot()
     ],
     async (req: Request, res: Response) => {
@@ -153,11 +162,11 @@ botsRouter.post(
 botsRouter.post(
     '/:id/comment',
     [
+        checkAuth,
         rateLimit({
             windowMs: Minutes.FIFTEEN,
             max: 300
         }),
-        checkAuth,
         findBot({
             relations: ['comments', 'comments.author']
         }),

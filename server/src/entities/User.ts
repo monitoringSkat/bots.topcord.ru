@@ -14,9 +14,6 @@ class User extends BaseEntity {
     @Column()
     discriminator: string
 
-    @Column({ select: false })
-    email: string
-
     @Column()
     avatar: string
 
