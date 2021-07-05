@@ -15,7 +15,7 @@ const Home = ({ newBots, topBots }: Props) => (
     <Layout title="Главная | Topcord">
         <Container className={styles.intro} fluid>
             <Row>
-                <Col className="col-sm-6">
+                <Col className="col-sm-8 col-md-6 col-xl-6">
                     <div className={styles.title}>Лист ботов в Дискорд.</div>
                     <div className={styles.subtitle}>
                         Добавляйте ботов, голосуйте за них. Выбирайте ботов. И
@@ -28,7 +28,7 @@ const Home = ({ newBots, topBots }: Props) => (
                         <Link href="/tags">Список тегов</Link>
                     </div>
                 </Col>
-                <Col className="col-md-6">
+                <Col className="col-sm-8 col-md-6 col-xl-6">
                     <img
                         src="/assets/wumpus-jet.png"
                         className={styles.wumpus}
