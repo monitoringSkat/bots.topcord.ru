@@ -1,62 +1,59 @@
 import Layout from '../layout'
 import styles from '../styles/pages/home.module.css'
-import Input from '../components/Input/Input'
 import Link from 'next/link'
 import config from '../config'
 import Bot from '../interfaces/bot.interface'
 import Bots from '../components/Bots/Bots'
-import React, { useState } from 'react'
 import SearchBotsInput from "../components/SearchBotsInput/SearchBotsInput"
-
+import { Container, Col, Row } from 'react-bootstrap'
 interface Props {
     topBots: Bot[]
     newBots: Bot[]
 }
 
-const Home = ({ newBots, topBots }: Props) => {
-    const [sortCriteria, setSortCriteria] = useState<string | null>(null)
-    const [sortLibrary, setSortLibrary] = useState<string | null>(null)
-    const [sortTag, setSortTag] = useState<string | null>(null)
-
-    return (
-        <Layout title="Главная">
-            <div className={styles.intro}>
-                <div className={styles.text}>
+const Home = ({ newBots, topBots }: Props) => (
+    <Layout title="Главная | Topcord">
+        <Container className={styles.intro} fluid>
+            <Row>
+                <Col className="col-sm-6" >
                     <div className={styles.title}>Лист ботов в Дискорд.</div>
                     <div className={styles.subtitle}>
-                        Добавляйте ботов, голосуйте за них. Выбирайте ботов. И
-                        все это на TopCord.
+                        Добавляйте ботов, голосуйте за них. Выбирайте ботов. И все
+                        это на TopCord.
                     </div>
                     <SearchBotsInput placeholder="Найти бота" />
                     <div className={styles.tags}>
-                        <Link href="/bots?tag=fun">Fun</Link>
-                        <Link href="/bots?tag=moderation">Moderation</Link>
+                        <Link href="/tags/fun">Fun</Link>
+                        <Link href="/tags/moderation">Moderation</Link>
                         <Link href="/tags">Список тегов</Link>
                     </div>
-                </div>
-                <img src="/assets/wumpus-jet.png" className={styles.wumpus} />
-            </div>
-            <div className={styles.bots}>
-                {newBots.length === 0 && topBots.length === 0 && (
-                    <div className={styles.empty}>Лист ботов пуст!</div>
-                )}
-                {newBots.length > 0 && (
-                    <>
-                        <h2>Новые боты</h2>
-                        <Bots bots={newBots} />
-                    </>
-                )}
+                </Col>
+                <Col className="col-md-6" >
+                    <img src="/assets/wumpus-jet.png" className={styles.wumpus} />
+                </Col>
+            </Row>
+        </Container>
+        <div className={styles.bots}>
+            {newBots.length === 0 && topBots.length === 0 && (
+                <div className={styles.empty}>¯\_(ツ)_/¯ <br/> Боты не найдены. </div>
+            )}
+            {newBots.length > 0 && (
+                <>
+                    <h2>Новые боты</h2>
+                    <Bots bots={newBots} />
+                </>
+            )}
 
-                {topBots.length > 0 && (
-                    <>
-                        <h2>Топ боты</h2>
-                        <Bots bots={newBots} />
-                    </>
-                )}
-            </div>
-        </Layout>
-    )
-}
+            {topBots.length > 0 && (
+                <>
+                    <h2>Топ боты</h2>
+                    <Bots bots={newBots} />
+                </>
+            )}
+        </div>
+    </Layout>
+)
+
 Home.getInitialProps = async (): Promise<Props> => {
     const res = await fetch(`${config.SERVER_URL}/bots`)
     const bots = await res.json()
