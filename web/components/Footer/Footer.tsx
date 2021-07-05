@@ -1,5 +1,5 @@
 import Link from 'next//link'
-import { Col, Row, Container  } from 'react-bootstrap'
+import { Col, Row, Container } from 'react-bootstrap'
 
 const Footer = () => (
     <footer>
