@@ -18,8 +18,8 @@ const Header = () => {
             />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
-                    <Link href="/">{t('header.links.bots')}</Link>
-                    <Link href="/">{t('header.links.addBot')}</Link>
+                    <Link href="/bots">{t('header.links.bots')}</Link>
+                    <Link href="/add">{t('header.links.addBot')}</Link>
                     <Link href="/">{t('header.links.community')}</Link>
                     <Link href="/">{t('header.links.partners')}</Link>
                 </Nav>
