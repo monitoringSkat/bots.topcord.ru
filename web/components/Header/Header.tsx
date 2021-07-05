@@ -18,13 +18,13 @@ const Header = () => {
             />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">{t('header.links.bots')}</Nav.Link>
-                    <Nav.Link href="/">{t('header.links.addBot')}</Nav.Link>
-                    <Nav.Link href="/">{t('header.links.community')}</Nav.Link>
-                    <Nav.Link href="/">{t('header.links.partners')}</Nav.Link>
+                    <Link href="/">{t('header.links.bots')}</Link>
+                    <Link href="/">{t('header.links.addBot')}</Link>
+                    <Link href="/">{t('header.links.community')}</Link>
+                    <Link href="/">{t('header.links.partners')}</Link>
                 </Nav>
                 <Nav className="navbar-login">
-                    <Nav.Link href="/">{t('header.links.login')}</Nav.Link>
+                    <Link href="/">{t('header.links.login')}</Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
