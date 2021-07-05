@@ -18,7 +18,9 @@ const SearchBotsInput = (props: Props) => {
         const res = await fetch(`${config.SERVER_URL}/bots?q=${query}`)
         const bots = await res.json()
         setLoading(false)
-        setBots(bots)
+        if (bots) {
+            setBots(bots)
+        }
         console.log(bots.length > 0 || loading)
     }
     useEffect(() => {
