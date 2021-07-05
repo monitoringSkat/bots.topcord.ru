@@ -12,14 +12,17 @@
     </a>
 </div>
 
-
 ## How run locally?
+
 1. Install PostgreSQL 13+
 2. Install dependencies
+
 ```bash
-    $ npm install 
+    $ npm install
 ```
+
 3. Create .env file with your variables
+
 ```env
     NODE_ENV=""
     PORT=5000
@@ -34,6 +37,7 @@
 ```
 
 4. Create ormconfig.json file for PostgreSQL and TypeORM
+
 ```json
 {
     "type": "postgres",
@@ -51,6 +55,7 @@
 ```
 
 5. Run project
+
 ```bash
     $ npm run dev
 ```
