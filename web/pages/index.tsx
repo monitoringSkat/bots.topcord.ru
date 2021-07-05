@@ -5,7 +5,9 @@ import Link from 'next/link'
 import config from '../config'
 import Bot from '../interfaces/bot.interface'
 import Bots from '../components/Bots/Bots'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import SearchBotsInput from "../components/SearchBotsInput/SearchBotsInput"
+
 interface Props {
     topBots: Bot[]
     newBots: Bot[]
@@ -25,7 +27,7 @@ const Home = ({ newBots, topBots }: Props) => {
                         Добавляйте ботов, голосуйте за них. Выбирайте ботов. И
                         все это на TopCord.
                     </div>
-                    <Input type="search" placeholder="Найти бота" />
+                    <SearchBotsInput placeholder="Найти бота" />
                     <div className={styles.tags}>
                         <Link href="/bots?tag=fun">Fun</Link>
                         <Link href="/bots?tag=moderation">Moderation</Link>

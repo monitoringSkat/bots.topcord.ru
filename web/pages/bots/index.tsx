@@ -5,6 +5,7 @@ import { Dropdown, DropdownButton } from 'react-bootstrap'
 import Bot from '../../interfaces/bot.interface'
 import config from '../../config'
 import Bots from '../../components/Bots/Bots'
+import SearchBotsInput from '../../components/SearchBotsInput/SearchBotsInput'
 
 interface Props {
     bots: Bot[]
@@ -15,7 +16,7 @@ function BotsPage({ bots }: Props) {
         <Layout title="Боты">
             <div className={styles.intro}>
                 <div className={styles.title}>Лист ботов в Дискорд.</div>
-                <Input placeholder="Найти бота" type="search" />
+                <SearchBotsInput placeholder="Найти бота" />
                 <div className={styles.options}>
                     <DropdownButton
                         onSelect={e => console.log(e)}
