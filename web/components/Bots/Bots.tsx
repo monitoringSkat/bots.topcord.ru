@@ -8,7 +8,6 @@ interface Props {
     perPage?: number
 }
 
-
 const Bots: FC<Props> = ({ bots, perPage = 10 }) => {
     const [page, setPage] = useState(0)
     const navigation = []
@@ -24,7 +23,11 @@ const Bots: FC<Props> = ({ bots, perPage = 10 }) => {
         )
     }
     if (!bots.length)
-        return <div className={styles.empty}>¯\_(ツ)_/¯ <br/> Боты не найдены. </div>
+        return (
+            <div className={styles.empty}>
+                ¯\_(ツ)_/¯ <br /> Боты не найдены.{' '}
+            </div>
+        )
     return (
         <>
             <div className={styles.bots}>
