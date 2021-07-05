@@ -4,6 +4,9 @@
     background-color: #5865f2 !important;
     box-shadow: 0px 0.5px 10px black;
 }
+.link:hover {
+    cursor: pointer;
+}
 
 .navbar-links {
     margin-left: 0.5%;

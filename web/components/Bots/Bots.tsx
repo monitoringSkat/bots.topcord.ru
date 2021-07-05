@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useState, Component } from 'react'
 import Bot from '../../interfaces/bot.interface'
 import styles from './Bots.module.scss'
 import BotCard from '../BotCard/BotCard'
@@ -7,6 +7,7 @@ interface Props {
     bots: Bot[]
     perPage?: number
 }
+
 
 const Bots: FC<Props> = ({ bots, perPage = 10 }) => {
     const [page, setPage] = useState(0)
@@ -23,7 +24,7 @@ const Bots: FC<Props> = ({ bots, perPage = 10 }) => {
         )
     }
     if (!bots.length)
-        return <div className={styles.empty}>Ничего не было найдено!</div>
+        return <div className={styles.empty}>¯\_(ツ)_/¯ <br/> Боты не найдены. </div>
     return (
         <>
             <div className={styles.bots}>
