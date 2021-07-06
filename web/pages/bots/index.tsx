@@ -1,7 +1,7 @@
 import Layout from '../../layout'
 import styles from '../../styles/pages/bots.module.scss'
 import Input from '../../components/Input/Input'
-import { Dropdown, DropdownButton } from 'react-bootstrap'
+import { Dropdown, DropdownButton, Container } from 'react-bootstrap'
 import Bot from '../../interfaces/bot.interface'
 import config from '../../config'
 import Bots from '../../components/Bots/Bots'
@@ -13,8 +13,8 @@ interface Props {
 
 function BotsPage({ bots }: Props) {
     return (
-        <Layout title="Боты">
-            <div className={styles.intro}>
+        <Layout title="Боты | TopCord">
+            <Container className={styles.intro} fluid>
                 <div className={styles.title}>Лист ботов в Дискорд.</div>
                 <SearchBotsInput placeholder="Найти бота" />
                 <div className={styles.options}>
@@ -47,7 +47,7 @@ function BotsPage({ bots }: Props) {
                         <Dropdown.Item href="#/action-2">Фан</Dropdown.Item>
                     </DropdownButton>
                 </div>
-            </div>
+            </Container>
             <Bots bots={bots} />
         </Layout>
     )
