@@ -44,14 +44,14 @@ const Home = ({ newBots, topBots }: Props) => (
             )}
             {newBots.length > 0 && (
                 <>
-                    <h2>Новые боты</h2>
+                    <h2 style={{ marginTop: '3%' }} >Новые боты</h2>
                     <Bots bots={newBots} />
                 </>
             )}
 
             {topBots.length > 0 && (
                 <>
-                    <h2>Топ боты</h2>
+                    <h2 style={{ marginTop: '5%' }} >Топ боты</h2>
                     <Bots bots={newBots} />
                 </>
             )}
