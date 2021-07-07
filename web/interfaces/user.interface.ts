@@ -8,6 +8,7 @@ interface User {
     role: string
     avatar: string
     bots: Bot[]
+    bio: string
 }
 
 export default User

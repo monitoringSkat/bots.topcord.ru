@@ -17,7 +17,7 @@ interface Props {
 const UserPage = ({ token, userid }: Props) => {
     const [user, setUser] = useState<User>()
     const context = useContext(AuthContext)
-    
+
     const getUser = async () => {
         if (token) localStorage.setItem(config.AUTH_LOCAL_STORAGE_KEY, token)
         const res = await fetch(`${config.SERVER_URL}/users/${userid}`, {
@@ -39,16 +39,20 @@ const UserPage = ({ token, userid }: Props) => {
         <Layout>
             <div className={styles.profile}>
                 <div className={styles.avatar}>
-                    <img src="https://pbs.twimg.com/media/Erjoda3XcAILDgH.png" />
-                    <button>Редактировать</button>
+                    <img src={user?.avatar} />
+                    { user && user.id === context.user.id && <Link href="/settings">Редактировать</Link> }
                 </div>
                 <div className={styles.info}>
                     <div className={styles.passport}>
-                        {user?.verified && <img
-                            src="/assets/verified.png"
-                            className={styles.verified}
-                        />}
-                        <div className={styles.username}>{user?.username}#{user?.discriminator}</div>
+                        {user?.verified && (
+                            <img
+                                src="/assets/verified.png"
+                                className={styles.verified}
+                            />
+                        )}
+                        <div className={styles.username}>
+                            {user?.username}#{user?.discriminator}
+                        </div>
                         <div className={styles.role}>{user?.role}</div>
                     </div>
                     <div className={styles.integrations}>

@@ -35,13 +35,13 @@ class User extends BaseEntity {
     @OneToMany(() => Comment, comment => comment.author)
     comments: Comment[]
 
-    @Column({ default: "" })
+    @Column({ default: 'no bio.' })
     bio: string
 
     @Column({
         type: 'enum',
         enum: UserRoles,
-        default: UserRoles.MEMBER,
+        default: UserRoles.MEMBER
     })
     role: UserRoles
 }

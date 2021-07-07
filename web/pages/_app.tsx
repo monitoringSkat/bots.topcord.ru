@@ -6,6 +6,7 @@ import '../i18next'
 import { useState } from 'react'
 import User from '../interfaces/user.interface'
 import config from '../config'
+import router from 'next/router'
 
 function MyApp({ Component, pageProps }: AppProps) {
     const initialUser = {
@@ -15,7 +16,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         avatar: '',
         verified: false,
         bots: [],
-        role: ''
+        role: '',
+        bio: ""
     }
 
     const [user, setUser] = useState<User>(initialUser)
@@ -37,6 +39,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
 
     async function logout() {
+        router.push("/")
+        localStorage.setItem(config.AUTH_LOCAL_STORAGE_KEY, "")
         setUser(initialUser)
     }
 
