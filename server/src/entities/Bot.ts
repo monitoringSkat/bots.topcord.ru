@@ -44,11 +44,14 @@ class Bot extends BaseEntity {
     @Column()
     prefix: string
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, default: "" })
     avatar: string
 
     @Column()
-    description: string
+    shortDescription: string
+
+    @Column()
+    longDescription: string
 
     @Column({ default: 0 })
     guildsCount?: number

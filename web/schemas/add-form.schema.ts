@@ -1,17 +1,17 @@
-import { string, object, array } from 'yup'
+import { string, object } from 'yup'
 
 const addFormSchema = object().shape({
-    id: string().required('Required'),
-    name: string().required('Required'),
-    prefix: string().required('Required'),
-    tags: array().required('Required'),
-    shortDescription: string().max(50).required('Required'),
-    longDescription: string().min(300).required('Required'),
-    inviteURL: string().url().required('Required'),
+    id: string().min(1).required('ID не указан!'),
+    name: string().min(1).required('Укажите имя бота!'),
+    prefix: string().min(1).required('Префикс не указан!'),
+    tags: string().min(1).required('Укажите теги бота!'),
+    shortDescription: string().min(1).max(50, "Превышен лимит символов (50 символов)!").required('Напишите краткое описание!'),
+    longDescription: string().min(300, "Подробное описание бота должно содержать минимум 300 символов!").required('Подробное описание бота не должно быть пустым!'),
+    inviteURL: string().url().required('Ссылка приглашения бота отсутствует'),
     background: string().url(),
     supportServerURL: string().url(),
     githubURL: string().url(),
-    developers: array(),
+    developers: string(),
     library: string()
 })
 

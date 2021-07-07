@@ -5,11 +5,30 @@ import styles from '../../styles/pages/user.module.scss'
 import { NextPageContext } from 'next'
 import Link from 'next/link'
 import Bots from '../../components/Bots/Bots'
+import { useEffect } from 'react'
+import { useState } from 'react'
 interface Props {
-    user: User
+    token?: string
+    userid: string
 }
 
-const UserPage = ({ user }: Props) => {
+const UserPage = ({ token, userid }: Props) => {
+    const [ user, setUser ] = useState<User>()
+    const getUser = async () => {
+        if (token) localStorage.setItem(config.AUTH_LOCAL_STORAGE_KEY, token)
+        const res = await fetch(`${config.SERVER_URL}/users/${userid}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem(config.AUTH_LOCAL_STORAGE_KEY)}`
+            }
+        })
+        const json = await res.json()
+        if (json.statusCode === 404) return { user: null }
+        setUser(json)
+    }
+    useEffect(() => {
+        getUser()
+    }, [token, userid])
+    console.log(user)
     return (
         <Layout>
             <div className={styles.profile}>
@@ -81,14 +100,12 @@ const UserPage = ({ user }: Props) => {
     )
 }
 
-// [ATTENTION]: 'return { notFound: true }' doen't work...
-
 UserPage.getInitialProps = async (ctx: NextPageContext) => {
-    const { userid } = ctx.query
-    const res = await fetch(`${config.SERVER_URL}/users/${userid}`)
-    const json = await res.json()
-    if (json.statusCode === 404) return { user: null }
-    return { user: json }
+    const { userid, token } = ctx.query
+    return {
+        userid,
+        token
+    }
 }
 
 export default UserPage

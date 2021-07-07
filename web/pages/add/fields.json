@@ -36,7 +36,7 @@
         "type": "input",
         "name": "tags",
         "required": true,
-        "hint": "максимальное количество тегов 5",
+        "hint": "максимальное количество тегов 5, максимальная количество символов в теги 15. “запятая” - разделитель",
         "placeholder": "Теги бота"
     },
     {
@@ -57,7 +57,7 @@
         "type": "input",
         "name": "developers",
         "required": false,
-        "hint": "ID пользователя. “запятая” - разделитель",
+        "hint": "Список ID пользователей. “запятая” - разделитель",
         "placeholder": "Разработчики бота"
     },
     {
@@ -71,13 +71,22 @@
         "type": "input",
         "name": "githubURL",
         "required": false,
-        "hint": "ID пользователя. “запятая” - разделитель",
+        "hint": "Ссылка на Github репозиторий",
         "placeholder": "Исходный код "
+    },
+    {
+        "type": "input",
+        "name": "websiteURL",
+        "required": false,
+        "hint": "Ссылка на сайт бота",
+        "placeholder": "Веб-сайт бота"
     },
     {
         "type": "input",
         "name": "library",
         "required": false,
-        "placeholder": "Библиотека"
+        "hint": "Технология на чем был написан бот",
+        "placeholder": "Библиотека",
+        "options": []
     }
 ]

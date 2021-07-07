@@ -56,7 +56,7 @@ function BotsPage({ bots }: Props) {
 BotsPage.getInitialProps = async (): Promise<Props> => {
     const res = await fetch(`${config.SERVER_URL}/bots?c=all`)
     const bots = await res.json()
-    return { bots: bots }
+    return { bots }
 }
 
 export default BotsPage

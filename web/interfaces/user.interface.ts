@@ -5,11 +5,9 @@ interface User {
     username: string
     discriminator: string | number
     verified: boolean
-    email: string
     role: string
     avatar: string
-    bots?: Bot[]
-    comments: Comment[]
+    bots: Bot[]
 }
 
 export default User

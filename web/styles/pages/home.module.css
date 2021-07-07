@@ -1,9 +1,14 @@
 .intro {
     background-image: url(/assets/fon.png);
     background-position: 10%;
-    background-size: 70%;
-    padding: 3%;
+    background-size: 50%;
+    width: 100%;
+    padding: 3% 4%;
     margin-bottom: 1.5%;
+}
+
+.search {
+    padding-top: 2%;
 }
 
 .text {

@@ -14,6 +14,7 @@ import BotNotFoundException from '../exceptions/bot-not-found.exception'
 import Minutes from '../enums/minutes.enum'
 import Tag from '../entities/Tag'
 import SameBotException from '../exceptions/same-bot.exception'
+import getUserInfo from '../utils/get-user-info'
 
 const botsRouter = Router()
 
@@ -67,41 +68,57 @@ botsRouter.get(
 
 // POST
 
+const libraries = ['sunday', 'saturday']
+
 botsRouter.post(
     '/',
     [
+        checkAuth,
         rateLimit({
             windowMs: Minutes.FIFTEEN,
             max: 100
         }),
-        // checkAuth,
         body('name').notEmpty().isString(),
         body('id').notEmpty().isString(),
         body('prefix').notEmpty().isString(),
-        body('description').notEmpty().isString(),
-        body('tags').isArray().notEmpty()
+        body('longDescription').notEmpty().isString(),
+        body('shortDescription').notEmpty().isString(),
+        body('tags').isArray().notEmpty(),
+        body('library').notEmpty().isString().isIn(libraries).optional({ nullable: true }),
+        body('inviteURL').notEmpty().isString().isURL(),
+        body("backgroundURL").isString().isURL().optional({ nullable: true }),
+        body("developers").isArray().notEmpty().optional({ nullable: true }),
+        body("supportServerURL").isString().isURL().optional({ nullable: true }),
+        body("githubURL").isString().isURL().optional({ nullable: true }),
     ],
     async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) return res.send({ errors: errors.array() })
-        // const owner = await User.findOne((req.user as any).id)
-        // const sameBot = await Bot.findOne(req.body.id)
-        // if (sameBot) return res.send(new SameBotException())
+        const owner = await User.findOne((req.user as any).id)
+        const sameBot = await Bot.findOne(req.body.id)
+        if (sameBot) return res.send(new SameBotException())
+        
         const avatar = await getBotAvatarURL(req.body.id)
+        const developers: User[] = await Promise.all(req.body.developers?.map(async userId => await getUserInfo(userId))) || []
+
+        console.log(developers)
+
         const bot = Bot.create({
             name: req.body.name,
             id: req.body.id,
             prefix: req.body.prefix,
-            description: req.body.description,
+            longDescription: req.body.longDescription,
+            shortDescription: req.body.shortDescription,
             supportServerURL: req.body.supportServerURL || null,
             websiteURL: req.body.websiteURL || null,
             githubURL: req.body.githubURL || null,
             inviteURL: req.body.inviteURL || null,
-            // owner,
-            votes: [],
-            comments: [],
-            avatar: avatar
+            library: req.body.library || null,
+            developers,
+            owner,
+            avatar
         })
+
         const tags: Tag[] = await Promise.all(
             req.body.tags.map(async name => {
                 const oldTag = await Tag.find({ where: { name } })
@@ -115,9 +132,8 @@ botsRouter.post(
         )
         bot.tags = tags
         await bot.save()
-        // ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
-
-        res.send({ bot })
+        ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
+        res.send(bot)
     }
 )
 

@@ -1,7 +1,6 @@
 import { FC, InputHTMLAttributes, useState } from 'react'
 import styles from './Input.module.css'
 import Markdown from '../Markdown/Markdown'
-import Bot from '../../interfaces/bot.interface'
 
 interface Props extends InputHTMLAttributes<any> {
     type?: 'textarea'
