@@ -5,8 +5,16 @@ const addFormSchema = object().shape({
     name: string().min(1).required('Укажите имя бота!'),
     prefix: string().min(1).required('Префикс не указан!'),
     tags: string().min(1).required('Укажите теги бота!'),
-    shortDescription: string().min(1).max(50, "Превышен лимит символов (50 символов)!").required('Напишите краткое описание!'),
-    longDescription: string().min(300, "Подробное описание бота должно содержать минимум 300 символов!").required('Подробное описание бота не должно быть пустым!'),
+    shortDescription: string()
+        .min(1)
+        .max(50, 'Превышен лимит символов (50 символов)!')
+        .required('Напишите краткое описание!'),
+    longDescription: string()
+        .min(
+            300,
+            'Подробное описание бота должно содержать минимум 300 символов!'
+        )
+        .required('Подробное описание бота не должно быть пустым!'),
     inviteURL: string().url().required('Ссылка приглашения бота отсутствует'),
     background: string().url(),
     supportServerURL: string().url(),

@@ -1,19 +1,23 @@
 import SettingsLayout from '../../layout/settings-layout'
 import styles from '../../styles/pages/settings.module.scss'
 import Input from '../../components/Input/Input'
+import { useContext } from 'react'
+import AuthContext from '../../context/auth.context'
 const SettingsPage = () => {
+
+    const { user } = useContext(AuthContext)
     return (
         <SettingsLayout>
             <h3>Моя учётная запись</h3>
             <div className={styles.profile}>
                 <img
                     className={styles.avatar}
-                    src="https://i1.sndcdn.com/avatars-000390847758-d7h6jb-t500x500.jpg"
+                    src={user.avatar}
                 />
                 <div style={{ width: '100%' }}>
                     <div className={styles.header}>
                         <div className={styles.username}>
-                            -vitaliyirtlach<span>#6543</span>
+                            {user.username}<span>#{user.discriminator}</span>
                         </div>
                         <button>Редактировать профиль</button>
                     </div>

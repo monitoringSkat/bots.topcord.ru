@@ -9,13 +9,13 @@ import config from '../config'
 
 function MyApp({ Component, pageProps }: AppProps) {
     const initialUser = {
-        id: "",
-        username: "",
-        discriminator: "",
-        avatar: "",
+        id: '',
+        username: '',
+        discriminator: '',
+        avatar: '',
         verified: false,
         bots: [],
-        role: "",
+        role: ''
     }
 
     const [user, setUser] = useState<User>(initialUser)
@@ -28,7 +28,11 @@ function MyApp({ Component, pageProps }: AppProps) {
             }
         })
         const data = await res.json()
-        if ((data.message === "Unauthorized" && data.statusCode === 401) || user.id) return
+        if (
+            (data.message === 'Unauthorized' && data.statusCode === 401) ||
+            user.id
+        )
+            return
         setUser(data)
     }
 

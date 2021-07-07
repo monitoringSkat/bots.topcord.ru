@@ -35,7 +35,6 @@
     width: 150px;
 }
 
-
 .navbar-user-profile {
     display: flex;
     align-items: center;
@@ -54,4 +53,4 @@
     width: 22.5px;
     height: 22.5px;
     cursor: pointer;
-}   
+}

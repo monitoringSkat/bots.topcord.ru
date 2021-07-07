@@ -23,17 +23,25 @@ class User extends BaseEntity {
     @OneToMany(() => Bot, bot => bot.owner)
     bots: Bot[]
 
+    @OneToMany(() => User, user => user.followers)
+    following: User[]
+
+    @OneToMany(() => User, user => user.following)
+    followers: User[]
+
     @Column({ select: false, nullable: true })
     ip: string
 
     @OneToMany(() => Comment, comment => comment.author)
     comments: Comment[]
 
+    @Column({ default: "" })
+    bio: string
+
     @Column({
         type: 'enum',
         enum: UserRoles,
         default: UserRoles.MEMBER,
-        select: false
     })
     role: UserRoles
 }

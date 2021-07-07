@@ -1,5 +1,5 @@
-import { createContext } from "react"
-import User from "../interfaces/user.interface"
+import { createContext } from 'react'
+import User from '../interfaces/user.interface'
 
 interface AuthContextInterface {
     user: User
@@ -9,13 +9,13 @@ interface AuthContextInterface {
 
 const AuthContext = createContext<AuthContextInterface>({
     user: {
-        id: "",
-        username: "",
-        discriminator: "",
-        avatar: "",
+        id: '',
+        username: '',
+        discriminator: '',
+        avatar: '',
         verified: false,
         bots: [],
-        role: "",
+        role: ''
     },
     login: () => void 0,
     logout: () => void 0

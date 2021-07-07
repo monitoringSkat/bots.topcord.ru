@@ -44,7 +44,7 @@ class Bot extends BaseEntity {
     @Column()
     prefix: string
 
-    @Column({ nullable: true, default: "" })
+    @Column({ nullable: true, default: '' })
     avatar: string
 
     @Column()

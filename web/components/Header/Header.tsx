@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
-import config from "../../config"
+import config from '../../config'
 
 const Header = () => {
     const { t } = useTranslation()
@@ -31,17 +31,27 @@ const Header = () => {
                     <Link href="/">{t('header.links.partners')}</Link>
                 </Nav>
                 <Nav className="navbar-login">
-                    {!user.id && <Link href={`${config.SERVER_URL}/auth/discord`}>{t('header.links.login')}</Link>}
-                    {user.id && 
-                            <div className="navbar-user-profile">
-                                <Link href={`/users/me`}>
-                                    <img className="user-avatar" src={user.avatar} />
-                                </Link>
-                                <Link href="/settings">
-                                    <img className="settings-icon" src="/assets/settings.png" />
-                                </Link>
-                            </div>
-                    }
+                    {!user.id && (
+                        <Link href={`${config.SERVER_URL}/auth/discord`}>
+                            {t('header.links.login')}
+                        </Link>
+                    )}
+                    {user.id && (
+                        <div className="navbar-user-profile">
+                            <Link href={`/users/me`}>
+                                <img
+                                    className="user-avatar"
+                                    src={user.avatar}
+                                />
+                            </Link>
+                            <Link href="/settings">
+                                <img
+                                    className="settings-icon"
+                                    src="/assets/settings.png"
+                                />
+                            </Link>
+                        </div>
+                    )}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

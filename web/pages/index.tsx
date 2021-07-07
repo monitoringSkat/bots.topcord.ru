@@ -13,51 +13,54 @@ interface Props {
 
 const Home = ({ newBots, topBots }: Props) => {
     return (
-    <Layout title="Главная | Topcord">
-        <Container className={styles.intro} fluid>
-            <Row>
-                <Col className={styles.search}>
-                    <div className={styles.title}>Лист ботов в Дискорд.</div>
-                    <div className={styles.subtitle}>
-                        Добавляйте ботов, голосуйте за них. Выбирайте ботов. И
-                        все это на TopCord.
+        <Layout title="Главная | Topcord">
+            <Container className={styles.intro} fluid>
+                <Row>
+                    <Col className={styles.search}>
+                        <div className={styles.title}>
+                            Лист ботов в Дискорд.
+                        </div>
+                        <div className={styles.subtitle}>
+                            Добавляйте ботов, голосуйте за них. Выбирайте ботов.
+                            И все это на TopCord.
+                        </div>
+                        <SearchBotsInput placeholder="Найти бота" />
+                        <div className={styles.tags}>
+                            <Link href="/tags/fun">Fun</Link>
+                            <Link href="/tags/moderation">Moderation</Link>
+                            <Link href="/tags">Список тегов</Link>
+                        </div>
+                    </Col>
+                    <Col>
+                        <img
+                            src="/assets/wumpus-jet.png"
+                            className={styles.wumpus}
+                        />
+                    </Col>
+                </Row>
+            </Container>
+            <div className={styles.bots}>
+                {newBots.length === 0 && topBots.length === 0 && (
+                    <div className={styles.empty}>
+                        ¯\_(ツ)_/¯ <br /> Боты не найдены.{' '}
                     </div>
-                    <SearchBotsInput placeholder="Найти бота" />
-                    <div className={styles.tags}>
-                        <Link href="/tags/fun">Fun</Link>
-                        <Link href="/tags/moderation">Moderation</Link>
-                        <Link href="/tags">Список тегов</Link>
-                    </div>
-                </Col>
-                <Col>
-                    <img
-                        src="/assets/wumpus-jet.png"
-                        className={styles.wumpus}
-                    />
-                </Col>
-            </Row>
-        </Container>
-        <div className={styles.bots}>
-            {newBots.length === 0 && topBots.length === 0 && (
-                <div className={styles.empty}>
-                    ¯\_(ツ)_/¯ <br /> Боты не найдены.{' '}
-                </div>
-            )}
-            {newBots.length > 0 && (
-                <>
-                    <h2>Новые боты</h2>
-                    <Bots bots={newBots} />
-                </>
-            )}
+                )}
+                {newBots.length > 0 && (
+                    <>
+                        <h2>Новые боты</h2>
+                        <Bots bots={newBots} />
+                    </>
+                )}
 
-            {topBots.length > 0 && (
-                <>
-                    <h2>Топ боты</h2>
-                    <Bots bots={newBots} />
-                </>
-            )}
-        </div>
-    </Layout>)
+                {topBots.length > 0 && (
+                    <>
+                        <h2>Топ боты</h2>
+                        <Bots bots={newBots} />
+                    </>
+                )}
+            </div>
+        </Layout>
+    )
 }
 
 Home.getInitialProps = async (): Promise<Props> => {

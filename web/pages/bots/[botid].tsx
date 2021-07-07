@@ -60,7 +60,10 @@ function BotPage({ bot }: Props) {
                         </div>
                     </div>
                 </div>
-                <Markdown className={styles.description} text={bot.description} />
+                <Markdown
+                    className={styles.description}
+                    text={bot.description}
+                />
                 <div className={styles.comments}>
                     <h3>Комментарии ({bot.comments.length})</h3>
                 </div>

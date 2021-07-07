@@ -84,12 +84,19 @@ botsRouter.post(
         body('longDescription').notEmpty().isString(),
         body('shortDescription').notEmpty().isString(),
         body('tags').isArray().notEmpty(),
-        body('library').notEmpty().isString().isIn(libraries).optional({ nullable: true }),
+        body('library')
+            .notEmpty()
+            .isString()
+            .isIn(libraries)
+            .optional({ nullable: true }),
         body('inviteURL').notEmpty().isString().isURL(),
-        body("backgroundURL").isString().isURL().optional({ nullable: true }),
-        body("developers").isArray().notEmpty().optional({ nullable: true }),
-        body("supportServerURL").isString().isURL().optional({ nullable: true }),
-        body("githubURL").isString().isURL().optional({ nullable: true }),
+        body('backgroundURL').isString().isURL().optional({ nullable: true }),
+        body('developers').isArray().notEmpty().optional({ nullable: true }),
+        body('supportServerURL')
+            .isString()
+            .isURL()
+            .optional({ nullable: true }),
+        body('githubURL').isString().isURL().optional({ nullable: true })
     ],
     async (req: Request, res: Response) => {
         const errors = validationResult(req)
@@ -97,9 +104,14 @@ botsRouter.post(
         const owner = await User.findOne((req.user as any).id)
         const sameBot = await Bot.findOne(req.body.id)
         if (sameBot) return res.send(new SameBotException())
-        
+
         const avatar = await getBotAvatarURL(req.body.id)
-        const developers: User[] = await Promise.all(req.body.developers?.map(async userId => await getUserInfo(userId))) || []
+        const developers: User[] =
+            (await Promise.all(
+                req.body.developers?.map(
+                    async userId => await getUserInfo(userId)
+                )
+            )) || []
 
         console.log(developers)
 

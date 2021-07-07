@@ -4,7 +4,7 @@ import passport from 'passport'
 import User from '../entities/User'
 import checkAuth from '../middlewares/checkAuth.middleware'
 import getUserIP from '../utils/getUserIP'
-import { sign } from "jsonwebtoken"
+import { sign } from 'jsonwebtoken'
 
 const authRouter = Router()
 const { parsed } = config()
@@ -19,9 +19,9 @@ authRouter.get(
         const ip = getUserIP(req)
         const user = req.user as User
         user.ip = ip // write user IP
-        user.save();
-        const { id } = user 
-        const token = sign(id, "secret-key")
+        user.save()
+        const { id } = user
+        const token = sign(id, 'secret-key')
         res.redirect(`${parsed.SUCCESSFUL_AUTH_URL}?token=${token}`)
     }
 )

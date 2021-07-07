@@ -7,18 +7,24 @@ import Link from 'next/link'
 import Bots from '../../components/Bots/Bots'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useContext } from 'react'
+import AuthContext from '../../context/auth.context'
 interface Props {
     token?: string
     userid: string
 }
 
 const UserPage = ({ token, userid }: Props) => {
-    const [ user, setUser ] = useState<User>()
+    const [user, setUser] = useState<User>()
+    const context = useContext(AuthContext)
+    
     const getUser = async () => {
         if (token) localStorage.setItem(config.AUTH_LOCAL_STORAGE_KEY, token)
         const res = await fetch(`${config.SERVER_URL}/users/${userid}`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem(config.AUTH_LOCAL_STORAGE_KEY)}`
+                Authorization: `Bearer ${localStorage.getItem(
+                    config.AUTH_LOCAL_STORAGE_KEY
+                )}`
             }
         })
         const json = await res.json()
@@ -28,7 +34,7 @@ const UserPage = ({ token, userid }: Props) => {
     useEffect(() => {
         getUser()
     }, [token, userid])
-    console.log(user)
+
     return (
         <Layout>
             <div className={styles.profile}>
@@ -38,14 +44,12 @@ const UserPage = ({ token, userid }: Props) => {
                 </div>
                 <div className={styles.info}>
                     <div className={styles.passport}>
-                        <img
+                        {user?.verified && <img
                             src="/assets/verified.png"
                             className={styles.verified}
-                        />
-                        <div className={styles.username}>
-                            -vitaliyirtlach#6564
-                        </div>
-                        <div className={styles.role}>Admin</div>
+                        />}
+                        <div className={styles.username}>{user?.username}#{user?.discriminator}</div>
+                        <div className={styles.role}>{user?.role}</div>
                     </div>
                     <div className={styles.integrations}>
                         <Link href="https://github.com/vitaliyirtlach">
