@@ -40,7 +40,9 @@ const UserPage = ({ token, userid }: Props) => {
             <div className={styles.profile}>
                 <div className={styles.avatar}>
                     <img src={user?.avatar} />
-                    { user && user.id === context.user.id && <Link href="/settings">Редактировать</Link> }
+                    {user && user.id === context.user.id && (
+                        <Link href="/settings">Редактировать</Link>
+                    )}
                 </div>
                 <div className={styles.info}>
                     <div className={styles.passport}>

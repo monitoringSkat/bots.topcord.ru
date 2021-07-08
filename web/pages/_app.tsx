@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import NextNprogress from 'nextjs-progressbar'
 import AuthContext from '../context/auth.context'
 import '../i18next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import User from '../interfaces/user.interface'
 import config from '../config'
 import router from 'next/router'
@@ -17,13 +17,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         verified: false,
         bots: [],
         role: '',
-        bio: ""
+        bio: ''
     }
 
     const [user, setUser] = useState<User>(initialUser)
     async function login() {
         const token = localStorage.getItem(config.AUTH_LOCAL_STORAGE_KEY)
-        if (!token) return
+        if (!token || user.id) return
         const res = await fetch(`${config.SERVER_URL}/users/me`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -31,18 +31,21 @@ function MyApp({ Component, pageProps }: AppProps) {
         })
         const data = await res.json()
         if (
-            (data.message === 'Unauthorized' && data.statusCode === 401) ||
-            user.id
+            (data.message === 'Unauthorized' && data.statusCode === 401)
         )
             return
         setUser(data)
     }
 
     async function logout() {
-        router.push("/")
-        localStorage.setItem(config.AUTH_LOCAL_STORAGE_KEY, "")
+        router.push('/')
+        localStorage.setItem(config.AUTH_LOCAL_STORAGE_KEY, '')
         setUser(initialUser)
     }
+
+    useEffect(() => {
+        login()
+    })
 
     return (
         <AuthContext.Provider value={{ user, login, logout }}>

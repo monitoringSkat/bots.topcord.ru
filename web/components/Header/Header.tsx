@@ -8,10 +8,7 @@ import config from '../../config'
 
 const Header = () => {
     const { t } = useTranslation()
-    const { login, user } = useContext(AuthContext)
-    useEffect(() => {
-        login()
-    })
+    const { user } = useContext(AuthContext)
     return (
         <Navbar collapseOnSelect expand="lg" variant="dark">
             <Navbar.Brand>

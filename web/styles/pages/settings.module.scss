@@ -13,7 +13,7 @@
         outline: 10px solid #282b30;
         margin-right: 1.5%;
     }
-    
+
     .header {
         width: 100%;
         margin-top: -1%;
@@ -31,6 +31,11 @@
     .username {
         font-size: 22px;
         font-weight: 500;
+        display: flex;
+        align-items: center;
+        img {
+            margin-right: 7.5px;
+        }
         span {
             color: silver;
         }
@@ -57,5 +62,47 @@
         width: 100%;
         margin: 10px 0;
         word-wrap: break-word;
+    }
+}
+
+.integrations {
+    display: flex;
+    align-items: center;
+    img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
+}
+
+.interinputs {
+    margin: 10px 0;
+    div {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        * {
+            font-size: 16px !important;
+        }
+        input {
+            width: 70%;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            background: #36393e !important;
+            border: 2px solid #282b30 !important;
+            color: white !important;
+            &::placeholder {
+                color: white;
+            }
+        }
+        div {
+            color: white;
+            background: #5865f2;
+            padding: 7.5px;
+            width: 30%;
+            user-select: none;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
     }
 }
