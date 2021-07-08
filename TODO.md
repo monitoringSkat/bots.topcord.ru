@@ -10,20 +10,18 @@
 -   [ ] IP bans
 -   [x] Swagger
 -   [x] gzip (commpression)
--   [ ] easy config
 -   [x] production or development mode
--   [ ] Choose bot library
--   [ ] Api docs
--   [ ] Moderator, admin, user site roles
+-   [ ] Bot library
+-   [ ] User site roles
 -   [ ] Bot help command
--   [ ] Bot carma (bot rating 0/10 or +1 -1)
--   [ ] Edit,delete comment
--   [ ] Bot report system
--   [ ] Likes, dislikes comments
+-   [ ] Bot carma (bot rating 0/10 or +1 -1
+-   [ ] Report system
+-   [ ] Create, delete, edit, likes, dislikes comments
 -   [ ] Bot developers
--   [ ] User profile
 -   [x] Bot tags
 -   [ ] Delete, edit user profile
+-   [ ] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
+-   [ ] Followers, followings
 
 ## Features
 -   [ ] Premium
