@@ -5,11 +5,39 @@ import AuthContext from '../../context/auth.context'
 import { useState } from 'react'
 import Integrations from './integrations.json'
 import Input from '../../components/Input/Input'
+import Tooltip from '@material-ui/core/Tooltip';
+import { useFormik } from 'formik'
 
 const SettingsPage = () => {
     const { user } = useContext(AuthContext)
-    const [bio, setBio] = useState(user.bio)
     const [isEdit, setEdit] = useState(false)
+    
+
+    const { handleSubmit, handleChange, values, errors, handleReset } = useFormik({
+        initialValues: {
+            github: user.social.github,
+            vk: user.social.vk,
+            youtube: user.social.youtube,
+            twitch: user.social.twitch,
+            reddit: user.social.reddit,
+            twitter: user.social.twitter,
+            instagram: user.social.instagram,
+            steam: user.social.steam,
+            facebook: user.social.facebook,
+            telegram: user.social.telegram,
+            spotify: user.social.spotify,
+            bio: user.bio
+        },
+        onSubmit: () => {
+            setEdit(false)
+        },
+        onReset: () => {
+            setEdit(false)
+        }   
+    })
+
+    console.log(values)
+
 
     return (
         <SettingsLayout>
@@ -19,10 +47,12 @@ const SettingsPage = () => {
                 <div style={{ width: '92.5%' }}>
                     <div className={styles.header}>
                         <div className={styles.username}>
+                        <Tooltip title="Верефицированный" placement="bottom">
                             <img
                                 src="/assets/verified.png"
-                                style={{ width: '25px', height: '25px' }}
+                                className="verified"
                             />
+                        </Tooltip>
                             {user.username}
                             <span>#{user.discriminator}</span>
                         </div>
@@ -33,44 +63,41 @@ const SettingsPage = () => {
                     {isEdit ? (
                         <textarea
                             maxLength={250}
-                            onChange={e => setBio(e.target.value)}
-                            value={bio}
+                            onChange={handleChange}
+                            value={values.bio}
+                            name="bio"
                             placeholder="Расскажите немного о себе..."
                         />
                     ) : (
                         <div className={styles.bio}>
-                            {bio || 'Биография отсутствует'}
+                            {values.bio || 'Биография отсутствует'}
                         </div>
-                    )}
-
-                    {isEdit && (
-                        <button
-                            className={styles.save}
-                            onClick={() => setEdit(false)}
-                        >
-                            Сохранить изменения
-                        </button>
                     )}
                 </div>
             </div>
             <h4>Интеграции</h4>
-            <div className={styles.integrations}>
-                {Integrations.map(integration => (
-                    <a href={integration.link}>
-                        <img
-                            src={`/assets/logos/${integration.name.toLowerCase()}.png`}
-                        />
-                    </a>
-                ))}
-            </div>
             <div className={styles.interinputs}>
-                {Integrations.map(({ name, link }) => (
+                {Integrations.map(({ name }) => (
                     <div>
-                        <div>{link}</div>
-                        <Input placeholder={`Имя пользователя ${name}`} />
+                        <div><img src={`/assets/logos/${name.toLowerCase()}.png`} /></div>
+                        { isEdit ? 
+                            <Input placeholder={`Ссылка на профиль ${name}`} onChange={handleChange} name={name.toLowerCase()}/>
+                        :  <span>{(values as any)[name] || "ссылка отсутсвует"}</span>
+                        
+                        }
                     </div>
                 ))}
             </div>
+            {isEdit && (
+            <form onSubmit={handleSubmit} onReset={handleReset} className={styles.controls}>
+                <button type="reset" className={styles.cancel}>
+                    Отмена
+                </button>
+                <button type="submit" className={styles.save}>
+                    Сохранить изменения
+                </button>
+            </form>
+            )}
         </SettingsLayout>
     )
 }

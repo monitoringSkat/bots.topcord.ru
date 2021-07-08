@@ -17,10 +17,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         verified: false,
         bots: [],
         role: '',
-        bio: ''
+        bio: '',
+        social: {}
     }
 
     const [user, setUser] = useState<User>(initialUser)
+    
     async function login() {
         const token = localStorage.getItem(config.AUTH_LOCAL_STORAGE_KEY)
         if (!token || user.id) return
@@ -44,8 +46,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         login()
     })
 
+    function updateUser(newData: { [key: string]: any }) {
+        setUser({...user, ...newData})
+    }
+
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, logout, setUser: updateUser }}>
             <NextNprogress
                 color="#1d1f23"
                 startPosition={0.3}

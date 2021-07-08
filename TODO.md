@@ -1,4 +1,5 @@
-## TODO 
+## TODO
+
 -   [ ] New design
 -   [ ] Forms errors
 -   [x] Rate limit server
@@ -24,4 +25,5 @@
 -   [ ] Followers, followings
 
 ## Features
+
 -   [ ] Premium

@@ -4,6 +4,7 @@
     padding: 20px;
     margin-top: 3%;
     display: flex;
+    position: relative;
     color: white;
     .avatar {
         margin-top: -3%;
@@ -49,14 +50,6 @@
         width: 100%;
         margin: 10px 0;
     }
-    .save {
-        float: right;
-        color: white;
-        background: #57f287;
-        padding: 5px 10px;
-        border: none;
-        border-radius: 5px;
-    }
     .bio {
         position: relative;
         width: 100%;
@@ -81,28 +74,73 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        margin-bottom: 5px;
         * {
             font-size: 16px !important;
         }
         input {
-            width: 70%;
+            width: 96%;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             background: #36393e !important;
             border: 2px solid #282b30 !important;
             color: white !important;
+            padding: 10px;
+            margin-top: 0px;
             &::placeholder {
                 color: white;
             }
         }
+        span {
+            width: 96%;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            background: #36393e !important;
+            color: white !important;
+            padding: 10px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
         div {
             color: white;
-            background: #5865f2;
-            padding: 7.5px;
-            width: 30%;
+            background: #282b30;
+            padding: 7.5px 10px;
+            width: 4%;
             user-select: none;
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
         }
+        img {
+            user-select: none;
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+
+
+.controls {
+    width: 100%;
+    background: #282b30;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 15px 30px;
+    .save {
+        float: right;
+        color: white;
+        background: #57f287;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .cancel {
+        color: silver;
+        text-decoration: underline;
+        margin-right: 15px;
+        background: transparent;
+        border: none;
     }
 }

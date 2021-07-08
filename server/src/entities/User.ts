@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn } from 'typeorm'
 import { UserRoles } from '../enums'
+import Social from '../interfaces/user/social.interface'
 import Bot from './Bot'
 import Comment from './Comment'
 
@@ -37,6 +38,9 @@ class User extends BaseEntity {
 
     @Column({ default: 'no bio.' })
     bio: string
+
+    @Column("json", { default: "{}"} )
+    social: Social
 
     @Column({
         type: 'enum',

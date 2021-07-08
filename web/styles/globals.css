@@ -83,3 +83,14 @@ h4 {
     width: 3rem;
     height: 3rem;
 }
+
+
+.MuiTooltip-popper * {
+    font-size: 15px !important;
+}
+
+.verified {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}

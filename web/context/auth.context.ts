@@ -3,6 +3,7 @@ import User from '../interfaces/user.interface'
 
 interface AuthContextInterface {
     user: User
+    setUser: (newData: any) => void
     login: () => void
     logout: () => void
 }
@@ -15,8 +16,11 @@ const AuthContext = createContext<AuthContextInterface>({
         avatar: '',
         verified: false,
         bots: [],
-        role: ''
+        role: '',
+        bio: "",
+        social: {}
     },
+    setUser: () => void 0,
     login: () => void 0,
     logout: () => void 0
 })
