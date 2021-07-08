@@ -1,10 +1,6 @@
-## Web
-
+## TODO 
 -   [ ] New design
 -   [ ] Forms errors
-
-## Server
-
 -   [x] Rate limit server
 -   [x] Guilds count
 -   [x] Same ID in bots
@@ -16,7 +12,6 @@
 -   [x] gzip (commpression)
 -   [ ] easy config
 -   [x] production or development mode
--   [ ] ⚠️ CORS origin check
 -   [ ] Choose bot library
 -   [ ] Api docs
 -   [ ] Moderator, admin, user site roles
@@ -29,4 +24,6 @@
 -   [ ] User profile
 -   [x] Bot tags
 -   [ ] Delete, edit user profile
+
+## Features
 -   [ ] Premium
