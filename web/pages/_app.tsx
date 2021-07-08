@@ -30,10 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             }
         })
         const data = await res.json()
-        if (
-            (data.message === 'Unauthorized' && data.statusCode === 401)
-        )
-            return
+        if (data.message === 'Unauthorized' && data.statusCode === 401) return
         setUser(data)
     }
 

@@ -3,7 +3,7 @@ import styles from '../../styles/pages/settings.module.scss'
 import React, { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
 import { useState } from 'react'
-import Integrations from "./integrations.json"
+import Integrations from './integrations.json'
 import Input from '../../components/Input/Input'
 
 const SettingsPage = () => {
@@ -19,7 +19,10 @@ const SettingsPage = () => {
                 <div style={{ width: '92.5%' }}>
                     <div className={styles.header}>
                         <div className={styles.username}>
-                            <img src="/assets/verified.png" style={{width: "25px", height: "25px"}}/>
+                            <img
+                                src="/assets/verified.png"
+                                style={{ width: '25px', height: '25px' }}
+                            />
                             {user.username}
                             <span>#{user.discriminator}</span>
                         </div>
@@ -35,7 +38,9 @@ const SettingsPage = () => {
                             placeholder="Расскажите немного о себе..."
                         />
                     ) : (
-                        <div className={styles.bio}>{bio || "Биография отсутствует"}</div>
+                        <div className={styles.bio}>
+                            {bio || 'Биография отсутствует'}
+                        </div>
                     )}
 
                     {isEdit && (
@@ -50,21 +55,22 @@ const SettingsPage = () => {
             </div>
             <h4>Интеграции</h4>
             <div className={styles.integrations}>
-                {Integrations.map(integration => 
+                {Integrations.map(integration => (
                     <a href={integration.link}>
-                        <img src={`/assets/logos/${integration.name.toLowerCase()}.png`} />
-                    </a>        
-                )}
+                        <img
+                            src={`/assets/logos/${integration.name.toLowerCase()}.png`}
+                        />
+                    </a>
+                ))}
             </div>
             <div className={styles.interinputs}>
-                {Integrations.map(({name, link}) => 
+                {Integrations.map(({ name, link }) => (
                     <div>
                         <div>{link}</div>
                         <Input placeholder={`Имя пользователя ${name}`} />
                     </div>
-                )}
+                ))}
             </div>
-
         </SettingsLayout>
     )
 }
