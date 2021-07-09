@@ -48,9 +48,6 @@ const AddPage = () => {
                 .slice(0, 5)
                 .map((t: string) => t.slice(0, 15))
             const developers = fromStringToArray(values.developers)
-            console.log({...values,
-                tags,
-                developers})
             const { data } = await http.post('/bots', {
                 ...values,
                 tags,

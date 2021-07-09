@@ -128,7 +128,6 @@ botsRouter.post(
                 ?.filter(Boolean)
                 .map(async userId => await getUserInfo(userId))
         )
-        console.log(req.body.backgroundURL)
         const bot = Bot.create({
             name: req.body.name,
             id: req.body.id,
@@ -157,7 +156,6 @@ botsRouter.post(
             })
         )
         bot.tags = tags
-        console.log(bot)
         await bot.save()
         ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
         res.send(bot)

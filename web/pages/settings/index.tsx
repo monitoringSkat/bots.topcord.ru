@@ -14,36 +14,43 @@ import updateProfileSchema from '../../schemas/update-profile.schema'
 const SettingsPage = () => {
     const { user, setUser } = useContext(AuthContext)
     const [isEdit, setEdit] = useState(false)
-    const [ open, setOpen ] = useState(false)
-    const { handleSubmit, handleChange, values, handleReset, errors, isValid, dirty } =
-        useFormik({
-            initialValues: {
-                github: user.social.github,
-                vk: user.social.vk,
-                youtube: user.social.youtube,
-                twitch: user.social.twitch,
-                reddit: user.social.reddit,
-                twitter: user.social.twitter,
-                instagram: user.social.instagram,
-                steam: user.social.steam,
-                facebook: user.social.facebook,
-                telegram: user.social.telegram,
-                spotify: user.social.spotify,
-                bio: user.bio
-            },
-            validationSchema: updateProfileSchema,
-            onSubmit: async ({bio, ...social}) => {
-                const { data } = await http.put(`/users/me`, { bio, ...social })
-                if (data === true) {
-                    setOpen(true)
-                    setUser({ ...user, bio, social })
-                    setEdit(false)
-                }
-            },
-            onReset: () => {
+    const [open, setOpen] = useState(false)
+    const {
+        handleSubmit,
+        handleChange,
+        values,
+        handleReset,
+        errors,
+        isValid,
+        dirty
+    } = useFormik({
+        initialValues: {
+            github: user.social.github,
+            vk: user.social.vk,
+            youtube: user.social.youtube,
+            twitch: user.social.twitch,
+            reddit: user.social.reddit,
+            twitter: user.social.twitter,
+            instagram: user.social.instagram,
+            steam: user.social.steam,
+            facebook: user.social.facebook,
+            telegram: user.social.telegram,
+            spotify: user.social.spotify,
+            bio: user.bio
+        },
+        validationSchema: updateProfileSchema,
+        onSubmit: async ({ bio, ...social }) => {
+            const { data } = await http.put(`/users/me`, { bio, ...social })
+            if (data === true) {
+                setOpen(true)
+                setUser({ ...user, bio, social })
                 setEdit(false)
-            },
-        })
+            }
+        },
+        onReset: () => {
+            setEdit(false)
+        }
+    })
 
     return (
         <SettingsLayout>
@@ -93,7 +100,9 @@ const SettingsPage = () => {
             </div>
             <h4>Интеграции</h4>
             <div className={styles.interinputs}>
-                {Object.keys(errors).length > 0 && <div className={styles.error}>Были допущены ошибки!</div>}
+                {Object.keys(errors).length > 0 && (
+                    <div className={styles.error}>Были допущены ошибки!</div>
+                )}
                 {Integrations.map(({ name }) => (
                     <div>
                         <div>
@@ -110,13 +119,14 @@ const SettingsPage = () => {
                             />
                         ) : (
                             <span>
-                                {(values as any)[name.toLowerCase()] || 'ссылка отсутсвует'}
+                                {(values as any)[name.toLowerCase()] ||
+                                    'ссылка отсутсвует'}
                             </span>
                         )}
                     </div>
                 ))}
             </div>
-            {(isEdit && isValid && dirty)  && (
+            {isEdit && isValid && dirty && (
                 <form
                     onSubmit={handleSubmit}
                     onReset={handleReset}

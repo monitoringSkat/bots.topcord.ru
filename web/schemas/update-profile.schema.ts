@@ -1,6 +1,5 @@
 import { object, string } from 'yup'
 
-
 export default object().shape({
     bio: string(),
     github: string().url(),
@@ -13,5 +12,5 @@ export default object().shape({
     twitter: string().url(),
     instagram: string().url(),
     spotify: string().url(),
-    facebook: string().url(),
+    facebook: string().url()
 })

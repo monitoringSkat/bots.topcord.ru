@@ -57,9 +57,9 @@ const UserPage = ({ token, userid }: Props) => {
                         <div className={styles.role}>{user?.role}</div>
                     </div>
                     <div className={styles.integrations}>
-                        {Object.keys(user?.social || {}).map((key) => {
+                        {Object.keys(user?.social || {}).map(key => {
                             const link = (user?.social as any)[key]
-                            if (!link.trim().length) return 
+                            if (!link.trim().length) return
                             return (
                                 <Link href={link}>
                                     <img src={`/assets/logos/${key}.png`} />

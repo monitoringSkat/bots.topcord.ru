@@ -19,17 +19,17 @@ function MyApp({ Component, pageProps }: AppProps) {
         role: '',
         bio: '',
         social: {
-            github:"",
-            vk:"",
-            youtube:"",
-            twitch:"",
-            reddit:"",
-            twitter:"",
-            instagram:"",
-            steam:"",
-            facebook:"",
-            telegram:"",
-            spotify:"",
+            github: '',
+            vk: '',
+            youtube: '',
+            twitch: '',
+            reddit: '',
+            twitter: '',
+            instagram: '',
+            steam: '',
+            facebook: '',
+            telegram: '',
+            spotify: ''
         }
     }
 
