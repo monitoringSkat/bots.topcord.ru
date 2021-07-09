@@ -66,6 +66,9 @@ class Bot extends BaseEntity {
     githubURL: string
 
     @Column({ nullable: true })
+    backgroundURL: string
+    
+    @Column({ nullable: true })
     inviteURL: string
 
     @ManyToMany(() => User, user => user.bots)

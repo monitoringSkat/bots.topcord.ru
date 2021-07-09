@@ -7,14 +7,18 @@ import Input from '../../components/Input/Input'
 import fields from './fields.json'
 import addFormSchema from '../../schemas/add-form.schema'
 import http from '../../axios/http'
+import Bot from '../../interfaces/bot.interface'
+import { useRouter } from 'next/router'
+import { Snackbar, Button } from "@material-ui/core"
 
 const AddPage = () => {
-    const fromStringToArray = (string: string) => {
-        return string
-        .split(/\s*\,\s*/)
-    }
+    const fromStringToArray = (string: string) => string.split(/\s*\,\s*/)
     const [checked, setChecked] = useState(false)
-    const { handleChange, values, errors, handleSubmit, dirty, isValid } =
+    const [ bot, setBot ] = useState<Bot>()
+    const [ open, setOpen ] = useState(false)
+    const router = useRouter()
+    
+    const { handleChange, values, errors, setErrors, handleSubmit, dirty, isValid } =
         useFormik({
             initialValues: {
                 id: '',
@@ -23,28 +27,52 @@ const AddPage = () => {
                 shortDescription: '',
                 longDescription: '',
                 inviteURL: '',
-                backgroundURL: null,
-                supportServerURL: null,
-                githubURL: null,
-                websiteURL: null,
-                library: null,
+                backgroundURL: "",
+                supportServerURL: "",
+                githubURL: "",
+                websiteURL: "",
+                library: "",
                 tags: '',
                 developers: ''
             },
             validationSchema: addFormSchema,
             async onSubmit(values) {
-                const tags = fromStringToArray(values.tags).slice(0, 5).map((t: string) => t.slice(0, 15))
+                const tags = fromStringToArray(values.tags)
+                    .slice(0, 5)
+                    .map((t: string) => t.slice(0, 15))
                 const developers = fromStringToArray(values.developers)
 
-                const { data } = await http.post("/bots", {...values, tags, developers})
-                console.log(data)
+                const { data } = await http.post('/bots', {
+                    ...values,
+                    tags,
+                    developers
+                })
+                if (data.statusCode === 409) setErrors({...errors, id: "Такой ID уже существует!"})
+                if (data.id) {
+                    setBot(data)
+                    setOpen(true)
+                }
             }
         })
-    const tags = fromStringToArray(values.tags).slice(0, 5).map((t: string) => t.slice(0, 15))
+    const tags = fromStringToArray(values.tags)
+        .slice(0, 5)
+        .map((t: string) => t.slice(0, 15))
     const developers = fromStringToArray(values.developers)
-
+    const handleClose = () => router.push(`/bots/${bot?.id}`)
+    
+    const action = (
+        <Button onClick={handleClose} >Перейти на страницу {bot?.name}</Button>
+    )
     return (
         <Layout>
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={open}
+                onClose={handleClose}
+                message={`Бот ${bot?.name} был успешно добавлен!`}
+                action={action}
+            />
+
             <div className={styles.title}>Добавление бота</div>
             <form onSubmit={handleSubmit} className={styles.inputs}>
                 {fields.map(({ placeholder, name, hint, required, type }) => (
@@ -69,7 +97,11 @@ const AddPage = () => {
                         <Input
                             onChange={handleChange}
                             value={
-                                name === 'tags' ? tags : name === "developers" ? developers : (values as any)[name]
+                                name === 'tags'
+                                    ? tags
+                                    : name === 'developers'
+                                    ? developers
+                                    : (values as any)[name]
                             }
                             name={name}
                             placeholder={placeholder}

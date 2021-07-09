@@ -78,30 +78,42 @@ botsRouter.post(
             windowMs: Minutes.FIFTEEN,
             max: 100
         }),
-        
+
         body('name').notEmpty().isString(),
-        
+
         body('id').notEmpty().isString(),
-        
+
         body('prefix').notEmpty().isString(),
-        
+
         body('longDescription').notEmpty().isString(),
-        
+
         body('shortDescription').notEmpty().isString(),
-        
+
         body('tags').isArray().notEmpty(),
 
         body('inviteURL').notEmpty().isString().isURL(),
 
-        body('library').optional({ nullable: true, checkFalsy: true  }).isString().isIn(libraries),
-        
-        body('backgroundURL').optional({ nullable: true, checkFalsy: true  }).isString().isURL(),
-        
+        body('library')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isIn(libraries),
+
+        body('backgroundURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL(),
+
         body('developers').optional({ nullable: true }).isArray(),
-        
-        body('supportServerURL').optional({ nullable: true, checkFalsy: true }).isString().isURL(),
-        
-        body('githubURL').optional({ nullable: true, checkFalsy: true  }).isString().isURL()
+
+        body('supportServerURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL(),
+
+        body('githubURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL()
     ],
     async (req: Request, res: Response) => {
         const errors = validationResult(req)
@@ -111,13 +123,11 @@ botsRouter.post(
         if (sameBot) return res.send(new SameBotException())
 
         const avatar = await getBotAvatarURL(req.body.id)
-        const developers: User[] =
-            (await Promise.all(
-                req.body.developers?.filter(Boolean)
-                .map(
-                    async userId => await getUserInfo(userId)
-                )
-            ))
+        const developers: User[] = await Promise.all(
+            req.body.developers
+                ?.filter(Boolean)
+                .map(async userId => await getUserInfo(userId))
+        )
 
         const bot = Bot.create({
             name: req.body.name,
@@ -130,6 +140,7 @@ botsRouter.post(
             githubURL: req.body.githubURL || null,
             inviteURL: req.body.inviteURL || null,
             library: req.body.library || null,
+            backgroundURL: req.body.backgroundURL || null,
             developers: [owner, ...developers],
             owner,
             avatar

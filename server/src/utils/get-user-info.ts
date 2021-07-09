@@ -1,7 +1,7 @@
 import { config } from 'dotenv'
 import User from '../entities/User'
 import UserService from '../services/user.service'
-import fetch from "node-fetch"
+import fetch from 'node-fetch'
 
 const { parsed } = config()
 

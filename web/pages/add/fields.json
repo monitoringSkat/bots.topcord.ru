@@ -22,7 +22,7 @@
         "type": "input",
         "name": "shortDescription",
         "required": true,
-        "hint": "максимальное количество символов 50",
+        "hint": "максимальное количество символов 220",
         "placeholder": "Краткое описание"
     },
     {
