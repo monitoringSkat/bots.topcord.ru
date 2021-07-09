@@ -1,7 +1,7 @@
 ## TODO
 
--   [ ] New design
--   [ ] Forms errors
+-   [X] New design
+-   [X] Forms errors
 -   [x] Rate limit server
 -   [x] Guilds count
 -   [x] Same ID in bots
@@ -18,12 +18,11 @@
 -   [ ] Bot carma (bot rating 0/10 or +1 -1
 -   [ ] Report system
 -   [ ] Create, delete, edit, likes, dislikes comments
--   [ ] Bot developers
+-   [X] Bot developers
 -   [x] Bot tags
 -   [ ] Delete, edit user profile
--   [ ] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
+-   [X] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
 -   [ ] Followers, followings
 
 ## Features
-
 -   [ ] Premium
