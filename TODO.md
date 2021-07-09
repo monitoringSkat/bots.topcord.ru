@@ -8,20 +8,20 @@
 -   [x] Add more server exceptions
 -   [x] Rate limit POST method
 -   [x] API close
--   [ ] IP bans
--   [x] Swagger
 -   [x] gzip (commpression)
 -   [x] production or development mode
+-   [x] Swagger
+-   [X] Bot developers
+-   [x] Bot tags
+-   [X] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
+-   [ ] IP bans
 -   [ ] Bot library
 -   [ ] User site roles
 -   [ ] Bot help command
 -   [ ] Bot carma (bot rating 0/10 or +1 -1
 -   [ ] Report system
 -   [ ] Create, delete, edit, likes, dislikes comments
--   [X] Bot developers
--   [x] Bot tags
 -   [ ] Delete, edit user profile
--   [X] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
 -   [ ] Followers, followings
 
 ## Features
