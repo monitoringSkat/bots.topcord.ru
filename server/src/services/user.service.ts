@@ -20,7 +20,8 @@ class UserService {
                 discriminator: user.discriminator,
                 username: user.username,
                 verified: user.verified ? user.verified : false,
-                avatar
+                avatar,
+                bots: []
             })
             await newUser.save()
             return newUser

@@ -21,7 +21,7 @@ class User extends BaseEntity {
     @Column({ default: false })
     verified: boolean
 
-    @OneToMany(() => Bot, bot => bot.owner)
+    @OneToMany(() => Bot, bot => bot.owner || bot.developers)
     bots: Bot[]
 
     @OneToMany(() => User, user => user.followers)
@@ -39,7 +39,7 @@ class User extends BaseEntity {
     @Column({ default: 'no bio.' })
     bio: string
 
-    @Column("json", { default: "{}"} )
+    @Column('json', { default: '{}' })
     social: Social
 
     @Column({

@@ -68,7 +68,8 @@ class Bot extends BaseEntity {
     @Column({ nullable: true })
     inviteURL: string
 
-    @OneToMany(() => User, user => user.bots)
+    @ManyToMany(() => User, user => user.bots)
+    @JoinTable()
     developers: User[]
 
     @ManyToOne(() => User, user => user.bots)

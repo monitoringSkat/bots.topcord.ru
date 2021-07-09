@@ -17,7 +17,7 @@ const AuthContext = createContext<AuthContextInterface>({
         verified: false,
         bots: [],
         role: '',
-        bio: "",
+        bio: '',
         social: {}
     },
     setUser: () => void 0,

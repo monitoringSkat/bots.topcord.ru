@@ -42,7 +42,7 @@ const BotCard: FC<Props> = ({ bot }) => (
             </div>
         </div>
         <div className={styles.description}>
-            {bot.description.slice(0, 220)}
+            {bot.shortDescription}
         </div>
         <div className={styles.buttons}>
             <div className={styles.invite}>

@@ -78,25 +78,30 @@ botsRouter.post(
             windowMs: Minutes.FIFTEEN,
             max: 100
         }),
+        
         body('name').notEmpty().isString(),
+        
         body('id').notEmpty().isString(),
+        
         body('prefix').notEmpty().isString(),
+        
         body('longDescription').notEmpty().isString(),
+        
         body('shortDescription').notEmpty().isString(),
+        
         body('tags').isArray().notEmpty(),
-        body('library')
-            .notEmpty()
-            .isString()
-            .isIn(libraries)
-            .optional({ nullable: true }),
+
         body('inviteURL').notEmpty().isString().isURL(),
-        body('backgroundURL').isString().isURL().optional({ nullable: true }),
-        body('developers').isArray().notEmpty().optional({ nullable: true }),
-        body('supportServerURL')
-            .isString()
-            .isURL()
-            .optional({ nullable: true }),
-        body('githubURL').isString().isURL().optional({ nullable: true })
+
+        body('library').optional({ nullable: true, checkFalsy: true  }).isString().isIn(libraries),
+        
+        body('backgroundURL').optional({ nullable: true, checkFalsy: true  }).isString().isURL(),
+        
+        body('developers').optional({ nullable: true }).isArray(),
+        
+        body('supportServerURL').optional({ nullable: true, checkFalsy: true }).isString().isURL(),
+        
+        body('githubURL').optional({ nullable: true, checkFalsy: true  }).isString().isURL()
     ],
     async (req: Request, res: Response) => {
         const errors = validationResult(req)
@@ -108,12 +113,11 @@ botsRouter.post(
         const avatar = await getBotAvatarURL(req.body.id)
         const developers: User[] =
             (await Promise.all(
-                req.body.developers?.map(
+                req.body.developers?.filter(Boolean)
+                .map(
                     async userId => await getUserInfo(userId)
                 )
-            )) || []
-
-        console.log(developers)
+            ))
 
         const bot = Bot.create({
             name: req.body.name,
@@ -126,11 +130,10 @@ botsRouter.post(
             githubURL: req.body.githubURL || null,
             inviteURL: req.body.inviteURL || null,
             library: req.body.library || null,
-            developers,
+            developers: [owner, ...developers],
             owner,
             avatar
         })
-
         const tags: Tag[] = await Promise.all(
             req.body.tags.map(async name => {
                 const oldTag = await Tag.find({ where: { name } })

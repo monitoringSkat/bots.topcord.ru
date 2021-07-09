@@ -20,25 +20,25 @@ usersRouter.get('/:id', async (req: Request, res: Response) => {
 })
 
 usersRouter.put(
-    '/me', 
-    [ 
+    '/me',
+    [
         checkAuth,
-        body("bio").isURL().notEmpty(),
-        body("github").isURL().notEmpty().optional({ nullable: true }),
-        body("twitter").isURL().notEmpty().optional({ nullable: true }),
-        body("reddit").isURL().notEmpty().optional({ nullable: true }),
-        body("steam").isURL().notEmpty().optional({ nullable: true }),
-        body("twitch").isURL().notEmpty().optional({ nullable: true }),
-        body("telegram").isURL().notEmpty().optional({ nullable: true }),
-        body("vk").isURL().notEmpty().optional({ nullable: true }),
-        body("facebook").isURL().notEmpty().optional({ nullable: true }),
-        body("instagram").isURL().notEmpty().optional({ nullable: true }),
-        body("youtube").isURL().notEmpty().optional({ nullable: true }),
-    ], 
+        body('bio').isURL().notEmpty(),
+        body('github').isURL().notEmpty().optional({ nullable: true }),
+        body('twitter').isURL().notEmpty().optional({ nullable: true }),
+        body('reddit').isURL().notEmpty().optional({ nullable: true }),
+        body('steam').isURL().notEmpty().optional({ nullable: true }),
+        body('twitch').isURL().notEmpty().optional({ nullable: true }),
+        body('telegram').isURL().notEmpty().optional({ nullable: true }),
+        body('vk').isURL().notEmpty().optional({ nullable: true }),
+        body('facebook').isURL().notEmpty().optional({ nullable: true }),
+        body('instagram').isURL().notEmpty().optional({ nullable: true }),
+        body('youtube').isURL().notEmpty().optional({ nullable: true })
+    ],
     async (req: Request, res: Response) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
-        
+        const errors = validationResult(req)
+        if (!errors.isEmpty())
+            return res.status(400).json({ errors: errors.array() })
     }
 )
 

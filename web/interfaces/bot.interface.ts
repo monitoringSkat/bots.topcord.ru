@@ -15,7 +15,8 @@ interface Bot {
     createdAt: string
     updateAt: string
     avatar: string
-    description: string
+    shortDescription: string
+    longDescription: string
     guildsCount: number
     websiteURL?: string
     backgroundURL?: string

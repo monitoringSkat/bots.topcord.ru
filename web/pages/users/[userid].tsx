@@ -17,7 +17,7 @@ interface Props {
 const UserPage = ({ token, userid }: Props) => {
     const [user, setUser] = useState<User>()
     const context = useContext(AuthContext)
-
+    console.log(user)
     const getUser = async () => {
         if (token) localStorage.setItem(config.AUTH_LOCAL_STORAGE_KEY, token)
         const res = await fetch(`${config.SERVER_URL}/users/${userid}`, {
@@ -101,8 +101,8 @@ const UserPage = ({ token, userid }: Props) => {
                     </div>
                 </div>
             </div>
-            {[].length > 0 ? (
-                <Bots bots={[]} />
+            {user?.bots && user.bots.length > 0 ? (
+                <Bots bots={user.bots} />
             ) : (
                 <div className={styles.bots}>Лист ботов пользователя пуст!</div>
             )}

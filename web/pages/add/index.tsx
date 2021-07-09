@@ -6,8 +6,13 @@ import Layout from '../../layout'
 import Input from '../../components/Input/Input'
 import fields from './fields.json'
 import addFormSchema from '../../schemas/add-form.schema'
+import http from '../../axios/http'
 
 const AddPage = () => {
+    const fromStringToArray = (string: string) => {
+        return string
+        .split(/\s*\,\s*/)
+    }
     const [checked, setChecked] = useState(false)
     const { handleChange, values, errors, handleSubmit, dirty, isValid } =
         useFormik({
@@ -18,23 +23,26 @@ const AddPage = () => {
                 shortDescription: '',
                 longDescription: '',
                 inviteURL: '',
-                backgroundURL: '',
-                supportServerURL: '',
-                githubURL: '',
-                websiteURL: '',
-                library: '',
+                backgroundURL: null,
+                supportServerURL: null,
+                githubURL: null,
+                websiteURL: null,
+                library: null,
                 tags: '',
                 developers: ''
             },
             validationSchema: addFormSchema,
-            onSubmit(values) {
-                console.log('submit')
+            async onSubmit(values) {
+                const tags = fromStringToArray(values.tags).slice(0, 5).map((t: string) => t.slice(0, 15))
+                const developers = fromStringToArray(values.developers)
+
+                const { data } = await http.post("/bots", {...values, tags, developers})
+                console.log(data)
             }
         })
-    const tags = values.tags
-        .split(/\s*\,\s*/)
-        .slice(0, 5)
-        .map((t: string) => t.slice(0, 15))
+    const tags = fromStringToArray(values.tags).slice(0, 5).map((t: string) => t.slice(0, 15))
+    const developers = fromStringToArray(values.developers)
+
     return (
         <Layout>
             <div className={styles.title}>Добавление бота</div>
@@ -61,7 +69,7 @@ const AddPage = () => {
                         <Input
                             onChange={handleChange}
                             value={
-                                name === 'tags' ? tags : (values as any)[name]
+                                name === 'tags' ? tags : name === "developers" ? developers : (values as any)[name]
                             }
                             name={name}
                             placeholder={placeholder}
