@@ -16,7 +16,7 @@ const DevelopersPage = () => (
                             <span>{developer.role}</span>
                         </div>
                         <div className={styles.links}>
-                            {Object.keys(developer.social).map((key) => {
+                            {Object.keys(developer.social).map(key => {
                                 return (
                                     <Link href={(developer.social as any)[key]}>
                                         <img src={`/assets/logos/${key}.png`} />
