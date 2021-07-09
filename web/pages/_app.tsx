@@ -18,7 +18,19 @@ function MyApp({ Component, pageProps }: AppProps) {
         bots: [],
         role: '',
         bio: '',
-        social: {}
+        social: {
+            github:"",
+            vk:"",
+            youtube:"",
+            twitch:"",
+            reddit:"",
+            twitter:"",
+            instagram:"",
+            steam:"",
+            facebook:"",
+            telegram:"",
+            spotify:"",
+        }
     }
 
     const [user, setUser] = useState<User>(initialUser)

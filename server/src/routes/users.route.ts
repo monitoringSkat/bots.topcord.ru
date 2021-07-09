@@ -23,22 +23,27 @@ usersRouter.put(
     '/me',
     [
         checkAuth,
-        body('bio').isURL().notEmpty(),
-        body('github').isURL().notEmpty().optional({ nullable: true }),
-        body('twitter').isURL().notEmpty().optional({ nullable: true }),
-        body('reddit').isURL().notEmpty().optional({ nullable: true }),
-        body('steam').isURL().notEmpty().optional({ nullable: true }),
-        body('twitch').isURL().notEmpty().optional({ nullable: true }),
-        body('telegram').isURL().notEmpty().optional({ nullable: true }),
-        body('vk').isURL().notEmpty().optional({ nullable: true }),
-        body('facebook').isURL().notEmpty().optional({ nullable: true }),
-        body('instagram').isURL().notEmpty().optional({ nullable: true }),
-        body('youtube').isURL().notEmpty().optional({ nullable: true })
+        body('bio').notEmpty().optional({ nullable: true, checkFalsy: true }),
+        body('github').isURL().notEmpty().optional({ nullable: true, checkFalsy: true }),
+        body('twitter').isURL().notEmpty().optional({ nullable: true, checkFalsy: true }),
+        body('reddit').isURL().notEmpty().optional({ nullable: true, checkFalsy: true }),
+        body('steam').isURL().notEmpty().optional({ nullable: true, checkFalsy: true }),
+        body('twitch').isURL().notEmpty().optional({ nullable: true, checkFalsy: true }),
+        body('telegram').isURL().notEmpty().optional({ nullable: true, checkFalsy: true }),
+        body('vk').isURL().notEmpty().optional({ nullable: true, checkFalsy: true }),
+        body('facebook').isURL().notEmpty().optional({ nullable: true, checkFalsy: true }),
+        body('instagram').isURL().notEmpty().optional({ nullable: true, checkFalsy: true }),
+        body('youtube').isURL().notEmpty().optional({ nullable: true, checkFalsy: true })
     ],
     async (req: Request, res: Response) => {
         const errors = validationResult(req)
-        if (!errors.isEmpty())
-            return res.status(400).json({ errors: errors.array() })
+        if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() })
+        const user = req.user as User
+        const { bio, ...social } = req.body
+        user.bio = bio
+        user.social = social
+        await user.save()
+        res.send(true)
     }
 )
 

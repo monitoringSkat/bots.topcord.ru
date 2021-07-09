@@ -48,7 +48,7 @@
     },
     {
         "type": "input",
-        "name": "Задний фон в карточке бота",
+        "name": "backgroundURL",
         "required": false,
         "hint": "ссылка на изображение",
         "placeholder": "Задний фон в карточке бота"

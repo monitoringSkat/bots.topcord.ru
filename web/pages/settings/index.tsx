@@ -7,12 +7,15 @@ import Integrations from './integrations.json'
 import Input from '../../components/Input/Input'
 import Tooltip from '@material-ui/core/Tooltip'
 import { useFormik } from 'formik'
+import http from '../../axios/http'
+import { Snackbar } from '@material-ui/core'
+import updateProfileSchema from '../../schemas/update-profile.schema'
 
 const SettingsPage = () => {
-    const { user } = useContext(AuthContext)
+    const { user, setUser } = useContext(AuthContext)
     const [isEdit, setEdit] = useState(false)
-
-    const { handleSubmit, handleChange, values, errors, handleReset } =
+    const [ open, setOpen ] = useState(false)
+    const { handleSubmit, handleChange, values, handleReset, errors, isValid, dirty } =
         useFormik({
             initialValues: {
                 github: user.social.github,
@@ -28,18 +31,29 @@ const SettingsPage = () => {
                 spotify: user.social.spotify,
                 bio: user.bio
             },
-            onSubmit: () => {
-                setEdit(false)
+            validationSchema: updateProfileSchema,
+            onSubmit: async ({bio, ...social}) => {
+                const { data } = await http.put(`/users/me`, { bio, ...social })
+                if (data === true) {
+                    setOpen(true)
+                    setUser({ ...user, bio, social })
+                    setEdit(false)
+                }
             },
             onReset: () => {
                 setEdit(false)
-            }
+            },
         })
-
-    console.log(values)
 
     return (
         <SettingsLayout>
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={open}
+                autoHideDuration={3000}
+                className={styles.snackbar}
+                message={`Профиль успешно обновлён!`}
+            />
             <h3>Моя учётная запись</h3>
             <div className={styles.profile}>
                 <img className={styles.avatar} src={user.avatar} />
@@ -79,6 +93,7 @@ const SettingsPage = () => {
             </div>
             <h4>Интеграции</h4>
             <div className={styles.interinputs}>
+                {Object.keys(errors).length > 0 && <div className={styles.error}>Были допущены ошибки!</div>}
                 {Integrations.map(({ name }) => (
                     <div>
                         <div>
@@ -91,16 +106,17 @@ const SettingsPage = () => {
                                 placeholder={`Ссылка на профиль ${name}`}
                                 onChange={handleChange}
                                 name={name.toLowerCase()}
+                                value={(values as any)[name.toLowerCase()]}
                             />
                         ) : (
                             <span>
-                                {(values as any)[name] || 'ссылка отсутсвует'}
+                                {(values as any)[name.toLowerCase()] || 'ссылка отсутсвует'}
                             </span>
                         )}
                     </div>
                 ))}
             </div>
-            {isEdit && (
+            {(isEdit && isValid && dirty)  && (
                 <form
                     onSubmit={handleSubmit}
                     onReset={handleReset}

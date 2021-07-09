@@ -67,7 +67,7 @@ class Bot extends BaseEntity {
 
     @Column({ nullable: true })
     backgroundURL: string
-    
+
     @Column({ nullable: true })
     inviteURL: string
 

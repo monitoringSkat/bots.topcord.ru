@@ -13,7 +13,7 @@ const BotCard: FC<Props> = ({ bot }) => (
             className={styles.background}
             style={{
                 backgroundImage: bot.backgroundURL
-                    ? `url("${bot.backgroundURL}")`
+                    ? `url('${bot.backgroundURL}')`
                     : `url(/assets/default-bot-background.svg)`
             }}
         />

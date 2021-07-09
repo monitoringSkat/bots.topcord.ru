@@ -94,8 +94,8 @@ h4 {
     cursor: pointer;
 }
 
-
-.MuiSnackbar-root, .MuiSnackbarContent-root {
+.MuiSnackbar-root,
+.MuiSnackbarContent-root {
     background-color: #5865f2 !important;
     color: white !important;
     font-size: 18px !important;

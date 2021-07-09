@@ -9,59 +9,69 @@ import addFormSchema from '../../schemas/add-form.schema'
 import http from '../../axios/http'
 import Bot from '../../interfaces/bot.interface'
 import { useRouter } from 'next/router'
-import { Snackbar, Button } from "@material-ui/core"
+import { Snackbar, Button } from '@material-ui/core'
 
 const AddPage = () => {
     const fromStringToArray = (string: string) => string.split(/\s*\,\s*/)
     const [checked, setChecked] = useState(false)
-    const [ bot, setBot ] = useState<Bot>()
-    const [ open, setOpen ] = useState(false)
+    const [bot, setBot] = useState<Bot>()
+    const [open, setOpen] = useState(false)
     const router = useRouter()
-    
-    const { handleChange, values, errors, setErrors, handleSubmit, dirty, isValid } =
-        useFormik({
-            initialValues: {
-                id: '',
-                name: '',
-                prefix: '',
-                shortDescription: '',
-                longDescription: '',
-                inviteURL: '',
-                backgroundURL: "",
-                supportServerURL: "",
-                githubURL: "",
-                websiteURL: "",
-                library: "",
-                tags: '',
-                developers: ''
-            },
-            validationSchema: addFormSchema,
-            async onSubmit(values) {
-                const tags = fromStringToArray(values.tags)
-                    .slice(0, 5)
-                    .map((t: string) => t.slice(0, 15))
-                const developers = fromStringToArray(values.developers)
 
-                const { data } = await http.post('/bots', {
-                    ...values,
-                    tags,
-                    developers
-                })
-                if (data.statusCode === 409) setErrors({...errors, id: "Такой ID уже существует!"})
-                if (data.id) {
-                    setBot(data)
-                    setOpen(true)
-                }
+    const {
+        handleChange,
+        values,
+        errors,
+        setErrors,
+        handleSubmit,
+        dirty,
+        isValid
+    } = useFormik({
+        initialValues: {
+            id: '',
+            name: '',
+            prefix: '',
+            shortDescription: '',
+            longDescription: '',
+            inviteURL: '',
+            backgroundURL: '',
+            supportServerURL: '',
+            githubURL: '',
+            websiteURL: '',
+            library: '',
+            tags: '',
+            developers: ''
+        },
+        validationSchema: addFormSchema,
+        async onSubmit(values) {
+            const tags = fromStringToArray(values.tags)
+                .slice(0, 5)
+                .map((t: string) => t.slice(0, 15))
+            const developers = fromStringToArray(values.developers)
+            console.log({...values,
+                tags,
+                developers})
+            const { data } = await http.post('/bots', {
+                ...values,
+                tags,
+                developers
+            })
+            if (data.statusCode === 409)
+                setErrors({ ...errors, id: 'Такой ID уже существует!' })
+            if (data.id) {
+                setBot(data)
+                setOpen(true)
             }
-        })
+        }
+    })
     const tags = fromStringToArray(values.tags)
         .slice(0, 5)
         .map((t: string) => t.slice(0, 15))
     const developers = fromStringToArray(values.developers)
     const handleClose = () => router.push(`/bots/${bot?.id}`)
-    
+
     const action = (
-        <Button onClick={handleClose} >Перейти на страницу {bot?.name}</Button>
+        <Button onClick={handleClose}>Перейти на страницу {bot?.name}</Button>
     )
     return (
         <Layout>
