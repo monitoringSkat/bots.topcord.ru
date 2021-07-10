@@ -14,6 +14,7 @@
 -   [x] Bot developers
 -   [x] Bot tags
 -   [x] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
+-   [X] Edit user profile
 -   [ ] IP bans
 -   [ ] Bot library
 -   [ ] User site roles
@@ -21,7 +22,6 @@
 -   [ ] Bot carma (bot rating 0/10 or +1 -1
 -   [ ] Report system
 -   [ ] Create, delete, edit, likes, dislikes comments
--   [ ] Delete, edit user profile
 -   [ ] Followers, followings
 
 ## Features
