@@ -58,7 +58,7 @@ botsRouter.get(
     '/:id',
     [
         findBot({
-            relations: ['owner', 'comments', 'comments.author', 'tags']
+            relations: ['owner', 'comments', 'comments.author', 'tags', "developers"]
         })
     ],
     async (req, res) => {

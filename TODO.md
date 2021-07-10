@@ -1,7 +1,7 @@
 ## TODO
 
--   [X] New design
--   [X] Forms errors
+-   [x] New design
+-   [x] Forms errors
 -   [x] Rate limit server
 -   [x] Guilds count
 -   [x] Same ID in bots
@@ -11,9 +11,9 @@
 -   [x] gzip (commpression)
 -   [x] production or development mode
 -   [x] Swagger
--   [X] Bot developers
+-   [x] Bot developers
 -   [x] Bot tags
--   [X] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
+-   [x] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
 -   [ ] IP bans
 -   [ ] Bot library
 -   [ ] User site roles
@@ -25,4 +25,5 @@
 -   [ ] Followers, followings
 
 ## Features
+
 -   [ ] Premium

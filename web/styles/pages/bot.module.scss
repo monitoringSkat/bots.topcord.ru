@@ -71,6 +71,7 @@
     margin: 1% 0;
     font-size: 18px;
     color: white;
+    word-wrap: break-word;
     border-radius: 20px;
 }
 
@@ -82,4 +83,57 @@
     font-size: 18px;
     color: white;
     border-radius: 20px;
+    h4 {
+        margin: 3% 0;
+    }
+}
+
+
+.write {
+    display: flex;
+    img {
+        width: 15%;
+        height: 15%;
+    }
+    textarea {
+        resize: vertical;
+        background: #1d1f23;
+        min-height: 160px;
+        color: white;
+        border: none;
+        width: 82.5%;
+        margin-left: 2.5%;
+        padding: 5px;
+    }
+}
+
+.post {
+    background: #57F287;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+    margin: 1% 0;
+    &:disabled {
+        background: #36393e;
+    }
+}
+.write-comment {
+    display: flex;
+    flex-direction: column; 
+}
+
+.rating {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .stars {
+        margin-right: 2.5%;
+        img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+    }
 }
