@@ -19,13 +19,14 @@ const AddPage = () => {
     const router = useRouter()
 
     const {
-        handleChange,
+        dirty,
         values,
         errors,
+        isValid,
+        handleChange,
         setErrors,
         handleSubmit,
-        dirty,
-        isValid
+        setValues
     } = useFormik({
         initialValues: {
             id: '',
@@ -70,6 +71,10 @@ const AddPage = () => {
     const action = (
         <Button onClick={handleClose}>Перейти на страницу {bot?.name}</Button>
     )
+
+    const selectHandler = (name: string, value: string) => {
+        setValues({...values, [name]: value})
+    }
     return (
         <Layout>
             <Snackbar
@@ -82,7 +87,7 @@ const AddPage = () => {
 
             <div className={styles.title}>Добавление бота</div>
             <form onSubmit={handleSubmit} className={styles.inputs}>
-                {fields.map(({ placeholder, name, hint, required, type }) => (
+                {fields.map(({ placeholder, name, hint, required, type, options }) => (
                     <div key={name} className={styles.input}>
                         <div className={styles.field}>
                             <div className={styles.name}>
@@ -110,9 +115,11 @@ const AddPage = () => {
                                     ? developers
                                     : (values as any)[name]
                             }
+                            options={options}
                             name={name}
                             placeholder={placeholder}
                             type={type as any}
+                            selectHandler={selectHandler}
                         />
                     </div>
                 ))}

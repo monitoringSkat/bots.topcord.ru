@@ -58,7 +58,13 @@ botsRouter.get(
     '/:id',
     [
         findBot({
-            relations: ['owner', 'comments', 'comments.author', 'tags', "developers"]
+            relations: [
+                'owner',
+                'comments',
+                'comments.author',
+                'tags',
+                'developers'
+            ]
         })
     ],
     async (req, res) => {
@@ -68,7 +74,7 @@ botsRouter.get(
 
 // POST
 
-const libraries = ['sunday', 'saturday']
+const libraries = [ "discord.js", "discord.py", "discordoo", "Javacord", "Eris", "JDA", "Discord4J", "discordcr", "Discord.Net", "DiscordGo", "DSharpPlus", "RestCord", "Discordia", "disco", "discordrb", "serenity", "Sword" ]
 
 botsRouter.post(
     '/',
@@ -94,7 +100,7 @@ botsRouter.post(
         body('inviteURL').notEmpty().isString().isURL(),
 
         body('library')
-            .optional({ nullable: true, checkFalsy: true })
+            .notEmpty()
             .isString()
             .isIn(libraries),
 

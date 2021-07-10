@@ -3,7 +3,9 @@ import styles from './Input.module.css'
 import Markdown from '../Markdown/Markdown'
 
 interface Props extends InputHTMLAttributes<any> {
-    type?: 'textarea'
+    type?: 'textarea' | "select"
+    options?: string[]
+    selectHandler?: (name: string, value: string) => void
 }
 
 const Input: FC<Props> = props => {
@@ -30,6 +32,13 @@ const Input: FC<Props> = props => {
                     )}
                 </div>
             )
+        case "select":
+            return (
+            <select className={styles.select} name={props.name} onChange={(e) => props.selectHandler?.(e.target.name, e.target.value)}> 
+               {props.options?.map((option) => 
+                    <option value={option} key={option}>{option}</option>
+               )}
+            </select>)
         default:
             return <input {...props} className={styles.input} />
     }

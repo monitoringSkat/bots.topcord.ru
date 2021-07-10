@@ -1,17 +1,18 @@
 import Layout from '../../layout'
 import styles from '../../styles/pages/bots.module.scss'
-import Input from '../../components/Input/Input'
 import { Dropdown, DropdownButton, Container } from 'react-bootstrap'
 import Bot from '../../interfaces/bot.interface'
 import config from '../../config'
 import Bots from '../../components/Bots/Bots'
 import SearchBotsInput from '../../components/SearchBotsInput/SearchBotsInput'
-
+import libraries from "../../data/libraries.json"
+import { useState } from 'react'
 interface Props {
     bots: Bot[]
 }
 
 function BotsPage({ bots }: Props) {
+    const [ sortBy, setSortBy ] = useState({ library: null, method: "votes" })
     return (
         <Layout title="Боты | TopCord">
             <Container className={styles.intro} fluid>
@@ -33,18 +34,9 @@ function BotsPage({ bots }: Props) {
                         id="dropdown-basic-button"
                         title="Библиотека"
                     >
-                        <Dropdown.Item href="#/action-1">
-                            discord.js
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">
-                            discord.py
-                        </Dropdown.Item>
-                    </DropdownButton>
-                    <DropdownButton id="dropdown-basic-button" title="Тег">
-                        <Dropdown.Item href="#/action-1">
-                            Модерация
-                        </Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">Фан</Dropdown.Item>
+                        {libraries.map((lib: string) => 
+                            <Dropdown.Item  key={lib} href={lib}>{lib}</Dropdown.Item>
+                        )}
                     </DropdownButton>
                 </div>
             </Container>

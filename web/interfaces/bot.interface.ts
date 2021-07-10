@@ -1,6 +1,6 @@
 import Tag from './tag.interface'
 import User from './user.interface'
-import Comment from "./comment.interface"
+import Comment from './comment.interface'
 interface Bot {
     id: string
     name: string

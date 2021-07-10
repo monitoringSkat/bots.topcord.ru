@@ -18,10 +18,7 @@ const SearchBotsInput = (props: Props) => {
         const res = await fetch(`${config.SERVER_URL}/bots?q=${query}`)
         const bots = await res.json()
         setLoading(false)
-        if (bots) {
-            setBots(bots)
-        }
-        console.log(bots.length > 0 || loading)
+        if (bots) setBots(bots)
     }
     useEffect(() => {
         const delayDebounceFn = setTimeout(getBotByQuery(query), 500)
@@ -68,7 +65,7 @@ const SearchBotsInput = (props: Props) => {
                             <div className={styles.info}>
                                 <div className={styles.name}>{bot.name}</div>
                                 <div className={styles.description}>
-                                    {bot.description.slice(0, 50)}
+                                    {bot.shortDescription}
                                 </div>
                             </div>
                         </div>

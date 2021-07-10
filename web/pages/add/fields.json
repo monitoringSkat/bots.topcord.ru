@@ -47,6 +47,32 @@
         "placeholder": "Ссылка на добавления бота"
     },
     {
+        "type": "select",
+        "name": "library",
+        "required": true,
+        "hint": "Технология на чем был написан бот",
+        "placeholder": "Библиотека",
+        "options": [
+            "discord.js",
+            "discord.py",
+            "discordoo",
+            "Javacord",
+            "Eris",
+            "JDA",
+            "Discord4J",
+            "discordcr",
+            "Discord.Net",
+            "DiscordGo",
+            "DSharpPlus",
+            "RestCord",
+            "Discordia",
+            "disco",
+            "discordrb",
+            "serenity",
+            "Sword"
+        ]
+    },
+    {
         "type": "input",
         "name": "backgroundURL",
         "required": false,
@@ -80,13 +106,5 @@
         "required": false,
         "hint": "Ссылка на сайт бота",
         "placeholder": "Веб-сайт бота"
-    },
-    {
-        "type": "input",
-        "name": "library",
-        "required": false,
-        "hint": "Технология на чем был написан бот",
-        "placeholder": "Библиотека",
-        "options": []
     }
 ]

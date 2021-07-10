@@ -16,9 +16,9 @@ interface Props {
 
 function BotPage(props: Props) {
     const { user } = useContext(AuthContext)
-    const [ comment, setComment ] = useState("")
-    const [ bot, setBot ] = useState(props.bot)
-    const [stars, setStars] = useState(0)   
+    const [comment, setComment] = useState('')
+    const [bot, setBot] = useState(props.bot)
+    const [stars, setStars] = useState(0)
 
     return (
         <Layout>
@@ -58,13 +58,14 @@ function BotPage(props: Props) {
                             </div>
                             <div className={styles.developers}>
                                 Разработчики:
-                                {bot.developers.map(developer => 
-                                    <Link key={developer.id} href={`/users/${developer.id}`}>
-                                        <img
-                                            src={developer.avatar}
-                                        />
+                                {bot.developers.map(developer => (
+                                    <Link
+                                        key={developer.id}
+                                        href={`/users/${developer.id}`}
+                                    >
+                                        <img src={developer.avatar} />
                                     </Link>
-                                )}
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -75,31 +76,43 @@ function BotPage(props: Props) {
                 />
                 <div className={styles.comments}>
                     <h3>Комментарии</h3>
-                    {user.id && 
-                        <div className={styles["write-comment"]}>
+                    {user.id && (
+                        <div className={styles['write-comment']}>
                             <div className={styles.write}>
                                 <img src={user.avatar} />
-                                <textarea value={comment} placeholder="Написать комментарий" onChange={e => setComment(e.target.value)}/>
+                                <textarea
+                                    value={comment}
+                                    placeholder="Написать комментарий"
+                                    onChange={e => setComment(e.target.value)}
+                                />
                             </div>
                             <div className={styles.rating}>
                                 <div className={styles.stars}>
                                     {Array.from({ length: 5 }).map((_, i) => {
-                                        const src = i < stars ? "/assets/star-active.svg" : "/assets/star.svg"
-                                        return <img onClick={() => setStars(i + 1)} src={src} />
-                                    }
-                                    )}
+                                        const src =
+                                            i < stars
+                                                ? '/assets/star-active.svg'
+                                                : '/assets/star.svg'
+                                        return (
+                                            <img
+                                                onClick={() => setStars(i + 1)}
+                                                src={src}
+                                            />
+                                        )
+                                    })}
                                 </div>
-                                <button disabled={!comment.length && !!stars} className={styles.post}>Опубликовать</button>
+                                <button
+                                    disabled={!comment.length && !!stars}
+                                    className={styles.post}
+                                >
+                                    Опубликовать
+                                </button>
                             </div>
                         </div>
-
-                    }
-                    {bot.comments.map((c) => 
-                        <div key={c.id} className={styles.comment}>
-                            
-                        </div>
-
                     )}
+                    {bot.comments.map(c => (
+                        <div key={c.id} className={styles.comment}></div>
+                    ))}
                 </div>
             </Container>
         </Layout>

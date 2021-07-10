@@ -1,6 +1,7 @@
 .input,
 .textarea,
-.search input {
+.search input,
+.select {
     width: 100%;
     border: none;
     border-radius: 5px;
@@ -10,6 +11,7 @@
     margin: 5px 0;
     outline: none;
 }
+
 
 .textareaContainer {
     margin: 5px 0;
