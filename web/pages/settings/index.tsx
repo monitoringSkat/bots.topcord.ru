@@ -1,40 +1,153 @@
 import SettingsLayout from '../../layout/settings-layout'
 import styles from '../../styles/pages/settings.module.scss'
+import React, { useContext } from 'react'
+import AuthContext from '../../context/auth.context'
+import { useState } from 'react'
+import Integrations from './integrations.json'
 import Input from '../../components/Input/Input'
+import Tooltip from '@material-ui/core/Tooltip'
+import { useFormik } from 'formik'
+import axios from "axios"
+import { Snackbar } from '@material-ui/core'
+import updateProfileSchema from '../../schemas/update-profile.schema'
+import config from '../../config'
+import http from '../../axios/http'
+
 const SettingsPage = () => {
+    const { user, setUser } = useContext(AuthContext)
+    const [isEdit, setEdit] = useState(false)
+    const [open, setOpen] = useState(false)
+    const {
+        handleSubmit,
+        handleChange,
+        values,
+        handleReset,
+        errors,
+        isValid,
+        dirty
+    } = useFormik({
+        initialValues: {
+            github: user.social.github,
+            vk: user.social.vk,
+            youtube: user.social.youtube,
+            twitch: user.social.twitch,
+            reddit: user.social.reddit,
+            twitter: user.social.twitter,
+            instagram: user.social.instagram,
+            steam: user.social.steam,
+            facebook: user.social.facebook,
+            telegram: user.social.telegram,
+            spotify: user.social.spotify,
+            bio: user.bio
+        },
+        validationSchema: updateProfileSchema,
+        onSubmit: async ({ bio, ...social }) => {
+            const { data } = await http.put(`/users/me`, { bio, ...social }, {
+                headers: {
+                    Authorization: `Bearer: ${localStorage.getItem(
+                        config.AUTH_LOCAL_STORAGE_KEY
+                    )}`
+                }
+            })
+            if (data === true) {
+                setOpen(true)
+                setUser({ ...user, bio, social })
+                setEdit(false)
+            }
+        },
+        onReset: () => {
+            setEdit(false)
+        }
+    })
+
     return (
         <SettingsLayout>
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={open}
+                autoHideDuration={3000}
+                className={styles.snackbar}
+                message={`Профиль успешно обновлён!`}
+            />
             <h3>Моя учётная запись</h3>
             <div className={styles.profile}>
-                <img
-                    className={styles.avatar}
-                    src="https://i1.sndcdn.com/avatars-000390847758-d7h6jb-t500x500.jpg"
-                />
-                <div style={{ width: '100%' }}>
+                <img className={styles.avatar} src={user.avatar} />
+                <div style={{ width: '92.5%' }}>
                     <div className={styles.header}>
                         <div className={styles.username}>
-                            -vitaliyirtlach<span>#6543</span>
+                            <Tooltip
+                                title="Верефицированный"
+                                placement="bottom"
+                            >
+                                <img
+                                    src="/assets/verified.png"
+                                    className="verified"
+                                />
+                            </Tooltip>
+                            {user.username}
+                            <span>#{user.discriminator}</span>
                         </div>
-                        <button>Редактировать профиль</button>
+                        <button onClick={() => setEdit(true)}>
+                            Редактировать профиль
+                        </button>
                     </div>
-                    {/* <Input placeholder="Максимальная длина 250 сиволов." type="textarea" /> if edit true  */}
-                    <div className={styles.bio}>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Eius, inventore officia! Error doloremque
-                        molestias, eius dolore, voluptas, praesentium non quam
-                        modi minima eos fugit amet id! Accusamus autem
-                        voluptatem eius! Dolores, ipsam. Natus a, dicta fugiat
-                        quis dignissimos alias vitae similique labore eaque
-                        incidunt soluta harum ratione vero voluptatibus! Enim
-                        aliquam laborum nisi omnis voluptates ipsa pariatur odit
-                        eveniet porro? Reprehenderit assumenda facere porro
-                        eveniet non natus qui at perspiciatis doloremque!
-                        Voluptatum doloribus placeat
-                    </div>
-                    <button className={styles.save}>Сохранить изменения</button>
+                    {isEdit ? (
+                        <textarea
+                            maxLength={250}
+                            onChange={handleChange}
+                            value={values.bio}
+                            name="bio"
+                            placeholder="Расскажите немного о себе..."
+                        />
+                    ) : (
+                        <div className={styles.bio}>
+                            {values.bio || 'Биография отсутствует'}
+                        </div>
+                    )}
                 </div>
             </div>
             <h4>Интеграции</h4>
+            <div className={styles.interinputs}>
+                {Object.keys(errors).length > 0 && (
+                    <div className={styles.error}>Были допущены ошибки!</div>
+                )}
+                {Integrations.map(({ name }) => (
+                    <div>
+                        <div>
+                            <img
+                                src={`/assets/logos/${name.toLowerCase()}.png`}
+                            />
+                        </div>
+                        {isEdit ? (
+                            <Input
+                                placeholder={`Ссылка на профиль ${name}`}
+                                onChange={handleChange}
+                                name={name.toLowerCase()}
+                                value={(values as any)[name.toLowerCase()]}
+                            />
+                        ) : (
+                            <span>
+                                {(values as any)[name.toLowerCase()] ||
+                                    'ссылка отсутсвует'}
+                            </span>
+                        )}
+                    </div>
+                ))}
+            </div>
+            {isEdit && isValid && dirty && (
+                <form
+                    onSubmit={handleSubmit}
+                    onReset={handleReset}
+                    className={styles.controls}
+                >
+                    <button type="reset" className={styles.cancel}>
+                        Отмена
+                    </button>
+                    <button type="submit" className={styles.save}>
+                        Сохранить изменения
+                    </button>
+                </form>
+            )}
         </SettingsLayout>
     )
 }

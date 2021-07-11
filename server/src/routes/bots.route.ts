@@ -14,6 +14,7 @@ import BotNotFoundException from '../exceptions/bot-not-found.exception'
 import Minutes from '../enums/minutes.enum'
 import Tag from '../entities/Tag'
 import SameBotException from '../exceptions/same-bot.exception'
+import getUserInfo from '../utils/get-user-info'
 
 const botsRouter = Router()
 
@@ -57,7 +58,13 @@ botsRouter.get(
     '/:id',
     [
         findBot({
-            relations: ['owner', 'comments', 'comments.author', 'tags']
+            relations: [
+                'owner',
+                'comments',
+                'comments.author',
+                'tags',
+                'developers'
+            ]
         })
     ],
     async (req, res) => {
@@ -67,40 +74,96 @@ botsRouter.get(
 
 // POST
 
+const libraries = [
+    'discord.js',
+    'discord.py',
+    'discordoo',
+    'Javacord',
+    'Eris',
+    'JDA',
+    'Discord4J',
+    'discordcr',
+    'Discord.Net',
+    'DiscordGo',
+    'DSharpPlus',
+    'RestCord',
+    'Discordia',
+    'disco',
+    'discordrb',
+    'serenity',
+    'Sword'
+]
+
 botsRouter.post(
     '/',
     [
+        checkAuth,
         rateLimit({
             windowMs: Minutes.FIFTEEN,
             max: 100
         }),
-        // checkAuth,
+
         body('name').notEmpty().isString(),
+
         body('id').notEmpty().isString(),
+
         body('prefix').notEmpty().isString(),
-        body('description').notEmpty().isString(),
-        body('tags').isArray().notEmpty()
+
+        body('longDescription').notEmpty().isString(),
+
+        body('shortDescription').notEmpty().isString(),
+
+        body('tags').isArray().notEmpty(),
+
+        body('inviteURL').notEmpty().isString().isURL(),
+
+        body('library').notEmpty().isString().isIn(libraries),
+
+        body('backgroundURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL(),
+
+        body('developers').optional({ nullable: true }).isArray(),
+
+        body('supportServerURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL(),
+
+        body('githubURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL()
     ],
     async (req: Request, res: Response) => {
         const errors = validationResult(req)
         if (!errors.isEmpty()) return res.send({ errors: errors.array() })
-        // const owner = await User.findOne((req.user as any).id)
-        // const sameBot = await Bot.findOne(req.body.id)
-        // if (sameBot) return res.send(new SameBotException())
+        const owner = await User.findOne((req.user as any).id)
+        const sameBot = await Bot.findOne(req.body.id)
+        if (sameBot) return res.send(new SameBotException())
+
         const avatar = await getBotAvatarURL(req.body.id)
+        const developers: User[] = await Promise.all(
+            req.body.developers
+                ?.filter(Boolean)
+                .map(async userId => await getUserInfo(userId))
+        )
         const bot = Bot.create({
             name: req.body.name,
             id: req.body.id,
             prefix: req.body.prefix,
-            description: req.body.description,
+            longDescription: req.body.longDescription,
+            shortDescription: req.body.shortDescription,
             supportServerURL: req.body.supportServerURL || null,
             websiteURL: req.body.websiteURL || null,
             githubURL: req.body.githubURL || null,
             inviteURL: req.body.inviteURL || null,
-            // owner,
-            votes: [],
-            comments: [],
-            avatar: avatar
+            library: req.body.library || null,
+            backgroundURL: req.body.backgroundURL || null,
+            developers: [owner, ...developers],
+            owner,
+            avatar
         })
         const tags: Tag[] = await Promise.all(
             req.body.tags.map(async name => {
@@ -115,9 +178,8 @@ botsRouter.post(
         )
         bot.tags = tags
         await bot.save()
-        // ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
-
-        res.send({ bot })
+        ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
+        res.send(bot)
     }
 )
 
@@ -171,23 +233,24 @@ botsRouter.post(
         findBot({
             relations: ['comments', 'comments.author']
         }),
-        body('text').notEmpty().isString()
+        body('text').notEmpty().isString(),
+        body('rating').isNumeric()
     ],
-    (req: Request, res: Response) => {
+    async (req: Request, res: Response) => {
         const bot = (req as any).bot
         const user = (req as any).user
-        const commentsPerUser = bot.comments.filter(
-            comment => comment.author.id === user.id
-        )
-        if (commentsPerUser.length >= 5)
-            return res.send(new TooManyCommentsPerUserException())
+        const commentsPerUser = bot.comments.filter(({ author }) => author.id === user.id )
+        if (commentsPerUser.length >= 5) return res.send(new TooManyCommentsPerUserException())
+        
         const comment = Comment.create({
             text: req.body.text,
+            rating: req.body.rating,
             date: new Date().toLocaleDateString(),
             author: user,
             bot
         })
-        comment.save()
+        await comment.save()
+
         res.send(comment)
     }
 )

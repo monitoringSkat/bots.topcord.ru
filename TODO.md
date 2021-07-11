@@ -1,32 +1,36 @@
-## Web
+## TODO
 
--   [ ] New design
--   [ ] Forms errors
-
-## Server
-
+-   [x] New design
+-   [x] Forms errors
 -   [x] Rate limit server
 -   [x] Guilds count
 -   [x] Same ID in bots
 -   [x] Add more server exceptions
 -   [x] Rate limit POST method
 -   [x] API close
--   [ ] IP bans
--   [x] Swagger
 -   [x] gzip (commpression)
--   [ ] easy config
 -   [x] production or development mode
--   [ ] ⚠️ CORS origin check
--   [ ] Choose bot library
--   [ ] Api docs
--   [ ] Moderator, admin, user site roles
--   [ ] Bot help command
--   [ ] Bot carma (bot rating 0/10 or +1 -1)
--   [ ] Edit,delete comment
--   [ ] Bot report system
--   [ ] Likes, dislikes comments
--   [ ] Bot developers
--   [ ] User profile
+-   [x] Swagger
+-   [x] Bot developers
 -   [x] Bot tags
--   [ ] Delete, edit user profile
+-   [x] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
+-   [x] Edit user profile
+-   [x] Bot library
+-   [ ] IP bans
+-   [ ] User site roles
+-   [ ] Bot help command
+-   [ ] Bot carma (bot rating 0/10 or +1 -1
+-   [ ] Report system
+-   [ ] Create, delete, edit, likes, dislikes comments
+-   [ ] Followers, followings
+-   [ ] Moderator site permission (Delete bots)
+-   [ ] Admin site permission (Ban users)
+-   [ ] Upvote bots
+-   [ ] API Docs
+-   [ ] Translation
+-   [ ] Sort bots
+
+## Features
+
+-   [ ] Moderator, Admin Dashboard (Banned bots, users)
 -   [ ] Premium

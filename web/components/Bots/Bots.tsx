@@ -11,7 +11,7 @@ interface Props {
 const Bots: FC<Props> = ({ bots, perPage = 10 }) => {
     const [page, setPage] = useState(0)
     const navigation = []
-    for (let i = 0; i < Math.round(bots.length / perPage); i++) {
+    for (let i = 0; i < Math.ceil(bots.length / perPage); i++) {
         navigation.push(
             <div
                 key={i}

@@ -44,11 +44,14 @@ class Bot extends BaseEntity {
     @Column()
     prefix: string
 
-    @Column({ nullable: true })
+    @Column({ nullable: true, default: '' })
     avatar: string
 
     @Column()
-    description: string
+    shortDescription: string
+
+    @Column()
+    longDescription: string
 
     @Column({ default: 0 })
     guildsCount?: number
@@ -63,9 +66,13 @@ class Bot extends BaseEntity {
     githubURL: string
 
     @Column({ nullable: true })
+    backgroundURL: string
+
+    @Column({ nullable: true })
     inviteURL: string
 
-    @OneToMany(() => User, user => user.bots)
+    @ManyToMany(() => User, user => user.bots)
+    @JoinTable()
     developers: User[]
 
     @ManyToOne(() => User, user => user.bots)

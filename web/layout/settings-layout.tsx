@@ -1,9 +1,12 @@
 import { FC, useEffect, useState } from 'react'
 import styles from '../styles/layout/settings-layout.module.scss'
 import Link from 'next/link'
+import { useContext } from 'react'
+import AuthContext from '../context/auth.context'
 
 const SettingsLayout: FC = ({ children }) => {
     const [[browser, system], setNavigator] = useState(['', ''])
+    const { logout } = useContext(AuthContext)
     useEffect(() => {
         if (window && window.navigator) {
             setNavigator([
@@ -24,7 +27,9 @@ const SettingsLayout: FC = ({ children }) => {
                 <Link href="/settings/">Профиль пользователя</Link>
                 <Link href="/settings/language">Язык</Link>
                 <hr />
-                <div className={styles.logout}>Выйти</div>
+                <div className={styles.logout} onClick={logout}>
+                    Выйти
+                </div>
                 <hr />
                 <div className={styles.information}>
                     <div>Текущая версия: 1.0.0</div>

@@ -22,7 +22,7 @@
         "type": "input",
         "name": "shortDescription",
         "required": true,
-        "hint": "максимальное количество символов 50",
+        "hint": "максимальное количество символов 220",
         "placeholder": "Краткое описание"
     },
     {
@@ -36,7 +36,7 @@
         "type": "input",
         "name": "tags",
         "required": true,
-        "hint": "максимальное количество тегов 5",
+        "hint": "максимальное количество тегов 5, максимальная количество символов в теги 15. “запятая” - разделитель",
         "placeholder": "Теги бота"
     },
     {
@@ -47,8 +47,34 @@
         "placeholder": "Ссылка на добавления бота"
     },
     {
+        "type": "select",
+        "name": "library",
+        "required": true,
+        "hint": "Технология на чем был написан бот",
+        "placeholder": "Библиотека",
+        "options": [
+            "discord.js",
+            "discord.py",
+            "discordoo",
+            "Javacord",
+            "Eris",
+            "JDA",
+            "Discord4J",
+            "discordcr",
+            "Discord.Net",
+            "DiscordGo",
+            "DSharpPlus",
+            "RestCord",
+            "Discordia",
+            "disco",
+            "discordrb",
+            "serenity",
+            "Sword"
+        ]
+    },
+    {
         "type": "input",
-        "name": "Задний фон в карточке бота",
+        "name": "backgroundURL",
         "required": false,
         "hint": "ссылка на изображение",
         "placeholder": "Задний фон в карточке бота"
@@ -57,7 +83,7 @@
         "type": "input",
         "name": "developers",
         "required": false,
-        "hint": "ID пользователя. “запятая” - разделитель",
+        "hint": "Список ID пользователей. “запятая” - разделитель",
         "placeholder": "Разработчики бота"
     },
     {
@@ -71,13 +97,14 @@
         "type": "input",
         "name": "githubURL",
         "required": false,
-        "hint": "ID пользователя. “запятая” - разделитель",
+        "hint": "Ссылка на Github репозиторий",
         "placeholder": "Исходный код "
     },
     {
         "type": "input",
-        "name": "library",
+        "name": "websiteURL",
         "required": false,
-        "placeholder": "Библиотека"
+        "hint": "Ссылка на сайт бота",
+        "placeholder": "Веб-сайт бота"
     }
 ]

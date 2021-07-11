@@ -5,11 +5,23 @@ interface User {
     username: string
     discriminator: string | number
     verified: boolean
-    email: string
     role: string
     avatar: string
-    bots?: Bot[]
-    comments: Comment[]
+    bots: Bot[]
+    bio: string
+    social: {
+        github?: string | null
+        vk?: string | null
+        youtube?: string | null
+        twitch?: string | null
+        reddit?: string | null
+        twitter?: string | null
+        instagram?: string | null
+        steam?: string | null
+        facebook?: string | null
+        telegram?: string | null
+        spotify?: string | null
+    }
 }
 
 export default User

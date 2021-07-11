@@ -11,11 +11,11 @@ const Footer = () => (
                     <Link href="">Руководство по API</Link>
                     <Link href="">Пожертвовать</Link>
                 </Col>
-                <Col className="col-sm footer-links-group" >
+                <Col className="col-sm footer-links-group">
                     <div className="footer-links-group-name">Политика</div>
                     <Link href="">Правила</Link>
                 </Col>
-                <Col className="col-sm footer-links-group" >
+                <Col className="col-sm footer-links-group">
                     <div className="footer-links-group-name">Ссылки</div>
                     <Link href="">Сервер поддержки</Link>
                     <Link href="">TopInfo</Link>

@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn } from 'typeorm'
 import { UserRoles } from '../enums'
+import Social from '../interfaces/user/social.interface'
 import Bot from './Bot'
 import Comment from './Comment'
 
@@ -20,8 +21,14 @@ class User extends BaseEntity {
     @Column({ default: false })
     verified: boolean
 
-    @OneToMany(() => Bot, bot => bot.owner)
+    @OneToMany(() => Bot, bot => bot.owner || bot.developers)
     bots: Bot[]
+
+    @OneToMany(() => User, user => user.followers)
+    following: User[]
+
+    @OneToMany(() => User, user => user.following)
+    followers: User[]
 
     @Column({ select: false, nullable: true })
     ip: string
@@ -29,11 +36,16 @@ class User extends BaseEntity {
     @OneToMany(() => Comment, comment => comment.author)
     comments: Comment[]
 
+    @Column({ default: 'no bio.' })
+    bio: string
+
+    @Column('json', { default: '{}' })
+    social: Social
+
     @Column({
         type: 'enum',
         enum: UserRoles,
-        default: UserRoles.MEMBER,
-        select: false
+        default: UserRoles.MEMBER
     })
     role: UserRoles
 }

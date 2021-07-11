@@ -9,7 +9,7 @@ class UserService {
     static async findOrCreate(user: CreateUser): Promise<User | null> {
         try {
             const createdUser = await User.findOne(user.id)
-            const avatar = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}`
+            const avatar = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}?size=1024`
             if (createdUser) {
                 createdUser.avatar = avatar
                 await createdUser.save()
@@ -20,7 +20,8 @@ class UserService {
                 discriminator: user.discriminator,
                 username: user.username,
                 verified: user.verified ? user.verified : false,
-                avatar
+                avatar,
+                bots: []
             })
             await newUser.save()
             return newUser

@@ -3,11 +3,11 @@ import Layout from '../layout'
 
 const PageNotFound = () => (
     <Layout title="404 | Topcord">
-        <div className={styles.box} >
-            <h1 className={styles.text} >404</h1>
-            <h3 className={styles.undertext} >Страница не найдена.</h3>
+        <div className={styles.box}>
+            <h1 className={styles.text}>404</h1>
+            <h3 className={styles.undertext}>Страница не найдена.</h3>
         </div>
-    </Layout> 
-     )
+    </Layout>
+)
 
 export default PageNotFound

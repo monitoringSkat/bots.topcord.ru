@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express'
+import { body, validationResult } from 'express-validator'
 import User from '../entities/User'
 import UserNotFoundException from '../exceptions/user-not-found.exeption'
 import checkAuth from '../middlewares/checkAuth.middleware'
@@ -17,5 +18,64 @@ usersRouter.get('/:id', async (req: Request, res: Response) => {
     if (!user) return res.send(new UserNotFoundException())
     res.send(user)
 })
+
+usersRouter.put(
+    '/me',
+    [
+        checkAuth,
+        body('bio').notEmpty().optional({ nullable: true, checkFalsy: true }),
+        body('github')
+            .isURL()
+            .notEmpty()
+            .optional({ nullable: true, checkFalsy: true }),
+        body('twitter')
+            .isURL()
+            .notEmpty()
+            .optional({ nullable: true, checkFalsy: true }),
+        body('reddit')
+            .isURL()
+            .notEmpty()
+            .optional({ nullable: true, checkFalsy: true }),
+        body('steam')
+            .isURL()
+            .notEmpty()
+            .optional({ nullable: true, checkFalsy: true }),
+        body('twitch')
+            .isURL()
+            .notEmpty()
+            .optional({ nullable: true, checkFalsy: true }),
+        body('telegram')
+            .isURL()
+            .notEmpty()
+            .optional({ nullable: true, checkFalsy: true }),
+        body('vk')
+            .isURL()
+            .notEmpty()
+            .optional({ nullable: true, checkFalsy: true }),
+        body('facebook')
+            .isURL()
+            .notEmpty()
+            .optional({ nullable: true, checkFalsy: true }),
+        body('instagram')
+            .isURL()
+            .notEmpty()
+            .optional({ nullable: true, checkFalsy: true }),
+        body('youtube')
+            .isURL()
+            .notEmpty()
+            .optional({ nullable: true, checkFalsy: true })
+    ],
+    async (req: Request, res: Response) => {
+        const errors = validationResult(req)
+        if (!errors.isEmpty())
+            return res.status(400).json({ errors: errors.array() })
+        const user = req.user as User
+        const { bio, ...social } = req.body
+        user.bio = bio
+        user.social = social
+        await user.save()
+        res.send(true)
+    }
+)
 
 export default usersRouter

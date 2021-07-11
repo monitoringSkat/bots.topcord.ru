@@ -6,11 +6,38 @@ import styles from '../../styles/pages/bot.module.scss'
 import Link from 'next/link'
 import Markdown from '../../components/Markdown/Markdown'
 import { Container } from 'react-bootstrap'
+import { useContext } from 'react'
+import AuthContext from '../../context/auth.context'
+import { useState } from 'react'
+import http from '../../axios/http'
+
 interface Props {
     bot: Bot
 }
 
-function BotPage({ bot }: Props) {
+function BotPage(props: Props) {
+    const { user } = useContext(AuthContext)
+    const [ comment, setComment ] = useState('')
+    const [ bot, setBot ] = useState(props.bot)
+    const [ stars, setStars ] = useState(0)
+    const [ limitedComments, setLimitedComments ] = useState<null | string>(null)
+
+    const createComment = async () => { 
+        try {
+            const { data } = await http.post(`/bots/${bot.id}/comment`, { text: comment, rating: stars }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(config.AUTH_LOCAL_STORAGE_KEY)}`
+                }
+            })
+            if (data.statusCode === 503) return setLimitedComments("Вы превысили лимит комментариев!")
+            setBot({...bot, comments: [data, ...bot.comments]})
+            setComment("")
+            setStars(0)
+        } catch(e) {
+            console.log(e)
+        }
+    }
+
     return (
         <Layout>
             <Container>
@@ -49,20 +76,83 @@ function BotPage({ bot }: Props) {
                             </div>
                             <div className={styles.developers}>
                                 Разработчики:
-                                <Link href={'gfgfdgdfgdg'}>
-                                    <img
-                                        src={
-                                            'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1cfd14ac-65a4-4aee-b7a4-6ad431b66e96/d5lj8b8-a92dfc1d-110e-4bce-9a6c-e67199fbb495.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzFjZmQxNGFjLTY1YTQtNGFlZS1iN2E0LTZhZDQzMWI2NmU5NlwvZDVsajhiOC1hOTJkZmMxZC0xMTBlLTRiY2UtOWE2Yy1lNjcxOTlmYmI0OTUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.yNpxHFoe8F1JweiPsGHD3CuxAN-S7M9fygLz3Ux8_UQ'
-                                        }
-                                    />
-                                </Link>
+                                {bot.developers.map(developer => (
+                                    <Link
+                                        key={developer.id}
+                                        href={`/users/${developer.id}`}
+                                    >
+                                        <img src={developer.avatar} />
+                                    </Link>
+                                ))}
                             </div>
                         </div>
                     </div>
                 </div>
-                <Markdown className={styles.description} text={bot.description} />
+                <Markdown
+                    className={styles.description}
+                    text={bot.longDescription}
+                />
                 <div className={styles.comments}>
-                    <h3>Комментарии ({bot.comments.length})</h3>
+                    <h3>Комментарии</h3>
+                    {user.id && (
+                        <div className={styles['write-comment']}>
+                            {limitedComments !== null && <div className={styles.error}>{limitedComments}</div>}
+                            <div className={styles.write}>
+                                <img src={user.avatar} />
+                                <textarea
+                                    value={comment}
+                                    placeholder="Написать комментарий"
+                                    onChange={e => setComment(e.target.value)}
+                                />
+                            </div>
+                            <div className={styles.rating}>
+                                <div className={styles.stars}>
+                                    {Array.from({ length: 5 }).map((_, i) => {
+                                        const src =
+                                            i < stars
+                                                ? '/assets/star-active.svg'
+                                                : '/assets/star.svg'
+                                        return (
+                                            <img
+                                                onClick={() => setStars(i + 1)}
+                                                src={src}
+                                            />
+                                        )
+                                    })}
+                                </div>
+                                <button
+                                    disabled={comment.length === 0 || stars === 0}
+                                    className={styles.post}
+                                    onClick={createComment}
+                                >
+                                    Опубликовать
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                    {bot.comments.map(c => (
+                        <div key={c.id} className={styles.comment}>
+                            <img className={styles["comment-avatar"]} src={c.author.avatar} />
+                            <div className={styles["comment-body"]}>
+                                <div className={styles["comment-header"]}>
+                                    <div className={styles["comment-username"]}>
+                                        <Link href={`/users/${c.author.id}`}>{c.author.username}</Link>
+                                    </div>
+                                    <div className={styles["comment-controls"]}></div>
+                                </div>
+                                <div className={styles["comment-text"]}>{c.text}</div>
+                                <div className={styles.stars}>{Array.from({ length: 5 }).map((_, i) => {
+                                        const src =
+                                            i < c.rating
+                                                ? '/assets/star-active.svg'
+                                                : '/assets/star.svg'
+                                        return (
+                                            <img src={src} />
+                                        )
+                                    })}</div>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </Container>
         </Layout>

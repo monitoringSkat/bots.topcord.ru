@@ -17,6 +17,7 @@ import swagger from 'swagger-ui-express'
 import swaggerJSDoc from 'swagger-jsdoc'
 import usersRouter from './routes/users.route'
 import tagsRouter from './routes/tags.route'
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 const PORT = Number(process.env.PORT || 5000)
@@ -39,15 +40,12 @@ orm.createConnection()
     .then(async () => {
         const app = express()
         const client = await bootstrapBot()
-
-        passport.serializeUser((user, done) => done(null, user))
-        passport.deserializeUser((obj, done) => done(null, obj as any))
         passport.use(DiscordStrategy)
 
         app.use(compression())
         app.use(bodyParser.urlencoded({ extended: false }))
         app.use(bodyParser.json())
-
+        app.use(cookieParser())
         app.use(
             session({
                 resave: false,
@@ -61,6 +59,8 @@ orm.createConnection()
         )
         app.use(passport.initialize())
         app.use(passport.session())
+        passport.serializeUser((user, done) => done(null, user))
+        passport.deserializeUser((obj, done) => done(null, obj as any))
         // Decorate bot client for routes
         app.use((req, res, next) => {
             ;(req as any).client = client

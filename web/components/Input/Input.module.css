@@ -1,6 +1,7 @@
 .input,
 .textarea,
-.search input {
+.search input,
+.select {
     width: 100%;
     border: none;
     border-radius: 5px;
@@ -65,6 +66,7 @@
     background: white;
     min-height: 100px;
     padding: 10px;
+    word-wrap: break-word;
     font-size: 18px;
 }
 

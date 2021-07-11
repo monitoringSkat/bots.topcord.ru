@@ -13,7 +13,7 @@ const BotCard: FC<Props> = ({ bot }) => (
             className={styles.background}
             style={{
                 backgroundImage: bot.backgroundURL
-                    ? `url(${bot.backgroundURL})`
+                    ? `url('${bot.backgroundURL}')`
                     : `url(/assets/default-bot-background.svg)`
             }}
         />
@@ -41,9 +41,7 @@ const BotCard: FC<Props> = ({ bot }) => (
                 </div>
             </div>
         </div>
-        <div className={styles.description}>
-            {bot.description.slice(0, 220)}
-        </div>
+        <div className={styles.description}>{bot.shortDescription}</div>
         <div className={styles.buttons}>
             <div className={styles.invite}>
                 <a href={bot.inviteURL || ''}>Пригласить</a>
