@@ -5,14 +5,14 @@ import Bot from '../../interfaces/bot.interface'
 import config from '../../config'
 import Bots from '../../components/Bots/Bots'
 import SearchBotsInput from '../../components/SearchBotsInput/SearchBotsInput'
-import libraries from "../../data/libraries.json"
+import libraries from '../../data/libraries.json'
 import { useState } from 'react'
 interface Props {
     bots: Bot[]
 }
 
 function BotsPage({ bots }: Props) {
-    const [ sortBy, setSortBy ] = useState({ library: null, method: "votes" })
+    const [sortBy, setSortBy] = useState({ library: null, method: 'votes' })
     return (
         <Layout title="Боты | TopCord">
             <Container className={styles.intro} fluid>
@@ -34,9 +34,11 @@ function BotsPage({ bots }: Props) {
                         id="dropdown-basic-button"
                         title="Библиотека"
                     >
-                        {libraries.map((lib: string) => 
-                            <Dropdown.Item  key={lib} href={lib}>{lib}</Dropdown.Item>
-                        )}
+                        {libraries.map((lib: string) => (
+                            <Dropdown.Item key={lib} href={lib}>
+                                {lib}
+                            </Dropdown.Item>
+                        ))}
                     </DropdownButton>
                 </div>
             </Container>

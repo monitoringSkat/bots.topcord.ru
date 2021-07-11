@@ -9,6 +9,7 @@ import { Container } from 'react-bootstrap'
 import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
 import { useState } from 'react'
+import http from '../../axios/http'
 
 interface Props {
     bot: Bot
@@ -16,9 +17,26 @@ interface Props {
 
 function BotPage(props: Props) {
     const { user } = useContext(AuthContext)
-    const [comment, setComment] = useState('')
-    const [bot, setBot] = useState(props.bot)
-    const [stars, setStars] = useState(0)
+    const [ comment, setComment ] = useState('')
+    const [ bot, setBot ] = useState(props.bot)
+    const [ stars, setStars ] = useState(0)
+    const [ limitedComments, setLimitedComments ] = useState<null | string>(null)
+
+    const createComment = async () => { 
+        try {
+            const { data } = await http.post(`/bots/${bot.id}/comment`, { text: comment, rating: stars }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(config.AUTH_LOCAL_STORAGE_KEY)}`
+                }
+            })
+            if (data.statusCode === 503) return setLimitedComments("Вы превысили лимит комментариев!")
+            setBot({...bot, comments: [data, ...bot.comments]})
+            setComment("")
+            setStars(0)
+        } catch(e) {
+            console.log(e)
+        }
+    }
 
     return (
         <Layout>
@@ -78,6 +96,7 @@ function BotPage(props: Props) {
                     <h3>Комментарии</h3>
                     {user.id && (
                         <div className={styles['write-comment']}>
+                            {limitedComments !== null && <div className={styles.error}>{limitedComments}</div>}
                             <div className={styles.write}>
                                 <img src={user.avatar} />
                                 <textarea
@@ -102,8 +121,9 @@ function BotPage(props: Props) {
                                     })}
                                 </div>
                                 <button
-                                    disabled={!comment.length && !!stars}
+                                    disabled={comment.length === 0 || stars === 0}
                                     className={styles.post}
+                                    onClick={createComment}
                                 >
                                     Опубликовать
                                 </button>
@@ -111,7 +131,27 @@ function BotPage(props: Props) {
                         </div>
                     )}
                     {bot.comments.map(c => (
-                        <div key={c.id} className={styles.comment}></div>
+                        <div key={c.id} className={styles.comment}>
+                            <img className={styles["comment-avatar"]} src={c.author.avatar} />
+                            <div className={styles["comment-body"]}>
+                                <div className={styles["comment-header"]}>
+                                    <div className={styles["comment-username"]}>
+                                        <Link href={`/users/${c.author.id}`}>{c.author.username}</Link>
+                                    </div>
+                                    <div className={styles["comment-controls"]}></div>
+                                </div>
+                                <div className={styles["comment-text"]}>{c.text}</div>
+                                <div className={styles.stars}>{Array.from({ length: 5 }).map((_, i) => {
+                                        const src =
+                                            i < c.rating
+                                                ? '/assets/star-active.svg'
+                                                : '/assets/star.svg'
+                                        return (
+                                            <img src={src} />
+                                        )
+                                    })}</div>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </Container>

@@ -74,7 +74,25 @@ botsRouter.get(
 
 // POST
 
-const libraries = [ "discord.js", "discord.py", "discordoo", "Javacord", "Eris", "JDA", "Discord4J", "discordcr", "Discord.Net", "DiscordGo", "DSharpPlus", "RestCord", "Discordia", "disco", "discordrb", "serenity", "Sword" ]
+const libraries = [
+    'discord.js',
+    'discord.py',
+    'discordoo',
+    'Javacord',
+    'Eris',
+    'JDA',
+    'Discord4J',
+    'discordcr',
+    'Discord.Net',
+    'DiscordGo',
+    'DSharpPlus',
+    'RestCord',
+    'Discordia',
+    'disco',
+    'discordrb',
+    'serenity',
+    'Sword'
+]
 
 botsRouter.post(
     '/',
@@ -99,10 +117,7 @@ botsRouter.post(
 
         body('inviteURL').notEmpty().isString().isURL(),
 
-        body('library')
-            .notEmpty()
-            .isString()
-            .isIn(libraries),
+        body('library').notEmpty().isString().isIn(libraries),
 
         body('backgroundURL')
             .optional({ nullable: true, checkFalsy: true })
@@ -218,23 +233,24 @@ botsRouter.post(
         findBot({
             relations: ['comments', 'comments.author']
         }),
-        body('text').notEmpty().isString()
+        body('text').notEmpty().isString(),
+        body('rating').isNumeric()
     ],
-    (req: Request, res: Response) => {
+    async (req: Request, res: Response) => {
         const bot = (req as any).bot
         const user = (req as any).user
-        const commentsPerUser = bot.comments.filter(
-            comment => comment.author.id === user.id
-        )
-        if (commentsPerUser.length >= 5)
-            return res.send(new TooManyCommentsPerUserException())
+        const commentsPerUser = bot.comments.filter(({ author }) => author.id === user.id )
+        if (commentsPerUser.length >= 5) return res.send(new TooManyCommentsPerUserException())
+        
         const comment = Comment.create({
             text: req.body.text,
+            rating: req.body.rating,
             date: new Date().toLocaleDateString(),
             author: user,
             bot
         })
-        comment.save()
+        await comment.save()
+
         res.send(comment)
     }
 )

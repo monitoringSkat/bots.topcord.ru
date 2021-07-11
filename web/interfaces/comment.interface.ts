@@ -7,6 +7,7 @@ interface Comment {
     author: User
     date: string
     bot?: Bot
+    rating: number
 }
 
 export default Comment

@@ -136,3 +136,37 @@
         }
     }
 }
+
+.error {
+    margin: 15px 0;
+    color: #ED4245;
+}
+
+.comment {
+    margin-bottom: 2.5%;
+    border-top: 3px solid #1d1f23;
+    padding: 15px 0;
+    width: 100%;
+    display: flex;
+    .comment-avatar {
+        width: 75px;
+        height: 75px;
+        border-radius: 50px;
+        margin-right: 15px;
+    }
+    .comment-username {
+        font-size: 20px;
+    }
+    .rating {
+        margin: 0;
+    }
+    .comment-text {
+        padding: 10px 0;
+    }
+}
+
+.comment-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}

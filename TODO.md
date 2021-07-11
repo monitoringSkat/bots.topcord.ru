@@ -14,8 +14,8 @@
 -   [x] Bot developers
 -   [x] Bot tags
 -   [x] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
--   [X] Edit user profile
--   [X] Bot library
+-   [x] Edit user profile
+-   [x] Bot library
 -   [ ] IP bans
 -   [ ] User site roles
 -   [ ] Bot help command
@@ -27,8 +27,10 @@
 -   [ ] Admin site permission (Ban users)
 -   [ ] Upvote bots
 -   [ ] API Docs
--   [ ] Translation  
+-   [ ] Translation
+-   [ ] Sort bots
 
 ## Features
+
 -   [ ] Moderator, Admin Dashboard (Banned bots, users)
 -   [ ] Premium

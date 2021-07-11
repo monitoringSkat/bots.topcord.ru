@@ -15,6 +15,9 @@ class Comment extends BaseEntity {
 
     @Column()
     text: string
+    
+    @Column()
+    rating: number
 
     @ManyToOne(() => User, user => user.comments)
     author: User
@@ -24,9 +27,6 @@ class Comment extends BaseEntity {
 
     @ManyToOne(() => Bot, bot => bot.comments)
     bot: Bot
-
-    @Column()
-    rating: number
 }
 
 export default Comment

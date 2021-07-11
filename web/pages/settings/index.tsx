@@ -7,9 +7,11 @@ import Integrations from './integrations.json'
 import Input from '../../components/Input/Input'
 import Tooltip from '@material-ui/core/Tooltip'
 import { useFormik } from 'formik'
-import http from '../../axios/http'
+import axios from "axios"
 import { Snackbar } from '@material-ui/core'
 import updateProfileSchema from '../../schemas/update-profile.schema'
+import config from '../../config'
+import http from '../../axios/http'
 
 const SettingsPage = () => {
     const { user, setUser } = useContext(AuthContext)
@@ -40,7 +42,13 @@ const SettingsPage = () => {
         },
         validationSchema: updateProfileSchema,
         onSubmit: async ({ bio, ...social }) => {
-            const { data } = await http.put(`/users/me`, { bio, ...social })
+            const { data } = await http.put(`/users/me`, { bio, ...social }, {
+                headers: {
+                    Authorization: `Bearer: ${localStorage.getItem(
+                        config.AUTH_LOCAL_STORAGE_KEY
+                    )}`
+                }
+            })
             if (data === true) {
                 setOpen(true)
                 setUser({ ...user, bio, social })

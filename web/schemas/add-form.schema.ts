@@ -1,5 +1,5 @@
 import { string, object } from 'yup'
-import libraries from "../data/libraries.json"
+import libraries from '../data/libraries.json'
 
 const addFormSchema = object().shape({
     id: string().min(1).required('ID не указан!'),
@@ -23,7 +23,7 @@ const addFormSchema = object().shape({
     supportServerURL: string().url(),
     githubURL: string().url(),
     developers: string(),
-    library: string().equals(libraries).required("Укажите библиотеку бота!")
+    library: string().equals(libraries).required('Укажите библиотеку бота!')
 })
 
 export default addFormSchema
