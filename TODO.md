@@ -31,6 +31,6 @@
 -   [ ] Sort bots
 
 ## Features
-
+-   [ ] Request indicator
 -   [ ] Moderator, Admin Dashboard (Banned bots, users)
 -   [ ] Premium

@@ -2,6 +2,8 @@ import { Client, MessageEmbed } from 'discord.js'
 import Bot from '../../entities/Bot'
 import User from '../../entities/User'
 import Event from '../../interfaces/bot/event.interface'
+import { config } from 'dotenv'
+const { parsed } = config()
 
 const createBot: Event = {
     name: 'create-bot',
@@ -14,7 +16,8 @@ const createBot: Event = {
             .setThumbnail(bot.avatar)
             .setTimestamp()
             .setTitle('Добавлен бот')
-        const channel: any = client.channels.cache.get('846093367485923348')
+            .setColor('#008000')
+        const channel: any = client.channels.cache.get(parsed.BOT_ADD_CHANNEL)
         channel.send(embed)
     }
 }
