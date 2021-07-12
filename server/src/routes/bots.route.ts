@@ -259,7 +259,7 @@ botsRouter.post(
 )
 
 botsRouter.put(
-    "/:id/comment",
+    '/:id/comment',
     [
         checkAuth,
         rateLimit({
@@ -279,7 +279,7 @@ botsRouter.put(
 )
 
 botsRouter.delete(
-    "/:id/comment/:commentId",
+    '/:id/comment/:commentId',
     [
         checkAuth,
         rateLimit({

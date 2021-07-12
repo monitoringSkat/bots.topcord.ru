@@ -10,7 +10,7 @@ import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
 import { useState } from 'react'
 import http from '../../axios/http'
-import Comment from "../../interfaces/comment.interface"
+import Comment from '../../interfaces/comment.interface'
 interface Props {
     bot: Bot
 }
@@ -20,8 +20,8 @@ function BotPage(props: Props) {
     const [comment, setComment] = useState('')
     const [bot, setBot] = useState(props.bot)
     const [stars, setStars] = useState(0)
-    const [ limitedComments, setLimitedComments ] = useState<null | string>(null)
-    const [ editableComment, setEditableComment ] = useState<Comment | null>(null)
+    const [limitedComments, setLimitedComments] = useState<null | string>(null)
+    const [editableComment, setEditableComment] = useState<Comment | null>(null)
 
     const createComment = async () => {
         try {
@@ -47,24 +47,29 @@ function BotPage(props: Props) {
     }
 
     const editComment = async () => {
-        const { data } = await http.put(`/bots/${bot.id}/comment`, editableComment, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem(
-                    config.AUTH_LOCAL_STORAGE_KEY
-                )}`
+        const { data } = await http.put(
+            `/bots/${bot.id}/comment`,
+            editableComment,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(
+                        config.AUTH_LOCAL_STORAGE_KEY
+                    )}`
+                }
             }
-        })
-        if (data !== "OK") return
-        const comments = bot.comments.map((c) => {
+        )
+        if (data !== 'OK') return
+        const comments = bot.comments.map(c => {
             if (c.id === editableComment?.id) {
                 c.text = editableComment.text
-            } return c
+            }
+            return c
         })
-        setBot({...bot, comments })
+        setBot({ ...bot, comments })
         setEditableComment(null)
     }
 
-    const deleteComment = async ( id: string | number  ) => {
+    const deleteComment = async (id: string | number) => {
         const { data } = await http.delete(`/bots/${bot.id}/comment/${id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem(
@@ -72,9 +77,9 @@ function BotPage(props: Props) {
                 )}`
             }
         })
-        if (data !== "OK") return
+        if (data !== 'OK') return
         const comments = bot.comments.filter(comment => comment.id !== id)
-        setBot({...bot, comments })
+        setBot({ ...bot, comments })
     }
 
     return (
@@ -185,25 +190,49 @@ function BotPage(props: Props) {
                                 <div className={styles['comment-header']}>
                                     <div className={styles['comment-username']}>
                                         <Link href={`/users/${c.author.id}`}>
-                                            <div>{c.author.username} <span className={styles[""]}>{c.author.role}</span></div>
+                                            <div>
+                                                {c.author.username}{' '}
+                                                <span className={styles['']}>
+                                                    {c.author.role}
+                                                </span>
+                                            </div>
                                         </Link>
                                     </div>
-                                    
+
                                     {user.id === c.author.id && (
-                                        <div className={styles['comment-controls']}>
-                                            {editableComment?.id === c.id 
-                                            ? <img 
-                                                src="/assets/tick.svg" 
-                                                className={styles['comment-tick']} 
-                                                onClick={editComment}
-                                            /> 
-                                            : <img 
-                                                src="/assets/edit.svg" 
-                                                onClick={() => setEditableComment(c)} 
-                                                className={styles['comment-edit']} 
-                                            />
+                                        <div
+                                            className={
+                                                styles['comment-controls']
                                             }
-                                            <img src="/assets/bin.svg" onClick={() => deleteComment(c.id)} className={styles['comment-delete']} />
+                                        >
+                                            {editableComment?.id === c.id ? (
+                                                <img
+                                                    src="/assets/tick.svg"
+                                                    className={
+                                                        styles['comment-tick']
+                                                    }
+                                                    onClick={editComment}
+                                                />
+                                            ) : (
+                                                <img
+                                                    src="/assets/edit.svg"
+                                                    onClick={() =>
+                                                        setEditableComment(c)
+                                                    }
+                                                    className={
+                                                        styles['comment-edit']
+                                                    }
+                                                />
+                                            )}
+                                            <img
+                                                src="/assets/bin.svg"
+                                                onClick={() =>
+                                                    deleteComment(c.id)
+                                                }
+                                                className={
+                                                    styles['comment-delete']
+                                                }
+                                            />
                                         </div>
                                     )}
                                 </div>
@@ -217,25 +246,32 @@ function BotPage(props: Props) {
                                     })}
                                 </div>
                                 <div className={styles['comment-text']}>
-                                    {editableComment?.id === c.id ? 
-                                    <textarea 
-                                        onChange={e => setEditableComment({...editableComment, text: e.target.value})} 
-                                        value={editableComment?.text} 
-                                    /> 
-                                    : c.text
-                                    }
+                                    {editableComment?.id === c.id ? (
+                                        <textarea
+                                            onChange={e =>
+                                                setEditableComment({
+                                                    ...editableComment,
+                                                    text: e.target.value
+                                                })
+                                            }
+                                            value={editableComment?.text}
+                                        />
+                                    ) : (
+                                        c.text
+                                    )}
                                 </div>
-                                {editableComment?.id !== c.id && 
-                                <div className={styles["comment-rating"]}>
-                                    <div>
-                                        <img src="/assets/like.svg" />
-                                        <div>15</div>
+                                {editableComment?.id !== c.id && (
+                                    <div className={styles['comment-rating']}>
+                                        <div>
+                                            <img src="/assets/like.svg" />
+                                            <div>15</div>
+                                        </div>
+                                        <div>
+                                            <img src="/assets/dislike.svg" />
+                                            <div>15</div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <img src="/assets/dislike.svg" />
-                                        <div>15</div>
-                                    </div>
-                                </div>}
+                                )}
                             </div>
                         </div>
                     ))}
