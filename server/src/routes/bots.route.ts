@@ -239,9 +239,12 @@ botsRouter.post(
     async (req: Request, res: Response) => {
         const bot = (req as any).bot
         const user = (req as any).user
-        const commentsPerUser = bot.comments.filter(({ author }) => author.id === user.id )
-        if (commentsPerUser.length >= 5) return res.send(new TooManyCommentsPerUserException())
-        
+        const commentsPerUser = bot.comments.filter(
+            ({ author }) => author.id === user.id
+        )
+        if (commentsPerUser.length >= 5)
+            return res.send(new TooManyCommentsPerUserException())
+
         const comment = Comment.create({
             text: req.body.text,
             rating: req.body.rating,
@@ -252,6 +255,42 @@ botsRouter.post(
         await comment.save()
 
         res.send(comment)
+    }
+)
+
+botsRouter.put(
+    "/:id/comment",
+    [
+        checkAuth,
+        rateLimit({
+            windowMs: Minutes.FIFTEEN,
+            max: 300
+        }),
+        body('id').notEmpty().isString(),
+        body('text').notEmpty().isString(),
+        body('rating').isNumeric()
+    ],
+    async (req, res) => {
+        const comment = await Comment.findOne(req.body.id)
+        comment.text = req.body.text
+        await comment.save()
+        res.send(200)
+    }
+)
+
+botsRouter.delete(
+    "/:id/comment/:commentId",
+    [
+        checkAuth,
+        rateLimit({
+            windowMs: Minutes.FIFTEEN,
+            max: 300
+        })
+    ],
+    async (req, res) => {
+        const comment = await Comment.findOne(Number(req.params.commentId))
+        await comment.remove()
+        res.send(200)
     }
 )
 

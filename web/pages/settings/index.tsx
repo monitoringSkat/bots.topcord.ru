@@ -7,7 +7,7 @@ import Integrations from './integrations.json'
 import Input from '../../components/Input/Input'
 import Tooltip from '@material-ui/core/Tooltip'
 import { useFormik } from 'formik'
-import axios from "axios"
+import axios from 'axios'
 import { Snackbar } from '@material-ui/core'
 import updateProfileSchema from '../../schemas/update-profile.schema'
 import config from '../../config'
@@ -42,13 +42,17 @@ const SettingsPage = () => {
         },
         validationSchema: updateProfileSchema,
         onSubmit: async ({ bio, ...social }) => {
-            const { data } = await http.put(`/users/me`, { bio, ...social }, {
-                headers: {
-                    Authorization: `Bearer: ${localStorage.getItem(
-                        config.AUTH_LOCAL_STORAGE_KEY
-                    )}`
+            const { data } = await http.put(
+                `/users/me`,
+                { bio, ...social },
+                {
+                    headers: {
+                        Authorization: `Bearer: ${localStorage.getItem(
+                            config.AUTH_LOCAL_STORAGE_KEY
+                        )}`
+                    }
                 }
-            })
+            )
             if (data === true) {
                 setOpen(true)
                 setUser({ ...user, bio, social })

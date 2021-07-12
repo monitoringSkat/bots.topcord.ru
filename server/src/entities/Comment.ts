@@ -15,7 +15,7 @@ class Comment extends BaseEntity {
 
     @Column()
     text: string
-    
+
     @Column()
     rating: number
 

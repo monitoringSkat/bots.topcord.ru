@@ -6,7 +6,7 @@ import Layout from '../../layout'
 import Input from '../../components/Input/Input'
 import fields from './fields.json'
 import addFormSchema from '../../schemas/add-form.schema'
-import axios from "axios"
+import axios from 'axios'
 import Bot from '../../interfaces/bot.interface'
 import { useRouter } from 'next/router'
 import { Snackbar, Button } from '@material-ui/core'
@@ -51,13 +51,17 @@ const AddPage = () => {
                 .slice(0, 5)
                 .map((t: string) => t.slice(0, 15))
             const developers = fromStringToArray(values.developers)
-            const { data } = await http.post('/bots', { ...values, tags, developers }, {
-                headers: {
-                    Authorization: `Bearer: ${localStorage.getItem(
-                        config.AUTH_LOCAL_STORAGE_KEY
-                    )}`
+            const { data } = await http.post(
+                '/bots',
+                { ...values, tags, developers },
+                {
+                    headers: {
+                        Authorization: `Bearer: ${localStorage.getItem(
+                            config.AUTH_LOCAL_STORAGE_KEY
+                        )}`
+                    }
                 }
-            })
+            )
             if (data.statusCode === 409)
                 setErrors({ ...errors, id: 'Такой ID уже существует!' })
             if (data.id) {
