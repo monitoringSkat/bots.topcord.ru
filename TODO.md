@@ -16,12 +16,12 @@
 -   [x] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
 -   [x] Edit user profile
 -   [x] Bot library
+-   [X] Create, delete, edit, likes, dislikes comments
 -   [ ] IP bans
 -   [ ] User site roles
 -   [ ] Bot help command
--   [ ] Bot carma (bot rating 0/10 or +1 -1
+-   [ ] Bot carma (bot rating 0/10 or +1 -1)
 -   [ ] Report system
--   [ ] Create, delete, edit, likes, dislikes comments
 -   [ ] Followers, followings
 -   [ ] Moderator site permission (Delete bots)
 -   [ ] Admin site permission (Ban users)
@@ -29,8 +29,9 @@
 -   [ ] API Docs
 -   [ ] Translation
 -   [ ] Sort bots
-
+-   [ ] Refactor some code
 ## Features
+
 -   [ ] Request indicator
 -   [ ] Moderator, Admin Dashboard (Banned bots, users)
 -   [ ] Premium

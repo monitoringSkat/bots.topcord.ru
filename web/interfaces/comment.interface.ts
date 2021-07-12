@@ -8,6 +8,8 @@ interface Comment {
     date: string
     bot?: Bot
     rating: number
+    likes: string[]
+    dislikes: string[]
 }
 
 export default Comment

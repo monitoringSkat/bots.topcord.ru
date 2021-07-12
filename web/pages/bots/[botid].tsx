@@ -82,6 +82,38 @@ function BotPage(props: Props) {
         setBot({ ...bot, comments })
     }
 
+    const likeComment = async (id: string | number) => {
+        const { data } = await http.post(`/bots/${bot.id}/comment/${id}/like`, {}, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem(
+                    config.AUTH_LOCAL_STORAGE_KEY
+                )}`
+            }
+        })
+        if (!data.id) return
+        const comments = bot.comments.map(comment => {
+            if (comment.id === data.id) return data
+            return comment
+        })
+        setBot({...bot, comments })
+    }
+
+    const dislikeComment = async (id: string | number) => {
+        const { data } = await http.post(`/bots/${bot.id}/comment/${id}/dislike`, {}, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem(
+                    config.AUTH_LOCAL_STORAGE_KEY
+                )}`
+            }
+        })
+        if (!data.id) return
+        const comments = bot.comments.map(comment => {
+            if (comment.id === data.id) return data
+            return comment
+        })
+        setBot({...bot, comments })
+    }
+
     return (
         <Layout>
             <Container>
@@ -262,13 +294,13 @@ function BotPage(props: Props) {
                                 </div>
                                 {editableComment?.id !== c.id && (
                                     <div className={styles['comment-rating']}>
-                                        <div>
+                                        <div className={c.likes.includes(user.id) ? styles.active : ""} onClick={() => likeComment(c.id)}>
                                             <img src="/assets/like.svg" />
-                                            <div>15</div>
+                                            <div>{c.likes.length}</div>
                                         </div>
-                                        <div>
+                                        <div className={c.dislikes.includes(user.id) ? styles.active : ""} onClick={() => dislikeComment(c.id)}>
                                             <img src="/assets/dislike.svg" />
-                                            <div>15</div>
+                                            <div>{c.dislikes.length}</div>
                                         </div>
                                     </div>
                                 )}
