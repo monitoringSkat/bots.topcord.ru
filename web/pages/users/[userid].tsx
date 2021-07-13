@@ -33,15 +33,17 @@ const UserPage = ({ token, userid }: Props) => {
     useEffect(() => {
         getUser()
     }, [token, userid])
-    console.log(Object.keys(user?.social || {}))
     return (
         <Layout>
             <div className={styles.profile}>
                 <div className={styles.avatar}>
                     <img src={user?.avatar} />
-                    {user && user.id === context.user.id && (
-                        <Link href="/settings">Редактировать</Link>
-                    )}
+                    {user && user.id === context.user.id 
+                        ?  <Link href="/settings">Редактировать</Link>
+                        : user?.followers.find(follower => follower.id === context.user.id) 
+                        ? <button className={styles.unfollow}>Отписаться</button> 
+                        : <button className={styles.follow}>Подписаться</button> 
+                    }
                 </div>
                 <div className={styles.info}>
                     <div className={styles.passport}>
@@ -67,8 +69,8 @@ const UserPage = ({ token, userid }: Props) => {
                             )
                         })}
                     </div>
-                    <div className={styles.followers}>100 подписчиков</div>
-                    <div className={styles.following}>9 подписок</div>
+                    <div className={styles.followers}>{user?.followers.length} подписчиков</div>
+                    <div className={styles.following}>{user?.following.length} подписок</div>
                     <div className={styles.bio}>{user?.bio}</div>
                 </div>
             </div>

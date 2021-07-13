@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryColumn } from 'typeorm'
+import { BaseEntity, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryColumn } from 'typeorm'
 import { UserRoles } from '../enums'
 import Social from '../interfaces/user/social.interface'
 import Bot from './Bot'
@@ -21,20 +21,8 @@ class User extends BaseEntity {
     @Column({ default: false })
     verified: boolean
 
-    @OneToMany(() => Bot, bot => bot.owner || bot.developers)
-    bots: Bot[]
-
-    @OneToMany(() => User, user => user.followers)
-    following: User[]
-
-    @OneToMany(() => User, user => user.following)
-    followers: User[]
-
     @Column({ select: false, nullable: true })
     ip: string
-
-    @OneToMany(() => Comment, comment => comment.author)
-    comments: Comment[]
 
     @Column({ default: 'no bio.' })
     bio: string
@@ -48,6 +36,21 @@ class User extends BaseEntity {
         default: UserRoles.MEMBER
     })
     role: UserRoles
+
+    // RELATIONS 
+    
+    @OneToMany(() => Bot, bot => bot.owner)
+    bots: Bot[]
+
+    @ManyToMany(() => User, user => user.following)
+    @JoinTable()
+    followers: User[];
+  
+    @ManyToMany(() => User, user => user.followers)
+    following: User[];
+
+    @OneToMany(() => Comment, comment => comment.author)
+    comments: Comment[]
 }
 
 export default User

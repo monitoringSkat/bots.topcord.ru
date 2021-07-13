@@ -9,6 +9,8 @@ interface User {
     avatar: string
     bots: Bot[]
     bio: string
+    followers: User[]
+    following: User[]
     social: {
         github?: string | null
         vk?: string | null

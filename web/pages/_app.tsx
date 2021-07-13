@@ -30,7 +30,9 @@ function MyApp({ Component, pageProps }: AppProps) {
             facebook: '',
             telegram: '',
             spotify: ''
-        }
+        },
+        followers: [],
+        following: []
     }
 
     const [user, setUser] = useState<User>(initialUser)

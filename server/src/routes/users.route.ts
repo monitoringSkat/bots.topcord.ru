@@ -8,16 +8,28 @@ const usersRouter = Router()
 
 usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
     const userId = (req.user as any).id
-    const user = await User.findOne(userId, { relations: ['bots'] })
+    const user = await User.findOne(userId, { relations: ['bots', "following", "followers"] })
     res.send(user)
 })
 
 usersRouter.get('/:id', async (req: Request, res: Response) => {
     const userId = req.params.id
-    const user = await User.findOne(userId, { relations: ['bots'] })
+    const user = await User.findOne(userId, { relations: ['bots', "following", "followers"] })
     if (!user) return res.send(new UserNotFoundException())
     res.send(user)
 })
+
+usersRouter.post(
+    '/:id/follow', 
+    [checkAuth],
+    async (req, res) => {
+        const me = await User.findOne(req.user.id, { relations: ["following"] })
+        const user = await User.findOne(req.params.id)
+        me.following = [...me.following, user]
+        await me.save()
+        res.send(me)
+    }
+)
 
 usersRouter.put(
     '/me',
