@@ -1,4 +1,12 @@
-import { BaseEntity, Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryColumn } from 'typeorm'
+import {
+    BaseEntity,
+    Column,
+    Entity,
+    JoinTable,
+    ManyToMany,
+    OneToMany,
+    PrimaryColumn
+} from 'typeorm'
 import { UserRoles } from '../enums'
 import Social from '../interfaces/user/social.interface'
 import Bot from './Bot'
@@ -37,17 +45,17 @@ class User extends BaseEntity {
     })
     role: UserRoles
 
-    // RELATIONS 
-    
+    // RELATIONS
+
     @OneToMany(() => Bot, bot => bot.owner)
     bots: Bot[]
 
     @ManyToMany(() => User, user => user.following)
     @JoinTable()
-    followers: User[];
-  
+    followers: User[]
+
     @ManyToMany(() => User, user => user.followers)
-    following: User[];
+    following: User[]
 
     @OneToMany(() => Comment, comment => comment.author)
     comments: Comment[]
