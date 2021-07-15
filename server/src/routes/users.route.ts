@@ -26,7 +26,7 @@ usersRouter.get('/:id', async (req: Request, res: Response) => {
 usersRouter.post('/:id/follow', [checkAuth], async (req, res) => {
     const me = await User.findOne(req.user.id, { relations: ['following'] })
     const user = await User.findOne(req.params.id)
-    const isFollowing =  !!(me.following.find(follower => follower.id === user.id))
+    const isFollowing = !!me.following.find(follower => follower.id === user.id)
     if (isFollowing) return res.send(200)
     me.following = [...me.following, user]
     await me.save()
@@ -35,7 +35,9 @@ usersRouter.post('/:id/follow', [checkAuth], async (req, res) => {
 
 usersRouter.post('/:id/unfollow', [checkAuth], async (req, res) => {
     const me = await User.findOne(req.user.id, { relations: ['following'] })
-    me.following = me.following.filter(following => following.id !== req.params.id)
+    me.following = me.following.filter(
+        following => following.id !== req.params.id
+    )
     await me.save()
     res.send(200)
 })
