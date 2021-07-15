@@ -11,6 +11,7 @@ import AuthContext from '../../context/auth.context'
 import { useState } from 'react'
 import http from '../../axios/http'
 import Comment from '../../interfaces/comment.interface'
+import context from 'react-bootstrap/esm/AccordionContext'
 interface Props {
     bot: Bot
 }
@@ -122,13 +123,31 @@ function BotPage(props: Props) {
         setBot({ ...bot, comments })
     }
 
+    const rating = Math.round(bot.comments.map(comment => comment.rating).reduce((v, c) => v += c, 0) / bot.comments.length)
     return (
         <Layout>
             <Container>
                 <div className={styles.info}>
-                    <img className={styles.avatar} src={bot.avatar} />
-                    <div>
-                        <div className={styles.name}>{bot.name}</div>
+                    <div className={styles["avatar-container"]}>
+                        <img className={styles.avatar} src={bot.avatar} />
+                    </div>
+                    <div className={styles.passport}>
+                        <div className={styles.header}>
+                            <div className={styles.name}>{bot.name}</div>
+                            <div className={!bot.votes.includes(user.id as any) ? styles.votes : styles["votes-active"] }>
+                                {bot.votes.length} 
+                                <img src={!bot.votes.includes(user.id as any) ? "/assets/vote.svg" : "/assets/vote-active.svg"}/>
+                            </div>
+                        </div>
+                        <div className={styles["header-stars"]}>
+                            {Array.from({ length: 5 }).map((_, i) => {
+                                const src =
+                                    i < rating
+                                        ? '/assets/star-active.svg'
+                                        : '/assets/star.svg'
+                                return <img src={src} />
+                            })} <div>based on {bot.comments.length} reviews</div>
+                        </div>
                         <div className={styles.tags}>
                             {bot.tags.map(({ name }) => (
                                 <Link href={`/tags/${name}`}>
@@ -138,18 +157,22 @@ function BotPage(props: Props) {
                             ))}
                         </div>
                         <div className={styles.links}>
-                            <Link href={bot.inviteURL || ''}>
+                            {bot.inviteURL && 
+                            <Link href={bot.inviteURL}>
                                 <img src="/assets/add-bot.svg" />
-                            </Link>
-                            <Link href={bot.supportServerURL || ''}>
+                            </Link>}
+                            {bot.supportServerURL && 
+                            <Link href={bot.supportServerURL}>
                                 <img src="/assets/discord-logo.svg" />
-                            </Link>
-                            <Link href={bot.githubURL || ''}>
+                            </Link>}
+                            {bot.githubURL &&
+                            <Link href={bot.githubURL}>
                                 <img src="/assets/github-logo.svg" />
-                            </Link>
-                            <Link href={bot.websiteURL || ''}>
+                            </Link>}
+                            {bot.websiteURL &&
+                            <Link href={bot.websiteURL}>
                                 <img src="/assets/link.svg" />
-                            </Link>
+                            </Link>}
                         </div>
                         <div className={styles.additional}>
                             <div>

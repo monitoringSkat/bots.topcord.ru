@@ -4,20 +4,17 @@
     padding: 2% 2.5%;
     background: #282b30;
     color: white;
-    border-radius: 20px;
-    .avatar {
+    .avatar-container {
         margin-right: 1.5%;
+    }
+    .avatar {
         width: 128px;
         height: 128px;
         border-radius: 10px;
     }
     .name {
-        margin-top: -5%;
         font-size: 28px;
         font-weight: 500;
-    }
-    .tags {
-        margin-top: -4%;
     }
     .tags a {
         color: #5865f2 !important;
@@ -72,7 +69,6 @@
     font-size: 18px;
     color: white;
     word-wrap: break-word;
-    border-radius: 20px;
 }
 
 .comments {
@@ -82,7 +78,6 @@
     margin: 1% 0;
     font-size: 18px;
     color: white;
-    border-radius: 20px;
     h4 {
         margin: 3% 0;
     }
@@ -244,4 +239,41 @@
     .active {
         outline: 2px solid #5865f2;
     }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-stars {
+    display: flex;
+    align-items: center;
+    div {
+        margin-left: 10px;
+    }
+    img {
+        margin-right: 5px;
+    }
+}
+
+.passport {
+    width: 85%;
+}
+
+.votes, .votes-active {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    img {
+        width: 25px;
+        height: 25px;
+        margin-left: 5px;
+    }
+}
+
+.votes-active {
+    color: #5865f2;
 }

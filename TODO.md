@@ -17,18 +17,20 @@
 -   [x] Edit user profile
 -   [x] Bot library
 -   [x] Create, delete, edit, likes, dislikes comments
--   [X] Followers, followings
+-   [x] Followers, followings
 -   [ ] Bot carma (bot rating 0/10 or +1 -1)
 -   [ ] Upvote bots
 -   [ ] Bot help command
 -   [ ] Sort bots
-
+-   [ ] Comment component 
+-   [ ] Stars component
+-   [ ] Follower/Following component
 -   [ ] IP bans
 -   [ ] User site roles (Moderator: delete bots, Admin: ban users)
 -   [ ] Report system
 -   [ ] API Docs
 -   [ ] Translation
--   [ ] Refactor some code
+-   [ ] Refactor some code (create functions that do API requests)
 
 ## Features
 
