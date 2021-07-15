@@ -22,7 +22,7 @@
 -   [ ] Upvote bots
 -   [ ] Bot help command
 -   [ ] Sort bots
--   [ ] Comment component 
+-   [ ] Comment component
 -   [ ] Stars component
 -   [ ] Follower/Following component
 -   [ ] IP bans

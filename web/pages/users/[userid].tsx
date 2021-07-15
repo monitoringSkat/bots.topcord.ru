@@ -9,7 +9,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
-import http from '../../axios/http'
+import http from '../../api/http'
 import FullscreenModal from '../../components/Modal/Modal'
 interface Props {
     token?: string

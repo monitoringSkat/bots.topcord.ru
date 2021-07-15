@@ -11,7 +11,7 @@ import Bot from '../../interfaces/bot.interface'
 import { useRouter } from 'next/router'
 import { Snackbar, Button } from '@material-ui/core'
 import config from '../../config'
-import http from '../../axios/http'
+import http from '../../api/http'
 
 const AddPage = () => {
     const fromStringToArray = (string: string) => string.split(/\s*\,\s*/)

@@ -123,30 +123,47 @@ function BotPage(props: Props) {
         setBot({ ...bot, comments })
     }
 
-    const rating = Math.round(bot.comments.map(comment => comment.rating).reduce((v, c) => v += c, 0) / bot.comments.length)
+    const rating = Math.round(
+        bot.comments
+            .map(comment => comment.rating)
+            .reduce((v, c) => (v += c), 0) / bot.comments.length
+    )
     return (
         <Layout>
             <Container>
                 <div className={styles.info}>
-                    <div className={styles["avatar-container"]}>
+                    <div className={styles['avatar-container']}>
                         <img className={styles.avatar} src={bot.avatar} />
                     </div>
                     <div className={styles.passport}>
                         <div className={styles.header}>
                             <div className={styles.name}>{bot.name}</div>
-                            <div className={!bot.votes.includes(user.id as any) ? styles.votes : styles["votes-active"] }>
-                                {bot.votes.length} 
-                                <img src={!bot.votes.includes(user.id as any) ? "/assets/vote.svg" : "/assets/vote-active.svg"}/>
+                            <div
+                                className={
+                                    !bot.votes.includes(user.id as any)
+                                        ? styles.votes
+                                        : styles['votes-active']
+                                }
+                            >
+                                {bot.votes.length}
+                                <img
+                                    src={
+                                        !bot.votes.includes(user.id as any)
+                                            ? '/assets/vote.svg'
+                                            : '/assets/vote-active.svg'
+                                    }
+                                />
                             </div>
                         </div>
-                        <div className={styles["header-stars"]}>
+                        <div className={styles['header-stars']}>
                             {Array.from({ length: 5 }).map((_, i) => {
                                 const src =
                                     i < rating
                                         ? '/assets/star-active.svg'
                                         : '/assets/star.svg'
                                 return <img src={src} />
-                            })} <div>based on {bot.comments.length} reviews</div>
+                            })}{' '}
+                            <div>based on {bot.comments.length} reviews</div>
                         </div>
                         <div className={styles.tags}>
                             {bot.tags.map(({ name }) => (
@@ -157,22 +174,26 @@ function BotPage(props: Props) {
                             ))}
                         </div>
                         <div className={styles.links}>
-                            {bot.inviteURL && 
-                            <Link href={bot.inviteURL}>
-                                <img src="/assets/add-bot.svg" />
-                            </Link>}
-                            {bot.supportServerURL && 
-                            <Link href={bot.supportServerURL}>
-                                <img src="/assets/discord-logo.svg" />
-                            </Link>}
-                            {bot.githubURL &&
-                            <Link href={bot.githubURL}>
-                                <img src="/assets/github-logo.svg" />
-                            </Link>}
-                            {bot.websiteURL &&
-                            <Link href={bot.websiteURL}>
-                                <img src="/assets/link.svg" />
-                            </Link>}
+                            {bot.inviteURL && (
+                                <Link href={bot.inviteURL}>
+                                    <img src="/assets/add-bot.svg" />
+                                </Link>
+                            )}
+                            {bot.supportServerURL && (
+                                <Link href={bot.supportServerURL}>
+                                    <img src="/assets/discord-logo.svg" />
+                                </Link>
+                            )}
+                            {bot.githubURL && (
+                                <Link href={bot.githubURL}>
+                                    <img src="/assets/github-logo.svg" />
+                                </Link>
+                            )}
+                            {bot.websiteURL && (
+                                <Link href={bot.websiteURL}>
+                                    <img src="/assets/link.svg" />
+                                </Link>
+                            )}
                         </div>
                         <div className={styles.additional}>
                             <div>

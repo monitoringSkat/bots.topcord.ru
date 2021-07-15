@@ -11,7 +11,7 @@ import axios from 'axios'
 import { Snackbar } from '@material-ui/core'
 import updateProfileSchema from '../../schemas/update-profile.schema'
 import config from '../../config'
-import http from '../../axios/http'
+import http from '../../api/http'
 
 const SettingsPage = () => {
     const { user, setUser } = useContext(AuthContext)
