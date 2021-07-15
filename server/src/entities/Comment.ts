@@ -25,10 +25,10 @@ class Comment extends BaseEntity {
     @Column({ default: new Date().toLocaleDateString() })
     date: string
 
-    @Column("text", { default: [], array: true })
+    @Column('text', { default: [], array: true })
     likes: string[]
 
-    @Column("text", { default: [], array: true })
+    @Column('text', { default: [], array: true })
     dislikes: string[]
 
     @ManyToOne(() => Bot, bot => bot.comments)

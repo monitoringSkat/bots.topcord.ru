@@ -16,7 +16,7 @@
 -   [x] Integrations (Github, Facebook, Instagram, Steam, VK, Twitter, Twitch, Reddit, YouTube, Telegram, Spotify)
 -   [x] Edit user profile
 -   [x] Bot library
--   [X] Create, delete, edit, likes, dislikes comments
+-   [x] Create, delete, edit, likes, dislikes comments
 -   [ ] IP bans
 -   [ ] User site roles
 -   [ ] Bot help command
@@ -30,6 +30,7 @@
 -   [ ] Translation
 -   [ ] Sort bots
 -   [ ] Refactor some code
+
 ## Features
 
 -   [ ] Request indicator

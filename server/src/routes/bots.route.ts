@@ -178,7 +178,7 @@ botsRouter.post(
         )
         bot.tags = tags
         await bot.save()
-        ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
+        // ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
         res.send(bot)
     }
 )
@@ -295,7 +295,7 @@ botsRouter.delete(
 )
 
 botsRouter.post(
-    "/:id/comment/:commentId/like",
+    '/:id/comment/:commentId/like',
     [
         checkAuth,
         rateLimit({
@@ -304,7 +304,9 @@ botsRouter.post(
         })
     ],
     async (req, res) => {
-        const comment = await Comment.findOne(req.params.commentId, {relations: ["author"]})
+        const comment = await Comment.findOne(req.params.commentId, {
+            relations: ['author']
+        })
         if (comment.likes.includes(req.user.id)) {
             comment.likes = comment.likes.filter(c => c !== req.user.id)
         } else {
@@ -316,7 +318,7 @@ botsRouter.post(
 )
 
 botsRouter.post(
-    "/:id/comment/:commentId/dislike",
+    '/:id/comment/:commentId/dislike',
     [
         checkAuth,
         rateLimit({
@@ -325,7 +327,9 @@ botsRouter.post(
         })
     ],
     async (req, res) => {
-        const comment = await Comment.findOne(req.params.commentId, {relations: ["author"]})
+        const comment = await Comment.findOne(req.params.commentId, {
+            relations: ['author']
+        })
         if (comment.dislikes.includes(req.user.id)) {
             comment.dislikes = comment.dislikes.filter(c => c !== req.user.id)
         } else {

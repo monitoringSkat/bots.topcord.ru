@@ -106,3 +106,26 @@ h4 {
 .MuiButton-root {
     color: white !important;
 }
+
+.modal-dialog {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 60vw;
+    outline: 2px solid #5865f2;
+    border-radius: 5px;
+    max-height: 90vh;
+    overflow: auto;
+}
+
+.modal-dialog * {
+    background: #1d1f23 !important;
+    color: white;
+}
+
+.modal-body {
+    min-height: 83vh;
+}
+
