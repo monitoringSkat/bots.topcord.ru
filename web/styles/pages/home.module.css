@@ -2,7 +2,7 @@
     background-image: url(/assets/fon.png);
     background-position: 10%;
     background-size: 50%;
-    width: 100%;
+    min-height: 450px;
     padding: 3% 4%;
     margin-bottom: 1.5%;
 }
@@ -45,25 +45,15 @@
 .wumpus {
     width: 400px;
     position: relative;
-    float: right;
     animation: wumpusFly 2s linear 5s infinite alternate;
 }
 
 @keyframes wumpusFly {
     0% {
-        top: -20px;
-    }
-    25% {
-        top: -10px;
-    }
-    50% {
-        top: 0px;
-    }
-    75% {
-        top: 10px;
+        top: -5px;
     }
     100% {
-        top: 20px;
+        top: 5px;
     }
 }
 
@@ -81,3 +71,4 @@
     text-align: center;
     font-weight: 600;
 }
+

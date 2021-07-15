@@ -3,7 +3,7 @@
         "type": "input",
         "name": "id",
         "required": true,
-        "hint": "находиться на Discord Developer Portal",
+        "hint": "находится на Discord Developer Portal",
         "placeholder": "Клиент ID"
     },
     {
@@ -50,7 +50,7 @@
         "type": "select",
         "name": "library",
         "required": true,
-        "hint": "Технология на чем был написан бот",
+        "hint": "",
         "placeholder": "Библиотека",
         "options": [
             "discord.js",

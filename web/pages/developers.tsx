@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Layout from '../layout'
 import styles from '../styles/pages/developers.module.scss'
 import developers from './developers.json'
+import { Col, Container, Row, Card } from 'react-bootstrap'
 
 const DevelopersPage = () => (
     <Layout title="Developers">
