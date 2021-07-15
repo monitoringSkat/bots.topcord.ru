@@ -2,16 +2,17 @@ import { NextPageContext } from 'next'
 import config from '../../config'
 import Bot from '../../interfaces/bot.interface'
 import Layout from '../../layout'
-import styles from '../../styles/pages/bot.module.scss'
+import styles from '../../../styles/pages/bot.module.scss'
 import Link from 'next/link'
 import Markdown from '../../components/Markdown/Markdown'
 import { Container } from 'react-bootstrap'
 import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
 import { useState } from 'react'
-import http from '../../axios/http'
+import http from "../../api/http"
 import Comment from '../../interfaces/comment.interface'
-import context from 'react-bootstrap/esm/AccordionContext'
+
+
 interface Props {
     bot: Bot
 }

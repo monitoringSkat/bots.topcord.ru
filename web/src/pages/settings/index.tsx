@@ -1,5 +1,5 @@
 import SettingsLayout from '../../layout/settings-layout'
-import styles from '../../styles/pages/settings.module.scss'
+import styles from '../../../styles/pages/settings.module.scss'
 import React, { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
 import { useState } from 'react'

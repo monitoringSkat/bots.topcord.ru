@@ -2,7 +2,7 @@ import Link from 'next/link'
 import config from '../../config'
 import Tag from '../../interfaces/tag.interface'
 import Layout from '../../layout'
-import styles from '../../styles/pages/tags.module.scss'
+import styles from '../../../styles/pages/tags.module.scss'
 interface Props {
     tags: {
         tag: string

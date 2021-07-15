@@ -1,7 +1,7 @@
 import i18next from 'i18next'
 import SettingsLayout from '../../../layout/settings-layout'
 import languages from './languages.json'
-import styles from '../../../styles/pages/settings-language.module.scss'
+import styles from '../../../../styles/pages/settings-language.module.scss'
 import { useState } from 'react'
 
 const LanguagePage = () => {

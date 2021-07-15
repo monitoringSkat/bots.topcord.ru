@@ -1,7 +1,7 @@
 import config from '../../config'
 import User from '../../interfaces/user.interface'
 import Layout from '../../layout'
-import styles from '../../styles/pages/user.module.scss'
+import styles from '../../../styles/pages/user.module.scss'
 import { NextPageContext } from 'next'
 import Link from 'next/link'
 import Bots from '../../components/Bots/Bots'

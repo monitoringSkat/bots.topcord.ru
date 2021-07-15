@@ -1,4 +1,4 @@
-import styles from '../styles/pages/404.module.scss'
+import styles from '../../styles/pages/404.module.scss'
 import Layout from '../layout'
 
 const PageNotFound = () => (

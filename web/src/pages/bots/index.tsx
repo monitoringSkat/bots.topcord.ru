@@ -1,5 +1,5 @@
 import Layout from '../../layout'
-import styles from '../../styles/pages/bots.module.scss'
+import styles from '../../../styles/pages/bots.module.scss'
 import { Dropdown, DropdownButton, Container, Row, Col } from 'react-bootstrap'
 import Bot from '../../interfaces/bot.interface'
 import config from '../../config'
