@@ -52,8 +52,11 @@ const UserPage = ({ token, userid }: Props) => {
             }
         )
         console.log(data)
-        if (data === "OK") {
-            context.setUser({...context.user, following: [...context.user.following, u]})
+        if (data === 'OK') {
+            context.setUser({
+                ...context.user,
+                following: [...context.user.following, u]
+            })
         }
     }
 
@@ -70,8 +73,13 @@ const UserPage = ({ token, userid }: Props) => {
             }
         )
         console.log(data)
-        if (data === "OK") {
-            context.setUser({...context.user, following: context.user.following.filter(following => following.id !== u?.id)})
+        if (data === 'OK') {
+            context.setUser({
+                ...context.user,
+                following: context.user.following.filter(
+                    following => following.id !== u?.id
+                )
+            })
         }
     }
 
@@ -97,17 +105,24 @@ const UserPage = ({ token, userid }: Props) => {
                                     </span>
                                 </Link>
                             </div>
-                            {user.id !== context.user.id ?
-                            !context.user.following.find(
-                                following => following.id === user.id
-                            ) ? (
-                                <button onClick={() => follow(user)} className={styles['modal-follow']}>
-                                    Подписаться
-                                </button>
-                            ) : (
-                                <button onClick={() => unfollow(user)} className={styles['modal-unfollow']}>
-                                    Отписаться
-                                </button>
+                            {user.id !== context.user.id ? (
+                                !context.user.following.find(
+                                    following => following.id === user.id
+                                ) ? (
+                                    <button
+                                        onClick={() => follow(user)}
+                                        className={styles['modal-follow']}
+                                    >
+                                        Подписаться
+                                    </button>
+                                ) : (
+                                    <button
+                                        onClick={() => unfollow(user)}
+                                        className={styles['modal-unfollow']}
+                                    >
+                                        Отписаться
+                                    </button>
+                                )
                             ) : null}
                         </div>
                     ))}

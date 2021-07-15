@@ -31,7 +31,7 @@ const Home = ({ newBots, topBots }: Props) => {
                             <Link href="/tags">Список тегов</Link>
                         </div>
                     </Col>
-                    <Col className={styles.wumpus_col} >
+                    <Col className={styles.wumpus_col}>
                         <img
                             src="/assets/wumpus-jet.png"
                             className={`${styles.wumpus} mx-auto d-block`}

@@ -17,18 +17,17 @@
 -   [x] Edit user profile
 -   [x] Bot library
 -   [x] Create, delete, edit, likes, dislikes comments
--   [ ] IP bans
--   [ ] User site roles
--   [ ] Bot help command
+-   [X] Followers, followings
 -   [ ] Bot carma (bot rating 0/10 or +1 -1)
--   [ ] Report system
--   [ ] Followers, followings
--   [ ] Moderator site permission (Delete bots)
--   [ ] Admin site permission (Ban users)
 -   [ ] Upvote bots
+-   [ ] Bot help command
+-   [ ] Sort bots
+
+-   [ ] IP bans
+-   [ ] User site roles (Moderator: delete bots, Admin: ban users)
+-   [ ] Report system
 -   [ ] API Docs
 -   [ ] Translation
--   [ ] Sort bots
 -   [ ] Refactor some code
 
 ## Features

@@ -18,7 +18,9 @@ function BotsPage({ bots }: Props) {
             <Container className={styles.intro} fluid>
                 <Row>
                     <Col>
-                        <div className={styles.title}>Лист ботов в Дискорд.</div>
+                        <div className={styles.title}>
+                            Лист ботов в Дискорд.
+                        </div>
                         <SearchBotsInput placeholder="Найти бота" />
                         <div className={styles.options}>
                             <DropdownButton
@@ -26,11 +28,15 @@ function BotsPage({ bots }: Props) {
                                 id="dropdown-basic-button"
                                 title="Сортировоть по"
                             >
-                                <Dropdown.Item href="#/action-1">Голосам</Dropdown.Item>
+                                <Dropdown.Item href="#/action-1">
+                                    Голосам
+                                </Dropdown.Item>
                                 <Dropdown.Item href="#/action-2">
                                     Количеству серверов
                                 </Dropdown.Item>
-                                <Dropdown.Item>По дате обновления</Dropdown.Item>
+                                <Dropdown.Item>
+                                    По дате обновления
+                                </Dropdown.Item>
                             </DropdownButton>
                             <DropdownButton
                                 id="dropdown-basic-button"
@@ -44,11 +50,10 @@ function BotsPage({ bots }: Props) {
                             </DropdownButton>
                         </div>
                     </Col>
-                    <Col>
-                    </Col>
+                    <Col></Col>
                 </Row>
             </Container>
-            
+
             <Bots bots={bots} />
         </Layout>
     )
