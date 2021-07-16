@@ -16,18 +16,31 @@ import Tag from '../entities/Tag'
 import SameBotException from '../exceptions/same-bot.exception'
 import getUserInfo from '../utils/get-user-info'
 import { libraries } from '../constants'
-import UserController from "../controllers/UserController"
+import BotController from '../controllers/BotController'
 
 const botsRouter = Router()
 
 // GET
 
-botsRouter.get('/all', UserController.getAllBots)
+botsRouter.get('/all', BotController.getAllBots)
+botsRouter.get('/top', BotController.getTopBots)
+botsRouter.get('/new', BotController.getNewBots)
+botsRouter.get('/:id/developers', BotController.getBotDevelopers)
+botsRouter.get('/:id/owner', BotController.getBotOwner)
+botsRouter.get('/:id/comments', BotController.getBotComments)
+botsRouter.get('/:id/stats', BotController.getBotStats)
+botsRouter.get('/:id/votes', BotController.getBotVotes)
+botsRouter.get('/:id/rating', BotController.getBotRating)
 
 botsRouter.get('/', async (req, res) => {
     const { c, q } = req.query
     if (c === 'all')
-        return res.send(await Bot.find({ order: { votes: 'DESC' }, relations: ['comments'] }))
+        return res.send(
+            await Bot.find({
+                order: { votes: 'DESC' },
+                relations: ['comments']
+            })
+        )
     if (q) {
         const bots = await getConnection()
             .getRepository(Bot)
@@ -41,6 +54,7 @@ botsRouter.get('/', async (req, res) => {
     const newBots = (
         await Bot.find({
             where: { verified: true },
+            relations: ['comments'],
             order: { createdAt: 'DESC' } // new bots filter
         })
     ).slice(0, 20)
@@ -48,6 +62,7 @@ botsRouter.get('/', async (req, res) => {
     const topBots = (
         await Bot.find({
             where: { verified: true },
+            relations: ['comments'],
             order: { votes: 'DESC' }
         })
     ).slice(0, 20)
@@ -77,7 +92,6 @@ botsRouter.get(
 )
 
 // POST
-
 
 botsRouter.post(
     '/',
@@ -163,7 +177,7 @@ botsRouter.post(
         )
         bot.tags = tags
         await bot.save()
-        // ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
+        ;(req as any).client.emit('create-bot', (req as any).client, bot, owner)
         res.send(bot)
     }
 )

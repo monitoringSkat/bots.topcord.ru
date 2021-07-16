@@ -37,6 +37,7 @@ const UserPage = ({ token, userid }: Props) => {
     }
     useEffect(() => {
         getUser()
+        setShow(false)
     }, [token, userid])
 
     const follow = async (u: User | undefined = user) => {

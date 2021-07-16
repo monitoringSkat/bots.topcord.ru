@@ -18,5 +18,4 @@ const libraries = [
     'Sword'
 ]
 
-
 export { libraries }

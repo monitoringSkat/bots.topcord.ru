@@ -11,7 +11,7 @@ import AuthContext from '../../context/auth.context'
 import { useState } from 'react'
 import http from '../../api/http'
 import Comment from '../../interfaces/comment.interface'
-import Stars from "../../components/Stars/Stars"
+import Stars from '../../components/Stars/Stars'
 
 interface Props {
     bot: Bot
@@ -130,28 +130,39 @@ function BotPage(props: Props) {
             .reduce((v, c) => (v += c), 0) / bot.comments.length
     )
 
-    const vote = async ( ) => {
-        const { data }  = await http.post(`/bots/${bot.id}/vote`, {},
-        {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem(
-                    config.AUTH_LOCAL_STORAGE_KEY
-                )}`
+    const vote = async () => {
+        const { data } = await http.post(
+            `/bots/${bot.id}/vote`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(
+                        config.AUTH_LOCAL_STORAGE_KEY
+                    )}`
+                }
             }
-        })
-        if (data === true) setBot({...bot, votes: [...bot.votes, user.id] as any}) 
+        )
+        if (data === true)
+            setBot({ ...bot, votes: [...bot.votes, user.id] as any })
     }
 
     const unvote = async () => {
-        const { data }  = await http.post(`/bots/${bot.id}/unvote`, {},
-        {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem(
-                    config.AUTH_LOCAL_STORAGE_KEY
-                )}`
+        const { data } = await http.post(
+            `/bots/${bot.id}/unvote`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(
+                        config.AUTH_LOCAL_STORAGE_KEY
+                    )}`
+                }
             }
-        })
-        if (data === true) setBot({...bot, votes: bot.votes.filter(vote => vote as any !== user.id)}) 
+        )
+        if (data === true)
+            setBot({
+                ...bot,
+                votes: bot.votes.filter(vote => (vote as any) !== user.id)
+            })
     }
 
     return (
@@ -170,13 +181,17 @@ function BotPage(props: Props) {
                                         ? styles.votes
                                         : styles['votes-active']
                                 }
-                                onClick={!bot.votes.includes(user.id as any) ? vote : unvote}
+                                onClick={
+                                    !bot.votes.includes(user.id as any)
+                                        ? vote
+                                        : unvote
+                                }
                             >
                                 {bot.votes.length}
                                 <img
                                     src={
                                         !bot.votes.includes(user.id as any)
-                                            ? '/assets/vote.svg'
+                                          ? '/assets/vote.svg'
                                             : '/assets/vote-active.svg'
                                     }
                                 />
@@ -260,7 +275,11 @@ function BotPage(props: Props) {
                             </div>
                             <div className={styles.rating}>
                                 <div className={styles.stars}>
-                                    <Stars count={stars} max={5} onClick={setStars} />
+                                    <Stars
+                                        count={stars}
+                                        max={5}
+                                        onClick={setStars}
+                                    />
                                 </div>
                                 <button
                                     disabled={
@@ -274,8 +293,7 @@ function BotPage(props: Props) {
                             </div>
                         </div>
                     )}
-                    
-                    
+
                     {/* {bot.comments.map(c => (
                         <div key={c.id} className={styles.comment}>
                             <img

@@ -9,7 +9,7 @@ const usersRouter = Router()
 usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
     const userId = (req.user as any).id
     const user = await User.findOne(userId, {
-        relations: ['bots', 'following', 'followers']
+        relations: ['bots', 'following', 'followers', "bots.comments"]
     })
     res.send(user)
 })
@@ -17,7 +17,7 @@ usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
 usersRouter.get('/:id', async (req: Request, res: Response) => {
     const userId = req.params.id
     const user = await User.findOne(userId, {
-        relations: ['bots', 'following', 'followers']
+        relations: ['bots', 'following', 'followers', "bots.comments"]
     })
     if (!user) return res.send(new UserNotFoundException())
     res.send(user)

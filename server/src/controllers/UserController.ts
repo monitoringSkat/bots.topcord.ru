@@ -1,9 +1,25 @@
 import { Request, Response } from "express"
 
-async function getAllBots(req: Request, res: Response) {
-    res.send("Bots")
+
+async function getUser(req: Request, res: Response) {
+    
 }
 
-const UserController = { getAllBots }
+async function getUserBots(req: Request, res: Response) {
 
-export default UserController
+}
+
+async function getUserFollowers(req: Request, res: Response) {
+
+}
+
+async function getUserFollowings(req: Request, res: Response) {
+
+}
+
+async function getUserComments(req: Request, res: Response) {
+
+}
+
+
+export { getUser, getUserBots, getUserComments, getUserFollowers, getUserFollowings }

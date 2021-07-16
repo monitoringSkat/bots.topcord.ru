@@ -1,4 +1,5 @@
 ## TODO
+
 -   [x] New design
 -   [x] Forms errors
 -   [x] Rate limit server
@@ -18,11 +19,10 @@
 -   [x] Create, delete, edit, likes, dislikes comments
 -   [x] Followers, followings
 -   [x] Bot carma (bot rating 0/10 or +1 -1)
--   [X] Upvote bots
--   [X] Comment component
--   [X] Stars component
--   [X] Follower/Following component
--   [ ] Bot help command
+-   [x] Upvote bots
+-   [x] Comment component
+-   [x] Stars component
+-   [x] Follower/Following component
 -   [ ] Edit bots
 -   [ ] Sort bots
 -   [ ] IP bans
@@ -30,12 +30,13 @@
 -   [ ] Report system
 
 ## Other
+
 -   [ ] API Docs
 -   [ ] Translation
 -   [ ] API functions
--   [ ] Controllers in Express.js server
--   [ ] Add some new routes such as: "/bots/:id/developers" 
 -   [ ] Request indicator
+-   [ ] Bot help command
+
 ## Features
 
 -   [ ] Moderator, Admin Dashboard (Banned bots, users)

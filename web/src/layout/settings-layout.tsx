@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react'
-import styles from '../styles/layout/settings-layout.module.scss'
+import styles from '../../styles/layout/settings-layout.module.scss'
 import Link from 'next/link'
 import { useContext } from 'react'
 import AuthContext from '../context/auth.context'

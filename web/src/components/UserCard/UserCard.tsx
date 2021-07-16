@@ -1,9 +1,9 @@
-import Link from "next/link"
-import React from "react"
-import { useContext } from "react"
-import AuthContext from "../../context/auth.context"
-import User from "../../interfaces/user.interface"
-import styles from "./UserCard.module.scss"
+import Link from 'next/link'
+import React from 'react'
+import { useContext } from 'react'
+import AuthContext from '../../context/auth.context'
+import User from '../../interfaces/user.interface'
+import styles from './UserCard.module.scss'
 
 interface Props {
     user: User
@@ -32,7 +32,10 @@ const UserCard: React.FC<Props> = ({ user }) => {
                         Подписаться
                     </button>
                 ) : (
-                    <button onClick={() => unfollow(user)} className={styles['modal-unfollow']}>
+                    <button
+                        onClick={() => unfollow(user)}
+                        className={styles['modal-unfollow']}
+                    >
                         Отписаться
                     </button>
                 )
