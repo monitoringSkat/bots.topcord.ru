@@ -15,7 +15,6 @@ yarn-error.log*
 .env.production.local
 .vercel
 /.pnp
-config
 ormconfig.prod.json
 .pnp.js
 /coverage

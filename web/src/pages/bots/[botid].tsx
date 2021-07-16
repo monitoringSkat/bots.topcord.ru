@@ -9,9 +9,9 @@ import { Container } from 'react-bootstrap'
 import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
 import { useState } from 'react'
-import http from "../../api/http"
+import http from '../../api/http'
 import Comment from '../../interfaces/comment.interface'
-
+import Stars from "../../components/Stars/Stars"
 
 interface Props {
     bot: Bot
@@ -20,7 +20,7 @@ interface Props {
 function BotPage(props: Props) {
     const { user } = useContext(AuthContext)
     const [comment, setComment] = useState('')
-    const [bot, setBot] = useState(props.bot)
+    const [bot, setBot] = useState<Bot>(props.bot)
     const [stars, setStars] = useState(0)
     const [limitedComments, setLimitedComments] = useState<null | string>(null)
     const [editableComment, setEditableComment] = useState<Comment | null>(null)
@@ -129,6 +129,31 @@ function BotPage(props: Props) {
             .map(comment => comment.rating)
             .reduce((v, c) => (v += c), 0) / bot.comments.length
     )
+
+    const vote = async ( ) => {
+        const { data }  = await http.post(`/bots/${bot.id}/vote`, {},
+        {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem(
+                    config.AUTH_LOCAL_STORAGE_KEY
+                )}`
+            }
+        })
+        if (data === true) setBot({...bot, votes: [...bot.votes, user.id] as any}) 
+    }
+
+    const unvote = async () => {
+        const { data }  = await http.post(`/bots/${bot.id}/unvote`, {},
+        {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem(
+                    config.AUTH_LOCAL_STORAGE_KEY
+                )}`
+            }
+        })
+        if (data === true) setBot({...bot, votes: bot.votes.filter(vote => vote as any !== user.id)}) 
+    }
+
     return (
         <Layout>
             <Container>
@@ -145,6 +170,7 @@ function BotPage(props: Props) {
                                         ? styles.votes
                                         : styles['votes-active']
                                 }
+                                onClick={!bot.votes.includes(user.id as any) ? vote : unvote}
                             >
                                 {bot.votes.length}
                                 <img
@@ -157,13 +183,7 @@ function BotPage(props: Props) {
                             </div>
                         </div>
                         <div className={styles['header-stars']}>
-                            {Array.from({ length: 5 }).map((_, i) => {
-                                const src =
-                                    i < rating
-                                        ? '/assets/star-active.svg'
-                                        : '/assets/star.svg'
-                                return <img src={src} />
-                            })}{' '}
+                            <Stars count={rating} />
                             <div>based on {bot.comments.length} reviews</div>
                         </div>
                         <div className={styles.tags}>
@@ -240,18 +260,7 @@ function BotPage(props: Props) {
                             </div>
                             <div className={styles.rating}>
                                 <div className={styles.stars}>
-                                    {Array.from({ length: 5 }).map((_, i) => {
-                                        const src =
-                                            i < stars
-                                                ? '/assets/star-active.svg'
-                                                : '/assets/star.svg'
-                                        return (
-                                            <img
-                                                onClick={() => setStars(i + 1)}
-                                                src={src}
-                                            />
-                                        )
-                                    })}
+                                    <Stars count={stars} max={5} onClick={setStars} />
                                 </div>
                                 <button
                                     disabled={
@@ -265,7 +274,9 @@ function BotPage(props: Props) {
                             </div>
                         </div>
                     )}
-                    {bot.comments.map(c => (
+                    
+                    
+                    {/* {bot.comments.map(c => (
                         <div key={c.id} className={styles.comment}>
                             <img
                                 className={styles['comment-avatar']}
@@ -373,7 +384,7 @@ function BotPage(props: Props) {
                                 )}
                             </div>
                         </div>
-                    ))}
+                    ))} */}
                 </div>
             </Container>
         </Layout>

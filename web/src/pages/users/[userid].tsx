@@ -51,7 +51,6 @@ const UserPage = ({ token, userid }: Props) => {
                 }
             }
         )
-        console.log(data)
         if (data === 'OK') {
             context.setUser({
                 ...context.user,
@@ -72,7 +71,6 @@ const UserPage = ({ token, userid }: Props) => {
                 }
             }
         )
-        console.log(data)
         if (data === 'OK') {
             context.setUser({
                 ...context.user,

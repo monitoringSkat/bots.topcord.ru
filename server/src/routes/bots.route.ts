@@ -15,15 +15,19 @@ import Minutes from '../enums/minutes.enum'
 import Tag from '../entities/Tag'
 import SameBotException from '../exceptions/same-bot.exception'
 import getUserInfo from '../utils/get-user-info'
+import { libraries } from '../constants'
+import UserController from "../controllers/UserController"
 
 const botsRouter = Router()
 
 // GET
 
+botsRouter.get('/all', UserController.getAllBots)
+
 botsRouter.get('/', async (req, res) => {
     const { c, q } = req.query
     if (c === 'all')
-        return res.send(await Bot.find({ order: { votes: 'DESC' } }))
+        return res.send(await Bot.find({ order: { votes: 'DESC' }, relations: ['comments'] }))
     if (q) {
         const bots = await getConnection()
             .getRepository(Bot)
@@ -74,25 +78,6 @@ botsRouter.get(
 
 // POST
 
-const libraries = [
-    'discord.js',
-    'discord.py',
-    'discordoo',
-    'Javacord',
-    'Eris',
-    'JDA',
-    'Discord4J',
-    'discordcr',
-    'Discord.Net',
-    'DiscordGo',
-    'DSharpPlus',
-    'RestCord',
-    'Discordia',
-    'disco',
-    'discordrb',
-    'serenity',
-    'Sword'
-]
 
 botsRouter.post(
     '/',

@@ -32,7 +32,7 @@ const BotCard: FC<Props> = ({ bot }) => (
                     </div>
                     <div className={styles.stat}>
                         <img src="/assets/comment.svg" />
-                        <div>{bot.comments || 0}</div>
+                        <div>{bot.comments.length}</div>
                     </div>
                     <div className={styles.stat}>
                         <img src="/assets/server.svg" />
