@@ -15,43 +15,43 @@ async function getBot(req: Request, res: Response) {
 }
 
 async function getBotDevelopers(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: [ "developers" ] })
+    const bot = await Bot.findOne(req.params.id, { relations: ['developers'] })
     const error = new BotNotFoundException()
     if (!bot) return res.send(error)
     res.send(bot.developers)
 }
 
 async function getBotTags(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: [ "tags" ] })
+    const bot = await Bot.findOne(req.params.id, { relations: ['tags'] })
     const error = new BotNotFoundException()
     if (!bot) return res.send(error)
     res.send(bot.tags)
 }
 
 async function getBotOwner(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: [ "owner" ] })
+    const bot = await Bot.findOne(req.params.id, { relations: ['owner'] })
     const error = new BotNotFoundException()
     if (!bot) return res.send(error)
     res.send(bot.owner)
 }
 
 async function getBotComments(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: [ "comments" ] })
+    const bot = await Bot.findOne(req.params.id, { relations: ['comments'] })
     const error = new BotNotFoundException()
     if (!bot) return res.send(error)
     res.send(bot.comments)
 }
 
 async function getBotStats(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: [ "comments" ] })
+    const bot = await Bot.findOne(req.params.id, { relations: ['comments'] })
     const error = new BotNotFoundException()
     if (!bot) return res.send(error)
     res.send({
         id: bot.id,
-        votesCount : bot.votes.length,
+        votesCount: bot.votes.length,
         guildsCount: bot.guildsCount,
         reviews: bot.comments.length,
-        verified:    bot.verified,
+        verified: bot.verified,
         createdAt: bot.createdAt,
         updatedAt: bot.updatedAt
     })
@@ -63,45 +63,38 @@ async function getBotVotes(req: Request, res: Response) {
     if (!bot) return res.send(error)
     res.send({
         count: bot.votes.length,
-        users: bot.votes    
+        users: bot.votes
     })
 }
 
 async function getBotRating(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: [ "comments" ] })
+    const bot = await Bot.findOne(req.params.id, { relations: ['comments'] })
     const error = new BotNotFoundException()
     if (!bot) return res.send(error)
     res.send({
-        rating: bot.comments.map(comment => comment.rating).reduce((v, c) => c += v, 0)
+        rating: bot.comments
+            .map(comment => comment.rating)
+            .reduce((v, c) => (c += v), 0)
     })
 }
 
-async function getBotGuilds(req: Request, res: Response) {
+async function getBotGuilds(req: Request, res: Response) {}
 
-}
+async function getTopBots(req: Request, res: Response) {}
 
-async function getTopBots(req: Request, res: Response) {
-    
-}
+async function getNewBots(req: Request, res: Response) {}
 
-async function getNewBots(req: Request, res: Response) {
-    
-}
-
-
-
-
-export default { 
-    getAllBots, 
-    getBot, 
-    getBotComments, 
-    getBotGuilds, 
-    getBotOwner, 
-    getBotRating, 
-    getBotVotes, 
-    getBotDevelopers, 
-    getBotStats, 
+export default {
+    getAllBots,
+    getBot,
+    getBotComments,
+    getBotGuilds,
+    getBotOwner,
+    getBotRating,
+    getBotVotes,
+    getBotDevelopers,
+    getBotStats,
     getBotTags,
     getTopBots,
     getNewBots
-} 
+}

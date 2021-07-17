@@ -277,67 +277,6 @@ botsRouter.put(
     }
 )
 
-botsRouter.delete(
-    '/:id/comment/:commentId',
-    [
-        checkAuth,
-        rateLimit({
-            windowMs: Minutes.FIFTEEN,
-            max: 300
-        })
-    ],
-    async (req, res) => {
-        const comment = await Comment.findOne(Number(req.params.commentId))
-        await comment.remove()
-        res.send(200)
-    }
-)
-
-botsRouter.post(
-    '/:id/comment/:commentId/like',
-    [
-        checkAuth,
-        rateLimit({
-            windowMs: Minutes.FIFTEEN,
-            max: 300
-        })
-    ],
-    async (req, res) => {
-        const comment = await Comment.findOne(req.params.commentId, {
-            relations: ['author']
-        })
-        if (comment.likes.includes(req.user.id)) {
-            comment.likes = comment.likes.filter(c => c !== req.user.id)
-        } else {
-            comment.likes = [...comment.likes, req.user.id]
-        }
-        await comment.save()
-        res.send(comment)
-    }
-)
-
-botsRouter.post(
-    '/:id/comment/:commentId/dislike',
-    [
-        checkAuth,
-        rateLimit({
-            windowMs: Minutes.FIFTEEN,
-            max: 300
-        })
-    ],
-    async (req, res) => {
-        const comment = await Comment.findOne(req.params.commentId, {
-            relations: ['author']
-        })
-        if (comment.dislikes.includes(req.user.id)) {
-            comment.dislikes = comment.dislikes.filter(c => c !== req.user.id)
-        } else {
-            comment.dislikes = [...comment.dislikes, req.user.id]
-        }
-        await comment.save()
-        res.send(comment)
-    }
-)
 
 botsRouter.post(
     '/:id/guilds',

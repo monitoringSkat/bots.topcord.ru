@@ -2,22 +2,55 @@ import Link from 'next/link'
 import React from 'react'
 import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
-import Comment from '../../interfaces/comment.interface'
+import IComment from '../../interfaces/comment.interface'
 import Stars from '../Stars/Stars'
 import styles from './Comment.module.scss'
-import api from "../../api"
+import api from '../../api'
+import { useState } from 'react'
+
 interface Props {
-    comment: Comment
+    comment: IComment
     isEdit?: boolean
-    isAuthor?: boolean
+    onCommentDelete?: (comment: IComment) => void
+    onCommentUpdate?: (comment: IComment) => void
+    setCommentEdit? : (comment: IComment | null) => void
 }
 
 const Comment: React.FC<Props> = ({
     comment,
     isEdit = false,
-    isAuthor = false
+    onCommentDelete,
+    onCommentUpdate,
+    setCommentEdit,
 }) => {
     const { user } = useContext(AuthContext)
+    const isAuthor = user.id === comment.author.id
+    const [ commentary, setCommentary ] = useState(comment)
+
+    const edit = async () => {
+        const data = await api.editComment(commentary)
+        if (!data) return
+        onCommentUpdate?.(commentary)
+        setCommentEdit?.(null)
+    }
+
+    const dislike = async () => {
+        const data = await api.dislikeComment(comment)
+        if (!data || comment.dislikes.includes(user.id)) return
+        onCommentUpdate?.({...comment, dislikes: [...comment.dislikes, user.id]})
+    }
+
+    const like = async () => {
+        const data = await api.likeComment(comment)
+        if (!data || comment.likes.includes(user.id)) return
+        onCommentUpdate?.({...comment, likes: [...comment.likes, user.id]})
+    }
+
+    const del = async () => {
+        const data = await api.deleteComment(comment)
+        if (data) onCommentDelete?.(comment)
+    }
+
     return (
         <div className={styles.comment}>
             <img
@@ -42,18 +75,18 @@ const Comment: React.FC<Props> = ({
                                 <img
                                     src="/assets/tick.svg"
                                     className={styles['comment-tick']}
-                                    onClick={editComment}
+                                    onClick={edit}
                                 />
                             ) : (
                                 <img
                                     src="/assets/edit.svg"
-                                    onClick={() => setEditableComment(c)}
+                                    onClick={() => setCommentEdit?.(comment)}
                                     className={styles['comment-edit']}
                                 />
                             )}
                             <img
                                 src="/assets/bin.svg"
-                                onClick={() => deleteComment(c.id)}
+                                onClick={del}
                                 className={styles['comment-delete']}
                             />
                         </div>
@@ -66,18 +99,15 @@ const Comment: React.FC<Props> = ({
                     {isEdit ? (
                         <textarea
                             onChange={e =>
-                                setEditableComment({
-                                    ...editableComment,
-                                    text: e.target.value
-                                })
+                                setCommentary({ ...comment, text: e.target.value })
                             }
-                            value={editableComment?.text}
+                            value={commentary.text}
                         />
                     ) : (
                         comment.text
                     )}
                 </div>
-                {isEdit && (
+                {!isEdit && (
                     <div className={styles['comment-rating']}>
                         <div
                             className={
@@ -85,7 +115,7 @@ const Comment: React.FC<Props> = ({
                                     ? styles.active
                                     : ''
                             }
-                            onClick={() => likeComment(c.id)}
+                            onClick={like}
                         >
                             <img src="/assets/like.svg" />
                             <div>{comment.likes.length}</div>
@@ -96,7 +126,7 @@ const Comment: React.FC<Props> = ({
                                     ? styles.active
                                     : ''
                             }
-                            onClick={() => dislikeComment(c.id)}
+                            onClick={dislike}
                         >
                             <img src="/assets/dislike.svg" />
                             <div>{comment.dislikes.length}</div>
@@ -107,3 +137,5 @@ const Comment: React.FC<Props> = ({
         </div>
     )
 }
+
+export default Comment
