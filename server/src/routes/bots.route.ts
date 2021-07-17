@@ -22,15 +22,26 @@ const botsRouter = Router()
 
 // GET
 
-botsRouter.get('/all', BotController.getAllBots)
-botsRouter.get('/top', BotController.getTopBots)
-botsRouter.get('/new', BotController.getNewBots)
-botsRouter.get('/:id/developers', BotController.getBotDevelopers)
-botsRouter.get('/:id/owner', BotController.getBotOwner)
-botsRouter.get('/:id/comments', BotController.getBotComments)
-botsRouter.get('/:id/stats', BotController.getBotStats)
-botsRouter.get('/:id/votes', BotController.getBotVotes)
-botsRouter.get('/:id/rating', BotController.getBotRating)
+// botsRouter.get('/all', BotController.getAllBots)
+// botsRouter.get('/top', BotController.getTopBots)
+// botsRouter.get('/new', BotController.getNewBots)
+// botsRouter.get('/:id/developers', BotController.getBotDevelopers)
+// botsRouter.get('/:id/owner', BotController.getBotOwner)
+// botsRouter.get('/:id/comments', BotController.getBotComments)
+// botsRouter.get('/:id/stats', BotController.getBotStats)
+// botsRouter.get('/:id/votes', BotController.getBotVotes)
+// botsRouter.get('/:id/rating', BotController.getBotRating)
+
+// POST
+
+// botsRouter.post('/', BotController.create)
+// botsRouter.post('/:id', BotController.update)
+// botsRouter.post('/:id/vote', BotController.vote)
+// botsRouter.post('/:id/unvote', BotController.unvote)
+// botsRouter.post('/:id/guilds', BotController.setBotGuilds)
+
+// DELETE
+// botsRouter.delete('/', BotController.remove)
 
 botsRouter.get('/', async (req, res) => {
     const { c, q } = req.query
@@ -276,7 +287,6 @@ botsRouter.put(
         res.send(200)
     }
 )
-
 
 botsRouter.post(
     '/:id/guilds',

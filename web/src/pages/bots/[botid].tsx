@@ -1,18 +1,18 @@
 import { NextPageContext } from 'next'
+import Link from 'next/link'
+import { useState, useContext } from 'react'
+import { Container } from 'react-bootstrap'
 import config from '../../config'
 import Bot from '../../interfaces/bot.interface'
 import Layout from '../../layout'
 import styles from '../../../styles/pages/bot.module.scss'
-import Link from 'next/link'
 import Markdown from '../../components/Markdown/Markdown'
-import { Container } from 'react-bootstrap'
-import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
-import { useState } from 'react'
 import http from '../../api/http'
 import IComment from '../../interfaces/comment.interface'
 import Stars from '../../components/Stars/Stars'
-import Comment from "../../components/Comment/Comment"
+import Comment from '../../components/Comment/Comment'
+import api from '../../api'
 
 interface Props {
     bot: Bot
@@ -24,31 +24,17 @@ function BotPage(props: Props) {
     const [bot, setBot] = useState<Bot>(props.bot)
     const [stars, setStars] = useState(0)
     const [limitedComments, setLimitedComments] = useState<null | string>(null)
-    const [editableComment, setEditableComment] = useState<IComment | null>(null)
+    const [editableComment, setEditableComment] = useState<IComment | null>(
+        null
+    )
 
     const createComment = async () => {
-        try {
-            const { data } = await http.post(
-                `/bots/${bot.id}/comment`,
-                { text: comment, rating: stars },
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            config.AUTH_LOCAL_STORAGE_KEY
-                        )}`
-                    }
-                }
-            )
-            if (data.statusCode === 503)
-                return setLimitedComments('Вы превысили лимит комментариев!')
-            setBot({ ...bot, comments: [data, ...bot.comments] })
-            setComment('')
-            setStars(0)
-        } catch (e) {
-            console.log(e)
-        }
+        const data = await api.createComment({ text: comment, rating: stars, botId: bot.id})
+        if (!data) return setLimitedComments('Вы превысили лимит комментариев!')
+        setBot({ ...bot, comments: [data, ...bot.comments] })
+        setComment('')
+        setStars(0)
     }
-
 
     const rating = Math.round(
         bot.comments
@@ -92,7 +78,9 @@ function BotPage(props: Props) {
     }
 
     const onCommentUpdate = (comment: IComment) => {
-        const comments = bot.comments.map(c => c.id === comment.id ? comment : c)
+        const comments = bot.comments.map(c =>
+            c.id === comment.id ? comment : c
+        )
         setBot({ ...bot, comments })
     }
 
@@ -228,15 +216,15 @@ function BotPage(props: Props) {
                             </div>
                         </div>
                     )}
-                    {bot.comments.map(comment => 
-                        <Comment 
-                            comment={comment} 
-                            onCommentUpdate={onCommentUpdate} 
-                            isEdit={comment.id === editableComment?.id} 
+                    {bot.comments.map(comment => (
+                        <Comment
+                            comment={comment}
+                            onCommentUpdate={onCommentUpdate}
+                            isEdit={comment.id === editableComment?.id}
                             setCommentEdit={setEditableComment}
                             onCommentDelete={onCommentDelete}
-                        />    
-                    )}
+                        />
+                    ))}
                 </div>
             </Container>
         </Layout>

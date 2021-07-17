@@ -1,6 +1,6 @@
-import Comment from "../interfaces/comment.interface"
-import getAccessToken from "./getAccessToken"
-import http from "./http"
+import Comment from '../interfaces/comment.interface'
+import getAccessToken from './getAccessToken'
+import http from './http'
 
 async function dislikeComment(comment: Comment) {
     const { data } = await http.put(
@@ -12,7 +12,7 @@ async function dislikeComment(comment: Comment) {
             }
         }
     )
-    return data === "OK"
+    return data === 'OK'
 }
 
 export default dislikeComment

@@ -1,5 +1,3 @@
-async function unvoteBot() {
-
-}
+async function unvoteBot() {}
 
 export default unvoteBot

@@ -1,6 +1,6 @@
-import Comment from "../interfaces/comment.interface"
-import getAccessToken from "./getAccessToken"
-import http from "./http"
+import Comment from '../interfaces/comment.interface'
+import getAccessToken from './getAccessToken'
+import http from './http'
 
 async function likeComment(comment: Comment) {
     const { data } = await http.put(
@@ -12,7 +12,7 @@ async function likeComment(comment: Comment) {
             }
         }
     )
-    return data === "OK"
+    return data === 'OK'
 }
 
 export default likeComment

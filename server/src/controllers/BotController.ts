@@ -84,6 +84,17 @@ async function getTopBots(req: Request, res: Response) {}
 
 async function getNewBots(req: Request, res: Response) {}
 
+async function create(req: Request, res: Response) {}
+
+async function update(req: Request, res: Response) {}
+
+async function vote(req: Request, res: Response) {}
+
+async function unvote(req: Request, res: Response) {}
+
+async function remove(req: Request, res: Response) {}
+
+
 export default {
     getAllBots,
     getBot,
@@ -96,5 +107,10 @@ export default {
     getBotStats,
     getBotTags,
     getTopBots,
-    getNewBots
+    getNewBots,
+    create,
+    update,
+    vote,
+    unvote,
+    remove
 }

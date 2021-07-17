@@ -1,5 +1,5 @@
-import getAccessToken from "./getAccessToken"
-import http from "./http"
+import getAccessToken from './getAccessToken'
+import http from './http'
 
 interface CreateComment {
     text: string
@@ -18,7 +18,7 @@ async function createComment({ text, rating, botId }: CreateComment) {
                 }
             }
         )
-        return data.statusCode === 503 ? "Вы превысили лимит комментариев!" : true
+        return data.statusCode === 503 ? false : data
     } catch (e) {
         console.log(e)
     }

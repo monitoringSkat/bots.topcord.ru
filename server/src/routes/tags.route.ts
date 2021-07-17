@@ -3,6 +3,10 @@ import Tag from '../entities/Tag'
 
 const tagsRouter = Router()
 
+// GET
+// tagsRouter.get('/', TagController.getAllTags)
+// tagsRouter.get('/:name', TagController.getBotsByTag)
+
 tagsRouter.get('/', async (req: Request, res: Response) => {
     const tags = await Tag.find({
         relations: ['bots']
@@ -15,7 +19,7 @@ tagsRouter.get('/:name', async (req: Request, res: Response) => {
     const { name } = req.params
     const [{ bots }] = await Tag.find({
         where: { name },
-        relations: ['bots']
+        relations: ['bots', "bots.comments"]
     })
     res.send({ bots })
 })

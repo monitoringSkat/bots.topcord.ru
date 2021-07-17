@@ -19,5 +19,5 @@ export default {
     editComment,
     createComment,
     voteBot,
-    unvoteBot,
+    unvoteBot
 }

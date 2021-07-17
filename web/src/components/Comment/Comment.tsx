@@ -13,7 +13,7 @@ interface Props {
     isEdit?: boolean
     onCommentDelete?: (comment: IComment) => void
     onCommentUpdate?: (comment: IComment) => void
-    setCommentEdit? : (comment: IComment | null) => void
+    setCommentEdit?: (comment: IComment | null) => void
 }
 
 const Comment: React.FC<Props> = ({
@@ -21,11 +21,11 @@ const Comment: React.FC<Props> = ({
     isEdit = false,
     onCommentDelete,
     onCommentUpdate,
-    setCommentEdit,
+    setCommentEdit
 }) => {
     const { user } = useContext(AuthContext)
     const isAuthor = user.id === comment.author.id
-    const [ commentary, setCommentary ] = useState(comment)
+    const [commentary, setCommentary] = useState(comment)
 
     const edit = async () => {
         const data = await api.editComment(commentary)
@@ -37,13 +37,16 @@ const Comment: React.FC<Props> = ({
     const dislike = async () => {
         const data = await api.dislikeComment(comment)
         if (!data || comment.dislikes.includes(user.id)) return
-        onCommentUpdate?.({...comment, dislikes: [...comment.dislikes, user.id]})
+        onCommentUpdate?.({
+            ...comment,
+            dislikes: [...comment.dislikes, user.id]
+        })
     }
 
     const like = async () => {
         const data = await api.likeComment(comment)
         if (!data || comment.likes.includes(user.id)) return
-        onCommentUpdate?.({...comment, likes: [...comment.likes, user.id]})
+        onCommentUpdate?.({ ...comment, likes: [...comment.likes, user.id] })
     }
 
     const del = async () => {
@@ -99,7 +102,10 @@ const Comment: React.FC<Props> = ({
                     {isEdit ? (
                         <textarea
                             onChange={e =>
-                                setCommentary({ ...comment, text: e.target.value })
+                                setCommentary({
+                                    ...comment,
+                                    text: e.target.value
+                                })
                             }
                             value={commentary.text}
                         />

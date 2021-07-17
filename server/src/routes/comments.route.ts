@@ -5,9 +5,22 @@ import Minutes from '../enums/minutes.enum'
 import Comment from '../entities/Comment'
 import { body } from 'express-validator'
 import TooManyCommentsPerUserException from '../exceptions/too-many-comments-per-user'
-import findBot from '../middlewares/findBot.middleware'
+import Bot from '../entities/Bot'
 
 const commentsRouter = Router()
+
+// GET
+// commentsRouter.get('/:id', CommentController.getById)
+// commentsRouter.get('/:id/author', CommentController.getCommentAuthor)
+
+// POST
+// commentsRouter.post('/', CommentController.create)
+// commentsRouter.post('/update', CommentController.update)
+// commentsRouter.post('/like', CommentController.like)
+// commentsRouter.post('/dislike', CommentController.dislike)
+
+// DELETE
+// commentsRouter.delete('/:id', CommentController.remove)
 
 commentsRouter.delete(
     '/:id',
@@ -25,7 +38,6 @@ commentsRouter.delete(
     }
 )
 
-
 commentsRouter.post(
     '/',
     [
@@ -34,14 +46,12 @@ commentsRouter.post(
             windowMs: Minutes.FIFTEEN,
             max: 300
         }),
-        findBot({
-            relations: ['comments', 'comments.author']
-        }),
         body('text').notEmpty().isString(),
-        body('rating').isNumeric()
+        body('text').notEmpty().isNumeric(),
+        body('rating').notEmpty().isNumeric()
     ],
     async (req: Request, res: Response) => {
-        const bot = (req as any).bot
+        const bot = await Bot.findOne(req.body.botId, { relations: ['comments', 'comments.author'] })
         const user = (req as any).user
         const commentsPerUser = bot.comments.filter(
             ({ author }) => author.id === user.id
