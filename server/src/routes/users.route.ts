@@ -9,12 +9,10 @@ const usersRouter = Router()
 // GET
 // usersRouter.get('/(:id|me)', UserController.getUser)
 
-// POST 
+// POST
 // usersRouter.post('/:id/follow', UserController.follow)
 // usersRouter.post('/:id/unfollow', UserController.unfollow)
 // usersRouter.post('/update', UserController.update)
-
-
 
 usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
     const userId = (req.user as any).id

@@ -1,6 +1,6 @@
 import Layout from '../../layout'
 import styles from '../../../styles/pages/bots.module.scss'
-import { Dropdown, DropdownButton, Container, Row, Col } from 'react-bootstrap'
+import { Dropdown, DropdownButton, Container, Row, Col, Button } from 'react-bootstrap'
 import Bot from '../../interfaces/bot.interface'
 import config from '../../config'
 import Bots from '../../components/Bots/Bots'
@@ -11,8 +11,30 @@ interface Props {
     bots: Bot[]
 }
 
+const sortMethods = ["Голосам", "Количеству серверов", "Количеству комментариев","По дате обновления"]
+
 function BotsPage({ bots }: Props) {
-    const [sortBy, setSortBy] = useState({ library: null, method: 'votes' })
+    const [sortMethod, setSortMethod] = useState<string | null>(null)
+    const [ library, setLibrary ] = useState<string | null>(null)
+
+    const sortedBots = bots.sort((a, b) => {
+        switch(sortMethod) {
+            case "Количеству серверов":
+                return b.guildsCount - a.guildsCount
+            case "По дате обновления":
+                return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+            case "Количеству комментариев":
+                return b.comments.length - a.comments.length
+            default: 
+                return b.votes.length - a.votes.length
+        }
+    }).filter((bot) => library ? bot.library === library : true)
+
+    const resetFilter = () => {
+        setSortMethod(null)
+        setLibrary(null)
+    }
+
     return (
         <Layout title="Боты | TopCord">
             <Container className={styles.intro} fluid>
@@ -24,37 +46,33 @@ function BotsPage({ bots }: Props) {
                         <SearchBotsInput placeholder="Найти бота" />
                         <div className={styles.options}>
                             <DropdownButton
-                                onSelect={e => console.log(e)}
+                                onSelect={e => setSortMethod(e)}
                                 id="dropdown-basic-button"
-                                title="Сортировоть по"
+                                title={sortMethod || "Сортировоть по"}
                             >
-                                <Dropdown.Item href="#/action-1">
-                                    Голосам
+                                {sortMethods.map(method => 
+                                <Dropdown.Item onClick={e => e.preventDefault()} href={method}>
+                                    {method}
                                 </Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">
-                                    Количеству серверов
-                                </Dropdown.Item>
-                                <Dropdown.Item>
-                                    По дате обновления
-                                </Dropdown.Item>
+                                )}
                             </DropdownButton>
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title="Библиотека"
+                                title={library || "Библиотека"}
+                                onSelect={e => setLibrary(e)}
                             >
                                 {libraries.map((lib: string) => (
-                                    <Dropdown.Item key={lib} href={lib}>
+                                    <Dropdown.Item key={lib} onClick={e => e.preventDefault()} href={lib}>
                                         {lib}
                                     </Dropdown.Item>
                                 ))}
                             </DropdownButton>
+                            <Button variant="danger" onClick={resetFilter} disabled={!library?.length && !sortMethod?.length}>Очистить фильтр</Button>
                         </div>
                     </Col>
-                    <Col></Col>
                 </Row>
             </Container>
-
-            <Bots bots={bots} />
+            <Bots bots={sortedBots} />
         </Layout>
     )
 }

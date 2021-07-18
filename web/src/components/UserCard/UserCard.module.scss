@@ -1,0 +1,36 @@
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 15px;
+    background: #42454c;
+    margin-top: 10px;
+    color: white;
+    img {
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+    }
+    .follow {
+        background: #57f287 !important;
+        color: white;
+        border-radius: 5px;
+        padding: 5px 10px;
+        text-align: center;
+        border: none;
+    }
+    .unfollow {
+        background: #ed4245 !important;
+        color: white;
+        border-radius: 5px;
+        padding: 5px 10px;
+        text-align: center;
+        border: none;
+    }
+    span {
+        font-size: 18px;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+}

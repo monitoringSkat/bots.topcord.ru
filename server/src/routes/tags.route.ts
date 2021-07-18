@@ -19,7 +19,7 @@ tagsRouter.get('/:name', async (req: Request, res: Response) => {
     const { name } = req.params
     const [{ bots }] = await Tag.find({
         where: { name },
-        relations: ['bots', "bots.comments"]
+        relations: ['bots', 'bots.comments']
     })
     res.send({ bots })
 })

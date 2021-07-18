@@ -51,7 +51,9 @@ commentsRouter.post(
         body('rating').notEmpty().isNumeric()
     ],
     async (req: Request, res: Response) => {
-        const bot = await Bot.findOne(req.body.botId, { relations: ['comments', 'comments.author'] })
+        const bot = await Bot.findOne(req.body.botId, {
+            relations: ['comments', 'comments.author']
+        })
         const user = (req as any).user
         const commentsPerUser = bot.comments.filter(
             ({ author }) => author.id === user.id

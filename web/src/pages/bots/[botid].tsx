@@ -29,7 +29,11 @@ function BotPage(props: Props) {
     )
 
     const createComment = async () => {
-        const data = await api.createComment({ text: comment, rating: stars, botId: bot.id})
+        const data = await api.createComment({
+            text: comment,
+            rating: stars,
+            botId: bot.id
+        })
         if (!data) return setLimitedComments('Вы превысили лимит комментариев!')
         setBot({ ...bot, comments: [data, ...bot.comments] })
         setComment('')

@@ -7,12 +7,14 @@ import styles from './UserCard.module.scss'
 
 interface Props {
     user: User
+    follow: (user: User) => void
+    unfollow: (user: User) => void
 }
 
-const UserCard: React.FC<Props> = ({ user }) => {
+const UserCard: React.FC<Props> = ({ user, follow, unfollow }) => {
     const context = useContext(AuthContext)
     return (
-        <div className={styles['modal-user']}>
+        <div className={styles['user']}>
             <div>
                 <img src={user.avatar} />
                 <Link href={`/users/${user.id}`}>
@@ -27,14 +29,14 @@ const UserCard: React.FC<Props> = ({ user }) => {
                 ) ? (
                     <button
                         onClick={() => follow(user)}
-                        className={styles['modal-follow']}
+                        className={styles['follow']}
                     >
                         Подписаться
                     </button>
                 ) : (
                     <button
                         onClick={() => unfollow(user)}
-                        className={styles['modal-unfollow']}
+                        className={styles['unfollow']}
                     >
                         Отписаться
                     </button>

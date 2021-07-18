@@ -13,7 +13,7 @@ interface Bot {
     supportServerURL?: string
     inviteURL: string
     createdAt: string
-    updateAt: string
+    updatedAt: string
     avatar: string
     shortDescription: string
     longDescription: string

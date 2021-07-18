@@ -8,6 +8,8 @@ import editComment from './editComment'
 import voteBot from './voteBot'
 import unvoteBot from './unvoteBot'
 import createComment from './createComment'
+import followUser from './followUser'
+import unfollowUser from './unfollowUser'
 
 export default {
     deleteComment,
@@ -19,5 +21,7 @@ export default {
     editComment,
     createComment,
     voteBot,
-    unvoteBot
+    unvoteBot,
+    followUser,
+    unfollowUser
 }

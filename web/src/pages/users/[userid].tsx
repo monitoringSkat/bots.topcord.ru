@@ -11,6 +11,8 @@ import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
 import http from '../../api/http'
 import FullscreenModal from '../../components/Modal/Modal'
+import api from '../../api'
+import UserCard from '../../components/UserCard/UserCard'
 interface Props {
     token?: string
     userid: string
@@ -23,63 +25,35 @@ const UserPage = ({ token, userid }: Props) => {
     const [inModal, setInModal] = useState('')
 
     const getUser = async () => {
-        if (token) localStorage.setItem(config.AUTH_LOCAL_STORAGE_KEY, token)
-        const res = await fetch(`${config.SERVER_URL}/users/${userid}`, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem(
-                    config.AUTH_LOCAL_STORAGE_KEY
-                )}`
-            }
-        })
-        const json = await res.json()
-        if (json.statusCode === 404) return { user: null }
-        setUser(json)
+        const data = await api.getUser(userid, token)
+        setUser(data)
     }
     useEffect(() => {
         getUser()
         setShow(false)
     }, [token, userid])
 
+
+
     const follow = async (u: User | undefined = user) => {
-        const { data } = await http.post(
-            `/users/${u?.id}/follow`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem(
-                        config.AUTH_LOCAL_STORAGE_KEY
-                    )}`
-                }
-            }
-        )
-        if (data === 'OK') {
-            context.setUser({
-                ...context.user,
-                following: [...context.user.following, u]
-            })
-        }
+        const data = api.followUser(u?.id)
+        if (!data) return
+        context.setUser({
+            ...context.user,
+            following: [...context.user.following, u]
+        })
     }
 
     const unfollow = async (u: User | undefined = user) => {
-        const { data } = await http.post(
-            `/users/${u?.id}/unfollow`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem(
-                        config.AUTH_LOCAL_STORAGE_KEY
-                    )}`
-                }
-            }
-        )
-        if (data === 'OK') {
-            context.setUser({
-                ...context.user,
-                following: context.user.following.filter(
-                    following => following.id !== u?.id
-                )
-            })
-        }
+        const data = await api.unfollowUser(u?.id)
+        if (!data) return
+        context.setUser({
+            ...context.user,
+            following: context.user.following.filter(
+                following => following.id !== u?.id
+            )
+        })
+        
     }
 
     const modalTypeChange = (type: 'followers' | 'following') => {
@@ -93,41 +67,10 @@ const UserPage = ({ token, userid }: Props) => {
                 title={inModal === 'followers' ? 'Подписчики' : 'Подписки'}
                 state={{ show, setShow }}
             >
-                {inModal &&
-                    (user as any)[inModal].map((user: User) => (
-                        <div key={user.id} className={styles['modal-user']}>
-                            <div>
-                                <img src={user.avatar} />
-                                <Link href={`/users/${user.id}`}>
-                                    <span>
-                                        {user.username}#{user.discriminator}
-                                    </span>
-                                </Link>
-                            </div>
-                            {user.id !== context.user.id ? (
-                                !context.user.following.find(
-                                    following => following.id === user.id
-                                ) ? (
-                                    <button
-                                        onClick={() => follow(user)}
-                                        className={styles['modal-follow']}
-                                    >
-                                        Подписаться
-                                    </button>
-                                ) : (
-                                    <button
-                                        onClick={() => unfollow(user)}
-                                        className={styles['modal-unfollow']}
-                                    >
-                                        Отписаться
-                                    </button>
-                                )
-                            ) : null}
-                        </div>
-                    ))}
-                {inModal && (user as any)[inModal].length === 0 && (
-                    <div className={styles['modal-empty']}>Список пуст.</div>
-                )}
+                {inModal && (user as any)[inModal].length !== 0 
+                ?   (user as any)[inModal].map((user: User) => <UserCard follow={follow} unfollow={unfollow} user={user} /> )
+                :   <div className={styles['modal-empty']}>Список пуст.</div>
+                }
             </FullscreenModal>
             <div className={styles.profile}>
                 <div className={styles.avatar}>
