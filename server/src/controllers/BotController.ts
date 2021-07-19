@@ -94,6 +94,11 @@ async function unvote(req: Request, res: Response) {}
 
 async function remove(req: Request, res: Response) {}
 
+async function report(req: Request, res: Response) {
+    (req as any).client.emit('report-bot', (req as any).client, (req as any).bot, req.user, req.body.message)
+    res.send(200)  
+}
+
 export default {
     getAllBots,
     getBot,
@@ -111,5 +116,6 @@ export default {
     update,
     vote,
     unvote,
-    remove
+    remove,
+    report
 }

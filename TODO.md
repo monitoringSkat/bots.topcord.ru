@@ -23,8 +23,8 @@
 -   [x] Comment component
 -   [x] Stars component
 -   [x] Follower/Following component
--   [X] Sort bots
--   [ ] Report system
+-   [x] Sort bots
+-   [X] Report system
 -   [ ] Edit bots
 -   [ ] IP bans
 -   [ ] User site roles (Moderator: delete bots, Admin: ban users)

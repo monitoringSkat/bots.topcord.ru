@@ -39,10 +39,11 @@ const botsRouter = Router()
 // botsRouter.post('/:id/vote', BotController.vote)
 // botsRouter.post('/:id/unvote', BotController.unvote)
 // botsRouter.post('/:id/guilds', BotController.setBotGuilds)
+botsRouter.post('/:id/report', [ checkAuth, findBot() ], BotController.report)
 
 // DELETE
 // botsRouter.delete('/', BotController.remove)
-
+ 
 botsRouter.get('/', async (req, res) => {
     const { c, q } = req.query
     if (c === 'all')

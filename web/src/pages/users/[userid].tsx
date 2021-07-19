@@ -33,8 +33,6 @@ const UserPage = ({ token, userid }: Props) => {
         setShow(false)
     }, [token, userid])
 
-
-
     const follow = async (u: User | undefined = user) => {
         const data = api.followUser(u?.id)
         if (!data) return
@@ -53,7 +51,6 @@ const UserPage = ({ token, userid }: Props) => {
                 following => following.id !== u?.id
             )
         })
-        
     }
 
     const modalTypeChange = (type: 'followers' | 'following') => {
@@ -67,10 +64,17 @@ const UserPage = ({ token, userid }: Props) => {
                 title={inModal === 'followers' ? 'Подписчики' : 'Подписки'}
                 state={{ show, setShow }}
             >
-                {inModal && (user as any)[inModal].length !== 0 
-                ?   (user as any)[inModal].map((user: User) => <UserCard follow={follow} unfollow={unfollow} user={user} /> )
-                :   <div className={styles['modal-empty']}>Список пуст.</div>
-                }
+                {inModal && (user as any)[inModal].length !== 0 ? (
+                    (user as any)[inModal].map((user: User) => (
+                        <UserCard
+                            follow={follow}
+                            unfollow={unfollow}
+                            user={user}
+                        />
+                    ))
+                ) : (
+                    <div className={styles['modal-empty']}>Список пуст.</div>
+                )}
             </FullscreenModal>
             <div className={styles.profile}>
                 <div className={styles.avatar}>

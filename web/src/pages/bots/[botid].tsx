@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next'
 import Link from 'next/link'
 import { useState, useContext } from 'react'
-import { Container } from 'react-bootstrap'
+import { Button, Container } from 'react-bootstrap'
 import config from '../../config'
 import Bot from '../../interfaces/bot.interface'
 import Layout from '../../layout'
@@ -13,6 +13,7 @@ import IComment from '../../interfaces/comment.interface'
 import Stars from '../../components/Stars/Stars'
 import Comment from '../../components/Comment/Comment'
 import api from '../../api'
+import ReportModal from '../../components/ReportModal/ReportModal'
 
 interface Props {
     bot: Bot
@@ -27,6 +28,7 @@ function BotPage(props: Props) {
     const [editableComment, setEditableComment] = useState<IComment | null>(
         null
     )
+    const [showReportModal, setShowReportModal] = useState<boolean>(false)
 
     const createComment = async () => {
         const data = await api.createComment({
@@ -92,12 +94,19 @@ function BotPage(props: Props) {
         const comments = bot.comments.filter(c => c.id !== comment.id)
         setBot({ ...bot, comments })
     }
+
     return (
         <Layout>
             <Container>
+                <ReportModal setShow={setShowReportModal} bot={bot} isShow={showReportModal} />
                 <div className={styles.info}>
                     <div className={styles['avatar-container']}>
                         <img className={styles.avatar} src={bot.avatar} />
+                        {user.id !== bot.owner.id ? <>
+                            <button className={styles.edit}>Редактировать</button>
+                            <button className={styles.delete}>Удалить</button>
+                        </> :  <button onClick={() => setShowReportModal(true)} className={styles.report}>Пожаловаться</button>
+                        }   
                     </div>
                     <div className={styles.passport}>
                         <div className={styles.header}>

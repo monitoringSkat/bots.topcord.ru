@@ -1,6 +1,13 @@
 import Layout from '../../layout'
 import styles from '../../../styles/pages/bots.module.scss'
-import { Dropdown, DropdownButton, Container, Row, Col, Button } from 'react-bootstrap'
+import {
+    Dropdown,
+    DropdownButton,
+    Container,
+    Row,
+    Col,
+    Button
+} from 'react-bootstrap'
 import Bot from '../../interfaces/bot.interface'
 import config from '../../config'
 import Bots from '../../components/Bots/Bots'
@@ -11,24 +18,34 @@ interface Props {
     bots: Bot[]
 }
 
-const sortMethods = ["Голосам", "Количеству серверов", "Количеству комментариев","По дате обновления"]
+const sortMethods = [
+    'Голосам',
+    'Количеству серверов',
+    'Количеству комментариев',
+    'По дате обновления'
+]
 
 function BotsPage({ bots }: Props) {
     const [sortMethod, setSortMethod] = useState<string | null>(null)
-    const [ library, setLibrary ] = useState<string | null>(null)
+    const [library, setLibrary] = useState<string | null>(null)
 
-    const sortedBots = bots.sort((a, b) => {
-        switch(sortMethod) {
-            case "Количеству серверов":
-                return b.guildsCount - a.guildsCount
-            case "По дате обновления":
-                return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-            case "Количеству комментариев":
-                return b.comments.length - a.comments.length
-            default: 
-                return b.votes.length - a.votes.length
-        }
-    }).filter((bot) => library ? bot.library === library : true)
+    const sortedBots = bots
+        .sort((a, b) => {
+            switch (sortMethod) {
+                case 'Количеству серверов':
+                    return b.guildsCount - a.guildsCount
+                case 'По дате обновления':
+                    return (
+                        new Date(b.updatedAt).getTime() -
+                        new Date(a.updatedAt).getTime()
+                    )
+                case 'Количеству комментариев':
+                    return b.comments.length - a.comments.length
+                default:
+                    return b.votes.length - a.votes.length
+            }
+        })
+        .filter(bot => (library ? bot.library === library : true))
 
     const resetFilter = () => {
         setSortMethod(null)
@@ -48,26 +65,41 @@ function BotsPage({ bots }: Props) {
                             <DropdownButton
                                 onSelect={e => setSortMethod(e)}
                                 id="dropdown-basic-button"
-                                title={sortMethod || "Сортировоть по"}
+                                title={sortMethod || 'Сортировоть по'}
                             >
-                                {sortMethods.map(method => 
-                                <Dropdown.Item onClick={e => e.preventDefault()} href={method}>
-                                    {method}
-                                </Dropdown.Item>
-                                )}
+                                {sortMethods.map(method => (
+                                    <Dropdown.Item
+                                        onClick={e => e.preventDefault()}
+                                        href={method}
+                                    >
+                                        {method}
+                                    </Dropdown.Item>
+                                ))}
                             </DropdownButton>
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title={library || "Библиотека"}
+                                title={library || 'Библиотека'}
                                 onSelect={e => setLibrary(e)}
                             >
                                 {libraries.map((lib: string) => (
-                                    <Dropdown.Item key={lib} onClick={e => e.preventDefault()} href={lib}>
+                                    <Dropdown.Item
+                                        key={lib}
+                                        onClick={e => e.preventDefault()}
+                                        href={lib}
+                                    >
                                         {lib}
                                     </Dropdown.Item>
                                 ))}
                             </DropdownButton>
-                            <Button variant="danger" onClick={resetFilter} disabled={!library?.length && !sortMethod?.length}>Очистить фильтр</Button>
+                            <Button
+                                variant="danger"
+                                onClick={resetFilter}
+                                disabled={
+                                    !library?.length && !sortMethod?.length
+                                }
+                            >
+                                Очистить фильтр
+                            </Button>
                         </div>
                     </Col>
                 </Row>
