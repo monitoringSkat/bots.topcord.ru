@@ -3,7 +3,7 @@ import { body, validationResult } from 'express-validator'
 import User from '../entities/User'
 import UserNotFoundException from '../exceptions/user-not-found.exeption'
 import checkAuth from '../middlewares/checkAuth.middleware'
-import UserController from "../controllers/UserController"
+import UserController from '../controllers/UserController'
 import checkPermissions from '../middlewares/checkPermissions'
 
 const usersRouter = Router()
@@ -15,9 +15,16 @@ const usersRouter = Router()
 // usersRouter.post('/:id/follow', UserController.follow)
 // usersRouter.post('/:id/unfollow', UserController.unfollow)
 // usersRouter.post('/update', UserController.update)
-usersRouter.post('/:id/ban', [checkAuth, checkPermissions(["member"]) ], UserController.ban)
-usersRouter.post('/:id/unban', [checkAuth, checkPermissions(["member"])], UserController.unban)
-
+usersRouter.post(
+    '/:id/ban',
+    [checkAuth, checkPermissions(['member'])],
+    UserController.ban
+)
+usersRouter.post(
+    '/:id/unban',
+    [checkAuth, checkPermissions(['member'])],
+    UserController.unban
+)
 
 usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
     const userId = (req.user as any).id

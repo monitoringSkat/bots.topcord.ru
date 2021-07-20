@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         avatar: '',
         verified: false,
         bots: [],
-        role: "member",
+        role: 'member',
         bio: '',
         banned: false,
         social: {

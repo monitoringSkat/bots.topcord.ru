@@ -25,9 +25,9 @@
 -   [x] Follower/Following component
 -   [x] Sort bots
 -   [x] Report system
--   [X] IP bans
--   [X] User site roles (Moderator: delete bots, Admin: ban users)
--   [ ] Edit bots
+-   [x] IP bans
+-   [x] User site roles (Moderator: delete bots, Admin: ban users)
+-   [X] Edit bots
 
 ## Other
 

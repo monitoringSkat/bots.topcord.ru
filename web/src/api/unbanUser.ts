@@ -1,13 +1,17 @@
-import getAccessToken from "./getAccessToken"
-import http from "./http"
+import getAccessToken from './getAccessToken'
+import http from './http'
 
 async function unbanUser(id: string) {
-    const { data } = await http.post(`/users/${id}/unban`, {}, {
-        headers: {
-            Authorization: `Bearer: ${getAccessToken()}`
+    const { data } = await http.post(
+        `/users/${id}/unban`,
+        {},
+        {
+            headers: {
+                Authorization: `Bearer: ${getAccessToken()}`
+            }
         }
-    })
-    return data === "OK"
+    )
+    return data === 'OK'
 }
 
 export default unbanUser

@@ -11,6 +11,10 @@
     font-size: 18px;
     margin: 5px 0;
     outline: none;
+    &:disabled {
+        background: #4f545c !important;
+        color: white !important;
+    }
 }
 
 .textareaContainer {

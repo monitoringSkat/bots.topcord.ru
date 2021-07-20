@@ -21,7 +21,7 @@ const AddPage = () => {
     const [bot, setBot] = useState<Bot>()
     const [open, setOpen] = useState(false)
     const router = useRouter()
-    const [ isEdit, setEdit ] = useState(false)
+    const [isEdit, setEdit] = useState(false)
     const {
         dirty,
         values,
@@ -53,8 +53,8 @@ const AddPage = () => {
                 .slice(0, 5)
                 .map((t: string) => t.slice(0, 15))
             const developers = fromStringToArray(values.developers)
-            const { data } = await http[isEdit ? "put" : "post"](
-                '/bots',
+            const { data } = await http[isEdit ? 'put' : 'post'](
+                "/bots",
                 { ...values, tags, developers },
                 {
                     headers: {
@@ -73,18 +73,19 @@ const AddPage = () => {
         }
     })
 
-        
     useEffect(() => {
         if (!router.query.botId) return
         api.getBot(router.query.botId as string).then(bot => {
             if (bot && bot.id === router.query.botId) {
                 const tags = bot.tags.map((tag: any) => tag.name).join()
-                const developers = bot.developers.map((developer: User) => developer.id).join()
-                setValues({...values, ...bot, developers, tags})
+                const developers = bot.developers
+                    .map((developer: User) => developer.id)
+                    .join()
+                setValues({ ...values, ...bot, developers, tags })
                 setEdit(true)
             }
         })
-    }, [ router.query.botId ])
+    }, [router.query.botId])
 
     const tags = fromStringToArray(values.tags)
         .slice(0, 5)
@@ -105,11 +106,13 @@ const AddPage = () => {
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={open}
                 onClose={handleClose}
-                message={`Бот ${bot?.name} был успешно добавлен!`}
+                message={`Бот ${bot?.name} был успешно ${isEdit ? "обновлен" : "добавлен"}!`}
                 action={action}
             />
 
-            <div className={styles.title}>{isEdit ? "Редактирование" : "Добавление"} бота</div>
+            <div className={styles.title}>
+                {isEdit ? 'Редактирование' : 'Добавление'} бота
+            </div>
             <form onSubmit={handleSubmit} className={styles.inputs}>
                 {fields.map(
                     ({ placeholder, name, hint, required, type, options }) => (
@@ -142,6 +145,7 @@ const AddPage = () => {
                                         ? developers
                                         : (values as any)[name]
                                 }
+                                disabled={name === "id" && isEdit}
                                 options={options}
                                 name={name}
                                 placeholder={placeholder}
@@ -162,7 +166,7 @@ const AddPage = () => {
                         disabled={!(isValid && dirty && checked)}
                         type="submit"
                     >
-                        Добавить бота
+                       {isEdit ? "Обновить бота" : "Добавить бота"}
                     </button>
                 </div>
             </form>

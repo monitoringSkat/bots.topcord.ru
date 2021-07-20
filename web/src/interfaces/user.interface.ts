@@ -5,7 +5,7 @@ interface User {
     username: string
     discriminator: string | number
     verified: boolean
-    role: "admin" | "member" | "moderator" | "developer"
+    role: 'admin' | 'member' | 'moderator' | 'developer'
     avatar: string
     bots: Bot[]
     bio: string

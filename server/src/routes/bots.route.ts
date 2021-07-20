@@ -21,87 +21,31 @@ import BotController from '../controllers/BotController'
 const botsRouter = Router()
 
 // GET
-
-// botsRouter.get('/all', BotController.getAllBots)
-// botsRouter.get('/top', BotController.getTopBots)
-// botsRouter.get('/new', BotController.getNewBots)
-// botsRouter.get('/:id/developers', BotController.getBotDevelopers)
-// botsRouter.get('/:id/owner', BotController.getBotOwner)
-// botsRouter.get('/:id/comments', BotController.getBotComments)
-// botsRouter.get('/:id/stats', BotController.getBotStats)
-// botsRouter.get('/:id/votes', BotController.getBotVotes)
-// botsRouter.get('/:id/rating', BotController.getBotRating)
+botsRouter.get('/all', BotController.getAllBots)
+botsRouter.get('/top', BotController.getTopBots)
+botsRouter.get('/new', BotController.getNewBots)
+botsRouter.get('/search', BotController.getBotsByQuery)
+botsRouter.get('/:id', BotController.getBot)
+botsRouter.get('/:id/owner', BotController.getBotOwner)
+botsRouter.get('/:id/developers', BotController.getBotDevelopers)
+botsRouter.get('/:id/comments', BotController.getBotComments)
+botsRouter.get('/:id/stats', BotController.getBotStats)
+botsRouter.get('/:id/votes', BotController.getBotVotes)
+botsRouter.get('/:id/rating', BotController.getBotRating)
+botsRouter.get('/:id/guilds', BotController.getBotGuilds)
 
 // POST
-
-// botsRouter.post('/', BotController.create)
-// botsRouter.post('/:id', BotController.update)
-// botsRouter.post('/:id/vote', BotController.vote)
-// botsRouter.post('/:id/unvote', BotController.unvote)
-// botsRouter.post('/:id/guilds', BotController.setBotGuilds)
+botsRouter.post('/', BotController.create)
+botsRouter.post('/:id/vote', BotController.vote)
+botsRouter.post('/:id/unvote', BotController.unvote)
 botsRouter.post('/:id/report', [checkAuth, findBot()], BotController.report)
+
+// PUT
+botsRouter.put('/', [ checkAuth, findBot() ], BotController.update)
+botsRouter.put('/:id/guilds', BotController.setBotGuilds)
 
 // DELETE
 botsRouter.delete('/:id', [checkAuth, findBot()], BotController.remove)
-
-botsRouter.get('/', async (req, res) => {
-    const { c, q } = req.query
-    if (c === 'all')
-        return res.send(
-            await Bot.find({
-                order: { votes: 'DESC' },
-                relations: ['comments']
-            })
-        )
-    if (q) {
-        const bots = await getConnection()
-            .getRepository(Bot)
-            .createQueryBuilder()
-            .select()
-            .where('name ILIKE :q', { q: `%${q}%` })
-            .getMany()
-        return res.send(bots)
-    }
-
-    const newBots = (
-        await Bot.find({
-            where: { verified: true },
-            relations: ['comments'],
-            order: { createdAt: 'DESC' } // new bots filter
-        })
-    ).slice(0, 20)
-
-    const topBots = (
-        await Bot.find({
-            where: { verified: true },
-            relations: ['comments'],
-            order: { votes: 'DESC' }
-        })
-    ).slice(0, 20)
-
-    res.send({
-        newBots,
-        topBots
-    })
-})
-
-botsRouter.get(
-    '/:id',
-    [
-        findBot({
-            relations: [
-                'owner',
-                'comments',
-                'comments.author',
-                'tags',
-                'developers'
-            ]
-        })
-    ],
-    async (req, res) => {
-        res.send(req.bot)
-    }
-)
 
 // POST
 
@@ -316,27 +260,26 @@ botsRouter.post(
 
 // PUT
 
-botsRouter.put(
-    '/:id',
-    [
-        checkAuth,
-        rateLimit({
-            windowMs: Minutes.HOUR,
-            max: 100
-        }),
-        body('name').notEmpty().isString(),
-        body('id').notEmpty().isString(),
-        body('prefix').notEmpty().isString(),
-        body('description').notEmpty().isString(),
-        body('tags').isArray().notEmpty()
-    ],
-    async (req: Request, res: Response) => {
-        const errors = validationResult(req)
-        if (!errors.isEmpty()) return res.send({ errors: errors.array() })
-        await Bot.update({ id: req.params.id }, req.body)
-        res.send(true)
-    }
-)
-
+// botsRouter.put(
+//     '/:id',
+//     [
+//         checkAuth,
+//         rateLimit({
+//             windowMs: Minutes.HOUR,
+//             max: 100
+//         }),
+//         body('name').notEmpty().isString(),
+//         body('id').notEmpty().isString(),
+//         body('prefix').notEmpty().isString(),
+//         body('description').notEmpty().isString(),
+//         body('tags').isArray().notEmpty()
+//     ],
+//     async (req: Request, res: Response) => {
+//         const errors = validationResult(req)
+//         if (!errors.isEmpty()) return res.send({ errors: errors.array() })
+//         await Bot.update({ id: req.params.id }, req.body)
+//         res.send(true)
+//     }
+// )
 
 export default botsRouter

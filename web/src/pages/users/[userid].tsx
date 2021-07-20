@@ -56,18 +56,17 @@ const UserPage = ({ token, userid }: Props) => {
         setShow(true)
     }
 
-    const ban = async() => {
+    const ban = async () => {
         const data = await api.banUser(user?.id as string)
         console.log(data)
         if (!data) return
-        if (user) setUser({...user, banned: true} as any)
-        
+        if (user) setUser({ ...user, banned: true } as any)
     }
 
-    const unban = async() => {
+    const unban = async () => {
         const data = await api.unbanUser(user?.id as string)
         if (!data) return
-        if (user) setUser({...user, banned: false} as any)
+        if (user) setUser({ ...user, banned: false } as any)
     }
 
     return (
@@ -91,30 +90,37 @@ const UserPage = ({ token, userid }: Props) => {
             <div className={styles.profile}>
                 <div className={styles.avatar}>
                     <img src={user?.avatar} />
-                    {user?.id === context.user.id && <Link href="/settings">Редактировать</Link>}
-                    {context.user.id !== user?.id && (context.user.following.find(
-                          following => following.id === user?.id
-                      ) ? (
-                        <button
-                            onClick={() => unfollow()}
-                            className={styles.unfollow}
-                        >
-                            Отписаться
+                    {user?.id === context.user.id && (
+                        <Link href="/settings">Редактировать</Link>
+                    )}
+                    {context.user.id !== user?.id &&
+                        (context.user.following.find(
+                            following => following.id === user?.id
+                        ) ? (
+                            <button
+                                onClick={() => unfollow()}
+                                className={styles.unfollow}
+                            >
+                                Отписаться
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => follow()}
+                                className={styles.follow}
+                            >
+                                Подписаться
+                            </button>
+                        ))}
+                    {user?.id === context.user.id ||
+                    context.user.role !== 'admin' ? null : !user?.banned ? (
+                        <button onClick={ban} className={styles.ban}>
+                            Забанить
                         </button>
                     ) : (
-                        <button
-                            onClick={() => follow()}
-                            className={styles.follow}
-                        > 
-                            Подписаться
+                        <button onClick={unban} className={styles.unban}>
+                            Разбанить
                         </button>
-                    ))}
-                    {user?.id === context.user.id || context.user.role !== "admin" ? null : 
-                     !user?.banned ? 
-                        <button onClick={ban} className={styles.ban}>Забанить</button> :
-                        <button onClick={unban} className={styles.unban}>Разбанить</button>
-                    }
-                    
+                    )}
                 </div>
                 <div className={styles.info}>
                     <div className={styles.passport}>

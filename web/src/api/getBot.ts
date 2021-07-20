@@ -1,4 +1,4 @@
-import http from "./http"
+import http from './http'
 
 async function getBot(id: string) {
     const { data } = await http.get(`/bots/${id}`)

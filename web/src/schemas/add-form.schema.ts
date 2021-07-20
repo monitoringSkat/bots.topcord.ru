@@ -23,7 +23,10 @@ const addFormSchema = object().shape({
     supportServerURL: string().url().nullable(),
     githubURL: string().url().nullable(),
     developers: string(),
-    library: string().equals(libraries).default("discord.js").required('Укажите библиотеку бота!')
+    library: string()
+        .equals(libraries)
+        .default('discord.js')
+        .required('Укажите библиотеку бота!')
 })
 
 export default addFormSchema

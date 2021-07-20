@@ -19,12 +19,12 @@ async function checkAuth(req: Request, res: Response, next: Function) {
 
     const user = await User.findOne(data as string)
     if (!user) return res.send(authError)
-    
+
     const ipAddress = getUserIP(req)
     const users = await BlackList.find({ where: { ip: ipAddress } })
 
-    if (user.banned || users.length && ipAddress) return res.send(new BanException())
-    
+    if (user.banned || (users.length && ipAddress))
+        return res.send(new BanException())
     ;(req.user as any) = user
     return next()
 }

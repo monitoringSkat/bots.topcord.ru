@@ -12,7 +12,7 @@ import followUser from './followUser'
 import unfollowUser from './unfollowUser'
 import sendReport from './sendReport'
 import deleteBot from './deleteBot'
-import getBot from "./getBot"
+import getBot from './getBot'
 import unbanUser from './unbanUser'
 import banUser from './banUser'
 

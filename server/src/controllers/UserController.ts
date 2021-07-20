@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { getConnection } from "typeorm"
+import { getConnection } from 'typeorm'
 import BlackList from '../entities/BlackList'
 import User from '../entities/User'
 
@@ -15,7 +15,7 @@ async function getUserComments(req: Request, res: Response) {}
 
 async function ban(req: Request, res: Response) {
     const userId = req.params.id
-    const user = await User.findOne(userId, { select: ["id", "ip", "banned" ] })
+    const user = await User.findOne(userId, { select: ['id', 'ip', 'banned'] })
     if (user.banned) return res.send(200)
     user.banned = true
     await user.save()
@@ -23,17 +23,17 @@ async function ban(req: Request, res: Response) {
     await BlackList.create({
         user_id: user.id,
         ip: user.ip
-    }) 
+    })
     res.send(200)
 }
 
 async function unban(req: Request, res: Response) {
     const userId = req.params.id
-    const user = await User.findOne(userId, { select: ["id", "ip", "banned" ] })
+    const user = await User.findOne(userId, { select: ['id', 'ip', 'banned'] })
     user.banned = false
     await user.save()
     if (!user.ip) return res.send(200)
-    const inList = await BlackList.findOne({ user_id: user.id, ip: user.ip }) 
+    const inList = await BlackList.findOne({ user_id: user.id, ip: user.ip })
     await inList.remove()
     res.send(200)
 }
