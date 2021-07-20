@@ -1,5 +1,5 @@
 import { FC, InputHTMLAttributes, useState } from 'react'
-import styles from './Input.module.css'
+import styles from './Input.module.scss'
 import Markdown from '../Markdown/Markdown'
 
 interface Props extends InputHTMLAttributes<any> {
@@ -37,6 +37,7 @@ const Input: FC<Props> = props => {
                 <select
                     className={styles.select}
                     name={props.name}
+                    value={props.value}
                     onChange={e =>
                         props.selectHandler?.(e.target.name, e.target.value)
                     }

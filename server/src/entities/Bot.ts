@@ -71,7 +71,7 @@ class Bot extends BaseEntity {
     @Column({ nullable: true })
     inviteURL: string
 
-    @ManyToMany(() => User, user => user.bots)
+    @ManyToMany(() => User, user => user.bots, { onDelete: 'CASCADE' })
     @JoinTable()
     developers: User[]
 
@@ -81,7 +81,7 @@ class Bot extends BaseEntity {
     @OneToMany(() => Comment, comment => comment.bot)
     comments: Comment[]
 
-    @ManyToMany(() => Tag, tag => tag.bots)
+    @ManyToMany(() => Tag, tag => tag.bots, { onDelete: 'CASCADE' })
     @JoinTable()
     tags: Tag[]
 }

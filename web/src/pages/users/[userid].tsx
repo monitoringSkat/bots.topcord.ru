@@ -1,4 +1,3 @@
-import config from '../../config'
 import User from '../../interfaces/user.interface'
 import Layout from '../../layout'
 import styles from '../../../styles/pages/user.module.scss'
@@ -9,7 +8,6 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
-import http from '../../api/http'
 import FullscreenModal from '../../components/Modal/Modal'
 import api from '../../api'
 import UserCard from '../../components/UserCard/UserCard'
@@ -33,8 +31,6 @@ const UserPage = ({ token, userid }: Props) => {
         setShow(false)
     }, [token, userid])
 
-
-
     const follow = async (u: User | undefined = user) => {
         const data = api.followUser(u?.id)
         if (!data) return
@@ -53,12 +49,24 @@ const UserPage = ({ token, userid }: Props) => {
                 following => following.id !== u?.id
             )
         })
-        
     }
 
     const modalTypeChange = (type: 'followers' | 'following') => {
         setInModal(type)
         setShow(true)
+    }
+
+    const ban = async () => {
+        const data = await api.banUser(user?.id as string)
+        console.log(data)
+        if (!data) return
+        if (user) setUser({ ...user, banned: true } as any)
+    }
+
+    const unban = async () => {
+        const data = await api.unbanUser(user?.id as string)
+        if (!data) return
+        if (user) setUser({ ...user, banned: false } as any)
     }
 
     return (
@@ -67,31 +75,50 @@ const UserPage = ({ token, userid }: Props) => {
                 title={inModal === 'followers' ? 'Подписчики' : 'Подписки'}
                 state={{ show, setShow }}
             >
-                {inModal && (user as any)[inModal].length !== 0 
-                ?   (user as any)[inModal].map((user: User) => <UserCard follow={follow} unfollow={unfollow} user={user} /> )
-                :   <div className={styles['modal-empty']}>Список пуст.</div>
-                }
+                {inModal && (user as any)[inModal].length !== 0 ? (
+                    (user as any)[inModal].map((user: User) => (
+                        <UserCard
+                            follow={follow}
+                            unfollow={unfollow}
+                            user={user}
+                        />
+                    ))
+                ) : (
+                    <div className={styles['modal-empty']}>Список пуст.</div>
+                )}
             </FullscreenModal>
             <div className={styles.profile}>
                 <div className={styles.avatar}>
                     <img src={user?.avatar} />
-                    {user && user.id === context.user.id ? (
+                    {user?.id === context.user.id && (
                         <Link href="/settings">Редактировать</Link>
-                    ) : context.user.following.find(
-                          following => following.id === user?.id
-                      ) ? (
-                        <button
-                            onClick={() => unfollow()}
-                            className={styles.unfollow}
-                        >
-                            Отписаться
+                    )}
+                    {context.user.id !== user?.id &&
+                        (context.user.following.find(
+                            following => following.id === user?.id
+                        ) ? (
+                            <button
+                                onClick={() => unfollow()}
+                                className={styles.unfollow}
+                            >
+                                Отписаться
+                            </button>
+                        ) : (
+                            <button
+                                onClick={() => follow()}
+                                className={styles.follow}
+                            >
+                                Подписаться
+                            </button>
+                        ))}
+                    {user?.id === context.user.id ||
+                    context.user.role !== 'admin' ? null : !user?.banned ? (
+                        <button onClick={ban} className={styles.ban}>
+                            Забанить
                         </button>
                     ) : (
-                        <button
-                            onClick={() => follow()}
-                            className={styles.follow}
-                        >
-                            Подписаться
+                        <button onClick={unban} className={styles.unban}>
+                            Разбанить
                         </button>
                     )}
                 </div>

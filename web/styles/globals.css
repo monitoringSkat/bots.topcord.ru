@@ -107,24 +107,27 @@ h4 {
     color: white !important;
 }
 
-.modal-dialog {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 60vw;
-    outline: 2px solid #5865f2;
-    border-radius: 5px;
-    max-height: 90vh;
-    overflow: auto;
-}
-
-.modal-dialog * {
+.modal-dialog *:not(input) {
     background: #1d1f23 !important;
     color: white;
 }
 
-.modal-body {
-    min-height: 83vh;
+.modal-dialog input,
+textarea {
+    background: #36393e !important;
+    color: white;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    font-size: 18px;
+    margin: 5px 0;
+    outline: none;
+    border: 1px solid #36393e;
+    max-height: 500px;
+}
+
+.modal-dialog input::placeholder,
+textarea::placeholder {
+    color: white;
 }

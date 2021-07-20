@@ -5,12 +5,13 @@ interface User {
     username: string
     discriminator: string | number
     verified: boolean
-    role: string
+    role: 'admin' | 'member' | 'moderator' | 'developer'
     avatar: string
     bots: Bot[]
     bio: string
     followers: User[]
     following: User[]
+    banned: boolean
     social: {
         github?: string | null
         vk?: string | null

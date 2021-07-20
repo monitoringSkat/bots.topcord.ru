@@ -23,11 +23,11 @@
 -   [x] Comment component
 -   [x] Stars component
 -   [x] Follower/Following component
--   [X] Sort bots
--   [ ] Report system
--   [ ] Edit bots
--   [ ] IP bans
--   [ ] User site roles (Moderator: delete bots, Admin: ban users)
+-   [x] Sort bots
+-   [x] Report system
+-   [x] IP bans
+-   [x] User site roles (Moderator: delete bots, Admin: ban users)
+-   [X] Edit bots
 
 ## Other
 

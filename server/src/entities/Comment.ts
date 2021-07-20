@@ -19,7 +19,7 @@ class Comment extends BaseEntity {
     @Column()
     rating: number
 
-    @ManyToOne(() => User, user => user.comments)
+    @ManyToOne(() => User, user => user.comments, { onDelete: 'CASCADE' })
     author: User
 
     @Column({ default: new Date().toLocaleDateString() })
@@ -31,7 +31,7 @@ class Comment extends BaseEntity {
     @Column('text', { default: [], array: true })
     dislikes: string[]
 
-    @ManyToOne(() => Bot, bot => bot.comments)
+    @ManyToOne(() => Bot, bot => bot.comments, { onDelete: 'CASCADE' })
     bot: Bot
 }
 

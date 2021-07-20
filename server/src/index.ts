@@ -10,7 +10,6 @@ import botsRouter from './routes/bots.route'
 import authRouter from './routes/auth.route'
 import bootstrapBot from './bot'
 import checkOrigin from './utils/checkOrigin'
-import ip from './middlewares/checkIP.middleware'
 import dotenv from 'dotenv'
 import compression from 'compression'
 import swagger from 'swagger-ui-express'
@@ -67,9 +66,6 @@ orm.createConnection()
             ;(req as any).client = client
             next()
         })
-        if (mode !== 'development') {
-            app.use(ip)
-        }
         app.use(
             cors({
                 origin: (origin, cb) => {

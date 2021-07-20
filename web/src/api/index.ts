@@ -10,6 +10,11 @@ import unvoteBot from './unvoteBot'
 import createComment from './createComment'
 import followUser from './followUser'
 import unfollowUser from './unfollowUser'
+import sendReport from './sendReport'
+import deleteBot from './deleteBot'
+import getBot from './getBot'
+import unbanUser from './unbanUser'
+import banUser from './banUser'
 
 export default {
     deleteComment,
@@ -23,5 +28,10 @@ export default {
     voteBot,
     unvoteBot,
     followUser,
-    unfollowUser
+    unfollowUser,
+    sendReport,
+    deleteBot,
+    getBot,
+    unbanUser,
+    banUser
 }

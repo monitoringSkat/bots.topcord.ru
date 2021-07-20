@@ -19,11 +19,14 @@ const addFormSchema = object().shape({
         .required('Подробное описание бота не должно быть пустым!'),
 
     inviteURL: string().url().required('Ссылка приглашения бота отсутствует'),
-    background: string().url(),
-    supportServerURL: string().url(),
-    githubURL: string().url(),
+    background: string().url().nullable(),
+    supportServerURL: string().url().nullable(),
+    githubURL: string().url().nullable(),
     developers: string(),
-    library: string().equals(libraries).required('Укажите библиотеку бота!')
+    library: string()
+        .equals(libraries)
+        .default('discord.js')
+        .required('Укажите библиотеку бота!')
 })
 
 export default addFormSchema

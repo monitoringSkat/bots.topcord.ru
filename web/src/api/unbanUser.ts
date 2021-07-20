@@ -1,17 +1,17 @@
 import getAccessToken from './getAccessToken'
 import http from './http'
 
-async function followUser(id?: string) {
+async function unbanUser(id: string) {
     const { data } = await http.post(
-        `/users/${id}/follow`,
+        `/users/${id}/unban`,
         {},
         {
             headers: {
-                Authorization: `Bearer ${getAccessToken()}`
+                Authorization: `Bearer: ${getAccessToken()}`
             }
         }
     )
     return data === 'OK'
 }
 
-export default followUser
+export default unbanUser
