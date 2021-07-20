@@ -11,16 +11,22 @@
     width: 100%;
 }
 
+.col {
+    justify-content: center;
+}
+
 .card {
     border-radius: 5px;
     background: #1d1f23;
-    display: flex;
     width: 25%;
     padding: 15px;
     color: white;
-    margin-bottom: 1.5%;
+    margin-bottom: 5%;
     margin-right: 1.5%;
     transition: 0.4s;
+    min-width: 330px;
+    min-height: 315px;
+    
     &:hover {
         transition: 0.4s;
         box-shadow: 1px 1px 5px silver;
