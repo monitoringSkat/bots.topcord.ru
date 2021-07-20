@@ -1,4 +1,3 @@
-import config from '../../config'
 import User from '../../interfaces/user.interface'
 import Layout from '../../layout'
 import styles from '../../../styles/pages/user.module.scss'
@@ -9,7 +8,6 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
-import http from '../../api/http'
 import FullscreenModal from '../../components/Modal/Modal'
 import api from '../../api'
 import UserCard from '../../components/UserCard/UserCard'
@@ -58,6 +56,20 @@ const UserPage = ({ token, userid }: Props) => {
         setShow(true)
     }
 
+    const ban = async() => {
+        const data = await api.banUser(user?.id as string)
+        console.log(data)
+        if (!data) return
+        if (user) setUser({...user, banned: true} as any)
+        
+    }
+
+    const unban = async() => {
+        const data = await api.unbanUser(user?.id as string)
+        if (!data) return
+        if (user) setUser({...user, banned: false} as any)
+    }
+
     return (
         <Layout>
             <FullscreenModal
@@ -79,9 +91,8 @@ const UserPage = ({ token, userid }: Props) => {
             <div className={styles.profile}>
                 <div className={styles.avatar}>
                     <img src={user?.avatar} />
-                    {user && user.id === context.user.id ? (
-                        <Link href="/settings">Редактировать</Link>
-                    ) : context.user.following.find(
+                    {user?.id === context.user.id && <Link href="/settings">Редактировать</Link>}
+                    {context.user.id !== user?.id && (context.user.following.find(
                           following => following.id === user?.id
                       ) ? (
                         <button
@@ -94,10 +105,16 @@ const UserPage = ({ token, userid }: Props) => {
                         <button
                             onClick={() => follow()}
                             className={styles.follow}
-                        >
+                        > 
                             Подписаться
                         </button>
-                    )}
+                    ))}
+                    {user?.id === context.user.id || context.user.role !== "admin" ? null : 
+                     !user?.banned ? 
+                        <button onClick={ban} className={styles.ban}>Забанить</button> :
+                        <button onClick={unban} className={styles.unban}>Разбанить</button>
+                    }
+                    
                 </div>
                 <div className={styles.info}>
                     <div className={styles.passport}>

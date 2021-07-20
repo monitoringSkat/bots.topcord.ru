@@ -92,11 +92,21 @@ async function vote(req: Request, res: Response) {}
 
 async function unvote(req: Request, res: Response) {}
 
-async function remove(req: Request, res: Response) {}
+async function remove(req: Request, res: Response) {
+    const bot = (req as any).bot
+    await bot.remove()
+    res.send(200)
+}
 
 async function report(req: Request, res: Response) {
-    (req as any).client.emit('report-bot', (req as any).client, (req as any).bot, req.user, req.body.message)
-    res.send(200)  
+    ;(req as any).client.emit(
+        'report-bot',
+        (req as any).client,
+        (req as any).bot,
+        req.user,
+        req.body.message
+    )
+    res.send(200)
 }
 
 export default {

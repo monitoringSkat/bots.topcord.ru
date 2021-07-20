@@ -15,7 +15,7 @@ const bootstrapBot = async () => {
     const eventsFiles = fs.readdirSync(path.join(__dirname, 'events'))
     const commands = new Map<string, Command>()
     const events = new Map<string, Event>()
-
+ 
     for (const file of commandsFiles) {
         const command = require(`./commands/${file}`).default
         if (command?.name) commands.set(command.name, command)

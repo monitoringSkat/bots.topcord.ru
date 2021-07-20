@@ -1,5 +1,5 @@
 import Event from '../../interfaces/bot/event.interface'
-import dotenv from "dotenv"
+import dotenv from 'dotenv'
 import { Client } from 'discord.js'
 import User from '../../entities/User'
 import Bot from '../../entities/Bot'

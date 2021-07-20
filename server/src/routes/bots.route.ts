@@ -39,11 +39,11 @@ const botsRouter = Router()
 // botsRouter.post('/:id/vote', BotController.vote)
 // botsRouter.post('/:id/unvote', BotController.unvote)
 // botsRouter.post('/:id/guilds', BotController.setBotGuilds)
-botsRouter.post('/:id/report', [ checkAuth, findBot() ], BotController.report)
+botsRouter.post('/:id/report', [checkAuth, findBot()], BotController.report)
 
 // DELETE
-// botsRouter.delete('/', BotController.remove)
- 
+botsRouter.delete('/:id', [checkAuth, findBot()], BotController.remove)
+
 botsRouter.get('/', async (req, res) => {
     const { c, q } = req.query
     if (c === 'all')
@@ -338,16 +338,5 @@ botsRouter.put(
     }
 )
 
-// DELETE
-
-botsRouter.delete(
-    '/:id',
-    [checkAuth, findBot()],
-    (req: Request, res: Response) => {
-        const bot = (req as any).bot
-        bot.remove()
-        res.send(true)
-    }
-)
 
 export default botsRouter

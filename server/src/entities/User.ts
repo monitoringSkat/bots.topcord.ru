@@ -45,6 +45,9 @@ class User extends BaseEntity {
     })
     role: UserRoles
 
+    @Column({ default: false })
+    banned: boolean
+    
     // RELATIONS
 
     @OneToMany(() => Bot, bot => bot.owner)

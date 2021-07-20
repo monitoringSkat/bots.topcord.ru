@@ -14,6 +14,7 @@ import Stars from '../../components/Stars/Stars'
 import Comment from '../../components/Comment/Comment'
 import api from '../../api'
 import ReportModal from '../../components/ReportModal/ReportModal'
+import router from 'next/router'
 
 interface Props {
     bot: Bot
@@ -95,18 +96,40 @@ function BotPage(props: Props) {
         setBot({ ...bot, comments })
     }
 
+    const remove = async () => {
+        const data = await api.deleteBot(bot?.id)
+        if (!data) return
+        router.push('/users/me')
+    }
     return (
         <Layout>
             <Container>
-                <ReportModal setShow={setShowReportModal} bot={bot} isShow={showReportModal} />
+                <ReportModal
+                    setShow={setShowReportModal}
+                    bot={bot}
+                    isShow={showReportModal}
+                />
                 <div className={styles.info}>
                     <div className={styles['avatar-container']}>
                         <img className={styles.avatar} src={bot.avatar} />
-                        {user.id !== bot.owner.id ? <>
-                            <button className={styles.edit}>Редактировать</button>
-                            <button className={styles.delete}>Удалить</button>
-                        </> :  <button onClick={() => setShowReportModal(true)} className={styles.report}>Пожаловаться</button>
-                        }   
+                        {user.id === bot.owner.id &&  
+                        <button onClick={() => router.push(`/add?botId=${bot.id}`)} className={styles.edit}>
+                            Редактировать
+                        </button>
+                        }
+                        {user.id === bot.owner.id || ["moderator", "admin"].includes(user.role.toLowerCase()) ?
+                        <button onClick={remove} className={styles.delete}>
+                            Удалить
+                        </button> : null
+                        }
+
+                        {user.id !== bot.owner.id && 
+                        <button onClick={() => setShowReportModal(true)} className={styles.report}>
+                            Пожаловаться
+                        </button>
+                        }
+                        
+
                     </div>
                     <div className={styles.passport}>
                         <div className={styles.header}>

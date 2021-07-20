@@ -1,13 +1,13 @@
 .profile {
     width: 100%;
-    padding: 3.5% 4%;
+    padding: 2% 5%;
     background: url(/assets/user-background.jpg);
     height: 450px;
     display: flex;
     flex-wrap: wrap;
     .avatar {
-        width: 17.5%;
-        height: 95%;
+        width: 275px;
+        height: 275px;
         margin-right: 1.5%;
         img {
             width: 100%;
@@ -65,6 +65,7 @@
     border-radius: 100px;
     text-align: center;
     padding: 2.5px 30px;
+    user-select: none;
     background: rgba(80, 85, 93, 0.7);
 }
 
@@ -115,4 +116,12 @@
         background: #42454c;
         font-size: 16px;
     }
+}
+
+.ban {
+    background: #ed4245;
+}
+
+.unban {
+    background: #57f287;
 }

@@ -9,15 +9,16 @@ import config from '../config'
 import router from 'next/router'
 
 function MyApp({ Component, pageProps }: AppProps) {
-    const initialUser = {
+    const initialUser: User = {
         id: '',
         username: '',
         discriminator: '',
         avatar: '',
         verified: false,
         bots: [],
-        role: '',
+        role: "member",
         bio: '',
+        banned: false,
         social: {
             github: '',
             vk: '',

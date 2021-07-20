@@ -107,13 +107,13 @@ h4 {
     color: white !important;
 }
 
-
 .modal-dialog *:not(input) {
     background: #1d1f23 !important;
     color: white;
 }
 
-.modal-dialog input, textarea {
+.modal-dialog input,
+textarea {
     background: #36393e !important;
     color: white;
     width: 100%;
@@ -127,6 +127,7 @@ h4 {
     max-height: 500px;
 }
 
-.modal-dialog input::placeholder, textarea::placeholder {
+.modal-dialog input::placeholder,
+textarea::placeholder {
     color: white;
 }

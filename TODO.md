@@ -24,10 +24,10 @@
 -   [x] Stars component
 -   [x] Follower/Following component
 -   [x] Sort bots
--   [X] Report system
+-   [x] Report system
+-   [X] IP bans
+-   [X] User site roles (Moderator: delete bots, Admin: ban users)
 -   [ ] Edit bots
--   [ ] IP bans
--   [ ] User site roles (Moderator: delete bots, Admin: ban users)
 
 ## Other
 
