@@ -15,7 +15,7 @@ const SearchBotsInput = (props: Props) => {
     const getBotByQuery = (query: string) => async () => {
         if (!query) return
         setLoading(true)
-        const res = await fetch(`${config.SERVER_URL}/bots?q=${query}`)
+        const res = await fetch(`${config.SERVER_URL}/bots/search?q=${query}`)
         const bots = await res.json()
         setLoading(false)
         if (bots) setBots(bots)

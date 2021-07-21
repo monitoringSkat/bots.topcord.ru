@@ -6,6 +6,7 @@ import Bot from '../interfaces/bot.interface'
 import Bots from '../components/Bots/Bots'
 import SearchBotsInput from '../components/SearchBotsInput/SearchBotsInput'
 import { Container, Col, Row } from 'react-bootstrap'
+import http from '../api/http'
 interface Props {
     topBots: Bot[]
     newBots: Bot[]
@@ -64,9 +65,9 @@ const Home = ({ newBots, topBots }: Props) => {
 }
 
 Home.getInitialProps = async (): Promise<Props> => {
-    const res = await fetch(`${config.SERVER_URL}/bots`)
-    const bots = await res.json()
-    return bots
+    const topBots = await http.get(`/bots/top?limit=20`)
+    const newBots = await http.get(`/bots/new?limit=20`)
+    return { topBots: topBots.data, newBots: newBots.data }
 }
 
 export default Home

@@ -54,7 +54,7 @@ const AddPage = () => {
                 .map((t: string) => t.slice(0, 15))
             const developers = fromStringToArray(values.developers)
             const { data } = await http[isEdit ? 'put' : 'post'](
-                "/bots",
+                '/bots',
                 { ...values, tags, developers },
                 {
                     headers: {
@@ -106,7 +106,9 @@ const AddPage = () => {
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={open}
                 onClose={handleClose}
-                message={`Бот ${bot?.name} был успешно ${isEdit ? "обновлен" : "добавлен"}!`}
+                message={`Бот ${bot?.name} был успешно ${
+                    isEdit ? 'обновлен' : 'добавлен'
+                }!`}
                 action={action}
             />
 
@@ -145,7 +147,7 @@ const AddPage = () => {
                                         ? developers
                                         : (values as any)[name]
                                 }
-                                disabled={name === "id" && isEdit}
+                                disabled={name === 'id' && isEdit}
                                 options={options}
                                 name={name}
                                 placeholder={placeholder}
@@ -166,7 +168,7 @@ const AddPage = () => {
                         disabled={!(isValid && dirty && checked)}
                         type="submit"
                     >
-                       {isEdit ? "Обновить бота" : "Добавить бота"}
+                        {isEdit ? 'Обновить бота' : 'Добавить бота'}
                     </button>
                 </div>
             </form>

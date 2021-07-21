@@ -268,6 +268,7 @@ function BotPage(props: Props) {
                             isEdit={comment.id === editableComment?.id}
                             setCommentEdit={setEditableComment}
                             onCommentDelete={onCommentDelete}
+                            botId={bot.id}
                         />
                     ))}
                 </div>
@@ -277,10 +278,8 @@ function BotPage(props: Props) {
 }
 
 BotPage.getInitialProps = async ({ query }: NextPageContext) => {
-    const { botid } = query
-    const res = await fetch(`${config.SERVER_URL}/bots/${botid}`)
-    const bot = await res.json()
-    return { bot }
+    const { data } = await http.get(`/bots/${query.botid}`)
+    return { bot: data }
 }
 
 export default BotPage

@@ -14,6 +14,7 @@ interface Props {
     onCommentDelete?: (comment: IComment) => void
     onCommentUpdate?: (comment: IComment) => void
     setCommentEdit?: (comment: IComment | null) => void
+    botId: string
 }
 
 const Comment: React.FC<Props> = ({
@@ -21,21 +22,22 @@ const Comment: React.FC<Props> = ({
     isEdit = false,
     onCommentDelete,
     onCommentUpdate,
-    setCommentEdit
+    setCommentEdit,
+    botId
 }) => {
     const { user } = useContext(AuthContext)
     const isAuthor = user.id === comment.author.id
     const [commentary, setCommentary] = useState(comment)
 
     const edit = async () => {
-        const data = await api.editComment(commentary)
+        const data = await api.editComment(commentary, botId)
         if (!data) return
         onCommentUpdate?.(commentary)
         setCommentEdit?.(null)
     }
 
     const dislike = async () => {
-        const data = await api.dislikeComment(comment)
+        const data = await api.dislikeComment(comment, botId)
         if (!data || comment.dislikes.includes(user.id)) return
         onCommentUpdate?.({
             ...comment,
@@ -44,13 +46,13 @@ const Comment: React.FC<Props> = ({
     }
 
     const like = async () => {
-        const data = await api.likeComment(comment)
+        const data = await api.likeComment(comment, botId)
         if (!data || comment.likes.includes(user.id)) return
         onCommentUpdate?.({ ...comment, likes: [...comment.likes, user.id] })
     }
 
     const del = async () => {
-        const data = await api.deleteComment(comment)
+        const data = await api.deleteComment(comment, botId)
         if (data) onCommentDelete?.(comment)
     }
 

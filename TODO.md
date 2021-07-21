@@ -27,7 +27,7 @@
 -   [x] Report system
 -   [x] IP bans
 -   [x] User site roles (Moderator: delete bots, Admin: ban users)
--   [X] Edit bots
+-   [x] Edit bots
 
 ## Other
 

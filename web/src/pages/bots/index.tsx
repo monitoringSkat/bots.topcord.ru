@@ -14,6 +14,7 @@ import Bots from '../../components/Bots/Bots'
 import SearchBotsInput from '../../components/SearchBotsInput/SearchBotsInput'
 import libraries from '../../data/libraries.json'
 import { useState } from 'react'
+import http from '../../api/http'
 interface Props {
     bots: Bot[]
 }
@@ -110,9 +111,8 @@ function BotsPage({ bots }: Props) {
 }
 
 BotsPage.getInitialProps = async (): Promise<Props> => {
-    const res = await fetch(`${config.SERVER_URL}/bots?c=all`)
-    const bots = await res.json()
-    return { bots }
+    const {data} = await http.get(`/bots/all`)
+    return { bots: data }
 }
 
 export default BotsPage

@@ -17,7 +17,6 @@ import swaggerJSDoc from 'swagger-jsdoc'
 import usersRouter from './routes/users.route'
 import tagsRouter from './routes/tags.route'
 import cookieParser from 'cookie-parser'
-import commentsRouter from './routes/comments.route'
 
 dotenv.config()
 const PORT = Number(process.env.PORT || 5000)
@@ -82,7 +81,6 @@ orm.createConnection()
         app.use('/users', usersRouter)
         app.use('/tags', tagsRouter)
         app.use('/bots', botsRouter)
-        app.use('/comments', commentsRouter)
         app.use('/auth/discord', authRouter)
         app.use('/docs', swagger.serve, swagger.setup(openapiSpecification))
 

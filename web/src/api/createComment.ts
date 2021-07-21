@@ -10,8 +10,8 @@ interface CreateComment {
 async function createComment({ text, rating, botId }: CreateComment) {
     try {
         const { data } = await http.post(
-            `/comments`,
-            { text, rating, botId },
+            `/bots/${botId}/comments`,
+            { text, rating },
             {
                 headers: {
                     Authorization: `Bearer ${getAccessToken()}`
