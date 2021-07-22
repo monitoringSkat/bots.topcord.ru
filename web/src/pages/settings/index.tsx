@@ -12,6 +12,7 @@ import { Snackbar } from '@material-ui/core'
 import updateProfileSchema from '../../schemas/update-profile.schema'
 import config from '../../config'
 import http from '../../api/http'
+import { Col, Container } from 'react-bootstrap'
 
 const SettingsPage = () => {
     const { user, setUser } = useContext(AuthContext)
@@ -65,94 +66,96 @@ const SettingsPage = () => {
     })
 
     return (
-        <SettingsLayout>
-            <Snackbar
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                open={open}
-                autoHideDuration={3000}
-                className={styles.snackbar}
-                message={`Профиль успешно обновлён!`}
-            />
-            <h3>Моя учётная запись</h3>
-            <div className={styles.profile}>
-                <img className={styles.avatar} src={user.avatar} />
-                <div style={{ width: '92.5%' }}>
-                    <div className={styles.header}>
-                        <div className={styles.username}>
-                            <Tooltip
-                                title="Верефицированный"
-                                placement="bottom"
-                            >
-                                <img
-                                    src="/assets/verified.png"
-                                    className="verified"
-                                />
-                            </Tooltip>
-                            {user.username}
-                            <span>#{user.discriminator}</span>
-                        </div>
-                        <button onClick={() => setEdit(true)}>
-                            Редактировать профиль
-                        </button>
-                    </div>
-                    {isEdit ? (
-                        <textarea
-                            maxLength={250}
-                            onChange={handleChange}
-                            value={values.bio}
-                            name="bio"
-                            placeholder="Расскажите немного о себе..."
-                        />
-                    ) : (
-                        <div className={styles.bio}>
-                            {values.bio || 'Биография отсутствует'}
-                        </div>
-                    )}
-                </div>
-            </div>
-            <h4>Интеграции</h4>
-            <div className={styles.interinputs}>
-                {Object.keys(errors).length > 0 && (
-                    <div className={styles.error}>Были допущены ошибки!</div>
-                )}
-                {Integrations.map(({ name }) => (
-                    <div>
-                        <div>
-                            <img
-                                src={`/assets/logos/${name.toLowerCase()}.png`}
-                            />
+            <SettingsLayout>
+                <Col>
+                <Snackbar
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    open={open}
+                    autoHideDuration={3000}
+                    className={styles.snackbar}
+                    message={`Профиль успешно обновлён!`}
+                />
+                <h3>Моя учётная запись</h3>
+                <div className={styles.profile}>
+                    <img className={styles.avatar} src={user.avatar} />
+                    <div style={{ width: '92.5%' }}>
+                        <div className={styles.header}>
+                            <div className={styles.username}>
+                                <Tooltip
+                                    title="Верефицированный"
+                                    placement="bottom"
+                                >
+                                    <img
+                                        src="/assets/verified.png"
+                                        className="verified"
+                                    />
+                                </Tooltip>
+                                {user.username}
+                                <span>#{user.discriminator}</span>
+                            </div>
+                            <button onClick={() => setEdit(true)}>
+                                Редактировать профиль
+                            </button>
                         </div>
                         {isEdit ? (
-                            <Input
-                                placeholder={`Ссылка на профиль ${name}`}
+                            <textarea
+                                maxLength={250}
                                 onChange={handleChange}
-                                name={name.toLowerCase()}
-                                value={(values as any)[name.toLowerCase()]}
+                                value={values.bio}
+                                name="bio"
+                                placeholder="Расскажите немного о себе..."
                             />
                         ) : (
-                            <span>
-                                {(values as any)[name.toLowerCase()] ||
-                                    'ссылка отсутсвует'}
-                            </span>
+                            <div className={styles.bio}>
+                                {values.bio || 'Биография отсутствует'}
+                            </div>
                         )}
                     </div>
-                ))}
-            </div>
-            {isEdit && isValid && dirty && (
-                <form
-                    onSubmit={handleSubmit}
-                    onReset={handleReset}
-                    className={styles.controls}
-                >
-                    <button type="reset" className={styles.cancel}>
-                        Отмена
-                    </button>
-                    <button type="submit" className={styles.save}>
-                        Сохранить изменения
-                    </button>
-                </form>
-            )}
-        </SettingsLayout>
+                </div>
+                <h4>Интеграции</h4>
+                <div className={styles.interinputs}>
+                    {Object.keys(errors).length > 0 && (
+                        <div className={styles.error}>Были допущены ошибки!</div>
+                    )}
+                    {Integrations.map(({ name }) => (
+                        <div>
+                            <div>
+                                <img
+                                    src={`/assets/logos/${name.toLowerCase()}.png`}
+                                />
+                            </div>
+                            {isEdit ? (
+                                <Input
+                                    placeholder={`Ссылка на профиль ${name}`}
+                                    onChange={handleChange}
+                                    name={name.toLowerCase()}
+                                    value={(values as any)[name.toLowerCase()]}
+                                />
+                            ) : (
+                                <span>
+                                    {(values as any)[name.toLowerCase()] ||
+                                        'ссылка отсутсвует'}
+                                </span>
+                            )}
+                        </div>
+                    ))}
+                </div>
+                {isEdit && isValid && dirty && (
+                    <form
+                        onSubmit={handleSubmit}
+                        onReset={handleReset}
+                        className={styles.controls}
+                    >
+                        <button type="reset" className={styles.cancel}>
+                            Отмена
+                        </button>
+                        <button type="submit" className={styles.save}>
+                            Сохранить изменения
+                        </button>
+                    </form>
+                )}
+                </Col>
+</SettingsLayout>
     )
 }
 

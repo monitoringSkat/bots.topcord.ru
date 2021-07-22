@@ -12,17 +12,16 @@
     right: 40px;
     top: 40px;
     cursor: pointer;
-}
+    z-index: 100;
+ }
 
 .menu {
-    width: 25%;
-    height: 100vh;
-    position: relative;
+    //width: 25%;
+    min-height: 100%;
     background: #282b30;
     padding: 6.5% 3%;
-    display: flex;
     justify-content: center;
-    flex-direction: column;
+    align-content: center;
     h1 {
         padding: 0.5% 0;
     }
@@ -56,10 +55,10 @@
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
+    //display: flex;
+    //flex-direction: column;
     padding: 5%;
-    width: 75%;
-    height: 100vh;
+    min-width: 75%;
+    height: auto;
     overflow: auto;
 }
