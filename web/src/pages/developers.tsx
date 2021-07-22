@@ -5,7 +5,7 @@ import developers from './developers.json'
 import { Col, Container, Row, Card } from 'react-bootstrap'
 
 const DevelopersPage = () => (
-    <Layout title="Developers">
+    <Layout title="Разработчики | TopCord">
         <h1 className={styles.title}>Команда сайта</h1>
         <Container>
             <Row>

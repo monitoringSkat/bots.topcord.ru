@@ -1,4 +1,4 @@
-const isDev = true // change this
+const isDev = false  // change this
 
 export default {
     SERVER_URL: isDev ? 'http://localhost:5000' : 'https://api-bots.topcord.ru',
