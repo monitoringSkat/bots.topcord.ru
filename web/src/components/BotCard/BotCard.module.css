@@ -12,9 +12,10 @@
 }
 
 .background {
-    width: 100%;
+    background-size: 100% !important;
     height: 150px;
-    background: white;
+    margin: auto;
+    background: #25282c;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     border: 2px solid #23272a;
@@ -85,7 +86,7 @@
 .invite {
     width: 50%;
     border-bottom-left-radius: 10px;
-    background: #57f287;
+    background: #3ba55d;
     color: white;
 }
 
