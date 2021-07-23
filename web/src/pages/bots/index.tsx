@@ -111,7 +111,7 @@ function BotsPage({ bots }: Props) {
 }
 
 BotsPage.getInitialProps = async (): Promise<Props> => {
-    const {data} = await http.get(`/bots/all`)
+    const { data } = await http.get(`/bots/all`)
     return { bots: data }
 }
 

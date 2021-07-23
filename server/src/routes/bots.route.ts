@@ -26,30 +26,43 @@ botsRouter.get('/:id/guilds', BotController.getBotGuilds) // ✔️
 
 // POST
 botsRouter.post(
-'/', 
-[
-checkAuth,
-rateLimit({
-    windowMs: Minutes.FIFTEEN,
-    max: 100
-}),
-body('name').notEmpty().isString(),
-body('id').notEmpty().isString(),
-body('prefix').notEmpty().isString(),
-body('longDescription').notEmpty().isString(),
-body('shortDescription').notEmpty().isString(),
-body('tags').isArray().notEmpty(),
-body('inviteURL').notEmpty().isString().isURL(),
-body('library').notEmpty().isString().isIn(libraries),
-body('backgroundURL').optional({ nullable: true, checkFalsy: true }).isString().isURL(),
-body('developers').optional({ nullable: true }).isArray(),
-body('supportServerURL').optional({ nullable: true, checkFalsy: true }).isString().isURL(),
-body('githubURL').optional({ nullable: true, checkFalsy: true }).isString().isURL()
-], 
-BotController.create) // ✔️
+    '/',
+    [
+        checkAuth,
+        rateLimit({
+            windowMs: Minutes.FIFTEEN,
+            max: 100
+        }),
+        body('name').notEmpty().isString(),
+        body('id').notEmpty().isString(),
+        body('prefix').notEmpty().isString(),
+        body('longDescription').notEmpty().isString(),
+        body('shortDescription').notEmpty().isString(),
+        body('tags').isArray().notEmpty(),
+        body('inviteURL').notEmpty().isString().isURL(),
+        body('library').notEmpty().isString().isIn(libraries),
+        body('backgroundURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL(),
+        body('developers').optional({ nullable: true }).isArray(),
+        body('supportServerURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL(),
+        body('githubURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL()
+    ],
+    BotController.create
+) // ✔️
 
-
-botsRouter.post('/:id/report', [body("message").notEmpty().isString(), checkAuth, findBot()], BotController.report) // ✔️
+botsRouter.post(
+    '/:id/report',
+    [body('message').notEmpty().isString(), checkAuth, findBot()],
+    BotController.report
+) // ✔️
 botsRouter.post(
     '/:id/vote',
     [
@@ -122,35 +135,35 @@ botsRouter.put(
 botsRouter.put(
     '/:id',
     [
-    checkAuth,
-    rateLimit({
-        windowMs: Minutes.FIFTEEN,
-        max: 100
-    }),
-    body('name').notEmpty().isString(),
-    body('id').notEmpty().isString(),
-    body('prefix').notEmpty().isString(),
-    body('longDescription').notEmpty().isString(),
-    body('shortDescription').notEmpty().isString(),
-    body('tags').isArray().notEmpty(),
-    body('inviteURL').notEmpty().isString().isURL(),
-    body('library').notEmpty().isString().isIn(libraries),
-    body('backgroundURL')
-        .optional({ nullable: true, checkFalsy: true })
-        .isString()
-        .isURL(),
+        checkAuth,
+        rateLimit({
+            windowMs: Minutes.FIFTEEN,
+            max: 100
+        }),
+        body('name').notEmpty().isString(),
+        body('id').notEmpty().isString(),
+        body('prefix').notEmpty().isString(),
+        body('longDescription').notEmpty().isString(),
+        body('shortDescription').notEmpty().isString(),
+        body('tags').isArray().notEmpty(),
+        body('inviteURL').notEmpty().isString().isURL(),
+        body('library').notEmpty().isString().isIn(libraries),
+        body('backgroundURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL(),
 
-    body('developers').optional({ nullable: true }).isArray(),
+        body('developers').optional({ nullable: true }).isArray(),
 
-    body('supportServerURL')
-        .optional({ nullable: true, checkFalsy: true })
-        .isString()
-        .isURL(),
+        body('supportServerURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL(),
 
-    body('githubURL')
-        .optional({ nullable: true, checkFalsy: true })
-        .isString()
-        .isURL()
+        body('githubURL')
+            .optional({ nullable: true, checkFalsy: true })
+            .isString()
+            .isURL()
     ],
     BotController.update
 ) // ✔️
@@ -163,15 +176,17 @@ botsRouter.put(
             windowMs: Minutes.FIFTEEN,
             max: 300
         }),
-        body('text').notEmpty().isString(),
+        body('text').notEmpty().isString()
     ],
     BotController.updateComment
 ) // ✔️
 
-
 // DELETE
-botsRouter.delete('/:id', [checkAuth, findBot({relations: ["owner"]})], BotController.remove) // ✔️
-
+botsRouter.delete(
+    '/:id',
+    [checkAuth, findBot({ relations: ['owner'] })],
+    BotController.remove
+) // ✔️
 
 botsRouter.delete(
     '/:id/comments/:commentId',
@@ -184,6 +199,5 @@ botsRouter.delete(
     ],
     BotController.removeComment
 ) // ✔️
-
 
 export default botsRouter

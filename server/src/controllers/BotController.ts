@@ -9,10 +9,9 @@ import BotNotFoundException from '../exceptions/bot-not-found.exception'
 import SameBotException from '../exceptions/same-bot.exception'
 import getBotAvatarURL from '../utils/get-bot-avatar-url'
 import getUserInfo from '../utils/get-user-info'
-import Comment from "../entities/Comment"
+import Comment from '../entities/Comment'
 import TooManyCommentsPerUserException from '../exceptions/too-many-comments-per-user'
 import PermissionsDenied from '../exceptions/permissions-denied.exception'
-
 
 async function getAllBots(req: Request, res: Response) {
     const { limit } = req.query
@@ -25,7 +24,9 @@ async function getAllBots(req: Request, res: Response) {
 
 async function getBot(req: Request, res: Response) {
     const bot = await Bot.findOne(req.params.id, {
-        relations: [ 'owner', 'comments',
+        relations: [
+            'owner',
+            'comments',
             'comments.author',
             'tags',
             'developers'
@@ -119,10 +120,10 @@ async function getTopBots(req: Request, res: Response) {
 async function getNewBots(req: Request, res: Response) {
     const { limit } = req.query
     const bots = await Bot.find({
-            where: { verified: true },
-            relations: ['comments'],
-            order: { createdAt: 'DESC' }
-        })
+        where: { verified: true },
+        relations: ['comments'],
+        order: { createdAt: 'DESC' }
+    })
 
     if (limit) return res.send(bots.slice(0, +limit))
     res.send(bots)
@@ -192,8 +193,9 @@ async function update(req: Request, res: Response) {
             }
         })
     )
-    const bot = await Bot.findOne(req.body.id, { relations: ["owner"] })
-    if (bot.owner.id !== (req.user as any).id) return res.send(new PermissionsDenied("You are not owner!"))
+    const bot = await Bot.findOne(req.body.id, { relations: ['owner'] })
+    if (bot.owner.id !== (req.user as any).id)
+        return res.send(new PermissionsDenied('You are not owner!'))
     bot.name = req.body.name
     bot.prefix = req.body.prefix
     bot.shortDescription = req.body.shortDescription
@@ -229,7 +231,8 @@ async function unvote(req: Request, res: Response) {
 
 async function remove(req: Request, res: Response) {
     const bot = (req as any).bot
-    if (bot.owner.id !== (req.user as any).id) return res.send(new PermissionsDenied("You are not owner!"))
+    if (bot.owner.id !== (req.user as any).id)
+        return res.send(new PermissionsDenied('You are not owner!'))
     await bot.remove()
     res.send(200)
 }
@@ -269,7 +272,6 @@ async function setBotGuilds(req: Request, res: Response) {
     res.send('Done')
 }
 
-
 async function createComment(req: Request, res: Response) {
     const bot = (req as any).bot
     const user = (req as any).user
@@ -278,7 +280,8 @@ async function createComment(req: Request, res: Response) {
     )
     if (commentsPerUser.length >= 5)
         return res.send(new TooManyCommentsPerUserException())
-    if (req.body.rating > 5 || req.body.rating <= 0) return res.send(`Max rating: 5. Min rating: 1`)
+    if (req.body.rating > 5 || req.body.rating <= 0)
+        return res.send(`Max rating: 5. Min rating: 1`)
 
     const comment = Comment.create({
         text: req.body.text,
@@ -293,16 +296,22 @@ async function createComment(req: Request, res: Response) {
 }
 
 async function updateComment(req: Request, res: Response) {
-    const comment = await Comment.findOne(req.params.commentId, {relations: ["author"]})
-    if (comment.author.id !== (req.user as any).id) return res.send(new PermissionsDenied("You are not owner!"))
+    const comment = await Comment.findOne(req.params.commentId, {
+        relations: ['author']
+    })
+    if (comment.author.id !== (req.user as any).id)
+        return res.send(new PermissionsDenied('You are not owner!'))
     comment.text = req.body.text
     await comment.save()
     res.send(200)
 }
 
 async function removeComment(req: Request, res: Response) {
-    const comment = await Comment.findOne(req.params.commentId, {relations: ["author"]})
-    if (comment.author.id !== (req.user as any).id) return res.send(new PermissionsDenied("You are not owner!"))
+    const comment = await Comment.findOne(req.params.commentId, {
+        relations: ['author']
+    })
+    if (comment.author.id !== (req.user as any).id)
+        return res.send(new PermissionsDenied('You are not owner!'))
     await comment.remove()
     res.send(200)
 }
@@ -325,14 +334,15 @@ async function dislikeComment(req: Request, res: Response) {
         relations: ['author']
     })
     if (comment.dislikes.includes((req.user as any).id)) {
-        comment.dislikes = comment.dislikes.filter(c => c !== (req.user as any).id)
+        comment.dislikes = comment.dislikes.filter(
+            c => c !== (req.user as any).id
+        )
     } else {
         comment.dislikes = [...comment.dislikes, (req.user as any).id]
     }
     await comment.save()
     res.send(200)
 }
-
 
 export default {
     getAllBots,

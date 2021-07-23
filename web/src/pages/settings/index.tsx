@@ -66,8 +66,8 @@ const SettingsPage = () => {
     })
 
     return (
-            <SettingsLayout>
-                <Col>
+        <SettingsLayout>
+            <Col>
                 <Snackbar
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                     open={open}
@@ -77,7 +77,9 @@ const SettingsPage = () => {
                 />
                 <h3>Моя учётная запись</h3>
                 <div className={styles.profile}>
-                    <img className={styles.avatar} src={user.avatar} />
+                    <div className={styles.avatar}>
+                        <img className={styles.avatar} src={user.avatar} />
+                    </div>
                     <div style={{ width: '92.5%' }}>
                         <div className={styles.header}>
                             <div className={styles.username}>
@@ -115,7 +117,9 @@ const SettingsPage = () => {
                 <h4>Интеграции</h4>
                 <div className={styles.interinputs}>
                     {Object.keys(errors).length > 0 && (
-                        <div className={styles.error}>Были допущены ошибки!</div>
+                        <div className={styles.error}>
+                            Были допущены ошибки!
+                        </div>
                     )}
                     {Integrations.map(({ name }) => (
                         <div>
@@ -154,8 +158,8 @@ const SettingsPage = () => {
                         </button>
                     </form>
                 )}
-                </Col>
-</SettingsLayout>
+            </Col>
+        </SettingsLayout>
     )
 }
 
