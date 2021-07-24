@@ -21,3 +21,4 @@ ormconfig.prod.json
 /.next/
 /out/
 package-lock.json
+web/package-lock.json
