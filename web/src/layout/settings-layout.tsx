@@ -4,27 +4,25 @@ import Link from 'next/link'
 import { useContext } from 'react'
 import AuthContext from '../context/auth.context'
 import { Col, Row, Container } from 'react-bootstrap'
+import { detect } from "detect-browser"
 
 const SettingsLayout: FC = ({ children }) => {
-    const [[browser, system], setNavigator] = useState(['', ''])
+    const [[browser, system], setNavigator] = useState<any[]>([null, null])
     const { logout } = useContext(AuthContext)
     useEffect(() => {
-        if (window && window.navigator) {
-            setNavigator([
-                window.navigator.appCodeName,
-                (window.navigator as any).oscpu
-            ])
-        }
+        const browser = detect()
+        if (browser) setNavigator([browser?.name, browser?.os])
+
     }, [browser, system])
     return (
-            <Row style={{'overflow': 'auto'}} >
-                <Link href="/">
-                    <div className={styles.home}>
-                        <img src="/assets/home.svg" />
-                    </div>
-                </Link>
-                <Col className={styles.menu} md='3'>
-                    <Container>
+        <Row style={{ overflow: 'auto' }}>
+            <Link href="/">
+                <div className={styles.home}>
+                    <img src="/assets/home.svg" />
+                </div>
+            </Link>
+            <Col className={styles.menu} md="3">
+                <Container>
                     <h1>Настройки</h1>
                     <Link href="/settings/">Профиль пользователя</Link>
                     <Link href="/settings/language">Язык</Link>
@@ -38,10 +36,10 @@ const SettingsLayout: FC = ({ children }) => {
                         <div>Браузер: {browser}</div>
                         <div>Операционная система: {system}</div>
                     </div>
-                    </Container>
-                </Col>
-                <div className={styles.content}>{children}</div>
-            </Row>
+                </Container>
+            </Col>
+            <div className={styles.content}>{children}</div>
+        </Row>
     )
 }
 

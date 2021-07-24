@@ -8,10 +8,12 @@
     color: white;
     .avatar {
         margin-top: -3%;
-        width: 75px;
-        height: 75px;
-        border-radius: 100%;
-        outline: 10px solid #282b30;
+        img {
+            width: 75px;
+            height: 75px;
+        }
+        border-radius: 50px;
+        border: 6px solid #282b30;
         margin-right: 1.5%;
     }
 
