@@ -8,12 +8,6 @@
     },
     {
         "type": "input",
-        "name": "name",
-        "required": true,
-        "placeholder": "Имя бота"
-    },
-    {
-        "type": "input",
         "name": "prefix",
         "required": true,
         "placeholder": "Префикс бота"

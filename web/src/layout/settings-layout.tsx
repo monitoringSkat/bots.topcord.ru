@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useContext } from 'react'
 import AuthContext from '../context/auth.context'
 import { Col, Row, Container } from 'react-bootstrap'
-import { detect } from "detect-browser"
+import { detect } from 'detect-browser'
 
 const SettingsLayout: FC = ({ children }) => {
     const [[browser, system], setNavigator] = useState<any[]>([null, null])
@@ -12,7 +12,6 @@ const SettingsLayout: FC = ({ children }) => {
     useEffect(() => {
         const browser = detect()
         if (browser) setNavigator([browser?.name, browser?.os])
-
     }, [browser, system])
     return (
         <Row style={{ overflow: 'auto' }}>

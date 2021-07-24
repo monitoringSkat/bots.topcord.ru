@@ -3,6 +3,7 @@ import SettingsLayout from '../../../layout/settings-layout'
 import languages from './languages.json'
 import styles from '../../../../styles/pages/settings-language.module.scss'
 import { useState } from 'react'
+import PageWithAuth from '../../../hoc/PageWithAuth'
 
 const LanguagePage = () => {
     const [currentLanguage, setCurrentLanguage] = useState(i18next.language)
@@ -29,4 +30,4 @@ const LanguagePage = () => {
     )
 }
 
-export default LanguagePage
+export default PageWithAuth(LanguagePage)

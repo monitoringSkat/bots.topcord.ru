@@ -14,6 +14,7 @@ import http from '../../api/http'
 import { useEffect } from 'react'
 import api from '../../api'
 import User from '../../interfaces/user.interface'
+import PageWithAuth from '../../hoc/PageWithAuth'
 
 const AddPage = () => {
     const fromStringToArray = (str: string) => str.split(/\s*\,\s*/)
@@ -34,7 +35,6 @@ const AddPage = () => {
     } = useFormik({
         initialValues: {
             id: '',
-            name: '',
             prefix: '',
             shortDescription: '',
             longDescription: '',
@@ -43,7 +43,7 @@ const AddPage = () => {
             supportServerURL: '',
             githubURL: '',
             websiteURL: '',
-            library: '',
+            library: 'discord.js',
             tags: '',
             developers: ''
         },
@@ -176,4 +176,4 @@ const AddPage = () => {
     )
 }
 
-export default AddPage
+export default PageWithAuth(AddPage)

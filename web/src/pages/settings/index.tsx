@@ -1,18 +1,16 @@
 import SettingsLayout from '../../layout/settings-layout'
 import styles from '../../../styles/pages/settings.module.scss'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import AuthContext from '../../context/auth.context'
-import { useState } from 'react'
 import Integrations from './integrations.json'
 import Input from '../../components/Input/Input'
-import Tooltip from '@material-ui/core/Tooltip'
 import { useFormik } from 'formik'
-import axios from 'axios'
-import { Snackbar } from '@material-ui/core'
+import { Snackbar, Tooltip } from '@material-ui/core'
 import updateProfileSchema from '../../schemas/update-profile.schema'
 import config from '../../config'
 import http from '../../api/http'
-import { Col, Container } from 'react-bootstrap'
+import { Col } from 'react-bootstrap'
+import PageWithAuth from '../../hoc/PageWithAuth'
 
 const SettingsPage = () => {
     const { user, setUser } = useContext(AuthContext)
@@ -163,4 +161,4 @@ const SettingsPage = () => {
     )
 }
 
-export default SettingsPage
+export default PageWithAuth(SettingsPage)
