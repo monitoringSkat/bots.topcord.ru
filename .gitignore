@@ -22,3 +22,4 @@ ormconfig.prod.json
 /out/
 package-lock.json
 web/package-lock.json
+.idea/watcherTasks.xml
