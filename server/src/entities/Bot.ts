@@ -20,8 +20,8 @@ class Bot extends BaseEntity {
     @PrimaryColumn()
     id: string
 
-    @Column('text', { default: [], array: true })
-    votes: Array<string>
+    @Column({ default: 0 })
+    votes: number
 
     @Column({ default: 0, nullable: true })
     rating: number

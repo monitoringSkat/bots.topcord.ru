@@ -1,11 +1,9 @@
 import { config } from 'dotenv'
-import User from '../entities/User'
-import UserService from '../services/user.service'
 import fetch from 'node-fetch'
 
 const { parsed } = config()
 
-async function getUserInfo(id: string): Promise<User | null> {
+async function getUserInfo(id: string): Promise<any> {
     try {
         const url = `https://discordapp.com/api/users/${id}`
         const res = await fetch(url, {
@@ -14,9 +12,8 @@ async function getUserInfo(id: string): Promise<User | null> {
             }
         })
         const info = await res.json()
-        return await UserService.findOrCreate(info)
+        return info
     } catch (e) {
-        console.log(e)
         return null
     }
 }

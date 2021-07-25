@@ -15,7 +15,11 @@ const Layout: FC<Props> = ({ children, title }) => (
                 name="viewport"
                 content="initial-scale=1.0, width=device-width"
             />
-            <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon" />
+            <link
+                rel="shortcut icon"
+                href="/assets/favicon.png"
+                type="image/x-icon"
+            />
         </Head>
         <Header></Header>
         <div style={{ minHeight: '80vh' }}>{children}</div>

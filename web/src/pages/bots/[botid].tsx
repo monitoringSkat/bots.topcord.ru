@@ -61,27 +61,7 @@ function BotPage(props: Props) {
                 }
             }
         )
-        if (data === true)
-            setBot({ ...bot, votes: [...bot.votes, user.id] as any })
-    }
-
-    const unvote = async () => {
-        const { data } = await http.post(
-            `/bots/${bot.id}/unvote`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem(
-                        config.AUTH_LOCAL_STORAGE_KEY
-                    )}`
-                }
-            }
-        )
-        if (data === true)
-            setBot({
-                ...bot,
-                votes: bot.votes.filter(vote => (vote as any) !== user.id)
-            })
+        if (data === true) setBot({ ...bot, votes: bot.votes + 1 })
     }
 
     const onCommentUpdate = (comment: IComment) => {
@@ -143,26 +123,9 @@ function BotPage(props: Props) {
                     <div className={styles.passport}>
                         <div className={styles.header}>
                             <div className={styles.name}>{bot.name}</div>
-                            <div
-                                className={
-                                    !bot.votes.includes(user.id as any)
-                                        ? styles.votes
-                                        : styles['votes-active']
-                                }
-                                onClick={
-                                    !bot.votes.includes(user.id as any)
-                                        ? vote
-                                        : unvote
-                                }
-                            >
-                                {bot.votes.length}
-                                <img
-                                    src={
-                                        !bot.votes.includes(user.id as any)
-                                            ? '/assets/vote.svg'
-                                            : '/assets/vote-active.svg'
-                                    }
-                                />
+                            <div className={styles.votes} onClick={vote}>
+                                {bot.votes}
+                                <img src={'/assets/vote.svg'} />
                             </div>
                         </div>
                         <div className={styles['header-stars']}>
