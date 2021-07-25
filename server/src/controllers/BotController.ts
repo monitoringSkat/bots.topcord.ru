@@ -87,7 +87,7 @@ async function getBotVotes(req: Request, res: Response) {
     const error = new BotNotFoundException()
     if (!bot) return res.send(error)
     res.send({
-        count: bot.votes,
+        count: bot.votes
     })
 }
 
@@ -130,8 +130,6 @@ async function getNewBots(req: Request, res: Response) {
     res.send(bots)
 }
 
-
-
 async function create(req: Request, res: Response) {
     const errors = validationResult(req)
     if (!errors.isEmpty()) return res.send({ errors: errors.array() })
@@ -141,8 +139,10 @@ async function create(req: Request, res: Response) {
     const data = await getUserInfo(req.body.id)
     if (!data.bot) return res.send(new BotNotFoundException())
     const developers: User[] = await Promise.all(
-        req.body.developers
-            ?.map(async userId => await UserService.findOrCreate(await getUserInfo(userId)))
+        req.body.developers?.map(
+            async userId =>
+                await UserService.findOrCreate(await getUserInfo(userId))
+        )
     )
     const bot = Bot.create({
         name: req.body.name,
@@ -216,18 +216,18 @@ async function update(req: Request, res: Response) {
 
 async function vote(req: Request, res: Response) {
     const bot = (req as any).bot
-    const userId = (req.user as any).id 
+    const userId = (req.user as any).id
     const date = Date.now()
-    const ISO = new Date().toISOString().slice(0, 10);
+    const ISO = new Date().toISOString().slice(0, 10)
     const id = `${bot.id}__${userId}__${ISO}`
     const lastUpvote = (req as any).upvotes.get(id)
     if (lastUpvote) {
         const threeHours = Minutes.HOUR * 3
-        const timeDiff = Date.now() - lastUpvote;
-        if(timeDiff < threeHours) return res.send(false);
+        const timeDiff = Date.now() - lastUpvote
+        if (timeDiff < threeHours) return res.send(false)
     }
-    (req as any).upvotes.set(id, date)
-    bot.votes = bot.votes + 1    
+    ;(req as any).upvotes.set(id, date)
+    bot.votes = bot.votes + 1
     await bot.save()
     res.send(true)
 }
@@ -242,15 +242,15 @@ async function remove(req: Request, res: Response) {
 
 async function report(req: any, res: Response) {
     const bot = (req as any).bot
-    const userId = (req.user as any).id 
+    const userId = (req.user as any).id
     const date = Date.now()
-    const ISO = new Date().toISOString().slice(0, 10);
+    const ISO = new Date().toISOString().slice(0, 10)
     const id = `${bot.id}__${userId}__${ISO}`
-    const lastReport = req.report.get(id)
+    const lastReport = req.reports.get(id)
     if (lastReport) {
         const threeHours = Minutes.HOUR * 3
-        const timeDiff = Date.now() - lastReport;
-        if(timeDiff < threeHours) return res.send(false);
+        const timeDiff = Date.now() - lastReport
+        if (timeDiff < threeHours) return res.send(false)
     }
     req.reports.set(id, date)
     req.client.emit(

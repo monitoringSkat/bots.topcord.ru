@@ -61,8 +61,7 @@ function BotPage(props: Props) {
                 }
             }
         )
-        if (data === true)
-            setBot({ ...bot, votes: bot.votes + 1 })
+        if (data === true) setBot({ ...bot, votes: bot.votes + 1 })
     }
 
     const onCommentUpdate = (comment: IComment) => {
@@ -83,7 +82,7 @@ function BotPage(props: Props) {
         router.push('/users/me')
     }
     return (
-        <Layout title={bot.name} >
+        <Layout title={bot.name}>
             <Container>
                 <ReportModal
                     setShow={setShowReportModal}
@@ -124,14 +123,9 @@ function BotPage(props: Props) {
                     <div className={styles.passport}>
                         <div className={styles.header}>
                             <div className={styles.name}>{bot.name}</div>
-                            <div
-                                className={styles.votes}
-                                onClick={vote}
-                            >
+                            <div className={styles.votes} onClick={vote}>
                                 {bot.votes}
-                                <img
-                                    src={'/assets/vote.svg'}
-                                />
+                                <img src={'/assets/vote.svg'} />
                             </div>
                         </div>
                         <div className={styles['header-stars']}>

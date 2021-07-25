@@ -66,11 +66,16 @@ botsRouter.post(
             .optional({ nullable: true, checkFalsy: true })
             .isString()
             .isURL(),
-        body('developers').isArray().optional({nullable: true, checkFalsy: true}).custom((value, { req }) => {
-            const isFromStrings = value?.every(elem => typeof elem === "string")
-            if (isFromStrings) return true
-            return Promise.reject('Array is not from strings!');
-        }),
+        body('developers')
+            .isArray()
+            .optional({ nullable: true, checkFalsy: true })
+            .custom((value, { req }) => {
+                const isFromStrings = value?.every(
+                    elem => typeof elem === 'string'
+                )
+                if (isFromStrings) return true
+                return Promise.reject('Array is not from strings!')
+            }),
         body('supportServerURL')
             .optional({ nullable: true, checkFalsy: true })
             .isString()
@@ -100,7 +105,6 @@ botsRouter.post(
     ],
     BotController.vote
 ) // ✔️
-
 
 botsRouter.post(
     '/:id/comments',
@@ -166,11 +170,16 @@ botsRouter.put(
             .isString()
             .isURL(),
 
-        body('developers').isArray().optional({nullable: true, checkFalsy: true}).custom((value, { req }) => {
-            const isFromStrings = value?.every(elem => typeof elem === "string")
-            if (isFromStrings) return true
-            return Promise.reject('Array is not from strings!');
-        }),
+        body('developers')
+            .isArray()
+            .optional({ nullable: true, checkFalsy: true })
+            .custom((value, { req }) => {
+                const isFromStrings = value?.every(
+                    elem => typeof elem === 'string'
+                )
+                if (isFromStrings) return true
+                return Promise.reject('Array is not from strings!')
+            }),
 
         body('supportServerURL')
             .optional({ nullable: true, checkFalsy: true })

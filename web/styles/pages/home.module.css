@@ -1,6 +1,6 @@
 .intro {
     background-image: url(/assets/fon.png);
-рmin-height: 450px;
+    рmin-height: 450px;
     padding: 3% 4%;
     margin-bottom: 1.5%;
 }
@@ -71,6 +71,6 @@
     font-weight: 600;
 }
 .hr {
-    border: 2px solid #7289DA;
+    border: 2px solid #7289da;
     margin: 5% 50px 5% 50px;
 }
