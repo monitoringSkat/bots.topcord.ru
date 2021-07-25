@@ -23,3 +23,4 @@ ormconfig.prod.json
 package-lock.json
 web/package-lock.json
 .idea/watcherTasks.xml
+web/src/config/index.ts
