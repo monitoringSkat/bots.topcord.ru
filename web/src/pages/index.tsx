@@ -49,14 +49,18 @@ const Home = ({ newBots, topBots }: Props) => {
                 {newBots.length > 0 && (
                     <>
                         <h2>Новые боты</h2>
-                        <Bots bots={newBots} />
+                        <Container>
+                            <Bots bots={newBots} />
+                        </Container>
                     </>
                 )}
 
                 {topBots.length > 0 && (
                     <>
-                        <h2>Топ боты</h2>
-                        <Bots bots={newBots} />
+                        <hr className={styles.hr} />
+                        <Container>
+                            <Bots bots={newBots} />
+                        </Container>
                     </>
                 )}
             </div>
@@ -66,7 +70,7 @@ const Home = ({ newBots, topBots }: Props) => {
 
 Home.getInitialProps = async (): Promise<Props> => {
     const topBots = await http.get(`/bots/top?limit=20`)
-    const newBots = await http.get(`/bots/new?limit=20`)
+    const newBots = await http.get(`/bots/new?limit=4`)
     return { topBots: topBots.data, newBots: newBots.data }
 }
 

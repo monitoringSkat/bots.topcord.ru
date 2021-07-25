@@ -1,8 +1,6 @@
 .intro {
     background-image: url(/assets/fon.png);
-    background-position: 10%;
-    background-size: 50%;
-    min-height: 450px;
+рmin-height: 450px;
     padding: 3% 4%;
     margin-bottom: 1.5%;
 }
@@ -43,7 +41,7 @@
 }
 
 .wumpus {
-    width: 400px;
+    max-width: 350px;
     position: relative;
     animation: wumpusFly 2s linear 5s infinite alternate;
 }
@@ -58,7 +56,8 @@
 }
 
 .bots {
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .bots h2 {
@@ -70,4 +69,8 @@
     color: white;
     text-align: center;
     font-weight: 600;
+}
+.hr {
+    border: 2px solid #7289DA;
+    margin: 5% 50px 5% 50px;
 }

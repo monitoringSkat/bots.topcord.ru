@@ -1,10 +1,10 @@
 .card {
-    width: 330px;
+    width: 20.625em;
     height: 400px;
     background: #23272a;
     border-radius: 10px;
-    margin-left: 20px;
-    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 .card * {
@@ -39,7 +39,6 @@
 }
 
 .botname {
-    width: 280px;
     margin-left: 15px;
     font-size: 24px;
     font-weight: 500;
