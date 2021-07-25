@@ -6,6 +6,7 @@ import Bots from '../../components/Bots/Bots'
 import { NextPageContext } from 'next'
 import config from '../../config'
 import Link from 'next/link'
+import Container from 'react-bootstrap/Container'
 
 interface Props {
     bots: Bot[]
@@ -19,7 +20,9 @@ function TagPage({ tag, bots }: Props) {
                 <h1>Боты по тегу {tag}</h1>
                 <Link href="/bots">Вернуться к списку ботов</Link>
             </div>
-            <Bots bots={bots} />
+            <Container>
+                <Bots bots={bots} />
+            </Container>
         </Layout>
     )
 }
