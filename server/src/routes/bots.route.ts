@@ -10,7 +10,28 @@ import BotController from '../controllers/BotController'
 const botsRouter = Router()
 
 // GET
+
+/**
+ * @swagger
+ * /bots/all:
+ *   get:
+ *     description: Get all bots from API.
+ */
+
 botsRouter.get('/all', BotController.getAllBots) // ✔️
+
+/**
+ * @swagger
+ * /bots/top:
+ *   get:
+ *     description: Get top bots.
+ *   parameters:
+ *     - in: query
+ *       name: limit
+ *       type: string
+ *       required: false
+ *       description: Send limited bots
+ */
 botsRouter.get('/top', BotController.getTopBots) // ✔️
 botsRouter.get('/new', BotController.getNewBots) // ✔️
 botsRouter.get('/search', BotController.getBotsByQuery) // ✔️
@@ -45,7 +66,11 @@ botsRouter.post(
             .optional({ nullable: true, checkFalsy: true })
             .isString()
             .isURL(),
-        body('developers').optional({ nullable: true }).isArray(),
+        body('developers').isArray().optional({nullable: true, checkFalsy: true}).custom((value, { req }) => {
+            const isFromStrings = value?.every(elem => typeof elem === "string")
+            if (isFromStrings) return true
+            return Promise.reject('Array is not from strings!');
+        }),
         body('supportServerURL')
             .optional({ nullable: true, checkFalsy: true })
             .isString()
@@ -76,18 +101,6 @@ botsRouter.post(
     BotController.vote
 ) // ✔️
 
-botsRouter.post(
-    '/:id/unvote',
-    [
-        checkAuth,
-        rateLimit({
-            windowMs: Minutes.FIFTEEN,
-            max: 200
-        }),
-        findBot()
-    ],
-    BotController.unvote
-) // ✔️
 
 botsRouter.post(
     '/:id/comments',
@@ -153,7 +166,11 @@ botsRouter.put(
             .isString()
             .isURL(),
 
-        body('developers').optional({ nullable: true }).isArray(),
+        body('developers').isArray().optional({nullable: true, checkFalsy: true}).custom((value, { req }) => {
+            const isFromStrings = value?.every(elem => typeof elem === "string")
+            if (isFromStrings) return true
+            return Promise.reject('Array is not from strings!');
+        }),
 
         body('supportServerURL')
             .optional({ nullable: true, checkFalsy: true })

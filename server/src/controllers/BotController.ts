@@ -7,11 +7,13 @@ import Tag from '../entities/Tag'
 import User from '../entities/User'
 import BotNotFoundException from '../exceptions/bot-not-found.exception'
 import SameBotException from '../exceptions/same-bot.exception'
-import getBotAvatarURL from '../utils/get-bot-avatar-url'
 import getUserInfo from '../utils/get-user-info'
 import Comment from '../entities/Comment'
 import TooManyCommentsPerUserException from '../exceptions/too-many-comments-per-user'
 import PermissionsDenied from '../exceptions/permissions-denied.exception'
+import UserService from '../services/user.service'
+import { Collection } from 'discord.js'
+import Minutes from '../enums/minutes.enum'
 
 async function getAllBots(req: Request, res: Response) {
     const { limit } = req.query
@@ -71,7 +73,7 @@ async function getBotStats(req: Request, res: Response) {
     if (!bot) return res.send(error)
     res.send({
         id: bot.id,
-        votesCount: bot.votes.length,
+        votesCount: bot.votes,
         guildsCount: bot.guildsCount,
         reviews: bot.comments.length,
         verified: bot.verified,
@@ -85,8 +87,7 @@ async function getBotVotes(req: Request, res: Response) {
     const error = new BotNotFoundException()
     if (!bot) return res.send(error)
     res.send({
-        count: bot.votes.length,
-        users: bot.votes
+        count: bot.votes,
     })
 }
 
@@ -129,18 +130,19 @@ async function getNewBots(req: Request, res: Response) {
     res.send(bots)
 }
 
+
+
 async function create(req: Request, res: Response) {
     const errors = validationResult(req)
     if (!errors.isEmpty()) return res.send({ errors: errors.array() })
     const owner = await User.findOne((req.user as any).id)
     const sameBot = await Bot.findOne(req.body.id)
     if (sameBot) return res.send(new SameBotException())
-
-    const avatar = await getBotAvatarURL(req.body.id)
+    const data = await getUserInfo(req.body.id)
+    if (!data.bot) return res.send(new BotNotFoundException())
     const developers: User[] = await Promise.all(
         req.body.developers
-            ?.filter(Boolean)
-            ?.map(async userId => await getUserInfo(userId))
+            ?.map(async userId => await UserService.findOrCreate(await getUserInfo(userId)))
     )
     const bot = Bot.create({
         name: req.body.name,
@@ -156,7 +158,7 @@ async function create(req: Request, res: Response) {
         backgroundURL: req.body.backgroundURL || null,
         developers: [owner, ...developers],
         owner,
-        avatar
+        avatar: `https://cdn.discordapp.com/avatars/${req.body.id}/${data.avatar}`
     })
     const tags: Tag[] = await Promise.all(
         req.body.tags.map(async name => {
@@ -214,17 +216,18 @@ async function update(req: Request, res: Response) {
 
 async function vote(req: Request, res: Response) {
     const bot = (req as any).bot
-    const userId = (req.user as any).id
-    if (bot.votes.includes(userId)) return res.send(true)
-    const votes = [...bot.votes, userId]
-    bot.votes = votes
-    await bot.save()
-    res.send(true)
-}
-
-async function unvote(req: Request, res: Response) {
-    const bot = (req as any).bot
-    bot.votes = bot.votes.filter(userId => userId !== (req.user as any).id)
+    const userId = (req.user as any).id 
+    const date = Date.now()
+    const ISO = new Date().toISOString().slice(0, 10);
+    const id = `${bot.id}__${userId}__${ISO}`
+    const lastUpvote = (req as any).upvotes.get(id)
+    if (lastUpvote) {
+        const threeHours = Minutes.HOUR * 3
+        const timeDiff = Date.now() - lastUpvote;
+        if(timeDiff < threeHours) return res.send(false);
+    }
+    (req as any).upvotes.set(id, date)
+    bot.votes = bot.votes + 1    
     await bot.save()
     res.send(true)
 }
@@ -238,6 +241,18 @@ async function remove(req: Request, res: Response) {
 }
 
 async function report(req: any, res: Response) {
+    const bot = (req as any).bot
+    const userId = (req.user as any).id 
+    const date = Date.now()
+    const ISO = new Date().toISOString().slice(0, 10);
+    const id = `${bot.id}__${userId}__${ISO}`
+    const lastReport = req.report.get(id)
+    if (lastReport) {
+        const threeHours = Minutes.HOUR * 3
+        const timeDiff = Date.now() - lastReport;
+        if(timeDiff < threeHours) return res.send(false);
+    }
+    req.reports.set(id, date)
     req.client.emit(
         'report-bot',
         req.client,
@@ -360,7 +375,6 @@ export default {
     create,
     update,
     vote,
-    unvote,
     remove,
     report,
     getBotsByQuery,

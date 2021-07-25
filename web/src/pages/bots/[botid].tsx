@@ -62,26 +62,7 @@ function BotPage(props: Props) {
             }
         )
         if (data === true)
-            setBot({ ...bot, votes: [...bot.votes, user.id] as any })
-    }
-
-    const unvote = async () => {
-        const { data } = await http.post(
-            `/bots/${bot.id}/unvote`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem(
-                        config.AUTH_LOCAL_STORAGE_KEY
-                    )}`
-                }
-            }
-        )
-        if (data === true)
-            setBot({
-                ...bot,
-                votes: bot.votes.filter(vote => (vote as any) !== user.id)
-            })
+            setBot({ ...bot, votes: bot.votes + 1 })
     }
 
     const onCommentUpdate = (comment: IComment) => {
@@ -144,24 +125,12 @@ function BotPage(props: Props) {
                         <div className={styles.header}>
                             <div className={styles.name}>{bot.name}</div>
                             <div
-                                className={
-                                    !bot.votes.includes(user.id as any)
-                                        ? styles.votes
-                                        : styles['votes-active']
-                                }
-                                onClick={
-                                    !bot.votes.includes(user.id as any)
-                                        ? vote
-                                        : unvote
-                                }
+                                className={styles.votes}
+                                onClick={vote}
                             >
-                                {bot.votes.length}
+                                {bot.votes}
                                 <img
-                                    src={
-                                        !bot.votes.includes(user.id as any)
-                                            ? '/assets/vote.svg'
-                                            : '/assets/vote-active.svg'
-                                    }
+                                    src={'/assets/vote.svg'}
                                 />
                             </div>
                         </div>

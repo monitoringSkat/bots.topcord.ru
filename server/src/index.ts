@@ -17,6 +17,7 @@ import swaggerJSDoc from 'swagger-jsdoc'
 import usersRouter from './routes/users.route'
 import tagsRouter from './routes/tags.route'
 import cookieParser from 'cookie-parser'
+import DiscordJS from 'discord.js'
 
 dotenv.config()
 const PORT = Number(process.env.PORT || 5000)
@@ -38,6 +39,8 @@ const openapiSpecification = swaggerJSDoc(swaggerOptions)
 orm.createConnection()
     .then(async () => {
         const app = express()
+        const upvotes = new DiscordJS.Collection<string, number>()
+        const reports = new DiscordJS.Collection<string, number>()
         const client = await bootstrapBot()
         passport.use(DiscordStrategy)
 
@@ -60,9 +63,11 @@ orm.createConnection()
         app.use(passport.session())
         passport.serializeUser((user, done) => done(null, user))
         passport.deserializeUser((obj, done) => done(null, obj as any))
-        // Decorate bot client for routes
+        // Decorate some global variables
         app.use((req, res, next) => {
             ;(req as any).client = client
+            ;(req as any).upvotes = upvotes
+            ;(req as any).reports = reports
             next()
         })
         app.use(

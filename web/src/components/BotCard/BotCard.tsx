@@ -28,7 +28,7 @@ const BotCard: FC<Props> = ({ bot }) => (
                 <div className={styles.statistics}>
                     <div className={styles.stat}>
                         <img src="/assets/upvote.svg" />
-                        <div>{bot.votes.length}</div>
+                        <div>{bot.votes}</div>
                     </div>
                     <div className={styles.stat}>
                         <img src="/assets/comment.svg" />

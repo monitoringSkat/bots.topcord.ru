@@ -20,10 +20,7 @@ interface Bot {
     guildsCount: number
     websiteURL?: string
     backgroundURL?: string
-    votes: {
-        user_id: string
-        mark: number
-    }[]
+    votes: number
     developers: User[]
 }
 
