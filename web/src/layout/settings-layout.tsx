@@ -38,7 +38,7 @@ const SettingsLayout: FC = ({ children }) => {
                 </Container>
             </Col>
             <Col>
-            <div className={styles.content}>{children}</div>
+                <div className={styles.content}>{children}</div>
             </Col>
         </Row>
     )

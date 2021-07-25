@@ -78,24 +78,34 @@ const UserPage = ({ token, userid }: Props) => {
             >
                 {inModal && (user as any)[inModal].length !== 0 ? (
                     (user as any)[inModal].map((user: User) => (
-                            <UserCard
-                                follow={follow}
-                                unfollow={unfollow}
-                                user={user}
-                            />
+                        <UserCard
+                            follow={follow}
+                            unfollow={unfollow}
+                            user={user}
+                        />
                     ))
-                ) : <div className={styles['modal-empty']}>Список пуст.</div>
-                }
+                ) : (
+                    <div className={styles['modal-empty']}>Список пуст.</div>
+                )}
             </FullscreenModal>
             <Row className={styles.profile}>
                 <Col sm={1.5} className={styles.left}>
-                    <Image src={user?.avatar} className={styles.avatar}/>
-                    {context.user.id && user?.id === context.user.id && <Link href="/settings">Редактировать</Link>}
+                    <Image src={user?.avatar} className={styles.avatar} />
+                    {context.user.id && user?.id === context.user.id && (
+                        <Link href="/settings">Редактировать</Link>
+                    )}
                 </Col>
                 <Col className={styles.right}>
                     <div className={styles.username}>
-                        {user?.verified && <img src="/assets/verified.png" className="verified" />}
-                        <div className={styles.name}>{user?.username}#{user?.discriminator}</div>
+                        {user?.verified && (
+                            <img
+                                src="/assets/verified.png"
+                                className="verified"
+                            />
+                        )}
+                        <div className={styles.name}>
+                            {user?.username}#{user?.discriminator}
+                        </div>
                         <div className={styles.role}>{user?.role}</div>
                     </div>
                     <div className={styles.integrations}>
@@ -104,18 +114,22 @@ const UserPage = ({ token, userid }: Props) => {
                             if (!link.trim().length) return
                             return (
                                 <Link key={link} href={link}>
-                                    <img
-                                        src={`/assets/logos/${key}.png`}
-                                    />
+                                    <img src={`/assets/logos/${key}.png`} />
                                 </Link>
                             )
                         })}
                     </div>
                     <div className={styles.stats}>
-                        <div className={styles.followers} onClick={() => modalTypeChange('followers')}>
+                        <div
+                            className={styles.followers}
+                            onClick={() => modalTypeChange('followers')}
+                        >
                             {user?.followers.length} подписчиков
                         </div>
-                        <div className={styles.following} onClick={() => modalTypeChange('following')}>
+                        <div
+                            className={styles.following}
+                            onClick={() => modalTypeChange('following')}
+                        >
                             {user?.following.length} подписок
                         </div>
                     </div>

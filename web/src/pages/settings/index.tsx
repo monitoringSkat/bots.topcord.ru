@@ -18,11 +18,11 @@ const SettingsPage = () => {
     const {
         handleSubmit,
         handleChange,
-        values, 
+        values,
         handleReset,
         errors,
         isValid,
-        dirty,
+        dirty
     } = useFormik({
         initialValues: {
             github: user.social.github,
@@ -40,17 +40,55 @@ const SettingsPage = () => {
         },
         validate(values) {
             const errors: any = {}
-            if (values.github && !values.github?.startsWith("https://github.com")) errors.github = "'Should be Github URL!"
-            if (values.vk && !values.vk?.startsWith("https://vk.com/")) errors.vk = "'Should be VK URL!"
-            if (values.youtube && !values.youtube?.startsWith("https://www.youtube.com/channel/")) errors.youtube = "'Should be Youtube URL!"
-            if (values.twitch && !values.twitch?.startsWith("https://www.twitch.tv")) errors.twitch = "'Should be Twitch URL!"
-            if (values.twitter && !values.twitter?.startsWith("https://twitter.com/")) errors.twitter = "'Should be Twitter URL!"
-            if (values.telegram && !values.telegram?.startsWith("https://t.me")) errors.telegram = "'Should be Telegram URL!"
-            if (values.steam && !values.steam?.startsWith("https://steamcommunity.com/id/")) errors.steam = "'Should be Steam URL!"
-            if (values.spotify && !values.spotify?.startsWith("http://open.spotify.com/user/")) errors.spotify = "'Should be Spotify URL!"
-            if (values.facebook && !values.facebook?.startsWith("https://www.facebook.com")) errors.facebook = "'Should be Facebook URL!"
-            if (values.instagram && !values.instagram?.startsWith("https://www.instagram.com/")) errors.instagram = "'Should be Instagram URL!"
-            if (values.reddit && !values.reddit?.startsWith("https://www.reddit.com/user")) errors.reddit = "'Should be Reddit URL!"
+            if (
+                values.github &&
+                !values.github?.startsWith('https://github.com')
+            )
+                errors.github = "'Should be Github URL!"
+            if (values.vk && !values.vk?.startsWith('https://vk.com/'))
+                errors.vk = "'Should be VK URL!"
+            if (
+                values.youtube &&
+                !values.youtube?.startsWith('https://www.youtube.com/channel/')
+            )
+                errors.youtube = "'Should be Youtube URL!"
+            if (
+                values.twitch &&
+                !values.twitch?.startsWith('https://www.twitch.tv')
+            )
+                errors.twitch = "'Should be Twitch URL!"
+            if (
+                values.twitter &&
+                !values.twitter?.startsWith('https://twitter.com/')
+            )
+                errors.twitter = "'Should be Twitter URL!"
+            if (values.telegram && !values.telegram?.startsWith('https://t.me'))
+                errors.telegram = "'Should be Telegram URL!"
+            if (
+                values.steam &&
+                !values.steam?.startsWith('https://steamcommunity.com/id/')
+            )
+                errors.steam = "'Should be Steam URL!"
+            if (
+                values.spotify &&
+                !values.spotify?.startsWith('http://open.spotify.com/user/')
+            )
+                errors.spotify = "'Should be Spotify URL!"
+            if (
+                values.facebook &&
+                !values.facebook?.startsWith('https://www.facebook.com')
+            )
+                errors.facebook = "'Should be Facebook URL!"
+            if (
+                values.instagram &&
+                !values.instagram?.startsWith('https://www.instagram.com/')
+            )
+                errors.instagram = "'Should be Instagram URL!"
+            if (
+                values.reddit &&
+                !values.reddit?.startsWith('https://www.reddit.com/user')
+            )
+                errors.reddit = "'Should be Reddit URL!"
             return errors
         },
         onSubmit: async ({ bio, ...social }) => {

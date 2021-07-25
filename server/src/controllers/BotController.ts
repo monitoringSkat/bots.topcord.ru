@@ -179,8 +179,9 @@ async function create(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
     const developers: User[] = await Promise.all(
-        (req.body.developers || [])
-            .map(async userId => await getUserInfo(userId))
+        (req.body.developers || []).map(
+            async userId => await getUserInfo(userId)
+        )
     )
 
     const tags: Tag[] = await Promise.all(
