@@ -54,7 +54,6 @@ botsRouter.post(
             windowMs: Minutes.FIFTEEN,
             max: 100
         }),
-        body('name').notEmpty().isString(),
         body('id').notEmpty().isString(),
         body('prefix').notEmpty().isString(),
         body('longDescription').notEmpty().isString(),
@@ -157,7 +156,6 @@ botsRouter.put(
             windowMs: Minutes.FIFTEEN,
             max: 100
         }),
-        body('name').notEmpty().isString(),
         body('id').notEmpty().isString(),
         body('prefix').notEmpty().isString(),
         body('longDescription').notEmpty().isString(),

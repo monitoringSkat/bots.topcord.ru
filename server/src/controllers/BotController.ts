@@ -139,13 +139,13 @@ async function create(req: Request, res: Response) {
     const data = await getUserInfo(req.body.id)
     if (!data.bot) return res.send(new BotNotFoundException())
     const developers: User[] = await Promise.all(
-        req.body.developers?.map(
+        (req.body.developers || []).map(
             async userId =>
                 await UserService.findOrCreate(await getUserInfo(userId))
         )
     )
     const bot = Bot.create({
-        name: req.body.name,
+        name: data.username,
         id: req.body.id,
         prefix: req.body.prefix,
         longDescription: req.body.longDescription,
@@ -179,8 +179,7 @@ async function create(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
     const developers: User[] = await Promise.all(
-        req.body.developers
-            ?.filter(Boolean)
+        (req.body.developers || [])
             .map(async userId => await getUserInfo(userId))
     )
 
