@@ -102,7 +102,7 @@ function BotPage(props: Props) {
         router.push('/users/me')
     }
     return (
-        <Layout title={bot.name} >
+        <Layout title={`${bot.name} | TopCord`} >
             <Container>
                 <ReportModal
                     setShow={setShowReportModal}
