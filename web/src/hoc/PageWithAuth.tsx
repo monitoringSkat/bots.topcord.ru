@@ -14,7 +14,7 @@ function PageWithAuth(Page: React.FC<any>) {
         }, [user.id])
 
         return <Page {...props} />
-    } 
+    }
 }
 
 export default PageWithAuth
