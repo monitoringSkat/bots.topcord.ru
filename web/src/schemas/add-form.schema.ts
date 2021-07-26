@@ -21,11 +21,11 @@ const addFormSchema = object().shape({
         .url()
         .required('Ссылка приглашения бота отсутствует')
         .test(
-            'Should start with https://discord.com/oauth2/',
-            'Should start with https://discord.com/oauth2/',
+            'Should start with https://discord.com/api/oauth2/',
+            'Should start with https://discord.com/api/oauth2/',
             value => {
                 if (!value) return true
-                return value?.startsWith('https://discord.com/oauth2/')
+                return value?.startsWith('https://discord.com/api/oauth2/')
             }
         ),
     background: string().url().nullable(),
