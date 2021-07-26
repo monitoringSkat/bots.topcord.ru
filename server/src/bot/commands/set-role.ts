@@ -2,6 +2,19 @@ import Command from '../../interfaces/bot/command.interface'
 import PermissionsDenied from '../../exceptions/permissions-denied.exception'
 import User from '../../entities/User'
 import { UserRoles } from '../../enums'
+import { MessageEmbed } from 'discord.js'
+const NotFound = new MessageEmbed()
+.setAuthor('TopCord', 'https://bots.topcord.ru/favicon.png')
+.setTitle('Ошибка')
+.setDescription("`Авторизуйся гандон`")
+.setTimestamp()
+.setColor('#7289DA');
+
+const Done = new MessageEmbed()
+.setAuthor('TopCord', 'https://bots.topcord.ru/favicon.png')
+.setDescription("`Успешно!`")
+.setTimestamp()
+.setColor('#7289DA');
 
 const setRole: Command = {
     name: 'set-role',
@@ -12,10 +25,10 @@ const setRole: Command = {
         )
         if (!havePermission)
             return message.channel.send(JSON.stringify(new PermissionsDenied()))
-        if (!user) return message.channel.send('User not found!')
+        if (!user) return message.channel.send(NotFound)
         user.role = UserRoles[userRole.toUpperCase()]
         await user.save()
-        message.channel.send('Done!')
+        message.channel.send(Done)
     }
 }
 
