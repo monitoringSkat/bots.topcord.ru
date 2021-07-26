@@ -4,8 +4,8 @@ import User from '../interfaces/user.interface'
 interface AuthContextInterface {
     user: User
     setUser: (newData: any) => void
-    login: () => void
-    logout: () => void
+    login: () => Promise<boolean>
+    logout: () => Promise<void | boolean>
 }
 
 const AuthContext = createContext<AuthContextInterface>({
@@ -24,8 +24,8 @@ const AuthContext = createContext<AuthContextInterface>({
         following: []
     },
     setUser: () => void 0,
-    login: () => void 0,
-    logout: () => void 0
+    login: async () => false,
+    logout: async () => false
 })
 
 export default AuthContext

@@ -38,17 +38,19 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     const [user, setUser] = useState<User>(initialUser)
 
-    async function login() {
+    async function login(): Promise<boolean> {
         const token = localStorage.getItem(config.AUTH_LOCAL_STORAGE_KEY)
-        if (!token || user.id) return
+        if (!token || user.id) return false
         const res = await fetch(`${config.SERVER_URL}/users/me`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
         const data = await res.json()
-        if (data.message === 'Unauthorized' && data.statusCode === 401) return
+        if (data.message === 'Unauthorized' && data.statusCode === 401) return false
         setUser(data)
+        console.log(true)
+        return true
     }
 
     async function logout() {
