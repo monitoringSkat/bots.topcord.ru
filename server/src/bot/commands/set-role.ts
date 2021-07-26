@@ -10,6 +10,12 @@ const NotFound = new MessageEmbed()
 .setTimestamp()
 .setColor('#7289DA');
 
+const Done = new MessageEmbed()
+.setAuthor('TopCord', 'https://bots.topcord.ru/favicon.png')
+.setDescription("`Успешно!`")
+.setTimestamp()
+.setColor('#7289DA');
+
 const setRole: Command = {
     name: 'set-role',
     async execute(client, message, [userId, userRole]) {
@@ -22,7 +28,7 @@ const setRole: Command = {
         if (!user) return message.channel.send(NotFound)
         user.role = UserRoles[userRole.toUpperCase()]
         await user.save()
-        message.channel.send('Done!')
+        message.channel.send(Done)
     }
 }
 
