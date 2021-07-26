@@ -4,10 +4,11 @@ import User from '../../entities/User'
 import { UserRoles } from '../../enums'
 import { MessageEmbed } from 'discord.js'
 const NotFound = new MessageEmbed()
-.setAuthor('TopCord')
+.setAuthor('TopCord', 'https://bots.topcord.ru/favicon.png')
 .setTitle('Ошибка')
 .setDescription(`Авторизуйся гандон`)
-.setTimestamp();
+.setTimestamp()
+.setColor('#7289DA');
 
 const setRole: Command = {
     name: 'set-role',
