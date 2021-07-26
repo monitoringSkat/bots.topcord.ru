@@ -6,7 +6,7 @@ import { MessageEmbed } from 'discord.js'
 const NotFound = new MessageEmbed()
 .setAuthor('TopCord', 'https://bots.topcord.ru/favicon.png')
 .setTitle('Ошибка')
-.setDescription(`Авторизуйся гандон`)
+.setDescription("`Авторизуйся гандон`")
 .setTimestamp()
 .setColor('#7289DA');
 
