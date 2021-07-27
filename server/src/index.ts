@@ -54,9 +54,9 @@ orm.createConnection()
                 saveUninitialized: false,
                 secret: 'very very secret key',
                 cookie: {
-                    httpOnly: true,
-                    secure: false
-                }
+                    httpOnly: false,
+                    secure: true
+                } 
             })
         )
         app.use(passport.initialize())
@@ -70,6 +70,7 @@ orm.createConnection()
             ;(req as any).reports = reports
             next()
         })
+
         app.use(
             cors({
                 origin: (origin, cb) => {

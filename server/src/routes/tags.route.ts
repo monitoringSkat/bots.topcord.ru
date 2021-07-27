@@ -11,17 +11,20 @@ tagsRouter.get('/', async (req: Request, res: Response) => {
     const tags = await Tag.find({
         relations: ['bots']
     })
+    if (tags) {
+
+    }
     const result = tags.map(tag => ({ tag: tag.name, count: tag.bots.length }))
     res.send(result)
 })
 
 tagsRouter.get('/:name', async (req: Request, res: Response) => {
     const { name } = req.params
-    const [{ bots }] = await Tag.find({
+    const data = await Tag.find({
         where: { name },
         relations: ['bots', 'bots.comments']
     })
-    res.send({ bots })
+    res.send({ bots: data[0]?.bots || [] })
 })
 
 export default tagsRouter

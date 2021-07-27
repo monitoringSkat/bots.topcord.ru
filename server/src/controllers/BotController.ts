@@ -73,12 +73,15 @@ async function getBotStats(req: Request, res: Response) {
     if (!bot) return res.send(error)
     res.send({
         id: bot.id,
-        votesCount: bot.votes,
-        guildsCount: bot.guildsCount,
+        votes: bot.votes,
+        guilds: bot.guildsCount,
         reviews: bot.comments.length,
         verified: bot.verified,
         createdAt: bot.createdAt,
-        updatedAt: bot.updatedAt
+        updatedAt: bot.updatedAt,
+        rating: bot.comments
+            .map(comment => comment.rating)
+            .reduce((v, c) => (c += v), 0)
     })
 }
 
@@ -104,7 +107,7 @@ async function getBotRating(req: Request, res: Response) {
 
 async function getBotGuilds(req: Request, res: Response) {
     const bot = await Bot.findOne(req.params.id)
-    res.send({ guildsCount: bot?.guildsCount })
+    res.send({ guilds: bot?.guildsCount })
 }
 
 async function getTopBots(req: Request, res: Response) {
