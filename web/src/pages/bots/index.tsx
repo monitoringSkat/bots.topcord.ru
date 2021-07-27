@@ -9,7 +9,6 @@ import {
     Button
 } from 'react-bootstrap'
 import Bot from '../../interfaces/bot.interface'
-import config from '../../config'
 import Bots from '../../components/Bots/Bots'
 import SearchBotsInput from '../../components/SearchBotsInput/SearchBotsInput'
 import libraries from '../../data/libraries.json'
@@ -43,7 +42,7 @@ function BotsPage({ bots }: Props) {
                 case 'Количеству комментариев':
                     return b.comments.length - a.comments.length
                 default:
-                    return b.votes.length - a.votes.length
+                    return b.votes - a.votes
             }
         })
         .filter(bot => (library ? bot.library === library : true))

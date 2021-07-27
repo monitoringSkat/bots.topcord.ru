@@ -1,5 +1,4 @@
 import { Request, Response } from 'express'
-import { getConnection } from 'typeorm'
 import BlackList from '../entities/BlackList'
 import User from '../entities/User'
 

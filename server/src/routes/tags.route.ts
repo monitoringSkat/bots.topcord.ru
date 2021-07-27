@@ -11,9 +11,6 @@ tagsRouter.get('/', async (req: Request, res: Response) => {
     const tags = await Tag.find({
         relations: ['bots']
     })
-    if (tags) {
-
-    }
     const result = tags.map(tag => ({ tag: tag.name, count: tag.bots.length }))
     res.send(result)
 })

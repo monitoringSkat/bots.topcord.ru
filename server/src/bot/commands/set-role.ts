@@ -4,17 +4,17 @@ import User from '../../entities/User'
 import { UserRoles } from '../../enums'
 import { MessageEmbed } from 'discord.js'
 const NotFound = new MessageEmbed()
-.setAuthor('TopCord', 'https://bots.topcord.ru/favicon.png')
-.setTitle('Ошибка')
-.setDescription("`Авторизуйся гандон`")
-.setTimestamp()
-.setColor('#7289DA');
+    .setAuthor('TopCord', 'https://bots.topcord.ru/favicon.png')
+    .setTitle('Ошибка')
+    .setDescription('`Авторизуйся гандон`')
+    .setTimestamp()
+    .setColor('#7289DA')
 
 const Done = new MessageEmbed()
-.setAuthor('TopCord', 'https://bots.topcord.ru/favicon.png')
-.setDescription("`Успешно!`")
-.setTimestamp()
-.setColor('#7289DA');
+    .setAuthor('TopCord', 'https://bots.topcord.ru/favicon.png')
+    .setDescription('`Успешно!`')
+    .setTimestamp()
+    .setColor('#7289DA')
 
 const setRole: Command = {
     name: 'set-role',

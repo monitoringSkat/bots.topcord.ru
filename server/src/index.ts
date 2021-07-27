@@ -56,7 +56,7 @@ orm.createConnection()
                 cookie: {
                     httpOnly: false,
                     secure: true
-                } 
+                }
             })
         )
         app.use(passport.initialize())

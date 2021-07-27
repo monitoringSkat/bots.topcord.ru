@@ -15,16 +15,6 @@ const usersRouter = Router()
 // usersRouter.post('/:id/follow', UserController.follow)
 // usersRouter.post('/:id/unfollow', UserController.unfollow)
 // usersRouter.post('/update', UserController.update)
-usersRouter.post(
-    '/:id/ban',
-    [checkAuth, checkPermissions(['member'])],
-    UserController.ban
-)
-usersRouter.post(
-    '/:id/unban',
-    [checkAuth, checkPermissions(['member'])],
-    UserController.unban
-)
 
 usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
     const userId = (req.user as any).id
@@ -41,6 +31,27 @@ usersRouter.get('/:id', async (req: Request, res: Response) => {
     })
     if (!user) return res.send(new UserNotFoundException())
     res.send(user)
+})
+
+usersRouter.get("/:id/bots", async (req: Request, res: Response) => {
+    const user = await User.findOne(req.params.id, {
+        relations: ["bots"]
+    })
+    res.send(user?.bots)
+})
+
+usersRouter.get("/:id/followers", async (req: Request, res: Response) => {
+    const user = await User.findOne(req.params.id, {
+        relations: ["followers"]
+    })
+    res.send(user?.followers)
+})
+
+usersRouter.get("/:id/following", async (req: Request, res: Response) => {
+    const user = await User.findOne(req.params.id, {
+        relations: ["following"]
+    })
+    res.send(user?.following)
 })
 
 usersRouter.post('/:id/follow', [checkAuth], async (req, res) => {
@@ -127,5 +138,17 @@ usersRouter.put(
         res.send(true)
     }
 )
+
+usersRouter.post(
+    '/:id/ban',
+    [checkAuth, checkPermissions(['member'])],
+    UserController.ban
+)
+usersRouter.post(
+    '/:id/unban',
+    [checkAuth, checkPermissions(['member'])],
+    UserController.unban
+)
+
 
 export default usersRouter
