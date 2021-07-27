@@ -33,7 +33,7 @@ const Bots: FC<Props> = ({ bots, perPage = 10 }) => {
         <>
             <Row>
                 {bots.slice(page * perPage, perPage * (page + 1)).map(bot => (
-                    <Col>
+                    <Col className="col-12 col-sm-10 col-md-6 col-lg-4 mt-5 mb-3" >
                         <BotCard key={bot.id} bot={bot} />
                     </Col>
                 ))}
