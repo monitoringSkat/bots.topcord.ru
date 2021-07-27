@@ -1,9 +1,8 @@
 .intro {
-    width: 100%;
-    height: 350px;
-    background-image: url(/assets/background.png);
-    display: flex;
+    min-height: 350px;
+    background-color: #23272A;
     align-items: center;
+    display: flex !important; 
     justify-content: center;
     flex-direction: column;
     margin-bottom: 1.5%;
@@ -16,9 +15,9 @@
         width: 500px !important;
     }
     .options {
-        margin-top: 10px;
         display: flex;
         justify-content: flex-start;
+        margin-top: 10px;
         * {
             margin-right: 10px;
         }
