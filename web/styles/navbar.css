@@ -2,8 +2,8 @@
     padding-top: 0.75%;
     padding-bottom: 0.75%;
     min-width: 75px;
-    background-color: #5865f2 !important;
-    box-shadow: 0px 0.5px 10px black;
+    background-color: #2C2F33 !important;
+    box-shadow: 0px 0.5px 10px #23272A;
 }
 .link:hover {
     cursor: pointer;
