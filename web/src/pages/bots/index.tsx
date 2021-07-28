@@ -104,9 +104,9 @@ function BotsPage({ bots }: Props) {
                     </Col>
                 </Row>
             </Container>
-            <Container>
+            {/* <Container>  */}
                 <Bots bots={sortedBots} />
-            </Container>
+            {/* </Container> */}
         </Layout>
     )
 }

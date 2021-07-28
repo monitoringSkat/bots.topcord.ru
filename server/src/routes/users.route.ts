@@ -33,25 +33,32 @@ usersRouter.get('/:id', async (req: Request, res: Response) => {
     res.send(user)
 })
 
-usersRouter.get("/:id/bots", async (req: Request, res: Response) => {
+usersRouter.get('/:id/bots', async (req: Request, res: Response) => {
     const user = await User.findOne(req.params.id, {
-        relations: ["bots"]
+        relations: ['bots']
     })
     res.send(user?.bots)
 })
 
-usersRouter.get("/:id/followers", async (req: Request, res: Response) => {
+usersRouter.get('/:id/followers', async (req: Request, res: Response) => {
     const user = await User.findOne(req.params.id, {
-        relations: ["followers"]
+        relations: ['followers']
     })
     res.send(user?.followers)
 })
 
-usersRouter.get("/:id/following", async (req: Request, res: Response) => {
+usersRouter.get('/:id/following', async (req: Request, res: Response) => {
     const user = await User.findOne(req.params.id, {
-        relations: ["following"]
+        relations: ['following']
     })
     res.send(user?.following)
+})
+
+usersRouter.get('/:id/comments', async (req: Request, res: Response) => {
+    const user = await User.findOne(req.params.id, {
+        relations: ['comments']
+    })
+    res.send(user?.comments)
 })
 
 usersRouter.post('/:id/follow', [checkAuth], async (req, res) => {
@@ -141,14 +148,13 @@ usersRouter.put(
 
 usersRouter.post(
     '/:id/ban',
-    [checkAuth, checkPermissions(['member'])],
+    [checkAuth, checkPermissions(['admin'])],
     UserController.ban
 )
 usersRouter.post(
     '/:id/unban',
-    [checkAuth, checkPermissions(['member'])],
+    [checkAuth, checkPermissions(['admin'])],
     UserController.unban
 )
-
 
 export default usersRouter

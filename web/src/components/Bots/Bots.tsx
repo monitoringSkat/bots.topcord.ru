@@ -2,7 +2,6 @@ import { FC, useState, Component } from 'react'
 import Bot from '../../interfaces/bot.interface'
 import styles from './Bots.module.scss'
 import BotCard from '../BotCard/BotCard'
-import { Col, Container, Row } from 'react-bootstrap'
 
 interface Props {
     bots: Bot[]
@@ -31,13 +30,11 @@ const Bots: FC<Props> = ({ bots, perPage = 10 }) => {
         )
     return (
         <>
-            <Row>
+            <div className={styles.bots}>
                 {bots.slice(page * perPage, perPage * (page + 1)).map(bot => (
-                    <Col className="col-12 col-sm-10 col-md-6 col-lg-4 mt-5 mb-3" >
-                        <BotCard key={bot.id} bot={bot} />
-                    </Col>
+                    <BotCard key={bot.id} bot={bot} />
                 ))}
-            </Row>
+            </div>
             {navigation.length > 1 && (
                 <div className={styles.navigation}>{navigation}</div>
             )}
