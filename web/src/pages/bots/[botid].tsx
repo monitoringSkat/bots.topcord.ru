@@ -63,9 +63,7 @@ function BotPage(props: Props) {
                 }
             )
             if (data === true) setBot({ ...bot, votes: bot.votes + 1 })
-        } catch(e) {
-            
-        }
+        } catch (e) {}
     }
 
     const onCommentUpdate = (comment: IComment) => {
