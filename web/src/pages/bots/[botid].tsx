@@ -50,18 +50,22 @@ function BotPage(props: Props) {
     )
 
     const vote = async () => {
-        const { data } = await http.post(
-            `/bots/${bot.id}/vote`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem(
-                        config.AUTH_LOCAL_STORAGE_KEY
-                    )}`
+        try {
+            const { data } = await http.post(
+                `/bots/${bot.id}/vote`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            config.AUTH_LOCAL_STORAGE_KEY
+                        )}`
+                    }
                 }
-            }
-        )
-        if (data === true) setBot({ ...bot, votes: bot.votes + 1 })
+            )
+            if (data === true) setBot({ ...bot, votes: bot.votes + 1 })
+        } catch(e) {
+            
+        }
     }
 
     const onCommentUpdate = (comment: IComment) => {

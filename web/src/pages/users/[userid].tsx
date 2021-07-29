@@ -94,6 +94,16 @@ const UserPage = ({ token, userid }: Props) => {
                     {context.user.id && user?.id === context.user.id && (
                         <Link href="/settings">Редактировать</Link>
                     )}
+                    {context.user.id && context.user.id !== user?.id ? 
+                      !context.user.following.find(f => f.id === user?.id) ? 
+                      <button className={styles.green} onClick={() => follow()}>Подписаться</button> : 
+                      <button className={styles.red} onClick={() => unfollow()}>Отписаться</button>    
+                    : null}
+                    { context.user.id && context.user.id !== user?.id && ["admin", "moderator"].includes(context.user.role) ?
+                        user?.banned ? 
+                        <button onClick={unban} className={styles.green}>Разбанить</button> : 
+                        <button onClick={ban} className={styles.red}>Забанить</button>
+                    : null }
                 </Col>
                 <Col className={styles.right}>
                     <div className={styles.username}>
@@ -137,7 +147,7 @@ const UserPage = ({ token, userid }: Props) => {
                 </Col>
             </Row>
             {user?.bots && user.bots.length > 0 ? (
-                <Bots bots={user.bots} />
+                <Bots bots={user.bots} position={"left"}/>
             ) : (
                 <div className={styles.bots}>У пользователя нету ботов</div>
             )}

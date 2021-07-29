@@ -6,9 +6,10 @@ import BotCard from '../BotCard/BotCard'
 interface Props {
     bots: Bot[]
     perPage?: number
+    position?: "center" | "left" | "right"
 }
 
-const Bots: FC<Props> = ({ bots, perPage = 10 }) => {
+const Bots: FC<Props> = ({ bots, perPage = 10, position = "center" }) => {
     const [page, setPage] = useState(0)
     const navigation = []
     for (let i = 0; i < Math.ceil(bots.length / perPage); i++) {
@@ -30,7 +31,7 @@ const Bots: FC<Props> = ({ bots, perPage = 10 }) => {
         )
     return (
         <>
-            <div className={styles.bots}>
+            <div className={styles.bots} style={{justifyContent: position}}>
                 {bots.slice(page * perPage, perPage * (page + 1)).map(bot => (
                     <BotCard key={bot.id} bot={bot} />
                 ))}

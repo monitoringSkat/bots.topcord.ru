@@ -2,7 +2,7 @@
     background: url(/assets/user-background.jpg);
     display: flex;
     flex-wrap: wrap;
-    padding: 1.5%;
+    padding: 1.5% 5%;
     justify-content: center;
 }
 
@@ -24,6 +24,13 @@
     a {
         background: #5865f2;
     }
+}
+
+.green {
+    background: #3ba55d;
+}
+.red {
+    background: #ED4245;
 }
 
 .right {

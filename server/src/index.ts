@@ -20,7 +20,6 @@ import cookieParser from 'cookie-parser'
 import DiscordJS from 'discord.js'
 import cats from './routes/cats'
 
-
 dotenv.config()
 const PORT = Number(process.env.PORT || 5000)
 
@@ -92,7 +91,6 @@ orm.createConnection()
         app.use('/docs', swagger.serve, swagger.setup(openapiSpecification))
         app.use('/cats', cats)
 
-        
         app.listen(PORT, () => {
             console.log(`[NODEJS]: http://localhost:${PORT}`)
         })
