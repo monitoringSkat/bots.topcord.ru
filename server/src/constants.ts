@@ -18,4 +18,6 @@ const libraries = [
     'Sword'
 ]
 
-export { libraries }
+const supportedSocialLinks = ['github', 'twitter', 'reddit', 'steam', 'twitch', 'telegram', 'vk', 'facebook', 'instagram', 'youtube']
+
+export { libraries, supportedSocialLinks }

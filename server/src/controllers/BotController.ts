@@ -12,7 +12,6 @@ import Comment from '../entities/Comment'
 import TooManyCommentsPerUserException from '../exceptions/too-many-comments-per-user'
 import PermissionsDenied from '../exceptions/permissions-denied.exception'
 import UserService from '../services/user.service'
-import { Collection } from 'discord.js'
 import Minutes from '../enums/minutes.enum'
 
 async function getAllBots(req: Request, res: Response) {
@@ -25,52 +24,31 @@ async function getAllBots(req: Request, res: Response) {
 }
 
 async function getBot(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, {
-        relations: [
-            'owner',
-            'comments',
-            'comments.author',
-            'tags',
-            'developers'
-        ]
-    })
-    const error = new BotNotFoundException()
-    if (!bot) return res.send(error)
-    res.send(bot)
+    res.send((req as any).bot)
 }
 
 async function getBotDevelopers(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: ['developers'] })
-    const error = new BotNotFoundException()
-    if (!bot) return res.send(error)
+    const bot = (req as any).bot
     res.send(bot.developers)
 }
 
 async function getBotTags(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: ['tags'] })
-    const error = new BotNotFoundException()
-    if (!bot) return res.send(error)
+    const bot = (req as any).bot
     res.send(bot.tags)
 }
 
 async function getBotOwner(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: ['owner'] })
-    const error = new BotNotFoundException()
-    if (!bot) return res.send(error)
+    const bot = (req as any).bot
     res.send(bot.owner)
 }
 
 async function getBotComments(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: ['comments'] })
-    const error = new BotNotFoundException()
-    if (!bot) return res.send(error)
+    const bot = (req as any).bot
     res.send(bot.comments)
 }
 
 async function getBotStats(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: ['comments'] })
-    const error = new BotNotFoundException()
-    if (!bot) return res.send(error)
+    const bot = (req as any).bot
     res.send({
         id: bot.id,
         votes: bot.votes,
@@ -86,18 +64,14 @@ async function getBotStats(req: Request, res: Response) {
 }
 
 async function getBotVotes(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id)
-    const error = new BotNotFoundException()
-    if (!bot) return res.send(error)
+    const bot = (req as any).bot
     res.send({
         count: bot.votes
     })
 }
 
 async function getBotRating(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id, { relations: ['comments'] })
-    const error = new BotNotFoundException()
-    if (!bot) return res.send(error)
+    const bot = (req as any).bot
     res.send({
         rating: bot.comments
             .map(comment => comment.rating)
@@ -106,7 +80,7 @@ async function getBotRating(req: Request, res: Response) {
 }
 
 async function getBotGuilds(req: Request, res: Response) {
-    const bot = await Bot.findOne(req.params.id)
+    const bot = (req as any).bot
     res.send({ guilds: bot?.guildsCount })
 }
 
@@ -135,7 +109,7 @@ async function getNewBots(req: Request, res: Response) {
 
 async function create(req: Request, res: Response) {
     const errors = validationResult(req)
-    if (!errors.isEmpty()) return res.send({ errors: errors.array() })
+    if (!errors.isEmpty()) return res.status(400).send({ errors: errors.array() })
     const owner = await User.findOne((req.user as any).id)
     const sameBot = await Bot.findOne(req.body.id)
     if (sameBot) return res.send(new SameBotException())
@@ -227,7 +201,7 @@ async function vote(req: Request, res: Response) {
     if (lastUpvote) {
         const threeHours = Minutes.HOUR * 3
         const timeDiff = Date.now() - lastUpvote
-        if (timeDiff < threeHours) return res.send(false)
+        if (timeDiff < threeHours) return res.status(406).send(false)
     }
     ;(req as any).upvotes.set(id, date)
     bot.votes = bot.votes + 1
@@ -297,7 +271,7 @@ async function createComment(req: Request, res: Response) {
         ({ author }) => author.id === user.id
     )
     if (commentsPerUser.length >= 5)
-        return res.send(new TooManyCommentsPerUserException())
+        return res.status(406).send(new TooManyCommentsPerUserException())
     if (req.body.rating > 5 || req.body.rating <= 0)
         return res.send(`Max rating: 5. Min rating: 1`)
 

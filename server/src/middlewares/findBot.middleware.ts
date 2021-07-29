@@ -12,7 +12,7 @@ function findBot(options?: FindOneOptions<Bot>) {
     return async (req: Request, res: Response, next: Function) => {
         const { id } = req.params
         const bot = await Bot.findOne(id, options)
-        if (!bot) return res.send(new BotNotFoundException())
+        if (!bot) return res.status(404).send(new BotNotFoundException())
         ;(req as any).bot = bot
         next()
     }

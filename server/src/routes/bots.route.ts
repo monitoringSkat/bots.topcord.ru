@@ -9,41 +9,47 @@ import BotController from '../controllers/BotController'
 
 const botsRouter = Router()
 
-// GET
-
-/**
- * @swagger
- * /bots/all:
- *   get:
- *     description: Get all bots from API.
- */
-
 botsRouter.get('/all', BotController.getAllBots) // ✔️
-
-/**
- * @swagger
- * /bots/top:
- *   get:
- *     description: Get top bots.
- *   parameters:
- *     - in: query
- *       name: limit
- *       type: string
- *       required: false
- *       description: Send limited bots
- */
 botsRouter.get('/top', BotController.getTopBots) // ✔️
 botsRouter.get('/new', BotController.getNewBots) // ✔️
 botsRouter.get('/search', BotController.getBotsByQuery) // ✔️
-botsRouter.get('/:id', BotController.getBot) // ✔️
-botsRouter.get('/:id/owner', BotController.getBotOwner) // ✔️
-botsRouter.get('/:id/tags', BotController.getBotTags) // ✔️
-botsRouter.get('/:id/developers', BotController.getBotDevelopers) // ✔️
-botsRouter.get('/:id/comments', BotController.getBotComments) // ✔️
-botsRouter.get('/:id/stats', BotController.getBotStats) // ✔️
-botsRouter.get('/:id/votes', BotController.getBotVotes) // ✔️
-botsRouter.get('/:id/rating', BotController.getBotRating) // ✔️
-botsRouter.get('/:id/guilds', BotController.getBotGuilds) // ✔️
+botsRouter.get(
+    '/:id', 
+    [findBot({ relations: ['owner', 'comments', 'comments.author', 'tags', 'developers'] })], 
+    BotController.getBot
+) // ✔️
+botsRouter.get('/:id/owner', 
+[findBot({relations: ["owner"]})],
+BotController.getBotOwner) // ✔️
+
+botsRouter.get('/:id/tags', 
+[findBot({ relations: ["tags"] })],
+BotController.getBotTags) // ✔️
+
+botsRouter.get('/:id/developers', 
+[findBot({ relations: ["developers"] })],
+BotController.getBotDevelopers) // ✔️
+
+botsRouter.get('/:id/comments',
+[findBot({ relations: ["comments"] })],
+BotController.getBotComments) // ✔️
+
+botsRouter.get('/:id/stats', 
+[findBot({ relations: ["comments"] })],
+BotController.getBotStats) // ✔️
+
+botsRouter.get('/:id/votes',
+[findBot()],
+BotController.getBotVotes) // ✔️
+
+
+botsRouter.get('/:id/rating', 
+[findBot({ relations: ["comments"] })],
+BotController.getBotRating) // ✔️
+
+botsRouter.get('/:id/guilds', 
+[findBot()],
+BotController.getBotGuilds) // ✔️
 
 // POST
 botsRouter.post(
@@ -56,8 +62,8 @@ botsRouter.post(
         }),
         body('id').notEmpty().isString(),
         body('prefix').notEmpty().isString(),
-        body('longDescription').notEmpty().isString(),
-        body('shortDescription').notEmpty().isString(),
+        body('longDescription').notEmpty().isString().isLength({ min: 300 }),
+        body('shortDescription').notEmpty().isString().isLength({ min: 0, max: 220 }),
         body('tags').isArray().notEmpty(),
         body('inviteURL').notEmpty().isString().isURL(),
         body('library').notEmpty().isString().isIn(libraries),
@@ -68,7 +74,7 @@ botsRouter.post(
         body('developers')
             .isArray()
             .optional({ nullable: true, checkFalsy: true })
-            .custom((value, { req }) => {
+            .custom(value => {
                 const isFromStrings = value?.every(
                     elem => typeof elem === 'string'
                 )
@@ -171,7 +177,7 @@ botsRouter.put(
         body('developers')
             .isArray()
             .optional({ nullable: true, checkFalsy: true })
-            .custom((value, { req }) => {
+            .custom(value => {
                 const isFromStrings = value?.every(
                     elem => typeof elem === 'string'
                 )
