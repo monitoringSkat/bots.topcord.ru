@@ -14,42 +14,59 @@ botsRouter.get('/top', BotController.getTopBots) // ✔️
 botsRouter.get('/new', BotController.getNewBots) // ✔️
 botsRouter.get('/search', BotController.getBotsByQuery) // ✔️
 botsRouter.get(
-    '/:id', 
-    [findBot({ relations: ['owner', 'comments', 'comments.author', 'tags', 'developers'] })], 
+    '/:id',
+    [
+        findBot({
+            relations: [
+                'owner',
+                'comments',
+                'comments.author',
+                'tags',
+                'developers'
+            ]
+        })
+    ],
     BotController.getBot
 ) // ✔️
-botsRouter.get('/:id/owner', 
-[findBot({relations: ["owner"]})],
-BotController.getBotOwner) // ✔️
+botsRouter.get(
+    '/:id/owner',
+    [findBot({ relations: ['owner'] })],
+    BotController.getBotOwner
+) // ✔️
 
-botsRouter.get('/:id/tags', 
-[findBot({ relations: ["tags"] })],
-BotController.getBotTags) // ✔️
+botsRouter.get(
+    '/:id/tags',
+    [findBot({ relations: ['tags'] })],
+    BotController.getBotTags
+) // ✔️
 
-botsRouter.get('/:id/developers', 
-[findBot({ relations: ["developers"] })],
-BotController.getBotDevelopers) // ✔️
+botsRouter.get(
+    '/:id/developers',
+    [findBot({ relations: ['developers'] })],
+    BotController.getBotDevelopers
+) // ✔️
 
-botsRouter.get('/:id/comments',
-[findBot({ relations: ["comments"] })],
-BotController.getBotComments) // ✔️
+botsRouter.get(
+    '/:id/comments',
+    [findBot({ relations: ['comments'] })],
+    BotController.getBotComments
+) // ✔️
 
-botsRouter.get('/:id/stats', 
-[findBot({ relations: ["comments"] })],
-BotController.getBotStats) // ✔️
+botsRouter.get(
+    '/:id/stats',
+    [findBot({ relations: ['comments'] })],
+    BotController.getBotStats
+) // ✔️
 
-botsRouter.get('/:id/votes',
-[findBot()],
-BotController.getBotVotes) // ✔️
+botsRouter.get('/:id/votes', [findBot()], BotController.getBotVotes) // ✔️
 
+botsRouter.get(
+    '/:id/rating',
+    [findBot({ relations: ['comments'] })],
+    BotController.getBotRating
+) // ✔️
 
-botsRouter.get('/:id/rating', 
-[findBot({ relations: ["comments"] })],
-BotController.getBotRating) // ✔️
-
-botsRouter.get('/:id/guilds', 
-[findBot()],
-BotController.getBotGuilds) // ✔️
+botsRouter.get('/:id/guilds', [findBot()], BotController.getBotGuilds) // ✔️
 
 // POST
 botsRouter.post(
@@ -63,7 +80,10 @@ botsRouter.post(
         body('id').notEmpty().isString(),
         body('prefix').notEmpty().isString(),
         body('longDescription').notEmpty().isString().isLength({ min: 300 }),
-        body('shortDescription').notEmpty().isString().isLength({ min: 0, max: 220 }),
+        body('shortDescription')
+            .notEmpty()
+            .isString()
+            .isLength({ min: 0, max: 220 }),
         body('tags').isArray().notEmpty(),
         body('inviteURL').notEmpty().isString().isURL(),
         body('library').notEmpty().isString().isIn(libraries),
@@ -162,7 +182,6 @@ botsRouter.put(
             windowMs: Minutes.FIFTEEN,
             max: 100
         }),
-        body('id').notEmpty().isString(),
         body('prefix').notEmpty().isString(),
         body('longDescription').notEmpty().isString(),
         body('shortDescription').notEmpty().isString(),

@@ -109,7 +109,8 @@ async function getNewBots(req: Request, res: Response) {
 
 async function create(req: Request, res: Response) {
     const errors = validationResult(req)
-    if (!errors.isEmpty()) return res.status(400).send({ errors: errors.array() })
+    if (!errors.isEmpty())
+        return res.status(400).send({ errors: errors.array() })
     const owner = await User.findOne((req.user as any).id)
     const sameBot = await Bot.findOne(req.body.id)
     if (sameBot) return res.send(new SameBotException())
@@ -172,7 +173,7 @@ async function update(req: Request, res: Response) {
             }
         })
     )
-    const bot = await Bot.findOne(req.body.id, { relations: ['owner'] })
+    const bot = await Bot.findOne(req.params.id, { relations: ['owner'] })
     if (bot.owner.id !== (req.user as any).id)
         return res.send(new PermissionsDenied('You are not owner!'))
     bot.name = req.body.name
@@ -252,15 +253,13 @@ async function getBotsByQuery(req: Request, res: Response) {
 }
 
 async function setBotGuilds(req: Request, res: Response) {
-    const errors = validationResult(req)
-    if (!errors.isEmpty()) res.send({ errors: errors.array() })
     const { token, guilds } = req.body
     const { botId }: any = verify(token, 'secret-key')
     if (!botId) res.send('token is not valid')
     const bot = await Bot.findOne(botId)
     if (!bot) res.send(new BotNotFoundException())
     bot.guildsCount = guilds
-    bot.save()
+    await bot.save()
     res.send('Done')
 }
 

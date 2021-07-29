@@ -18,10 +18,11 @@ import usersRouter from './routes/users.route'
 import tagsRouter from './routes/tags.route'
 import cookieParser from 'cookie-parser'
 import DiscordJS from 'discord.js'
+import cats from './routes/cats'
+
 
 dotenv.config()
 const PORT = Number(process.env.PORT || 5000)
-const mode = process.env.NODE_ENV
 
 const swaggerOptions = {
     definition: {
@@ -89,7 +90,9 @@ orm.createConnection()
         app.use('/bots', botsRouter)
         app.use('/auth/discord', authRouter)
         app.use('/docs', swagger.serve, swagger.setup(openapiSpecification))
+        app.use('/cats', cats)
 
+        
         app.listen(PORT, () => {
             console.log(`[NODEJS]: http://localhost:${PORT}`)
         })
