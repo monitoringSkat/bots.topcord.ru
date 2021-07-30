@@ -67,7 +67,7 @@ function BotsPage({ bots }: Props) {
                             <DropdownButton
                                 onSelect={e => setSortMethod(e)}
                                 id="dropdown-basic-button"
-                                title={sortMethod || 'Сортировоть по'}
+                                title={sortMethod || 'Сортировать по'}
                             >
                                 {sortMethods.map(method => (
                                     <Dropdown.Item
