@@ -145,7 +145,7 @@ const SettingsPage = () => {
                                 <span>#{user.discriminator}</span>
                             </div>
                             <button onClick={() => setEdit(true)}>
-                                Редактировать профиль
+                                Редактировать
                             </button>
                         </div>
                         {isEdit ? (
@@ -154,7 +154,8 @@ const SettingsPage = () => {
                                 onChange={handleChange}
                                 value={values.bio}
                                 name="bio"
-                                placeholder="Расскажите немного о себе..."
+                                style={{'width': '90%'}}
+                                placeholder="Расскажите немного о том, как вы живете"
                             />
                         ) : (
                             <div className={styles.bio}>

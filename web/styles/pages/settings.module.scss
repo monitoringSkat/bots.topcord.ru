@@ -2,6 +2,7 @@
     background-color: #282b30;
     border-radius: 10px;
     padding: 20px;
+    min-width: 40%;
     margin-top: 3%;
     display: flex;
     position: relative;
@@ -81,20 +82,21 @@
             font-size: 16px !important;
         }
         input {
-            width: 96%;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             background: #36393e !important;
             border: 2px solid #282b30 !important;
             color: white !important;
             padding: 10px;
+            min-width: 80%;
+            height: 45px;
             margin-top: 0px;
             &::placeholder {
                 color: white;
             }
         }
         span {
-            width: 96%;
+            min-width: 70%;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             background: #36393e !important;
@@ -107,7 +109,6 @@
             color: white;
             background: #282b30;
             padding: 7.5px 10px;
-            width: 4%;
             user-select: none;
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
