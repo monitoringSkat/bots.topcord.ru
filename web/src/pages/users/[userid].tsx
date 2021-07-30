@@ -11,7 +11,8 @@ import AuthContext from '../../context/auth.context'
 import FullscreenModal from '../../components/Modal/Modal'
 import api from '../../api'
 import UserCard from '../../components/UserCard/UserCard'
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { Row, Col, Image } from 'react-bootstrap'
+import { useMediaQuery } from 'react-responsive'
 
 interface Props {
     token?: string
@@ -23,6 +24,7 @@ const UserPage = ({ token, userid }: Props) => {
     const [user, setUser] = useState<User>()
     const [show, setShow] = useState(false)
     const [inModal, setInModal] = useState('')
+    const isMobile = useMediaQuery({ query: "(max-width: 630px)" })
 
     const getUser = async () => {
         const data = await api.getUser(userid, token)
@@ -167,7 +169,7 @@ const UserPage = ({ token, userid }: Props) => {
                 </Col>
             </Row>
             {user?.bots && user.bots.length > 0 ? (
-                <Bots bots={user.bots} position={'left'} />
+                <Bots bots={user.bots} position={isMobile ? "center" : 'left'} />
             ) : (
                 <div className={styles.bots}>У пользователя нету ботов</div>
             )}

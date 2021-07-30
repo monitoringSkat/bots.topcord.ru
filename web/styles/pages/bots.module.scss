@@ -23,3 +23,39 @@
         }
     }
 }
+
+@media screen and (max-width: 600px) {
+    .intro {
+        .title {
+            font-size: 40px;
+        }
+        .search {
+            position: relative !important;
+            input {
+                width: 88% !important;
+            }
+        }
+    }
+    .options {
+        display: flex;
+        flex-direction: column;
+        div button {
+            width: 100% !important;
+            margin: 7.5px 0;
+        }
+        div div {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .intro {
+        .title {
+            font-size: 35px !important;
+        }
+        .input {
+            font-size: 15px !important;
+        }
+    }
+}

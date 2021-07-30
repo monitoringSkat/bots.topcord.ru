@@ -60,7 +60,9 @@ function BotsPage({ bots }: Props) {
                         <div className={styles.title}>
                             Лист ботов в Дискорд.
                         </div>
-                        <SearchBotsInput placeholder="Найти бота" />
+                        <div className={styles.search}>
+                            <SearchBotsInput placeholder="Найти бота" />
+                        </div>
                         <div className={styles.options}>
                             <DropdownButton
                                 onSelect={e => setSortMethod(e)}
@@ -104,9 +106,7 @@ function BotsPage({ bots }: Props) {
                     </Col>
                 </Row>
             </Container>
-            {/* <Container>  */}
             <Bots bots={sortedBots} />
-            {/* </Container> */}
         </Layout>
     )
 }
