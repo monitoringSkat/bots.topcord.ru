@@ -15,8 +15,10 @@ import { useEffect } from 'react'
 import api from '../../api'
 import User from '../../interfaces/user.interface'
 import PageWithAuth from '../../hoc/PageWithAuth'
+import { useTranslation } from 'react-i18next'
 
 const AddPage = () => {
+    const { t } = useTranslation()
     const fromStringToArray = (str: string) => str.split(/\s*\,\s*/)
     const [checked, setChecked] = useState(false)
     const [bot, setBot] = useState<Bot>()
@@ -65,7 +67,7 @@ const AddPage = () => {
                 }
             )
             if (data.statusCode === 409)
-                setErrors({ ...errors, id: 'Такой ID уже существует!' })
+                setErrors({ ...errors, id: t("errors.sameId") })
             if (data.id) {
                 setBot(data)
                 setOpen(true)
@@ -94,7 +96,7 @@ const AddPage = () => {
     const handleClose = () => router.push(`/bots/${bot?.id}`)
 
     const action = (
-        <Button onClick={handleClose}>Перейти на страницу {bot?.name}</Button>
+        <Button onClick={handleClose}>{t("add.redirectTo")} {bot?.name}</Button>
     )
 
     const selectHandler = (name: string, value: string) => {
@@ -113,54 +115,57 @@ const AddPage = () => {
             />
 
             <div className={styles.title}>
-                {isEdit ? 'Редактирование' : 'Добавление'} бота
+                {isEdit ? t("add.editTitle") : t("add.addTitle")}
             </div>
             <form onSubmit={handleSubmit} className={styles.inputs}>
                 {fields.map(
-                    ({ placeholder, name, hint, required, type, options }) => (
-                        <div key={name} className={styles.input}>
-                            <div className={styles.field}>
-                                <div className={styles.name}>
-                                    {placeholder}
-                                    {required === true && '*'}
+                    ({ name, hint, required, type, options }) => {
+                        const placeholder = t(`add.${name}`)
+                        return (
+                                <div key={name} className={styles.input}>
+                                    <div className={styles.field}>
+                                        <div className={styles.name}>
+                                            {placeholder}
+                                            {required === true && '*'}
+                                        </div>
+                                        {hint && (
+                                            <div className={styles.hint}>{t(`add.${name}_hint`)}</div>
+                                        )}
+                                    </div>
+                                    <div className={styles.error}>
+                                        {(errors as any)[name]}
+                                    </div>
+                                    {name === 'tags' && (
+                                        <div className={styles.tags}>
+                                            {tags.map(tag => (
+                                                <div>{tag}</div>
+                                            ))}
+                                        </div>
+                                    )}
+                                    <Input
+                                        onChange={handleChange}
+                                        value={
+                                            name === 'tags'
+                                                ? tags
+                                                : name === 'developers'
+                                                ? developers
+                                                : (values as any)[name]
+                                        }
+                                        disabled={name === 'id' && isEdit}
+                                        options={options}
+                                        name={name}
+                                        placeholder={"..."}
+                                        type={type as any}
+                                        selectHandler={selectHandler}
+                                    />
                                 </div>
-                                {hint && (
-                                    <div className={styles.hint}>{hint}</div>
-                                )}
-                            </div>
-                            <div className={styles.error}>
-                                {(errors as any)[name]}
-                            </div>
-                            {name === 'tags' && (
-                                <div className={styles.tags}>
-                                    {tags.map(tag => (
-                                        <div>{tag}</div>
-                                    ))}
-                                </div>
-                            )}
-                            <Input
-                                onChange={handleChange}
-                                value={
-                                    name === 'tags'
-                                        ? tags
-                                        : name === 'developers'
-                                        ? developers
-                                        : (values as any)[name]
-                                }
-                                disabled={name === 'id' && isEdit}
-                                options={options}
-                                name={name}
-                                placeholder={placeholder}
-                                type={type as any}
-                                selectHandler={selectHandler}
-                            />
-                        </div>
-                    )
+                        )
+                    }
                 )}
                 <div className={styles.submit}>
                     <Form.Check
                         type="checkbox"
-                        label="Я ознакомился/ознакомилась с правилами"
+                        label={t("add.rules")}
                         checked={checked}
                         onChange={e => setChecked(!checked)}
                     />
@@ -168,7 +173,7 @@ const AddPage = () => {
                         disabled={!(isValid && dirty && checked)}
                         type="submit"
                     >
-                        {isEdit ? 'Обновить бота' : 'Добавить бота'}
+                        {isEdit ? t("add.updateButton") : t("add.createButton")}
                     </button>
                 </div>
             </form>

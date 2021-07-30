@@ -14,32 +14,35 @@ import SearchBotsInput from '../../components/SearchBotsInput/SearchBotsInput'
 import libraries from '../../data/libraries.json'
 import { useState } from 'react'
 import http from '../../api/http'
+import { useTranslation } from 'react-i18next'
 interface Props {
     bots: Bot[]
 }
 
-const sortMethods = [
-    'Голосам',
-    'Количеству серверов',
-    'Количеству комментариев',
-    'По дате обновления'
-]
 
 function BotsPage({ bots }: Props) {
     const [sortMethod, setSortMethod] = useState<string | null>(null)
     const [library, setLibrary] = useState<string | null>(null)
+    const { t } = useTranslation()
+    
+    const sortMethods = [
+        t("filters.votes"),
+        t("filters.guilds"),
+        t("filters.comments"),
+        t("filters.updatedAt")
+    ]
 
     const sortedBots = bots
         .sort((a, b) => {
             switch (sortMethod) {
-                case 'Количеству серверов':
+                case t("filters.guilds"):
                     return b.guildsCount - a.guildsCount
-                case 'По дате обновления':
+                case t("filters.updatedAt"):
                     return (
                         new Date(b.updatedAt).getTime() -
                         new Date(a.updatedAt).getTime()
                     )
-                case 'Количеству комментариев':
+                case t("filters.comments"):
                     return b.comments.length - a.comments.length
                 default:
                     return b.votes - a.votes
@@ -53,21 +56,21 @@ function BotsPage({ bots }: Props) {
     }
 
     return (
-        <Layout title="Боты | TopCord">
+        <Layout title={`${t("titles.bots")}`}>
             <Container className={styles.intro} fluid>
                 <Row>
                     <Col>
                         <div className={styles.title}>
-                            Лист ботов в Дискорд.
+                            {t("title")}
                         </div>
                         <div className={styles.search}>
-                            <SearchBotsInput placeholder="Найти бота" />
+                            <SearchBotsInput placeholder={t("inputs.searchBot")} />
                         </div>
                         <div className={styles.options}>
                             <DropdownButton
                                 onSelect={e => setSortMethod(e)}
                                 id="dropdown-basic-button"
-                                title={sortMethod || 'Сортировать по'}
+                                title={sortMethod || t("filters.sortBy")}
                             >
                                 {sortMethods.map(method => (
                                     <Dropdown.Item
@@ -80,7 +83,7 @@ function BotsPage({ bots }: Props) {
                             </DropdownButton>
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title={library || 'Библиотека'}
+                                title={library || t("filters.library")}
                                 onSelect={e => setLibrary(e)}
                             >
                                 {libraries.map((lib: string) => (
@@ -100,7 +103,7 @@ function BotsPage({ bots }: Props) {
                                     !library?.length && !sortMethod?.length
                                 }
                             >
-                                Очистить фильтр
+                                {t("filters.reset")}
                             </Button>
                         </div>
                     </Col>
