@@ -26,8 +26,7 @@ const Header = () => {
                     {user.id && (
                         <Link href="/add">{t('header.links.addBot')}</Link>
                     )}
-                    <Link href="/">{t('header.links.community')}</Link>
-                    <Link href="/">{t('header.links.partners')}</Link>
+                    <Link href="https://discord.gg/ZDvQTzrG4k">{t('header.links.community')}</Link>
                 </Nav>
                 <Nav className="navbar-login">
                     {!user.id && (
