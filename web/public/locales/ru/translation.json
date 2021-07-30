@@ -1,37 +1,104 @@
 {
+    "title": "Лист ботов в Дискорд.",
+    "subtitle": "Добавляйте ботов, голосуйте за них. Выбирайте ботов. И все это на TopCord.",
+    "list-tags": "Список тегов",
+    "titles": {
+        "home": "Главная",
+        "bots": "Боты",
+        "add": "Добавить",
+        "edit": "Редактировать",
+        "settings": "Настройки"
+    },
     "header": {
         "links": {
             "main": "Главная",
             "bots": "Боты",
             "addBot": "Добавить бота",
             "community": "Сообщество",
-            "partners": "Партнеры",
             "login": "Войти"
         }
+    },
+    "inputs": {
+        "search-bot": "Найти бота"
+    },
+    "filters": {
+        "reset": "Очистить фильтр",
+        "library": "Библиотека",
+        "updatedAt": "По дате обновления",
+        "votes": "По голосам",
+        "guilds": "По количеству сервером",
+        "comments": "По количеству комментариев"
     },
     "footer": {
         "categories": {
             "info": "Информация",
-            "politics": "",
-            "links": ""
+            "politics": "Политика",
+            "links": "Ссылки"
         },
         "links": {
-            "developers": "",
-            "documentation-api": "",
-            "donate": "",
-            "rules": "",
-            "topinfo": "",
-            "support-server": ""
+            "developers": "Разработчики",
+            "documentation": "Руководство поп API",
+            "donate": "Пожертвовать",
+            "rules": "Правила",
+            "topinfo": "TopInfo",
+            "support": "Сервер поддержки"
         }
     },
-    "title": "Лист ботов в Дискорд.",
-    "subtitle": "Добавляйте ботов, голосуйте за них. Выбирайте ботов. И все это на TopCord.",
-    "addBot": {
-        "client_id": "Клиент ID",
-        "client_id_hint": "находиться на Discord Developer Portal",
-        "name": "Имя бота"
+    "add": {
+        "addTitle": "Добавление бота",
+        "editTitle": "Редактирование бота",
+        "id": "Клиент ID",
+        "id_hint": "находиться на Discord Developer Portal",
+        "prefix": "Имя бота",
+        "shortDescription": "Краткое описание",
+        "shortDescription_hint": "максимальное количество символов 220",
+        "longDescription": "Детальное описание*",
+        "longDescription_hint": "минимальное количество символов 300, поддержка Markdown, HTML",
+        "tags": "Теги бота",
+        "tags_hint": "максимальное количество тегов 5, максимальная количество символов в теги 15. “запятая” - разделитель",
+        "inviteURL": "Ссылка на добавления бота",
+        "inviteURL_hint": "ссылка на добавления бота на сервер пользователя",
+        "library": "Библиотека",
+        "backgroundURL": "Задний фон в карточке бота",
+        "backgroundURL_hint": "ссылка на изображение",
+        "developers": "Разработчики бота",
+        "developers_hint": "Список ID пользователей. “запятая” - разделитель",
+        "supportServerURL" : "Сервер поддержки",
+        "supportServerURL_hint": "ссылка на сервер бота, где пользователи могут получить обратную связь, отправить баг и тд.",
+        "githubURL": "Исходный код",
+        "githubURL_hint": "Ссылка на Github репозиторий",
+        "websiteURL": "Веб-сайт бота",
+        "websiteURL_hint": "Ссылка на сайт бота",
+        "rules": "Я ознакомился/ознакомилась с правилами",
+        "updateButton": "Обновить бота",
+        "createButton": "Добавить бота"
     },
-    "tags": {
-        "moderation": "Модерация"
+    "errors": {
+        "bots-not-found": "Боты не найдены."
+    },
+    "buttons": {
+        "edit": "Редактировать",
+        "follow": "Подписаться",
+        "unfollow": "Отписаться",
+        "ban": "Забанить",
+        "unban": "Разбанить"
+    },
+    "roles": {
+        "admin": "Админ",
+        "moderator": "Модератор",
+        "member": "Участник",
+        "developer": "Разработчик"
+    },
+    "settings": {
+        "intergrations": "Интеграции",
+        "emptyBio": "Биография отсутствует",
+        "menu": {
+            "profile": "Профиль пользователя",
+            "language": "Язык",
+            "logout": "Выйти",
+            "version": "Текущая версия",
+            "os": "Операционная система",
+            "browser": "Браузер"
+        }
     }
 }
