@@ -49,18 +49,14 @@ const Home = ({ newBots, topBots }: Props) => {
                 {newBots.length > 0 && (
                     <>
                         <h2>Новые боты</h2>
-                        <Container>
-                            <Bots bots={newBots} />
-                        </Container>
+                        <Bots bots={newBots} />
                     </>
                 )}
 
                 {topBots.length > 0 && (
                     <>
                         <hr className={styles.hr} />
-                        <Container>
-                            <Bots bots={newBots} />
-                        </Container>
+                        <Bots bots={newBots} />
                     </>
                 )}
             </div>
