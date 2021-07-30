@@ -7,29 +7,28 @@ import Bots from '../components/Bots/Bots'
 import SearchBotsInput from '../components/SearchBotsInput/SearchBotsInput'
 import { Container, Col, Row } from 'react-bootstrap'
 import http from '../api/http'
+import { useTranslation } from 'react-i18next'
 interface Props {
     topBots: Bot[]
     newBots: Bot[]
 }
 
 const Home = ({ newBots, topBots }: Props) => {
+    const { t } = useTranslation()
     return (
         <Layout title="Главная | Topcord">
             <Container className={styles.intro} fluid>
                 <Row>
                     <Col className={styles.search}>
                         <div className={styles.title}>
-                            Лист ботов в Дискорд.
+                            {t("title")}
                         </div>
                         <div className={styles.subtitle}>
-                            Добавляйте ботов, голосуйте за них. Выбирайте ботов.
-                            И все это на TopCord.
+                            {t("subtitle")}
                         </div>
-                        <SearchBotsInput placeholder="Найти бота" />
+                        <SearchBotsInput placeholder={t("inputs.searchBot")} />
                         <div className={styles.tags}>
-                            <Link href="/tags/fun">Fun</Link>
-                            <Link href="/tags/moderation">Moderation</Link>
-                            <Link href="/tags">Список тегов</Link>
+                            <Link href="/tags">{t("tagList")}</Link>
                         </div>
                     </Col>
                     <Col className={styles.wumpus_col}>
@@ -43,12 +42,12 @@ const Home = ({ newBots, topBots }: Props) => {
             <div className={styles.bots}>
                 {newBots.length === 0 && topBots.length === 0 && (
                     <div className={styles.empty}>
-                        ¯\_(ツ)_/¯ <br /> Боты не найдены.{' '}
+                        ¯\_(ツ)_/¯ <br /> {t("errors.botsNotFound")}{' '}
                     </div>
                 )}
                 {newBots.length > 0 && (
                     <>
-                        <h2>Новые боты</h2>
+                        <h2>{t("newBots")}</h2>
                         <Bots bots={newBots} />
                     </>
                 )}
@@ -56,7 +55,8 @@ const Home = ({ newBots, topBots }: Props) => {
                 {topBots.length > 0 && (
                     <>
                         <hr className={styles.hr} />
-                        <Bots bots={newBots} />
+                        <h2>{t("topBots")}</h2>
+                        <Bots bots={topBots} />
                     </>
                 )}
             </div>
