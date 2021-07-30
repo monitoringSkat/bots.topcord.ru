@@ -1,24 +1,27 @@
 import Link from 'next//link'
 import { Col, Row } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 
-const Footer = () => (
+const Footer = () => {
+    const { t } = useTranslation()
+    return (
     <footer>
         <div className="footer-top">
             <Row>
                 <Col className="col-sm footer-links-group">
-                    <div className="footer-links-group-name">Информация</div>
-                    <Link href="/developers">Разработчики</Link>
-                    <Link href="">Руководство по API</Link>
-                    <Link href="">Пожертвовать</Link>
+                    <div className="footer-links-group-name">{t("footer.categories.info")}</div>
+                    <Link href="/developers">{t("footer.links.developers")}</Link>
+                    <Link href="">{t("footer.links.documentation")}</Link>
+                    <Link href="">{t("footer.links.donate")}</Link>
                 </Col>
                 <Col className="col-sm footer-links-group">
-                    <div className="footer-links-group-name">Политика</div>
-                    <Link href="">Правила</Link>
+                    <div className="footer-links-group-name">{t("footer.categories.politics")}</div>
+                    <Link href="">{t("footer.links.rules")}</Link>
                 </Col>
                 <Col className="col-sm footer-links-group">
-                    <div className="footer-links-group-name">Ссылки</div>
-                    <Link href="">Сервер поддержки</Link>
-                    <Link href="">TopInfo</Link>
+                    <div className="footer-links-group-name">{t("footer.categories.links")}</div>
+                    <Link href="">{t("footer.links.support")}</Link>
+                    <Link href="">{t("footer.links.topinfo")}</Link>
                 </Col>
             </Row>
             <img src="/assets/wumpus-rocket.png" className="footer-wumpus" />
@@ -28,6 +31,7 @@ const Footer = () => (
             <hr />
         </div>
     </footer>
-)
+    )
+}
 
 export default Footer

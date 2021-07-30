@@ -54,10 +54,12 @@
 }
 
 .content {
-    //display: flex;
-    //flex-direction: column;
     padding: 5%;
     min-width: 75%;
     height: auto;
     overflow: auto;
+}
+
+.home {
+    background: #282b30;
 }
