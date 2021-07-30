@@ -63,7 +63,7 @@
         "backgroundURL_hint": "ссылка на изображение",
         "developers": "Разработчики бота",
         "developers_hint": "Список ID пользователей. “запятая” - разделитель",
-        "supportServerURL" : "Сервер поддержки",
+        "supportServerURL": "Сервер поддержки",
         "supportServerURL_hint": "ссылка на сервер бота, где пользователи могут получить обратную связь, отправить баг и тд.",
         "githubURL": "Исходный код",
         "githubURL_hint": "Ссылка на Github репозиторий",

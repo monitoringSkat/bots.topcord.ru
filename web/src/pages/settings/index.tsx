@@ -154,7 +154,7 @@ const SettingsPage = () => {
                                 onChange={handleChange}
                                 value={values.bio}
                                 name="bio"
-                                style={{'width': '90%'}}
+                                style={{ width: '90%' }}
                                 placeholder="Расскажите немного о том, как вы живете"
                             />
                         ) : (

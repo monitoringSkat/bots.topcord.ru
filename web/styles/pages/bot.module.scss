@@ -5,11 +5,11 @@
     background: #282b30;
     color: white;
     .avatar-container {
-        margin-right: 1.5%;
+        width: 15%;
     }
     .avatar {
-        width: 128px;
-        height: 128px;
+        position: relative;
+        width: 100%;
         border-radius: 10px;
     }
     .name {
@@ -152,7 +152,8 @@
 }
 
 .passport {
-    width: 85%;
+    width: 82.5%;
+    margin-left: 2.5%;
 }
 
 .votes,
@@ -173,7 +174,6 @@
 }
 
 .avatar-container {
-    width: 12.25%;
     display: flex;
     flex-direction: column;
     button {
@@ -192,4 +192,38 @@
 .report,
 .delete {
     background-color: #ed4245;
+}
+
+@media screen and (max-width: 1000px) {
+    .avatar-container {
+        width: 20% !important;
+    }
+    .passport {
+        width: 75% !important;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .info {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .avatar-container {
+        width: 150px !important;
+    }
+    .passport {
+        width: 100% !important;
+        padding-right: 2.5%;
+    }
+    .write {
+        display: block !important;
+        float: left;
+        textarea {
+            width: 96% !important;
+        }
+        img {
+            display: none;
+        }
+    }
 }
