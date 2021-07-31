@@ -56,7 +56,7 @@ const AddPage = () => {
                 .map((t: string) => t.slice(0, 15))
             const developers = fromStringToArray(values.developers)
             const { data } = await http[isEdit ? 'put' : 'post'](
-                isEdit ? `/bots/${bot?.id}` : '/bots',
+                isEdit ? `/bots/${values.id}` : '/bots',
                 { ...values, tags, developers },
                 {
                     headers: {

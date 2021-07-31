@@ -117,11 +117,14 @@ async function create(req: Request, res: Response) {
     const data = await getUserInfo(req.body.id)
     if (!data.bot) return res.send(new BotNotFoundException())
     const developers: User[] = await Promise.all(
-        (req.body.developers || []).map(
+        (req.body.developers || [])
+        .filter(Boolean)
+        .map(
             async userId =>
                 await UserService.findOrCreate(await getUserInfo(userId))
         )
     )
+
     const bot = Bot.create({
         name: data.username,
         id: req.body.id,
@@ -157,7 +160,9 @@ async function create(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
     const developers: User[] = await Promise.all(
-        (req.body.developers || []).map(
+        (req.body.developers || [])
+        .filter(Boolean)
+        .map(
             async userId => await getUserInfo(userId)
         )
     )
@@ -185,7 +190,7 @@ async function update(req: Request, res: Response) {
     bot.supportServerURL = req.body.supportServerURL
     bot.library = req.body.library
     bot.tags = tags
-    bot.developers = developers
+    bot.developers = [req.user as User, ...developers]
     bot.backgroundURL = req.body.backgroundURL
     bot.inviteURL = req.body.inviteURL
     await bot.save()
@@ -212,7 +217,7 @@ async function vote(req: Request, res: Response) {
 
 async function remove(req: Request, res: Response) {
     const bot = (req as any).bot
-    if (bot.owner.id !== (req.user as any).id)
+    if (bot.owner.id !== (req.user as any).id || ["admin", "moderator"].includes((req as any).role))
         return res.send(new PermissionsDenied('You are not owner!'))
     await bot.remove()
     res.send(200)
