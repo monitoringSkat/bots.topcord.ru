@@ -24,14 +24,14 @@ const Layout: FC<Props> = ({ children, title, description }) => (
                 content="discord, дискорд, дискорд боты, боты дискорд, лист ботов дискорд, русские дискорд боты, список ботов дискорд, топовые боты дискорд, bots discord, discord bots"
             />
         
-            <meta name="msapplication-tooltip" content={title && ' | TopCord'}/>
+            <meta name="msapplication-tooltip" content={`${title} | TopCord`}/>
             <meta name="msapplication-starturl" content="/"/>
             <meta name="msapplication-TileColor" content="#7289DA"/>
             <meta name="theme-color" content="#7289DA"/>
-            <meta name="application-name" content={title && ' | TopCord'}/>
+            <meta name="application-name" content={`${title} | TopCord`}/>
 
             <meta property="og:site_name" content="bots.topcord.ru"/>
-            <meta property="og:title" content={title && ' | TopCord'}/>
+            <meta property="og:title" content={`${title} | TopCord`}/>
             <meta property="og:description" content={description}/>
             <meta property="og:image" content="/assets/favicon.png"/>
             <meta property="og:type" content="website"/>
