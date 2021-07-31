@@ -15,7 +15,7 @@ const Footer = () => {
                         <Link href="/developers">
                             {t('footer.links.developers')}
                         </Link>
-                        <Link href="">{t('footer.links.documentation')}</Link>
+                        <a href="https://docs.topcord.ru/">{t('footer.links.documentation')}</a>
                         <Link href="">{t('footer.links.donate')}</Link>
                     </Col>
                     <Col className="col-sm footer-links-group">
@@ -28,8 +28,8 @@ const Footer = () => {
                         <div className="footer-links-group-name">
                             {t('footer.categories.links')}
                         </div>
-                        <Link href="">{t('footer.links.support')}</Link>
-                        <Link href="">{t('footer.links.topinfo')}</Link>
+                        <a href="https://discord.gg/6uwt4vzptZ">{t('footer.links.support')}</a>
+                        <a href="https://info.topcord.ru/">{t('footer.links.topinfo')}</a>
                     </Col>
                 </Row>
                 <img
