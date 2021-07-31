@@ -14,14 +14,14 @@ const cancelApprove: Command = {
         bot.verified = false
         await bot.save()
         const embed = new MessageEmbed()
-            .addField('Причина', reason.join(' ') || 'without reason')
+            .addField('Причина', reason.join(' ') || 'Причины нету')
             .addField('Бот', bot.name)
             .addField('ID', bot.id, true)
             .addField('Префикс', bot.prefix, true)
             .addField('Владелец', `<@${bot.owner.id}>`, true)
             .setThumbnail(bot.avatar)
             .setTimestamp()
-            .setTitle('Отмена верифицорания бота')
+            .setTitle('Бот отклонен')
             .setColor('#e74c3c')
 
         const channel: any = client.channels.cache.get('846093367485923348')
