@@ -20,6 +20,11 @@
         "icon": "🇪🇸"
     },
     {
+        "name": "lithuanian",
+        "id": "lt",
+        "icon": "🇱🇹"
+    },
+    {
         "name": "govno",
         "id": "gn",
         "icon": "💩"
