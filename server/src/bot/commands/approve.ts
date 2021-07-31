@@ -1,7 +1,10 @@
 import Bot from '../../entities/Bot'
+import dotenv from 'dotenv'
 import { MessageEmbed } from 'discord.js'
 import Command from '../../interfaces/bot/command.interface'
 import BotNotFoundException from '../../exceptions/bot-not-found.exception'
+
+const { parsed } = dotenv.config()
 
 const approve: Command = {
     name: 'approve',
@@ -22,7 +25,7 @@ const approve: Command = {
             .setTimestamp()
             .setTitle('Верифицоравние бота')
             .setColor(' #1abc9c ')
-        const channel: any = client.channels.cache.get('846093367485923348')
+        const channel: any = client.channels.cache.get(parsed.BOT_ADD_CHANNEL)
         channel.send(embed)
     }
 }
