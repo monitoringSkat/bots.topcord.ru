@@ -28,9 +28,13 @@ const UserPage = ({ token, userid }: Props) => {
     const [loading, setLoading] = useState(false)
 
     const getUser = async () => {
-        const data = await api.getUser(userid, token)
-        if (data.statusCode === 401 && userid === 'me') return router.push('/')
-        setUser(data)
+        try {
+            const data = await api.getUser(userid, token)
+            if (data.statusCode === 401 && userid === 'me') return router.push('/')
+            setUser(data)
+        } catch(e) {
+            return router.push('/')
+        }
     }
     useEffect(() => {
         setLoading(true)
