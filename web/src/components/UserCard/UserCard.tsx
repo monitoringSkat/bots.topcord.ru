@@ -25,7 +25,7 @@ const UserCard: React.FC<Props> = ({ user, follow, unfollow }) => {
                         </span>
                     </Link>
                 </div>
-                {user.id !== context.user.id ? (
+                {user.id !== context.user.id && context.user.id ? (
                     !context.user.following.find(
                         following => following.id === user.id
                     ) ? (

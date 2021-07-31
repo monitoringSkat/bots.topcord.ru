@@ -71,18 +71,18 @@ orm.createConnection()
             next()
         })
 
-        app.use(
-            cors({
-                origin: (origin, cb) => {
-                    const isWhiteList = checkOrigin(origin)
-                    cb(
-                        isWhiteList ? null : new Error('Bad request'),
-                        isWhiteList
-                    )
-                },
-                credentials: true
-            })
-        )
+        // app.use(
+        //     cors({
+        //         origin: (origin, cb) => {
+        //             const isWhiteList = checkOrigin(origin)
+        //             cb(
+        //                 isWhiteList ? null : new Error('Bad request'),
+        //                 isWhiteList
+        //             )
+        //         },
+        //         credentials: true
+        //     })
+        // )
 
         app.use('/users', usersRouter)
         app.use('/tags', tagsRouter)
