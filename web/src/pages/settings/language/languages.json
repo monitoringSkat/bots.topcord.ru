@@ -13,5 +13,10 @@
         "name": "ukrainian",
         "id": "ua",
         "icon": "🇺🇦"
+    },
+    {
+        "name": "govno",
+        "id": "gn",
+        "icon": "💩"
     }
 ]

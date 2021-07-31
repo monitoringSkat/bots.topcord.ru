@@ -16,7 +16,7 @@ interface Props {
 const Home = ({ newBots, topBots }: Props) => {
     const { t } = useTranslation()
     return (
-        <Layout title="Главная | Topcord">
+        <Layout title="Главная" description="Bots.topcord.ru - мониторинг ботов дискорд. Вы можете подобрать для своего сервера бота из нашего списка, найти его в поиске, либо по тегам. ">
             <Container className={styles.intro} fluid>
                 <Row>
                     <Col className={styles.search}>
