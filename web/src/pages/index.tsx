@@ -20,15 +20,11 @@ const Home = ({ newBots, topBots }: Props) => {
             <Container className={styles.intro} fluid>
                 <Row>
                     <Col className={styles.search}>
-                        <div className={styles.title}>
-                            {t("title")}
-                        </div>
-                        <div className={styles.subtitle}>
-                            {t("subtitle")}
-                        </div>
-                        <SearchBotsInput placeholder={t("inputs.searchBot")} />
+                        <div className={styles.title}>{t('title')}</div>
+                        <div className={styles.subtitle}>{t('subtitle')}</div>
+                        <SearchBotsInput placeholder={t('inputs.searchBot')} />
                         <div className={styles.tags}>
-                            <Link href="/tags">{t("tagList")}</Link>
+                            <Link href="/tags">{t('tagList')}</Link>
                         </div>
                     </Col>
                     <Col className={styles.wumpus_col}>
@@ -42,12 +38,12 @@ const Home = ({ newBots, topBots }: Props) => {
             <div className={styles.bots}>
                 {newBots.length === 0 && topBots.length === 0 && (
                     <div className={styles.empty}>
-                        ¯\_(ツ)_/¯ <br /> {t("errors.botsNotFound")}{' '}
+                        ¯\_(ツ)_/¯ <br /> {t('errors.botsNotFound')}{' '}
                     </div>
                 )}
                 {newBots.length > 0 && (
                     <>
-                        <h2>{t("newBots")}</h2>
+                        <h2>{t('newBots')}</h2>
                         <Bots bots={newBots} />
                     </>
                 )}
@@ -55,7 +51,7 @@ const Home = ({ newBots, topBots }: Props) => {
                 {topBots.length > 0 && (
                     <>
                         <hr className={styles.hr} />
-                        <h2>{t("topBots")}</h2>
+                        <h2>{t('topBots')}</h2>
                         <Bots bots={topBots} />
                     </>
                 )}

@@ -11,9 +11,9 @@ import AuthContext from '../../context/auth.context'
 import FullscreenModal from '../../components/Modal/Modal'
 import api from '../../api'
 import UserCard from '../../components/UserCard/UserCard'
-import { Row, Col, Image } from 'react-bootstrap'
+import { Row, Col, Image, Spinner } from 'react-bootstrap'
 import { useMediaQuery } from 'react-responsive'
-
+import router from 'next/router'
 interface Props {
     token?: string
     userid: string
@@ -25,14 +25,22 @@ const UserPage = ({ token, userid }: Props) => {
     const [show, setShow] = useState(false)
     const [inModal, setInModal] = useState('')
     const isMobile = useMediaQuery({ query: '(max-width: 630px)' })
+    const [loading, setLoading] = useState(false)
 
     const getUser = async () => {
-        const data = await api.getUser(userid, token)
-        setUser(data)
+        try {
+            const data = await api.getUser(userid, token)
+            if (data.statusCode === 401 && userid === 'me') return router.push('/')
+            setUser(data)
+        } catch(e) {
+            return router.push('/')
+        }
     }
     useEffect(() => {
+        setLoading(true)
         getUser()
         setShow(false)
+        setLoading(false)
     }, [token, userid])
 
     const follow = async (u: User | undefined = user) => {
@@ -71,6 +79,8 @@ const UserPage = ({ token, userid }: Props) => {
         if (!data) return
         if (user) setUser({ ...user, banned: false } as any)
     }
+
+    if (loading) return <Spinner animation="border" variant="primary" />
 
     return (
         <Layout>
@@ -115,7 +125,8 @@ const UserPage = ({ token, userid }: Props) => {
                     ) : null}
                     {context.user.id &&
                     context.user.id !== user?.id &&
-                    ['admin', 'moderator'].includes(context.user.role) ? (
+                    context.user.role === 'admin' &&
+                    context.user.role !== user?.role ? (
                         user?.banned ? (
                             <button onClick={unban} className={styles.green}>
                                 Разбанить
