@@ -30,9 +30,12 @@ const UserPage = ({ token, userid }: Props) => {
     const getUser = async () => {
         try {
             const data = await api.getUser(userid, token)
-            if (data.statusCode === 401 && userid === 'me') return router.push('/')
+            if (data.statusCode === 401 && userid === 'me')
+                return router.push('/')
+            if (userid === "me") context.setUser(data) 
             setUser(data)
-        } catch(e) {
+        } catch (e) {
+            console.log(`Error: `, e)
             return router.push('/')
         }
     }
