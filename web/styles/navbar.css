@@ -54,4 +54,13 @@
     width: 22.5px;
     height: 22.5px;
     cursor: pointer;
+    transition: transform .7s ease-in-out;
 }
+
+.settings-icon:hover {
+    height: 22.5px;
+    width: 22.5px;
+    cursor: pointer;
+    transform: rotate(360deg);
+}
+
