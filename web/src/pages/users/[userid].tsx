@@ -25,16 +25,18 @@ const UserPage = ({ token, userid }: Props) => {
     const [show, setShow] = useState(false)
     const [inModal, setInModal] = useState('')
     const isMobile = useMediaQuery({ query: '(max-width: 630px)' })
-    const [ loading, setLoading ] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const getUser = async () => {
         const data = await api.getUser(userid, token)
-        if (data.statusCode === 401 && userid === "me") return router.push("/")
+        if (data.statusCode === 401 && userid === 'me') return router.push('/')
         setUser(data)
     }
     useEffect(() => {
+        setLoading(true)
         getUser()
         setShow(false)
+        setLoading(false)
     }, [token, userid])
 
     const follow = async (u: User | undefined = user) => {
