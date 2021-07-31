@@ -15,6 +15,11 @@
         "icon": "🇺🇦"
     },
     {
+        "name": "spanish",
+        "id": "sp",
+        "icon": "🇪🇸"
+    },
+    {
         "name": "govno",
         "id": "gn",
         "icon": "💩"
