@@ -32,7 +32,7 @@ const UserCard: React.FC<Props> = ({ user, follow, unfollow }) => {
                         <button
                             onClick={() => follow(user)}
                             className={styles['follow']}
-                        > 
+                        >
                             Подписаться
                         </button>
                     ) : (
