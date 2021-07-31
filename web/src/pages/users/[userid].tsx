@@ -115,7 +115,8 @@ const UserPage = ({ token, userid }: Props) => {
                     ) : null}
                     {context.user.id &&
                     context.user.id !== user?.id &&
-                    context.user.role === "admin" && context.user.role !== user?.role ? (
+                    context.user.role === 'admin' &&
+                    context.user.role !== user?.role ? (
                         user?.banned ? (
                             <button onClick={unban} className={styles.green}>
                                 Разбанить

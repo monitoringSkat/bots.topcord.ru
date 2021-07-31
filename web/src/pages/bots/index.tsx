@@ -19,30 +19,29 @@ interface Props {
     bots: Bot[]
 }
 
-
 function BotsPage({ bots }: Props) {
     const [sortMethod, setSortMethod] = useState<string | null>(null)
     const [library, setLibrary] = useState<string | null>(null)
     const { t } = useTranslation()
-    
+
     const sortMethods = [
-        t("filters.votes"),
-        t("filters.guilds"),
-        t("filters.comments"),
-        t("filters.updatedAt")
+        t('filters.votes'),
+        t('filters.guilds'),
+        t('filters.comments'),
+        t('filters.updatedAt')
     ]
 
     const sortedBots = bots
         .sort((a, b) => {
             switch (sortMethod) {
-                case t("filters.guilds"):
+                case t('filters.guilds'):
                     return b.guildsCount - a.guildsCount
-                case t("filters.updatedAt"):
+                case t('filters.updatedAt'):
                     return (
                         new Date(b.updatedAt).getTime() -
                         new Date(a.updatedAt).getTime()
                     )
-                case t("filters.comments"):
+                case t('filters.comments'):
                     return b.comments.length - a.comments.length
                 default:
                     return b.votes - a.votes
@@ -56,21 +55,21 @@ function BotsPage({ bots }: Props) {
     }
 
     return (
-        <Layout title={`${t("titles.bots")}`}>
+        <Layout title={`${t('titles.bots')}`}>
             <Container className={styles.intro} fluid>
                 <Row>
                     <Col>
-                        <div className={styles.title}>
-                            {t("title")}
-                        </div>
+                        <div className={styles.title}>{t('title')}</div>
                         <div className={styles.search}>
-                            <SearchBotsInput placeholder={t("inputs.searchBot")} />
+                            <SearchBotsInput
+                                placeholder={t('inputs.searchBot')}
+                            />
                         </div>
                         <div className={styles.options}>
                             <DropdownButton
                                 onSelect={e => setSortMethod(e)}
                                 id="dropdown-basic-button"
-                                title={sortMethod || t("filters.sortBy")}
+                                title={sortMethod || t('filters.sortBy')}
                             >
                                 {sortMethods.map(method => (
                                     <Dropdown.Item
@@ -83,7 +82,7 @@ function BotsPage({ bots }: Props) {
                             </DropdownButton>
                             <DropdownButton
                                 id="dropdown-basic-button"
-                                title={library || t("filters.library")}
+                                title={library || t('filters.library')}
                                 onSelect={e => setLibrary(e)}
                             >
                                 {libraries.map((lib: string) => (
@@ -103,7 +102,7 @@ function BotsPage({ bots }: Props) {
                                     !library?.length && !sortMethod?.length
                                 }
                             >
-                                {t("filters.reset")}
+                                {t('filters.reset')}
                             </Button>
                         </div>
                     </Col>

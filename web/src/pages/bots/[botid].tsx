@@ -107,7 +107,7 @@ function BotPage(props: Props) {
                         {user.id === bot.owner.id ||
                         ['moderator', 'admin'].includes(
                             user.role.toLowerCase()
-                        )? (
+                        ) ? (
                             <button onClick={remove} className={styles.delete}>
                                 Удалить
                             </button>

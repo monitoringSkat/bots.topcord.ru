@@ -17,7 +17,8 @@ import Minutes from '../enums/minutes.enum'
 async function getAllBots(req: Request, res: Response) {
     const { limit } = req.query
     const bots = await Bot.find({
-        relations: ['comments']
+        relations: ['comments'],
+        where: { verified: true }
     })
     if (limit) return res.send(bots.slice(0, +limit))
     res.send(bots)
@@ -118,11 +119,11 @@ async function create(req: Request, res: Response) {
     if (!data.bot) return res.send(new BotNotFoundException())
     const developers: User[] = await Promise.all(
         (req.body.developers || [])
-        .filter(Boolean)
-        .map(
-            async userId =>
-                await UserService.findOrCreate(await getUserInfo(userId))
-        )
+            .filter(Boolean)
+            .map(
+                async userId =>
+                    await UserService.findOrCreate(await getUserInfo(userId))
+            )
     )
 
     const bot = Bot.create({
@@ -161,10 +162,8 @@ async function create(req: Request, res: Response) {
 async function update(req: Request, res: Response) {
     const developers: User[] = await Promise.all(
         (req.body.developers || [])
-        .filter(Boolean)
-        .map(
-            async userId => await getUserInfo(userId)
-        )
+            .filter(Boolean)
+            .map(async userId => await getUserInfo(userId))
     )
 
     const tags: Tag[] = await Promise.all(
@@ -217,7 +216,10 @@ async function vote(req: Request, res: Response) {
 
 async function remove(req: Request, res: Response) {
     const bot = (req as any).bot
-    if (bot.owner.id !== (req.user as any).id || ["admin", "moderator"].includes((req as any).role))
+    if (
+        bot.owner.id !== (req.user as any).id ||
+        ['admin', 'moderator'].includes((req as any).role)
+    )
         return res.send(new PermissionsDenied('You are not owner!'))
     await bot.remove()
     res.send(200)
