@@ -71,18 +71,18 @@ orm.createConnection()
             next()
         })
 
-        // app.use(
-        //     cors({
-        //         origin: (origin, cb) => {
-        //             const isWhiteList = checkOrigin(origin)
-        //             cb(
-        //                 isWhiteList ? null : new Error('Bad request'),
-        //                 isWhiteList
-        //             )
-        //         },
-        //         credentials: true
-        //     })
-        // )
+        app.use(function (req, res, next) {
+
+            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+        
+            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+        
+            res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+            res.setHeader('Access-Control-Allow-Credentials', true);
+        
+            next();
+        });
 
         app.use('/users', usersRouter)
         app.use('/tags', tagsRouter)
