@@ -75,12 +75,12 @@ orm.createConnection()
                 'dev.topcord.ru', 'api-bots.topcord.ru'
             ]
         }))
-        app.use(function(req, res, next) {
-            res.setHeader('Access-Control-Allow-Credentials', 'true');
-            res.setHeader('Access-Control-Allow-Headers', 'authorization');
+        // app.use(function(req, res, next) {
+        //     res.setHeader('Access-Control-Allow-Credentials', 'true');
+        //     res.setHeader('Access-Control-Allow-Headers', 'authorization');
 
-            next();
-        })
+        //     next();
+        // })
 
         app.use('/users', usersRouter)
         app.use('/tags', tagsRouter)
