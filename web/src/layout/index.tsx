@@ -5,10 +5,11 @@ import Footer from '../components/Footer/Footer'
 
 interface Props {
     title?: string,
-    description?: string
+    description?: string,
+    image?: string
 }
 
-const Layout: FC<Props> = ({ children, title, description }) => (
+const Layout: FC<Props> = ({ children, title, description, image }) => (
     <div>
         <Head>
             <title>{title || 'TOPCORD'}</title>
@@ -23,7 +24,11 @@ const Layout: FC<Props> = ({ children, title, description }) => (
                 name="keywords"
                 content="discord, дискорд, дискорд боты, боты дискорд, лист ботов дискорд, русские дискорд боты, список ботов дискорд, топовые боты дискорд, bots discord, discord bots"
             />
-        
+            <meta
+                name="description"
+                content={description}
+            />
+
             <meta name="msapplication-tooltip" content={`${title} | TopCord`}/>
             <meta name="msapplication-starturl" content="/"/>
             <meta name="msapplication-TileColor" content="#7289DA"/>
@@ -33,7 +38,7 @@ const Layout: FC<Props> = ({ children, title, description }) => (
             <meta property="og:site_name" content="bots.topcord.ru"/>
             <meta property="og:title" content={`${title} | TopCord`}/>
             <meta property="og:description" content={description}/>
-            <meta property="og:image" content="/assets/favicon.png"/>
+            <meta property="og:image" content={image}/>
             <meta property="og:type" content="website"/>
             <meta property="og:url" content= "https://bots.topcord.ru/" />
 

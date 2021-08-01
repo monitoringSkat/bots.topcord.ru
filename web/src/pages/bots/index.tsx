@@ -55,7 +55,7 @@ function BotsPage({ bots }: Props) {
     }
 
     return (
-        <Layout title={`${t('titles.bots')}`}>
+        <Layout title={`${t('titles.bots')}`} description="Bots.topcord.ru - мониторинг ботов дискорд. Вы можете подобрать для своего сервера бота из нашего списка, найти его в поиске, либо по тегам. " image="/assets/favicon.png" >
             <Container className={styles.intro} fluid>
                 <Row>
                     <Col>

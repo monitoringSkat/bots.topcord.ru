@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next'
 import Link from 'next/link'
 import { useState, useContext } from 'react'
-import { Button, Container } from 'react-bootstrap'
+import { Button, Container, Row, Col } from 'react-bootstrap'
 import config from '../../config'
 import Bot from '../../interfaces/bot.interface'
 import Layout from '../../layout'
@@ -84,7 +84,7 @@ function BotPage(props: Props) {
         router.push('/users/me')
     }
     return (
-        <Layout title={`${bot.name} | TopCord`}>
+        <Layout title={`${bot.name} | TopCord`} description={bot.shortDescription} image={bot.avatar} >
             <Container>
                 <ReportModal
                     setShow={setShowReportModal}
