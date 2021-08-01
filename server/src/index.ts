@@ -75,9 +75,11 @@ orm.createConnection()
                 'dev.topcord.ru', 'api-bots.topcord.ru'
             ]
         }))
-        app.use(function(req, res) {
+        app.use(function(req, res, next) {
             res.setHeader('Access-Control-Allow-Credentials', 'true');
             res.setHeader('Access-Control-Allow-Headers', 'authorization');
+
+            next();
         })
 
         app.use('/users', usersRouter)
