@@ -73,7 +73,7 @@ orm.createConnection()
 
         app.use(function (req, res, next) {
 
-            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+            res.setHeader('Access-Control-Allow-Origin', 'https://dev.topcord.ru');
         
             res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
         
