@@ -41,10 +41,11 @@ const Footer = () => {
                 <img
                     src="/assets/wumpus-rocket.png"
                     className="footer-wumpus"
+                    alt="Wumpus Rocket"
                 />
             </div>
             <div className="footer-bottom">
-                <img src="/assets/logo.png" style={{ width: '150px' }} />
+                <img src="/assets/logo.png" alt="TopCord logo" style={{ width: '150px' }} />
                 <hr />
             </div>
         </footer>

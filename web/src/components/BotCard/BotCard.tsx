@@ -18,7 +18,7 @@ const BotCard: FC<Props> = ({ bot }) => (
             }}
         />
         <div className={styles.info}>
-            <img className={styles.avatar} src={bot.avatar} />
+            <img className={styles.avatar} src={bot.avatar} alt="Bot Avatar" />
             <div className={styles.passport}>
                 <div className={styles.botname}>
                     {bot.name.length <= 12
@@ -27,15 +27,15 @@ const BotCard: FC<Props> = ({ bot }) => (
                 </div>
                 <div className={styles.statistics}>
                     <div className={styles.stat}>
-                        <img src="/assets/upvote.svg" />
+                        <img src="/assets/upvote.svg" alt="Upvote icon" />
                         <div>{bot.votes}</div>
                     </div>
                     <div className={styles.stat}>
-                        <img src="/assets/comment.svg" />
+                        <img src="/assets/comment.svg" alt="Comments icon" />
                         <div>{bot.comments.length}</div>
                     </div>
                     <div className={styles.stat}>
-                        <img src="/assets/server.svg" />
+                        <img src="/assets/server.svg" alt="Servers icon" />
                         <div>{bot.guildsCount}</div>
                     </div>
                 </div>

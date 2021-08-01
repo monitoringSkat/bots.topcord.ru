@@ -31,6 +31,7 @@ const Home = ({ newBots, topBots }: Props) => {
                         <img
                             src="/assets/wumpus-jet.png"
                             className={`${styles.wumpus} mx-auto d-block`}
+                            alt="Wumpus Jet"
                         />
                     </Col>
                 </Row>
