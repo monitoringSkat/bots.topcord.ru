@@ -6,6 +6,7 @@ import checkAuth from '../middlewares/checkAuth.middleware'
 import UserController from '../controllers/UserController'
 import checkPermissions from '../middlewares/checkPermissions'
 import { supportedSocialLinks } from '../constants'
+import cors from 'express-cors'
 
 const usersRouter = Router()
 
@@ -16,6 +17,11 @@ const usersRouter = Router()
 // usersRouter.post('/:id/follow', UserController.follow)
 // usersRouter.post('/:id/unfollow', UserController.unfollow)
 // usersRouter.post('/update', UserController.update)
+usersRouter.use(cors({
+    allowedOrigins: [
+        'dev.topcord.ru', 'api-bots.topcord.ru'
+    ]
+}))
 
 usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
     const userId = (req.user as any).id
