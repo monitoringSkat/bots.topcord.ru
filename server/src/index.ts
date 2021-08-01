@@ -3,7 +3,7 @@ import express from 'express'
 import session from 'express-session'
 import passport from 'passport'
 import * as orm from 'typeorm'
-import cors from 'cors'
+import cors from 'express-cors'
 import bodyParser from 'body-parser'
 import DiscordStrategy from './strategies/discord.strategy'
 import botsRouter from './routes/bots.route'
@@ -70,19 +70,11 @@ orm.createConnection()
             ;(req as any).reports = reports
             next()
         })
-
-        app.use(function (req, res, next) {
-
-            res.setHeader('Access-Control-Allow-Origin', 'https://dev.topcord.ru');
-        
-            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-        
-            res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-            res.setHeader('Access-Control-Allow-Credentials', 'true');
-        
-            next();
-        });
+        app.use(cors({
+            allowedOrigins: [
+                'dev.topcord.ru', 'api-bots.topcord.ru'
+            ]
+        }))
 
         app.use('/users', usersRouter)
         app.use('/tags', tagsRouter)
