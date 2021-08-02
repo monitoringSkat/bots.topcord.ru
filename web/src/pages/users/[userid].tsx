@@ -86,7 +86,7 @@ const UserPage = ({ token, userid }: Props) => {
     if (loading) return <Spinner animation="border" variant="primary" />
 
     return (
-        <Layout>
+        <Layout title={`${user?.username} | TopCord`} description={user?.bio} image={user?.avatar} >
             <FullscreenModal
                 title={inModal === 'followers' ? 'Подписчики' : 'Подписки'}
                 state={{ show, setShow }}
