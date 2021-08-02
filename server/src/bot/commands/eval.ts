@@ -1,7 +1,6 @@
 import Command from '../../interfaces/bot/command.interface'
-import { Discord } from 'discord.js'
-
-const eval: Command = {
+import Discord from 'discord.js'
+const Eval: Command = {
     name: 'eval',
     async execute(client, message, args) {
         if(!["430785563755413504"].includes(message.author.id)) return;
@@ -23,4 +22,4 @@ const eval: Command = {
         }
     }
 }
-export default eval
+export default Eval
