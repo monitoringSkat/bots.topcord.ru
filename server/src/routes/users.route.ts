@@ -27,7 +27,6 @@ usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
 })
 
 usersRouter.get('/:id', async (req: Request, res: Response) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://dev.topcord.ru');
     const userId = req.params.id
     const user = await User.findOne(userId, {
         relations: ['bots', 'following', 'followers', 'bots.comments']

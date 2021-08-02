@@ -70,11 +70,6 @@ orm.createConnection()
             ;(req as any).reports = reports
             next()
         })
-        app.use(cors({
-            allowedOrigins: [
-                'dev.topcord.ru', 'api-bots.topcord.ru'
-            ]
-        }))
         // app.use(function(req, res, next) {
         //     res.setHeader('Access-Control-Allow-Credentials', 'true');
         //     res.setHeader('Access-Control-Allow-Headers', 'authorization');
