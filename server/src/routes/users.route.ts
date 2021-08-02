@@ -17,11 +17,6 @@ const usersRouter = Router()
 // usersRouter.post('/:id/follow', UserController.follow)
 // usersRouter.post('/:id/unfollow', UserController.unfollow)
 // usersRouter.post('/update', UserController.update)
-usersRouter.use(cors({
-    allowedOrigins: [
-        'dev.topcord.ru', 'api-bots.topcord.ru'
-    ]
-}))
 
 usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
     const userId = (req.user as any).id
@@ -32,6 +27,7 @@ usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
 })
 
 usersRouter.get('/:id', async (req: Request, res: Response) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://dev.topcord.ru');
     const userId = req.params.id
     const user = await User.findOne(userId, {
         relations: ['bots', 'following', 'followers', 'bots.comments']
