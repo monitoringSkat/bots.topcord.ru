@@ -33,6 +33,10 @@ const swaggerOptions = {
     },
     apis: ['./src/routes/*.route.ts']
 }
+const corsOptions = {
+    origin: 'https://dev.topcord.ru',
+    optionsSuccessStatus: 200 
+  }
 
 const openapiSpecification = swaggerJSDoc(swaggerOptions)
 
@@ -44,7 +48,7 @@ orm.createConnection()
         const client = await bootstrapBot()
         passport.use(DiscordStrategy)
 
-        app.use(cors())
+        app.use(cors(corsOptions))
         app.use(compression())
         app.use(bodyParser.urlencoded({ extended: false }))
         app.use(bodyParser.json())
