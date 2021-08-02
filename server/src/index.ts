@@ -3,7 +3,7 @@ import express from 'express'
 import session from 'express-session'
 import passport from 'passport'
 import * as orm from 'typeorm'
-import cors from 'express-cors'
+import cors from 'cors'
 import bodyParser from 'body-parser'
 import DiscordStrategy from './strategies/discord.strategy'
 import botsRouter from './routes/bots.route'
@@ -44,6 +44,7 @@ orm.createConnection()
         const client = await bootstrapBot()
         passport.use(DiscordStrategy)
 
+        app.use(cors())
         app.use(compression())
         app.use(bodyParser.urlencoded({ extended: false }))
         app.use(bodyParser.json())
@@ -70,12 +71,6 @@ orm.createConnection()
             ;(req as any).reports = reports
             next()
         })
-        // app.use(function(req, res, next) {
-        //     res.setHeader('Access-Control-Allow-Credentials', 'true');
-        //     res.setHeader('Access-Control-Allow-Headers', 'authorization');
-
-        //     next();
-        // })
 
         app.use('/users', usersRouter)
         app.use('/tags', tagsRouter)
