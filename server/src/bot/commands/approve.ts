@@ -28,6 +28,9 @@ const approve: Command = {
         .setThumbnail(bot.avatar)
         .setDescription("`Спасибо за добавление бота. Удачного продвижения)`")
         .setURL(`${parsed.WEB_URL}/bots/${bot.id}`)
+        .setColor(' #1abc9c ')
+        .setTimestamp()
+
 
         const channel: any = client.channels.cache.get(parsed.BOT_ADD_CHANNEL)
 

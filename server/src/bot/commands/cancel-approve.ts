@@ -23,10 +23,19 @@ const cancelApprove: Command = {
             .setTimestamp()
             .setTitle('Бот отклонен')
             .setColor('#e74c3c')
+        const embedmember = new MessageEmbed()
+            .addField('Причина', reason.join(' ') || 'Причины нету')
+            .addField('Бот', bot.name)
+            .setThumbnail(bot.avatar)
+            .setTimestamp()
+            .setTitle('Ваш бот был отклонен')
+            .setColor('#e74c3c')
+            .setAuthor('TopCord')
 
         const channel: any = client.channels.cache.get('846093367485923348')
 
         channel.send(embed)
+        client.guilds.cache.get('761596363795988561').member(bot.owner.id).send(embedmember)
     }
 }
 export default cancelApprove
