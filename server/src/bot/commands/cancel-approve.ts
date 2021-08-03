@@ -31,6 +31,8 @@ const cancelApprove: Command = {
             .setTitle('Ваш бот был отклонен')
             .setColor('#e74c3c')
             .setAuthor('TopCord')
+            .setThumbnail(bot.avatar)
+
 
         const channel: any = client.channels.cache.get('846093367485923348')
 
