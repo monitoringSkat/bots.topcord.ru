@@ -27,7 +27,7 @@ const approve: Command = {
         .addField('Бот', bot.name, true)
         .setThumbnail(bot.avatar)
         .setDescription("`Спасибо за добавление бота. Удачного продвижения)`")
-        .setURL(`https://${parsed.WEB_URL}/bots/${bot.id}`)
+        .setURL(`${parsed.WEB_URL}/bots/${bot.id}`)
 
         const channel: any = client.channels.cache.get(parsed.BOT_ADD_CHANNEL)
 
