@@ -1,0 +1,111 @@
+{
+    "title": "Discword Bwot List",
+    "subtitle": "Add bwots, upvote them. Chwoose bwots. And its aww on UWUCord.",
+    "tagList": "List of tags",
+    "newBots": "Nyew bwots",
+    "topBots": "Twop bwots",
+    "titles": {
+        "home": "Hwomwe",
+        "bots": "Bwots",
+        "add": "Add",
+        "edit": "Edit",
+        "settings": "Settings",
+        "partners": "Partnyers"
+    },
+    "header": {
+        "links": {
+            "main": "Hwomwe",
+            "bots": "Bwots",
+            "addBot": "Add bwot",
+            "community": "Cwommunyity ",
+            "partners": "Partnyers",
+            "login": "Wogin"
+        }
+    },
+    "inputs": {
+        "searchBot": "Fwind a bwot"
+    },
+    "filters": {
+        "sortBy": "Swort by",
+        "reset": "Reset fwilter",
+        "library": "Libwary",
+        "updatedAt": "By update date",
+        "votes": "By votes",
+        "guilds": "By nyumber of guilds",
+        "comments": "By nyumber of cwommwents"
+    },
+    "footer": {
+        "categories": {
+            "info": "Infwormation",
+            "politics": "Pwowlitics",
+            "links": "Links"
+        },
+        "links": {
+            "developers": "Devewopers",
+            "documentation": "API Guide",
+            "donate": "Dwonyate",
+            "rules": "Rules",
+            "topinfo": "TwopInfwo",
+            "support": "Suppwort Serwer"
+        }
+    },
+    "add": {
+        "addTitle": "Adding a bwot",
+        "editTitle": "Editing a bwot",
+        "id": "Client ID",
+        "id_hint": "U can get Client ID fwom teh Discword Devewoper Pwortwl",
+        "prefix": "Bwot's pwefwix",
+        "shortDescription": "Bwief descwiption",
+        "shortDescription_hint": "maximum nyumber of characters is 220",
+        "longDescription": "Detailed descwiption",
+        "longDescription_hint": "minyimum nyumber of characters 300, there is suppwort fwor Markdwown and HTML",
+        "tags": "Bwot tags",
+        "tags_hint": "maximum nyumber of tags is 5, teh maximum nyumber of characters in tag is 15. “, ” - separatwor",
+        "inviteURL": "Bwot Invite UWL",
+        "inviteURL_hint": "link two adding a bwot two teh user's guild",
+        "library": "Bwot's' Libwary",
+        "backgroundURL": "Bwot Card Backgwound",
+        "backgroundURL_hint": "image UWL",
+        "developers": "Ownyers of this bwot",
+        "developers_hint": "A list of user IDs. “, ” - separatwor",
+        "supportServerURL": "Suppwort Serwer Invite",
+        "supportServerURL_hint": "link two teh bwot suppwort serwer, where users can get feedback, send a bug etc.",
+        "githubURL": "Bwot swource cwode",
+        "githubURL_hint": "Bwot's GitHub UWL",
+        "websiteURL": "Website UWL",
+        "websiteURL_hint": "UWL two bwot site",
+        "rules": "I have wead teh rules",
+        "updateButton": "Update",
+        "createButton": "Submit",
+        "redirectTo": "View"
+    },
+    "errors": {
+        "botsNotFound": "Bwots nywot fwound.",
+        "sameId": "Such ID alweady exists!"
+    },
+    "buttons": {
+        "edit": "Edit",
+        "follow": "Subscwibe",
+        "unfollow": "Unsubscwibe",
+        "ban": "Ban",
+        "unban": "Unban"
+    },
+    "roles": {
+        "admin": "Adminyistwatwor",
+        "moderator": "Mwoderatwor",
+        "member": "Mwember",
+        "developer": "Devewoper"
+    },
+    "settings": {
+        "intergrations": "Integwations",
+        "emptyBio": "Nywo biogwaphy",
+        "menu": {
+            "profile": "User Pwofwile",
+            "language": "Language",
+            "logout": "Wogwout",
+            "version": "Current wersion",
+            "os": "Operating system",
+            "browser": "Bwowser"
+        }
+    }
+}

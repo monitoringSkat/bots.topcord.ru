@@ -1,32 +1,33 @@
 [
     {
-        "name": "english",
+        "name": "English",
         "id": "en",
         "icon": "🇬🇧"
     },
     {
-        "name": "russia",
+        "name": "Russian",
         "id": "ru",
         "icon": "🇷🇺"
     },
     {
-        "name": "ukrainian",
+        "name": "Ukrainian",
         "id": "ua",
         "icon": "🇺🇦"
     },
     {
-        "name": "spanish",
+        "name": "Spanish",
         "id": "sp",
         "icon": "🇪🇸"
     },
     {
-        "name": "lithuanian",
+        "name": "Lithuanian",
         "id": "lt",
         "icon": "🇱🇹"
     },
     {
-        "name": "govno",
-        "id": "gn",
-        "icon": "💩"
+        "name": "Estonian",
+        "id": "es",
+        "icon": "🇪🇪"
     }
+
 ]

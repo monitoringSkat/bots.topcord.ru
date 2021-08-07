@@ -1,26 +1,111 @@
 {
+    "title": "Discord Bot List",
+    "subtitle": "Add bots, upvote them. Choose bots. And its all on TopCord.",
+    "tagList": "List of tags",
+    "newBots": "New bots",
+    "topBots": "Top bots",
+    "titles": {
+        "home": "Home",
+        "bots": "Bots",
+        "add": "Add",
+        "edit": "Edit",
+        "settings": "Settings",
+        "partners": "Partners"
+    },
     "header": {
         "links": {
-            "main": "Main",
+            "main": "Home",
             "bots": "Bots",
             "addBot": "Add bot",
-            "community": "Community",
+            "community": "Community ",
+            "partners": "Partners",
             "login": "Login"
         }
     },
+    "inputs": {
+        "searchBot": "Find a bot"
+    },
+    "filters": {
+        "sortBy": "Sort by",
+        "reset": "Reset filter",
+        "library": "Library",
+        "updatedAt": "By update date",
+        "votes": "By votes",
+        "guilds": "By number of guilds",
+        "comments": "By number of comments"
+    },
     "footer": {
         "categories": {
-            "info": "Информация",
-            "politics": "",
-            "links": ""
+            "info": "Information",
+            "politics": "Politics",
+            "links": "Links"
         },
         "links": {
-            "developers": "",
-            "documentation-api": "",
-            "donate": "",
-            "rules": "",
-            "topinfo": "",
-            "support-server": ""
+            "developers": "Developers",
+            "documentation": "API Guide",
+            "donate": "Donate",
+            "rules": "Rules",
+            "topinfo": "TopInfo",
+            "support": "Support Server"
+        }
+    },
+    "add": {
+        "addTitle": "Adding a bot",
+        "editTitle": "Editing a bot",
+        "id": "Client ID",
+        "id_hint": "You can get Client ID from the Discord Developer Portal",
+        "prefix": "Bot's prefix",
+        "shortDescription": "Brief description",
+        "shortDescription_hint": "maximum number of characters is 220",
+        "longDescription": "Detailed description",
+        "longDescription_hint": "minimum number of characters 300, there is support for Markdown and HTML",
+        "tags": "Bot tags",
+        "tags_hint": "maximum number of tags is 5, the maximum number of characters in tag is 15. “, ” - separator",
+        "inviteURL": "Bot Invite URL",
+        "inviteURL_hint": "link to adding a bot to the user's guild",
+        "library": "Bot's' Library",
+        "backgroundURL": "Bot Card Background",
+        "backgroundURL_hint": "image URL",
+        "developers": "Owners of this bot",
+        "developers_hint": "A list of user IDs. “, ” - separator",
+        "supportServerURL": "Support Server Invite",
+        "supportServerURL_hint": "link to the bot support server, where users can get feedback, send a bug etc.",
+        "githubURL": "Bot source code",
+        "githubURL_hint": "Bot's GitHub URL",
+        "websiteURL": "Website URL",
+        "websiteURL_hint": "URL to bot site",
+        "rules": "I have read the rules",
+        "updateButton": "Update",
+        "createButton": "Submit",
+        "redirectTo": "View"
+    },
+    "errors": {
+        "botsNotFound": "Bots not found.",
+        "sameId": "Such ID already exists!"
+    },
+    "buttons": {
+        "edit": "Edit",
+        "follow": "Subscribe",
+        "unfollow": "Unsubscribe",
+        "ban": "Ban",
+        "unban": "Unban"
+    },
+    "roles": {
+        "admin": "Administrator",
+        "moderator": "Moderator",
+        "member": "Member",
+        "developer": "Developer"
+    },
+    "settings": {
+        "intergrations": "Integrations",
+        "emptyBio": "No biography",
+        "menu": {
+            "profile": "User Profile",
+            "language": "Language",
+            "logout": "Logout",
+            "version": "Current version",
+            "os": "Operating system",
+            "browser": "Browser"
         }
     }
 }

@@ -1,0 +1,111 @@
+{
+    "title": "Loetelu bots Discordis.",
+    "subtitle": "Lisage bots, hääletage nende poolt. Valige bots. Ja seda kõike TopCord.",
+    "tagList": "Siltide loetelu",
+    "newBots": "Uued bots",
+    "topBots": "Parimad bots",
+    "titles": {
+        "home": "Kodu",
+        "bots": "Bots",
+        "add": "Lisa",
+        "edit": "Muuda",
+        "settings": "sätted",
+        "partners": "koostööpartnerid"
+    },
+    "header": {
+        "links": {
+            "main": "Kodu",
+            "bots": "Bots",
+            "addBot": "Lisage bot",
+            "community": "Ühendus",
+            "partners": "koostööpartnerid",
+            "login": "Login"
+        }
+    },
+    "inputs": {
+        "searchBot": "otsing"
+    },
+    "filters": {
+        "sortBy": "Sorteerimine",
+        "reset": "Puhastage filter",
+        "library": "Raamatukogu",
+        "updatedAt": "Ajakohastamise kuupäeva järgi",
+        "votes": "Hääle järgi",
+        "guilds": "Mis puudutab serverite arvu",
+        "comments": "Kommentaaride arvu põhjal"
+    },
+    "footer": {
+        "categories": {
+            "info": "Teave",
+            "politics": "Poliitika",
+            "links": "Lingid"
+        },
+        "links": {
+            "developers": "Arendajad",
+            "documentation": "API juhend",
+            "donate": "Annetada",
+            "rules": "Reeglid",
+            "topinfo": "TopInfo",
+            "support": "Tugiserver"
+        }
+    },
+    "add": {
+        "addTitle": "Boti lisamine",
+        "editTitle": "Boti redigeerimine",
+        "id": "Client ID",
+        "id_hint": "olla Discord Developers Portal",
+        "prefix": "Bot nimi",
+        "shortDescription": "Lühikirjeldus",
+        "shortDescription_hint": "maksimaalne tähemärkide arv 220",
+        "longDescription": "Üksikasjalik kirjeldus",
+        "longDescription_hint": "minimaalne tähemärkide arv 300, Markdown tugi, HTML",
+        "tags": "Boti sildid",
+        "tags_hint": "siltide maksimaalne arv 5, maksimaalne tähemärkide arv sildi kohta 15. koma - eraldaja",
+        "inviteURL": "Link boti lisamiseks",
+        "inviteURL_hint": "link boti lisamiseks kasutaja serverisse",
+        "library": "Raamatukogu",
+        "backgroundURL": "Taustaks botkaardil",
+        "backgroundURL_hint": "pildilink",
+        "developers": "Bot arendajad",
+        "developers_hint": "Kasutajatunnuste nimekiri. koma - eraldaja",
+        "supportServerURL": "Tugiserver",
+        "supportServerURL_hint": "link bot'i serverile, kus kasutajad saavad tagasisidet saada, vigu esitada jne.",
+        "githubURL": "Lähtekood",
+        "githubURL_hint": "Link Git repositooriumile",
+        "websiteURL": "Boti veebisait",
+        "websiteURL_hint": "Link bot'i veebisaidile",
+        "rules": "Ma olen/olen kursis eeskirjadega",
+        "updateButton": "Värskenda botit",
+        "createButton": "Lisage bot",
+        "redirectTo": "Mine lehele"
+    },
+    "errors": {
+        "botsNotFound": "Ühtegi botit ei leitud.",
+        "sameId": "Selline ID on juba olemas!"
+    },
+    "buttons": {
+        "edit": "Muuda",
+        "follow": "Telli",
+        "unfollow": "Loobu",
+        "ban": "Saage keelatud",
+        "unban": "Keelu tühistamine"
+    },
+    "roles": {
+        "admin": "Admin",
+        "moderator": "Moderaator",
+        "member": "Osaleja",
+        "developer": "Arendaja"
+    },
+    "settings": {
+        "intergrations": "Integratsioonid",
+        "emptyBio": "Biograafia puudub",
+        "menu": {
+            "profile": "Kasutaja profiil",
+            "language": "Keel",
+            "logout": "Mine aadressile",
+            "version": "Praegune versioon",
+            "os": "Operatsioonisüsteem",
+            "browser": "Browser"
+        }
+    }
+}
