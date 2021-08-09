@@ -20,14 +20,13 @@ interface Props {
 }
 
 const UserPage = ({ token, userid }: Props) => {
-
     const context = useContext(AuthContext)
     const [user, setUser] = useState<User>()
     const [show, setShow] = useState(false)
     const [inModal, setInModal] = useState('')
     const isMobile = useMediaQuery({ query: '(max-width: 630px)' })
     const [loading, setLoading] = useState(false)
-    const [ notFound, setNotFound ] = useState(false)
+    const [notFound, setNotFound] = useState(false)
     const getUser = async () => {
         try {
             const data = await api.getUser(userid, token)
@@ -97,7 +96,11 @@ const UserPage = ({ token, userid }: Props) => {
     if (loading) return <Spinner animation="border" variant="primary" />
 
     return (
-        <Layout title={`${user?.username} | TopCord`} description={user?.bio} image={user?.avatar} >
+        <Layout
+            title={`${user?.username} | TopCord`}
+            description={user?.bio}
+            image={user?.avatar}
+        >
             <FullscreenModal
                 title={inModal === 'followers' ? 'Подписчики' : 'Подписки'}
                 state={{ show, setShow }}

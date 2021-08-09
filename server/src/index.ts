@@ -17,66 +17,63 @@ import cookieParser from 'cookie-parser'
 import DiscordJS from 'discord.js'
 import User from './entities/User'
 
-
 dotenv.config()
 const PORT = Number(process.env.PORT || 5000)
 
-
 const corsOptions = {
-    origin: "http://localhost:3000",
-    optionsSuccessStatus: 200 
-  }
-
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+}
 
 orm.createConnection()
-.then(async () => {
-    const app = express()
-    const upvotes = new DiscordJS.Collection<string, number>()
-    const reports = new DiscordJS.Collection<string, number>()
-    
-    const client = await bootstrapBot()
-    
-    passport.use(DiscordStrategy)
-    app.use(cors(corsOptions))
-    app.use(compression())
-    
-    app.use(bodyParser.urlencoded({ extended: false }))
-    app.use(bodyParser.json())
-    app.use(cookieParser())
-    app.use(
-        session({
-            name: "tcid",
-            secret: 'very very secret key',
-            cookie: {
-                httpOnly: true,
-                maxAge: 1000 * 60 * 60 * 24 * 365 * 10,
-            }
+    .then(async () => {
+        const app = express()
+        const upvotes = new DiscordJS.Collection<string, number>()
+        const reports = new DiscordJS.Collection<string, number>()
+
+        const client = await bootstrapBot()
+
+        passport.use(DiscordStrategy)
+        app.use(cors(corsOptions))
+        app.use(compression())
+
+        app.use(bodyParser.urlencoded({ extended: false }))
+        app.use(bodyParser.json())
+        app.use(cookieParser())
+        app.use(
+            session({
+                name: 'tcid',
+                secret: 'very very secret key',
+                cookie: {
+                    httpOnly: true,
+                    maxAge: 1000 * 60 * 60 * 24 * 365 * 10
+                }
+            })
+        )
+        app.use(passport.initialize())
+        app.use(passport.session())
+        passport.serializeUser((user, done) => {
+            console.log('Serializing: ', user)
+            done(null, (user as User).id)
         })
-    )
-    app.use(passport.initialize())
-    app.use(passport.session())
-    passport.serializeUser((user, done) => {
-        console.log("Serializing: ", user)
-        done(null, (user as User).id)
+        passport.deserializeUser(async (id, done) => {
+            console.log('Deserializing: ', id)
+            const user = await User.findOne(id)
+            if (user) done(null, user)
+        })
+        // Decorate some global variables
+        app.use((req, res, next) => {
+            ;(req as any).client = client
+            ;(req as any).upvotes = upvotes
+            ;(req as any).reports = reports
+            next()
+        })
+        app.use('/users', usersRouter)
+        app.use('/tags', tagsRouter)
+        app.use('/bots', botsRouter)
+        app.use('/auth/discord', authRouter)
+        app.listen(PORT, () => {
+            console.log(`[NODEJS]: http://localhost:${PORT}`)
+        })
     })
-    passport.deserializeUser(async (id, done) => {
-        console.log("Deserializing: ", id)
-        const user = await User.findOne(id)
-        if (user) done(null, user)
-    })
-    // Decorate some global variables
-    app.use((req, res, next) => {
-        ;(req as any).client = client
-        ;(req as any).upvotes = upvotes
-        ;(req as any).reports = reports
-        next()
-    })
-    app.use('/users', usersRouter)
-    app.use('/tags', tagsRouter)
-    app.use('/bots', botsRouter)
-    app.use('/auth/discord', authRouter)
-    app.listen(PORT, () => {
-        console.log(`[NODEJS]: http://localhost:${PORT}`)
-    })
-})
-.catch(e => console.log(e))
+    .catch(e => console.log(e))

@@ -16,7 +16,7 @@ usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
             relations: ['bots', 'following', 'followers', 'bots.comments']
         })
         res.send(user)
-    } catch(e) {
+    } catch (e) {
         res.send({})
     }
 })

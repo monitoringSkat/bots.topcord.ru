@@ -31,9 +31,13 @@ function TagsPage({ tags }: Props) {
 }
 
 TagsPage.getInitialProps = async () => {
-    const res = await fetch(`${config.SERVER_URL}/tags`)
-    const tags = await res.json()
-    return { tags }
+    try {
+        const res = await fetch(`${config.SERVER_URL}/tags`)
+        const tags = await res.json()
+        return { tags }
+    } catch(e) {
+        return { tags: [] }
+    }
 }
 
 export default TagsPage

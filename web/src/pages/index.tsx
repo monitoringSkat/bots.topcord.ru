@@ -15,7 +15,11 @@ interface Props {
 const Home = ({ newBots, topBots }: Props) => {
     const { t } = useTranslation()
     return (
-        <Layout title="Главная" description="Bots.topcord.ru - мониторинг ботов дискорд. Вы можете подобрать для своего сервера бота из нашего списка, найти его в поиске, либо по тегам. " image="/assets/favicon.png" >
+        <Layout
+            title="Главная"
+            description="Bots.topcord.ru - мониторинг ботов дискорд. Вы можете подобрать для своего сервера бота из нашего списка, найти его в поиске, либо по тегам. "
+            image="/assets/favicon.png"
+        >
             <Container className={styles.intro} fluid>
                 <Row>
                     <Col className={styles.search}>
@@ -61,9 +65,13 @@ const Home = ({ newBots, topBots }: Props) => {
 }
 
 Home.getInitialProps = async (): Promise<Props> => {
-    const topBots = await http.get(`/bots/top?limit=20`)
-    const newBots = await http.get(`/bots/new?limit=4`)
-    return { topBots: topBots.data, newBots: newBots.data }
+    try {
+        const topBots = await http.get(`/bots/top?limit=20`)
+        const newBots = await http.get(`/bots/new?limit=4`)
+        return { topBots: topBots.data, newBots: newBots.data }
+    } catch(e) {
+        return { topBots: [], newBots: [] }
+    }
 }
 
 export default Home

@@ -15,10 +15,14 @@ const SearchBotsInput = (props: Props) => {
     const getBotByQuery = (query: string) => async () => {
         if (!query) return
         setLoading(true)
-        const res = await fetch(`${config.SERVER_URL}/bots/search?q=${query}`)
-        const bots = await res.json()
+        try {
+            const res = await fetch(`${config.SERVER_URL}/bots/search?q=${query}`)
+            const bots = await res.json()
+            if (bots) setBots(bots)
+        } catch(e) {
+            setBots([])
+        }
         setLoading(false)
-        if (bots) setBots(bots)
     }
     useEffect(() => {
         const delayDebounceFn = setTimeout(getBotByQuery(query), 500)

@@ -10,7 +10,7 @@ const { parsed } = config()
 const prefix = parsed.DISCORD_BOT_PREFIX
 
 const bootstrapBot = async () => {
-    const client = new Client({disableMentions: 'everyone'})
+    const client = new Client({ disableMentions: 'everyone' })
     const commandsFiles = fs.readdirSync(path.join(__dirname, 'commands'))
     const eventsFiles = fs.readdirSync(path.join(__dirname, 'events'))
     const commands = new Map<string, Command>()

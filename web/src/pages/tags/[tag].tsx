@@ -28,11 +28,18 @@ function TagPage({ tag, bots }: Props) {
 }
 
 TagPage.getInitialProps = async ({ query }: NextPageContext) => {
-    const res = await fetch(`${config.SERVER_URL}/tags/${query.tag}`)
-    const data = await res.json()
-    return {
-        tag: query.tag,
-        bots: data.bots
+    try {
+        const res = await fetch(`${config.SERVER_URL}/tags/${query.tag}`)
+        const data = await res.json()
+        return {
+            tag: query.tag,
+            bots: data.bots
+        }
+    } catch(e) {
+        return {
+            tag: query.tag,
+            bots: []
+        }
     }
 }
 

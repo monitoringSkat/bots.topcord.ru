@@ -260,17 +260,15 @@ async function getBotsByQuery(req: Request, res: Response) {
 }
 
 async function setBotGuilds(req: Request, res: Response) {
-     const { token, guilds } = req.query
-     const { botId }: any = verify(token as string, 'secret-key')
-     if (!botId) res.send('token is not valid')
-     const bot = await Bot.findOne(botId)
-     if (!bot) res.send(new BotNotFoundException())
-     bot.guildsCount = +guilds
-     await bot.save()
-     res.send('Done')
- }
- 
- 
+    const { token, guilds } = req.query
+    const { botId }: any = verify(token as string, 'secret-key')
+    if (!botId) res.send('token is not valid')
+    const bot = await Bot.findOne(botId)
+    if (!bot) res.send(new BotNotFoundException())
+    bot.guildsCount = +guilds
+    await bot.save()
+    res.send('Done')
+}
 
 async function createComment(req: Request, res: Response) {
     const bot = (req as any).bot

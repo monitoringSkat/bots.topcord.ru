@@ -21,11 +21,12 @@ interface Props {
 }
 
 function BotPage(props: Props) {
-    if (!props.bot) return (
-        <Layout title={"Bot not found!"}>
-            <div className="notfound">Bot not found!</div>
-        </Layout>
-    )
+    if (!props.bot)
+        return (
+            <Layout title={'Bot not found!'}>
+                <div className="notfound">Bot not found!</div>
+            </Layout>
+        )
 
     const { user } = useContext(AuthContext)
     const [comment, setComment] = useState('')
@@ -91,7 +92,11 @@ function BotPage(props: Props) {
     }
 
     return (
-        <Layout title={`${bot.name} | TopCord`} description={bot.shortDescription} image={bot.avatar} >
+        <Layout
+            title={`${bot.name} | TopCord`}
+            description={bot.shortDescription}
+            image={bot.avatar}
+        >
             <Container>
                 <ReportModal
                     setShow={setShowReportModal}
@@ -253,7 +258,7 @@ BotPage.getInitialProps = async ({ query }: NextPageContext) => {
     try {
         const { data } = await http.get(`/bots/${query.botid}`)
         return { bot: data }
-    } catch(e) {
+    } catch (e) {
         return { bot: null }
     }
 }

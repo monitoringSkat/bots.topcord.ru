@@ -45,7 +45,11 @@ const Footer = () => {
                 />
             </div>
             <div className="footer-bottom">
-                <img src="/assets/logo.png" alt="TopCord logo" style={{ width: '150px' }} />
+                <img
+                    src="/assets/logo.png"
+                    alt="TopCord logo"
+                    style={{ width: '150px' }}
+                />
                 <hr />
             </div>
         </footer>
