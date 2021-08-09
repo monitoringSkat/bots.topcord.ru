@@ -50,7 +50,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         if (data.message === 'Unauthorized' && data.statusCode === 401)
             return false
         setUser(data)
-        console.log(true)
         return true
     }
 
@@ -62,7 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     useEffect(() => {
         login()
-    })
+    }, [])
 
     function updateUser(newData: { [key: string]: any }) {
         setUser({ ...user, ...newData })

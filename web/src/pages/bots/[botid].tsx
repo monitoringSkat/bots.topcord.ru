@@ -21,6 +21,12 @@ interface Props {
 }
 
 function BotPage(props: Props) {
+    if (!props.bot) return (
+        <Layout title={"Bot not found!"}>
+            <div className="notfound">Bot not found!</div>
+        </Layout>
+    )
+
     const { user } = useContext(AuthContext)
     const [comment, setComment] = useState('')
     const [bot, setBot] = useState<Bot>(props.bot)
@@ -83,6 +89,7 @@ function BotPage(props: Props) {
         if (!data) return
         router.push('/users/me')
     }
+
     return (
         <Layout title={`${bot.name} | TopCord`} description={bot.shortDescription} image={bot.avatar} >
             <Container>
@@ -243,8 +250,12 @@ function BotPage(props: Props) {
 }
 
 BotPage.getInitialProps = async ({ query }: NextPageContext) => {
-    const { data } = await http.get(`/bots/${query.botid}`)
-    return { bot: data }
+    try {
+        const { data } = await http.get(`/bots/${query.botid}`)
+        return { bot: data }
+    } catch(e) {
+        return { bot: null }
+    }
 }
 
 export default BotPage

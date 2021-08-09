@@ -131,3 +131,21 @@ textarea {
 textarea::placeholder {
     color: white;
 }
+
+
+.notfound {
+    font-size: 48px;
+    display: flex;
+    align-items: center;
+    margin: auto 0;
+    height: 70vh;
+    justify-content: center;
+    font-weight: 600;
+    color: white;
+}
+
+@media screen and (max-width: 380px) {
+    .notfound {
+        font-size: 36px;
+    }
+}

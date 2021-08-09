@@ -6,24 +6,19 @@ import checkAuth from '../middlewares/checkAuth.middleware'
 import UserController from '../controllers/UserController'
 import checkPermissions from '../middlewares/checkPermissions'
 import { supportedSocialLinks } from '../constants'
-import cors from 'express-cors'
 
 const usersRouter = Router()
 
-// GET
-// usersRouter.get('/(:id|me)', UserController.getUser)
-
-// POST
-// usersRouter.post('/:id/follow', UserController.follow)
-// usersRouter.post('/:id/unfollow', UserController.unfollow)
-// usersRouter.post('/update', UserController.update)
-
 usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
-    const userId = (req.user as any).id
-    const user = await User.findOne(userId, {
-        relations: ['bots', 'following', 'followers', 'bots.comments']
-    })
-    res.send(user)
+    try {
+        const userId = (req.user as any).id
+        const user = await User.findOne(userId, {
+            relations: ['bots', 'following', 'followers', 'bots.comments']
+        })
+        res.send(user)
+    } catch(e) {
+        res.send({})
+    }
 })
 
 usersRouter.get('/:id', async (req: Request, res: Response) => {

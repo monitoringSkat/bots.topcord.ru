@@ -1,7 +1,6 @@
 import Layout from '../layout'
 import styles from '../../styles/pages/home.module.css'
 import Link from 'next/link'
-import config from '../config'
 import Bot from '../interfaces/bot.interface'
 import Bots from '../components/Bots/Bots'
 import SearchBotsInput from '../components/SearchBotsInput/SearchBotsInput'

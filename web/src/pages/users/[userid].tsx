@@ -20,22 +20,25 @@ interface Props {
 }
 
 const UserPage = ({ token, userid }: Props) => {
+
     const context = useContext(AuthContext)
     const [user, setUser] = useState<User>()
     const [show, setShow] = useState(false)
     const [inModal, setInModal] = useState('')
     const isMobile = useMediaQuery({ query: '(max-width: 630px)' })
     const [loading, setLoading] = useState(false)
-
+    const [ notFound, setNotFound ] = useState(false)
     const getUser = async () => {
         try {
             const data = await api.getUser(userid, token)
+            if (data.user === null) return setNotFound(true)
             if (data.statusCode === 401 && userid === 'me')
                 return router.push('/')
             if (userid === 'me') context.setUser(data)
+
             setUser(data)
         } catch (e) {
-            console.log(`Error: `, e)
+            setNotFound(true)
             return router.push('/')
         }
     }
@@ -45,6 +48,14 @@ const UserPage = ({ token, userid }: Props) => {
         setShow(false)
         setLoading(false)
     }, [token, userid])
+
+    if (notFound) {
+        return (
+            <Layout>
+                <div className="notfound">User not found</div>
+            </Layout>
+        )
+    }
 
     const follow = async (u: User | undefined = user) => {
         const data = api.followUser(u?.id)
