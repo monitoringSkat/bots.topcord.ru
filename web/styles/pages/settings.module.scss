@@ -64,6 +64,7 @@
 .integrations {
     display: flex;
     align-items: center;
+    width: 100%;
     img {
         width: 30px;
         height: 30px;
@@ -73,10 +74,12 @@
 
 .interinputs {
     margin: 10px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     div {
         display: flex;
         align-items: center;
-        flex-wrap: wrap;
         margin-bottom: 5px;
         * {
             font-size: 16px !important;
@@ -88,15 +91,15 @@
             border: 2px solid #282b30 !important;
             color: white !important;
             padding: 10px;
-            min-width: 80%;
+            max-width: 95%;
             height: 45px;
             margin-top: 0px;
             &::placeholder {
                 color: white;
             }
         }
-        span {
-            min-width: 70%;
+        .link {
+            min-width: 95%;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             background: #36393e !important;
@@ -105,7 +108,7 @@
             border-top-right-radius: 5px;
             border-bottom-right-radius: 5px;
         }
-        div {
+        .image {
             color: white;
             background: #282b30;
             padding: 7.5px 10px;
@@ -154,4 +157,30 @@
 
 .error {
     color: #ed4245;
+}
+
+
+@media screen and (max-width: 520px) {
+    .avatar img {
+        width: 150px !important;
+        height: 150px !important;
+        border-radius: 150px !important;
+    }
+    .profile, .header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        button {
+            width: 100%;
+            margin: 3% 0;
+        }
+    }
+    .bio {
+        margin-top: 15% !important;
+    }
+    .bioTextarea {
+        margin-top: 15% !important;
+        width: 100% !important;
+    }
 }

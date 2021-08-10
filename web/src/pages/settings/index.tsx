@@ -124,9 +124,9 @@ const SettingsPage = () => {
                     open={open}
                     autoHideDuration={3000}
                     className={styles.snackbar}
-                    message={t("settings.accountUpdateSuccess")}
+                    message={t('settings.accountUpdateSuccess')}
                 />
-                <h3>{t("settings.account")}</h3>
+                <h3>{t('settings.account')}</h3>
                 <div className={styles.profile}>
                     <div className={styles.avatar}>
                         <img className={styles.avatar} src={user.avatar} />
@@ -135,7 +135,7 @@ const SettingsPage = () => {
                         <div className={styles.header}>
                             <div className={styles.username}>
                                 <Tooltip
-                                    title={t("settings.verified") || ""}
+                                    title={t('settings.verified') || ''}
                                     placement="bottom"
                                 >
                                     <img
@@ -147,7 +147,7 @@ const SettingsPage = () => {
                                 <span>#{user.discriminator}</span>
                             </div>
                             <button onClick={() => setEdit(true)}>
-                                {t("buttons.edit")}
+                                {t('buttons.edit')}
                             </button>
                         </div>
                         {isEdit ? (
@@ -155,27 +155,28 @@ const SettingsPage = () => {
                                 maxLength={250}
                                 onChange={handleChange}
                                 value={values.bio}
+                                className={styles.bioTextarea}
                                 name="bio"
                                 style={{ width: '90%' }}
-                                placeholder={t("settings.bioPlaceholder")}
+                                placeholder={t('settings.bioPlaceholder')}
                             />
                         ) : (
                             <div className={styles.bio}>
-                                {values.bio || t("settings.bioNotProvided")}
+                                {values.bio || t('settings.bioNotProvided')}
                             </div>
                         )}
                     </div>
                 </div>
-                <h4>{t("settings.intergrations")}</h4>
+                <h4>{t('settings.intergrations')}</h4>
                 <div className={styles.interinputs}>
                     {Object.keys(errors).length > 0 && (
                         <div className={styles.error}>
-                            {t("settings.errors")}
+                            {t('settings.errors')}
                         </div>
                     )}
                     {Integrations.map(({ name }) => (
                         <div>
-                            <div>
+                            <div className={styles.image}>
                                 <img
                                     src={`/assets/logos/${name.toLowerCase()}.png`}
                                 />
@@ -188,10 +189,10 @@ const SettingsPage = () => {
                                     value={(values as any)[name.toLowerCase()]}
                                 />
                             ) : (
-                                <span>
+                                <div className={styles.link}>
                                     {(values as any)[name.toLowerCase()] ||
-                                        t("settings.emptyLink")}
-                                </span>
+                                        t('settings.emptyLink')}
+                                </div>
                             )}
                         </div>
                     ))}
@@ -203,10 +204,10 @@ const SettingsPage = () => {
                         className={styles.controls}
                     >
                         <button type="reset" className={styles.cancel}>
-                            {t("buttons.cancel")}
+                            {t('buttons.cancel')}
                         </button>
                         <button type="submit" className={styles.save}>
-                            {t("buttons.save")}
+                            {t('buttons.save')}
                         </button>
                     </form>
                 )}

@@ -54,7 +54,7 @@ const UserPage = ({ token, userid }: Props) => {
     if (notFound) {
         return (
             <Layout>
-                <div className="notfound">{t("errors.userNotFound")}</div>
+                <div className="notfound">{t('errors.userNotFound')}</div>
             </Layout>
         )
     }
@@ -104,7 +104,11 @@ const UserPage = ({ token, userid }: Props) => {
             image={user?.avatar}
         >
             <FullscreenModal
-                title={inModal === 'followers' ? t("userPage.followers") : t("userPage.following")}
+                title={
+                    inModal === 'followers'
+                        ? t('userPage.followers')
+                        : t('userPage.following')
+                }
                 state={{ show, setShow }}
             >
                 {inModal && (user as any)[inModal].length !== 0 ? (
@@ -116,14 +120,16 @@ const UserPage = ({ token, userid }: Props) => {
                         />
                     ))
                 ) : (
-                    <div className={styles['modal-empty']}>{t("userPage.listEmpty")}</div>
+                    <div className={styles['modal-empty']}>
+                        {t('userPage.listEmpty')}
+                    </div>
                 )}
             </FullscreenModal>
             <Row className={styles.profile}>
                 <Col sm={1.5} className={styles.left}>
                     <Image src={user?.avatar} className={styles.avatar} />
                     {context.user.id && user?.id === context.user.id && (
-                        <Link href="/settings">{t("buttons.edit")}</Link>
+                        <Link href="/settings">{t('buttons.edit')}</Link>
                     )}
                     {context.user.id && context.user.id !== user?.id ? (
                         !context.user.following.find(f => f.id === user?.id) ? (
@@ -131,14 +137,14 @@ const UserPage = ({ token, userid }: Props) => {
                                 className={styles.green}
                                 onClick={() => follow()}
                             >
-                                {t("buttons.follow")}
+                                {t('buttons.follow')}
                             </button>
                         ) : (
                             <button
                                 className={styles.red}
                                 onClick={() => unfollow()}
                             >
-                                {t("buttons.unfollow")}
+                                {t('buttons.unfollow')}
                             </button>
                         )
                     ) : null}
@@ -148,11 +154,11 @@ const UserPage = ({ token, userid }: Props) => {
                     context.user.role !== user?.role ? (
                         user?.banned ? (
                             <button onClick={unban} className={styles.green}>
-                                {t("buttons.unban")}
+                                {t('buttons.unban')}
                             </button>
                         ) : (
                             <button onClick={ban} className={styles.red}>
-                                {t("buttons.ban")}
+                                {t('buttons.ban')}
                             </button>
                         )
                     ) : null}
@@ -168,7 +174,9 @@ const UserPage = ({ token, userid }: Props) => {
                         <div className={styles.name}>
                             {user?.username}#{user?.discriminator}
                         </div>
-                        <div className={styles.role}>{t(`roles.${user?.role}`)}</div>
+                        <div className={styles.role}>
+                            {t(`roles.${user?.role}`)}
+                        </div>
                     </div>
                     <div className={styles.integrations}>
                         {Object.keys(user?.social || {}).map(key => {
@@ -186,13 +194,19 @@ const UserPage = ({ token, userid }: Props) => {
                             className={styles.followers}
                             onClick={() => modalTypeChange('followers')}
                         >
-                            {t("userPage.followersCount").replace("{count}", `${user?.followers.length}`)}
+                            {t('userPage.followersCount').replace(
+                                '{count}',
+                                `${user?.followers.length}`
+                            )}
                         </div>
                         <div
                             className={styles.following}
                             onClick={() => modalTypeChange('following')}
                         >
-                            {t("userPage.followingCount").replace("{count}", `${user?.following.length}`)}
+                            {t('userPage.followingCount').replace(
+                                '{count}',
+                                `${user?.following.length}`
+                            )}
                         </div>
                     </div>
                     <div className={styles.bio}>{user?.bio}</div>
@@ -204,7 +218,9 @@ const UserPage = ({ token, userid }: Props) => {
                     position={isMobile ? 'center' : 'left'}
                 />
             ) : (
-                <div className={styles.emptyBots}>{t("userPage.emptyBotList")}</div>
+                <div className={styles.emptyBots}>
+                    {t('userPage.emptyBotList')}
+                </div>
             )}
         </Layout>
     )

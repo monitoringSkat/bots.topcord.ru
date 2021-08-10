@@ -15,7 +15,7 @@ interface Props {
 
 const UserCard: React.FC<Props> = ({ user, follow, unfollow }) => {
     const context = useContext(AuthContext)
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     return (
         <Col>
             <div className={styles['user']}>
@@ -35,14 +35,14 @@ const UserCard: React.FC<Props> = ({ user, follow, unfollow }) => {
                             onClick={() => follow(user)}
                             className={styles['follow']}
                         >
-                            {t("buttons.follow")}
+                            {t('buttons.follow')}
                         </button>
                     ) : (
                         <button
                             onClick={() => unfollow(user)}
                             className={styles['unfollow']}
                         >
-                            {t("buttons.unfollow")}
+                            {t('buttons.unfollow')}
                         </button>
                     )
                 ) : null}

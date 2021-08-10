@@ -15,7 +15,7 @@ const LanguagePage = () => {
     }
     return (
         <SettingsLayout>
-            <h3>{t("settings.menu.language")}</h3>
+            <h3>{t('settings.menu.language')}</h3>
             <div className={styles.languages}>
                 {languages.map(({ name, id, icon }) => (
                     <div

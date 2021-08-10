@@ -21,7 +21,11 @@ const BotCard: FC<Props> = ({ bot }) => {
                 }}
             />
             <div className={styles.info}>
-                <img className={styles.avatar} src={bot.avatar} alt="Bot Avatar" />
+                <img
+                    className={styles.avatar}
+                    src={bot.avatar}
+                    alt="Bot Avatar"
+                />
                 <div className={styles.passport}>
                     <div className={styles.botname}>
                         {bot.name.length <= 12
@@ -34,7 +38,10 @@ const BotCard: FC<Props> = ({ bot }) => {
                             <div>{bot.votes}</div>
                         </div>
                         <div className={styles.stat}>
-                            <img src="/assets/comment.svg" alt="Comments icon" />
+                            <img
+                                src="/assets/comment.svg"
+                                alt="Comments icon"
+                            />
                             <div>{bot.comments.length}</div>
                         </div>
                         <div className={styles.stat}>
@@ -47,10 +54,10 @@ const BotCard: FC<Props> = ({ bot }) => {
             <div className={styles.description}>{bot.shortDescription}</div>
             <div className={styles.buttons}>
                 <div className={styles.invite}>
-                    <a href={bot.inviteURL || ''}>{t("botCard.invite")}</a>
+                    <a href={bot.inviteURL || ''}>{t('botCard.invite')}</a>
                 </div>
                 <div className={styles.view}>
-                    <Link href={`/bots/${bot.id}`}>{t("botCard.view")}</Link>
+                    <Link href={`/bots/${bot.id}`}>{t('botCard.view')}</Link>
                 </div>
             </div>
         </div>

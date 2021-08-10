@@ -110,7 +110,7 @@ const AddPage = () => {
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={open}
                 onClose={handleClose}
-                message={t("add.success")}
+                message={t('add.success')}
                 action={action}
             />
 

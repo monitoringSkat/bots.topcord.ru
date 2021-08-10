@@ -18,10 +18,12 @@ function TagPage({ tag, bots }: Props) {
     return (
         <Layout>
             <div className={styles.intro}>
-                <h1>{t("tags.bytag")} {tag}</h1>
-                <Link href="/bots">{t("tags.back")}</Link>
+                <h1>
+                    {t('tags.bytag')} {tag}
+                </h1>
+                <Link href="/bots">{t('tags.back')}</Link>
             </div>
-                <Bots position="left" bots={bots} />
+            <Bots position="left" bots={bots} />
         </Layout>
     )
 }

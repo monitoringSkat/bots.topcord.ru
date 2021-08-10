@@ -17,8 +17,12 @@ const Input: FC<Props> = props => {
             return (
                 <div className={styles.textareaContainer}>
                     <div className={styles.buttons}>
-                        <div onClick={() => setEdit(true)}>{t("buttons.edit")}</div>
-                        <div onClick={() => setEdit(false)}>{t("buttons.view")}</div>
+                        <div onClick={() => setEdit(true)}>
+                            {t('buttons.edit')}
+                        </div>
+                        <div onClick={() => setEdit(false)}>
+                            {t('buttons.view')}
+                        </div>
                     </div>
                     {isEdit && (
                         <textarea

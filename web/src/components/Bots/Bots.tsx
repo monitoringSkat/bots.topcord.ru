@@ -28,7 +28,7 @@ const Bots: FC<Props> = ({ bots, perPage = 10, position = 'center' }) => {
     if (!bots.length)
         return (
             <div className={styles.empty}>
-                ¯\_(ツ)_/¯ <br /> {t("errors.botsNotFound")}{' '}
+                ¯\_(ツ)_/¯ <br /> {t('errors.botsNotFound')}{' '}
             </div>
         )
     return (

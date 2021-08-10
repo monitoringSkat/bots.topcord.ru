@@ -15,7 +15,7 @@ interface Props {
 const ReportModal: React.FC<Props> = ({ bot, isShow, setShow }) => {
     const [message, setMessage] = useState('')
     const [isSuccess, setSuccess] = useState(false)
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
     const send = async () => {
         const data = await api.sendReport(bot.id, message)
@@ -31,7 +31,7 @@ const ReportModal: React.FC<Props> = ({ bot, isShow, setShow }) => {
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={isSuccess}
                 onClose={() => setSuccess(false)}
-                message={t("reportModal.success")}
+                message={t('reportModal.success')}
             />
             <Modal
                 size="lg"
@@ -42,19 +42,21 @@ const ReportModal: React.FC<Props> = ({ bot, isShow, setShow }) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                    {t("reportModal.title")} "{bot.name}"
+                        {t('reportModal.title')} "{bot.name}"
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <textarea
                         onChange={e => setMessage(e.target.value)}
-                        placeholder={t("reportModal.placeholder")}
+                        placeholder={t('reportModal.placeholder')}
                     />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => setShow(false)}>{t("reportModal.close")}</Button>
+                    <Button onClick={() => setShow(false)}>
+                        {t('reportModal.close')}
+                    </Button>
                     <Button disabled={message.length === 0} onClick={send}>
-                    {t("reportModal.send")}
+                        {t('reportModal.send')}
                     </Button>
                 </Modal.Footer>
             </Modal>

@@ -66,9 +66,7 @@ const Comment: React.FC<Props> = ({
                 <div className={styles['comment-header']}>
                     <div className={styles['comment-username']}>
                         <Link href={`/users/${comment.author.id}`}>
-                            <div>
-                                {comment.author.username}{' '}
-                            </div>
+                            <div>{comment.author.username} </div>
                         </Link>
                     </div>
                     {isAuthor && (

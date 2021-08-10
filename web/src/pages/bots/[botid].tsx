@@ -22,12 +22,12 @@ interface Props {
 }
 
 function BotPage(props: Props) {
-    const {t} = useTranslation()
+    const { t } = useTranslation()
 
     if (!props.bot)
         return (
             <Layout title={'Bot not found!'}>
-                <div className="notfound">{t("errors.botNotFound")}</div>
+                <div className="notfound">{t('errors.botNotFound')}</div>
             </Layout>
         )
 
@@ -47,7 +47,7 @@ function BotPage(props: Props) {
             rating: stars,
             botId: bot.id
         })
-        if (!data) return setLimitedComments(t("errors.commentLimit"))
+        if (!data) return setLimitedComments(t('errors.commentLimit'))
         setBot({ ...bot, comments: [data, ...bot.comments] })
         setComment('')
         setStars(0)
@@ -116,7 +116,7 @@ function BotPage(props: Props) {
                                 }
                                 className={styles.edit}
                             >
-                                {t("buttons.edit")}
+                                {t('buttons.edit')}
                             </button>
                         )}
                         {user.id === bot.owner.id ||
@@ -124,7 +124,7 @@ function BotPage(props: Props) {
                             user.role.toLowerCase()
                         ) ? (
                             <button onClick={remove} className={styles.delete}>
-                                {t("buttons.delete")}
+                                {t('buttons.delete')}
                             </button>
                         ) : null}
 
@@ -133,7 +133,7 @@ function BotPage(props: Props) {
                                 onClick={() => setShowReportModal(true)}
                                 className={styles.report}
                             >
-                                {t("buttons.report")}
+                                {t('buttons.report')}
                             </button>
                         )}
                     </div>
@@ -147,7 +147,12 @@ function BotPage(props: Props) {
                         </div>
                         <div className={styles['header-stars']}>
                             <Stars count={rating} />
-                            <div>{t("botPage.basedOn").replace("{count}", `${bot.comments.length}`)}</div>
+                            <div>
+                                {t('botPage.basedOn').replace(
+                                    '{count}',
+                                    `${bot.comments.length}`
+                                )}
+                            </div>
                         </div>
                         <div className={styles.tags}>
                             {bot.tags.map(({ name }) => (
@@ -181,13 +186,14 @@ function BotPage(props: Props) {
                         </div>
                         <div className={styles.additional}>
                             <div>
-                                {t("botPage.prefix")}: <span>{bot.prefix}</span>
+                                {t('botPage.prefix')}: <span>{bot.prefix}</span>
                             </div>
                             <div>
-                                {t("botPage.library")}: <span>{bot.library}</span>
+                                {t('botPage.library')}:{' '}
+                                <span>{bot.library}</span>
                             </div>
                             <div className={styles.developers}>
-                                {t("botPage.developers")}:
+                                {t('botPage.developers')}:
                                 {bot.developers.map(developer => (
                                     <Link
                                         key={developer.id}
@@ -199,13 +205,13 @@ function BotPage(props: Props) {
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
                 <Markdown
                     className={styles.description}
                     text={bot.longDescription}
                 />
                 <div className={styles.comments}>
-                    <h3>{t("titles.comments")}</h3>
+                    <h3>{t('titles.comments')}</h3>
                     {user.id && (
                         <div className={styles['write-comment']}>
                             {limitedComments !== null && (
@@ -236,7 +242,7 @@ function BotPage(props: Props) {
                                     className={styles.post}
                                     onClick={createComment}
                                 >
-                                    {t("buttons.public")}
+                                    {t('buttons.public')}
                                 </button>
                             </div>
                         </div>

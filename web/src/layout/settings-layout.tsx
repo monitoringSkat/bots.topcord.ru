@@ -24,18 +24,24 @@ const SettingsLayout: FC = ({ children }) => {
             </Link>
             <Col className={styles.menu} md="3">
                 <Container>
-                    <h1>{t("titles.settings")}</h1>
-                    <Link href="/settings/">{t("settings.menu.profile")}</Link>
-                    <Link href="/settings/language">{t("settings.menu.language")}</Link>
+                    <h1>{t('titles.settings')}</h1>
+                    <Link href="/settings/">{t('settings.menu.profile')}</Link>
+                    <Link href="/settings/language">
+                        {t('settings.menu.language')}
+                    </Link>
                     <hr />
                     <div className={styles.logout} onClick={logout}>
-                        {t("settings.menu.logout")}
+                        {t('settings.menu.logout')}
                     </div>
                     <hr />
                     <div className={styles.information}>
-                        <div>{t("settings.menu.version")}: 1.0.0-beta</div>
-                        <div>{t("settings.menu.browser")}: {browser}</div>
-                        <div>{t("settings.menu.os")}: {system}</div>
+                        <div>{t('settings.menu.version')}: 1.0.0-beta</div>
+                        <div>
+                            {t('settings.menu.browser')}: {browser}
+                        </div>
+                        <div>
+                            {t('settings.menu.os')}: {system}
+                        </div>
                     </div>
                 </Container>
             </Col>

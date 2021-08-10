@@ -9,7 +9,7 @@ const DevelopersPage = () => {
     const { t } = useTranslation()
     return (
         <Layout title="Разработчики | TopCord">
-            <h1 className={styles.title}>{t("team")}</h1>
+            <h1 className={styles.title}>{t('team')}</h1>
             <Container>
                 <Row>
                     {developers.map(developer => (
@@ -25,21 +25,23 @@ const DevelopersPage = () => {
                                         <span>{developer.role}</span>
                                     </div>
                                     <div className={styles.links}>
-                                        {Object.keys(developer.social).map(key => {
-                                            return (
-                                                <Link
-                                                    href={
-                                                        (developer.social as any)[
-                                                            key
-                                                        ]
-                                                    }
-                                                >
-                                                    <img
-                                                        src={`/assets/logos/${key}.png`}
-                                                    />
-                                                </Link>
-                                            )
-                                        })}
+                                        {Object.keys(developer.social).map(
+                                            key => {
+                                                return (
+                                                    <Link
+                                                        href={
+                                                            (
+                                                                developer.social as any
+                                                            )[key]
+                                                        }
+                                                    >
+                                                        <img
+                                                            src={`/assets/logos/${key}.png`}
+                                                        />
+                                                    </Link>
+                                                )
+                                            }
+                                        )}
                                     </div>
                                     <div className={styles.bio}>
                                         {developer.bio}
