@@ -14,6 +14,7 @@ import UserCard from '../../components/UserCard/UserCard'
 import { Row, Col, Image, Spinner } from 'react-bootstrap'
 import { useMediaQuery } from 'react-responsive'
 import router from 'next/router'
+import { useTranslation } from 'react-i18next'
 interface Props {
     token?: string
     userid: string
@@ -27,6 +28,8 @@ const UserPage = ({ token, userid }: Props) => {
     const isMobile = useMediaQuery({ query: '(max-width: 630px)' })
     const [loading, setLoading] = useState(false)
     const [notFound, setNotFound] = useState(false)
+    const { t } = useTranslation()
+
     const getUser = async () => {
         try {
             const data = await api.getUser(userid, token)
@@ -51,7 +54,7 @@ const UserPage = ({ token, userid }: Props) => {
     if (notFound) {
         return (
             <Layout>
-                <div className="notfound">User not found</div>
+                <div className="notfound">{t("errors.userNotFound")}</div>
             </Layout>
         )
     }
@@ -94,7 +97,6 @@ const UserPage = ({ token, userid }: Props) => {
     }
 
     if (loading) return <Spinner animation="border" variant="primary" />
-
     return (
         <Layout
             title={`${user?.username} | TopCord`}
@@ -102,7 +104,7 @@ const UserPage = ({ token, userid }: Props) => {
             image={user?.avatar}
         >
             <FullscreenModal
-                title={inModal === 'followers' ? 'Подписчики' : 'Подписки'}
+                title={inModal === 'followers' ? t("userPage.followers") : t("userPage.following")}
                 state={{ show, setShow }}
             >
                 {inModal && (user as any)[inModal].length !== 0 ? (
@@ -114,14 +116,14 @@ const UserPage = ({ token, userid }: Props) => {
                         />
                     ))
                 ) : (
-                    <div className={styles['modal-empty']}>Список пуст.</div>
+                    <div className={styles['modal-empty']}>{t("userPage.listEmpty")}</div>
                 )}
             </FullscreenModal>
             <Row className={styles.profile}>
                 <Col sm={1.5} className={styles.left}>
                     <Image src={user?.avatar} className={styles.avatar} />
                     {context.user.id && user?.id === context.user.id && (
-                        <Link href="/settings">Редактировать</Link>
+                        <Link href="/settings">{t("buttons.edit")}</Link>
                     )}
                     {context.user.id && context.user.id !== user?.id ? (
                         !context.user.following.find(f => f.id === user?.id) ? (
@@ -129,14 +131,14 @@ const UserPage = ({ token, userid }: Props) => {
                                 className={styles.green}
                                 onClick={() => follow()}
                             >
-                                Подписаться
+                                {t("buttons.follow")}
                             </button>
                         ) : (
                             <button
                                 className={styles.red}
                                 onClick={() => unfollow()}
                             >
-                                Отписаться
+                                {t("buttons.unfollow")}
                             </button>
                         )
                     ) : null}
@@ -146,11 +148,11 @@ const UserPage = ({ token, userid }: Props) => {
                     context.user.role !== user?.role ? (
                         user?.banned ? (
                             <button onClick={unban} className={styles.green}>
-                                Разбанить
+                                {t("buttons.unban")}
                             </button>
                         ) : (
                             <button onClick={ban} className={styles.red}>
-                                Забанить
+                                {t("buttons.ban")}
                             </button>
                         )
                     ) : null}
@@ -166,7 +168,7 @@ const UserPage = ({ token, userid }: Props) => {
                         <div className={styles.name}>
                             {user?.username}#{user?.discriminator}
                         </div>
-                        <div className={styles.role}>{user?.role}</div>
+                        <div className={styles.role}>{t(`roles.${user?.role}`)}</div>
                     </div>
                     <div className={styles.integrations}>
                         {Object.keys(user?.social || {}).map(key => {
@@ -184,13 +186,13 @@ const UserPage = ({ token, userid }: Props) => {
                             className={styles.followers}
                             onClick={() => modalTypeChange('followers')}
                         >
-                            {user?.followers.length} подписчиков
+                            {t("userPage.followersCount").replace("{count}", `${user?.followers.length}`)}
                         </div>
                         <div
                             className={styles.following}
                             onClick={() => modalTypeChange('following')}
                         >
-                            {user?.following.length} подписок
+                            {t("userPage.followingCount").replace("{count}", `${user?.following.length}`)}
                         </div>
                     </div>
                     <div className={styles.bio}>{user?.bio}</div>
@@ -202,7 +204,7 @@ const UserPage = ({ token, userid }: Props) => {
                     position={isMobile ? 'center' : 'left'}
                 />
             ) : (
-                <div className={styles.bots}>У пользователя нету ботов</div>
+                <div className={styles.emptyBots}>{t("userPage.emptyBotList")}</div>
             )}
         </Layout>
     )

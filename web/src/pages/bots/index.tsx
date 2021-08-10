@@ -121,7 +121,7 @@ BotsPage.getInitialProps = async (): Promise<Props> => {
     try {
         const { data } = await http.get(`/bots/all`)
         return { bots: data }
-    } catch(e) {
+    } catch (e) {
         return { bots: [] }
     }
 }

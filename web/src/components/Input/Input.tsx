@@ -1,6 +1,7 @@
 import { FC, InputHTMLAttributes, useState } from 'react'
 import styles from './Input.module.scss'
 import Markdown from '../Markdown/Markdown'
+import { useTranslation } from 'react-i18next'
 
 interface Props extends InputHTMLAttributes<any> {
     type?: 'textarea' | 'select'
@@ -10,13 +11,14 @@ interface Props extends InputHTMLAttributes<any> {
 
 const Input: FC<Props> = props => {
     const [isEdit, setEdit] = useState(true)
+    const { t } = useTranslation()
     switch (props.type) {
         case 'textarea':
             return (
                 <div className={styles.textareaContainer}>
                     <div className={styles.buttons}>
-                        <div onClick={() => setEdit(true)}>Редактировать</div>
-                        <div onClick={() => setEdit(false)}>Просмотреть</div>
+                        <div onClick={() => setEdit(true)}>{t("buttons.edit")}</div>
+                        <div onClick={() => setEdit(false)}>{t("buttons.view")}</div>
                     </div>
                     {isEdit && (
                         <textarea

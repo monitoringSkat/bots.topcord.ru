@@ -15,16 +15,19 @@ import Comment from '../../components/Comment/Comment'
 import api from '../../api'
 import ReportModal from '../../components/ReportModal/ReportModal'
 import router from 'next/router'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
     bot: Bot
 }
 
 function BotPage(props: Props) {
+    const {t} = useTranslation()
+
     if (!props.bot)
         return (
             <Layout title={'Bot not found!'}>
-                <div className="notfound">Bot not found!</div>
+                <div className="notfound">{t("errors.botNotFound")}</div>
             </Layout>
         )
 
@@ -44,7 +47,7 @@ function BotPage(props: Props) {
             rating: stars,
             botId: bot.id
         })
-        if (!data) return setLimitedComments('Вы превысили лимит комментариев!')
+        if (!data) return setLimitedComments(t("errors.commentLimit"))
         setBot({ ...bot, comments: [data, ...bot.comments] })
         setComment('')
         setStars(0)
@@ -113,7 +116,7 @@ function BotPage(props: Props) {
                                 }
                                 className={styles.edit}
                             >
-                                Редактировать
+                                {t("buttons.edit")}
                             </button>
                         )}
                         {user.id === bot.owner.id ||
@@ -121,7 +124,7 @@ function BotPage(props: Props) {
                             user.role.toLowerCase()
                         ) ? (
                             <button onClick={remove} className={styles.delete}>
-                                Удалить
+                                {t("buttons.delete")}
                             </button>
                         ) : null}
 
@@ -130,7 +133,7 @@ function BotPage(props: Props) {
                                 onClick={() => setShowReportModal(true)}
                                 className={styles.report}
                             >
-                                Пожаловаться
+                                {t("buttons.report")}
                             </button>
                         )}
                     </div>
@@ -144,7 +147,7 @@ function BotPage(props: Props) {
                         </div>
                         <div className={styles['header-stars']}>
                             <Stars count={rating} />
-                            <div>based on {bot.comments.length} reviews</div>
+                            <div>{t("botPage.basedOn").replace("{count}", `${bot.comments.length}`)}</div>
                         </div>
                         <div className={styles.tags}>
                             {bot.tags.map(({ name }) => (
@@ -178,13 +181,13 @@ function BotPage(props: Props) {
                         </div>
                         <div className={styles.additional}>
                             <div>
-                                Префикс: <span>{bot.prefix}</span>
+                                {t("botPage.prefix")}: <span>{bot.prefix}</span>
                             </div>
                             <div>
-                                Библиотека: <span>{bot.library}</span>
+                                {t("botPage.library")}: <span>{bot.library}</span>
                             </div>
                             <div className={styles.developers}>
-                                Разработчики:
+                                {t("botPage.developers")}:
                                 {bot.developers.map(developer => (
                                     <Link
                                         key={developer.id}
@@ -196,13 +199,13 @@ function BotPage(props: Props) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> 
                 <Markdown
                     className={styles.description}
                     text={bot.longDescription}
                 />
                 <div className={styles.comments}>
-                    <h3>Комментарии</h3>
+                    <h3>{t("titles.comments")}</h3>
                     {user.id && (
                         <div className={styles['write-comment']}>
                             {limitedComments !== null && (
@@ -233,7 +236,7 @@ function BotPage(props: Props) {
                                     className={styles.post}
                                     onClick={createComment}
                                 >
-                                    Опубликовать
+                                    {t("buttons.public")}
                                 </button>
                             </div>
                         </div>

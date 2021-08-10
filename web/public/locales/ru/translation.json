@@ -10,7 +10,8 @@
         "add": "Добавить",
         "edit": "Редактировать",
         "settings": "Настройки",
-        "partners": "Партнеры"
+        "partners": "Партнеры",
+        "comments": "Комментарии"
     },
     "header": {
         "links": {
@@ -54,7 +55,7 @@
         "editTitle": "Редактирование бота",
         "id": "Клиент ID",
         "id_hint": "находиться на Discord Developer Portal",
-        "prefix": "Имя бота",
+        "prefix": "Префикс",
         "shortDescription": "Краткое описание",
         "shortDescription_hint": "максимальное количество символов 220",
         "longDescription": "Детальное описание",
@@ -77,18 +78,29 @@
         "rules": "Я ознакомился/ознакомилась с правилами",
         "updateButton": "Обновить бота",
         "createButton": "Добавить бота",
-        "redirectTo": "Перейти на страницу"
+        "redirectTo": "Перейти на страницу",
+        "success": "Успешно!"
     },
     "errors": {
         "botsNotFound": "Боты не найдены.",
-        "sameId": "Такой ID уже существует!"
+        "sameId": "Такой ID уже существует!",
+        "botNotFound": "Бот не найден!",
+        "userNotFound": "Пользователь не найден!",
+        "commentLimit": "Вы превысили лимит комментариев!"
     },
     "buttons": {
         "edit": "Редактировать",
         "follow": "Подписаться",
         "unfollow": "Отписаться",
         "ban": "Забанить",
-        "unban": "Разбанить"
+        "unban": "Разбанить",
+        "view": "Просмотреть",
+        "public": "Опубликовать",
+        "delete": "Удалить",
+        "report": "Пожаловаться",
+        "cancel": "Отмена",
+        "save": "Сохранить изменения",
+        "logout": "Выйти"
     },
     "roles": {
         "admin": "Админ",
@@ -96,9 +108,15 @@
         "member": "Участник",
         "developer": "Разработчик"
     },
+    "tags": {
+        "available": "Список тегов доступных на TopCord.",
+        "bytag": "Боты по тегу",
+        "back": "Вернуться к списку ботов"
+    },
     "settings": {
         "intergrations": "Интеграции",
-        "emptyBio": "Биография отсутствует",
+        "errors": "Были допущены ошибки!",
+        "emptyLink": "ссылка отсутсвует",
         "menu": {
             "profile": "Профиль пользователя",
             "language": "Язык",
@@ -106,6 +124,39 @@
             "version": "Текущая версия",
             "os": "Операционная система",
             "browser": "Браузер"
-        }
+        },
+        "account": "Моя учётная запись",
+        "accountUpdateSuccess": "Профиль успешно обновлён!",
+        "verified": "Верефицированный",
+        "bioPlaceholder": "Расскажите немного о том, как вы живете",
+        "bioNotProvided": "Биография отсутствует"
+    },
+    "botCard": {
+        "invite": "Пригласить",
+        "view": "Просмотреть"
+    },
+    "reportModal": {
+        "title": "Пожаловаться на бота",
+        "success": "Жалоба успешно отправлена!",
+        "placeholder": "Ваша жалоба",
+        "send": "Отправить",
+        "close": "Закрыть"
+    },
+    "botPage": {
+        "prefix": "Префикс",
+        "library": "Библиотека",
+        "developers": "Разработчики",
+        "basedOn": "основано на {count} отзывах"
+    },
+    "team": "Команда сайта",
+
+    "userPage": {
+        "followers": "Подписчики",
+        "following": "Подписки",
+        "listEmpty": "Список пуст.",
+        "followersCount": "{count} подписчиков",
+        "followingCount": "{count} подписок",
+        "emptyBotList": "У пользователя нету ботов"
     }
 }
+ 

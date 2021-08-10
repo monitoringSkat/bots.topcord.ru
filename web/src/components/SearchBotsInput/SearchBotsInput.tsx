@@ -16,10 +16,12 @@ const SearchBotsInput = (props: Props) => {
         if (!query) return
         setLoading(true)
         try {
-            const res = await fetch(`${config.SERVER_URL}/bots/search?q=${query}`)
+            const res = await fetch(
+                `${config.SERVER_URL}/bots/search?q=${query}`
+            )
             const bots = await res.json()
             if (bots) setBots(bots)
-        } catch(e) {
+        } catch (e) {
             setBots([])
         }
         setLoading(false)

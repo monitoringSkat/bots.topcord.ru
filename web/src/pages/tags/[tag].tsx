@@ -6,7 +6,7 @@ import Bots from '../../components/Bots/Bots'
 import { NextPageContext } from 'next'
 import config from '../../config'
 import Link from 'next/link'
-import Container from 'react-bootstrap/Container'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
     bots: Bot[]
@@ -14,15 +14,14 @@ interface Props {
 }
 
 function TagPage({ tag, bots }: Props) {
+    const { t } = useTranslation()
     return (
         <Layout>
             <div className={styles.intro}>
-                <h1>Боты по тегу {tag}</h1>
-                <Link href="/bots">Вернуться к списку ботов</Link>
+                <h1>{t("tags.bytag")} {tag}</h1>
+                <Link href="/bots">{t("tags.back")}</Link>
             </div>
-            <Container>
-                <Bots bots={bots} />
-            </Container>
+                <Bots position="left" bots={bots} />
         </Layout>
     )
 }
@@ -35,7 +34,7 @@ TagPage.getInitialProps = async ({ query }: NextPageContext) => {
             tag: query.tag,
             bots: data.bots
         }
-    } catch(e) {
+    } catch (e) {
         return {
             tag: query.tag,
             bots: []

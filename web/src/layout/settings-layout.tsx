@@ -5,8 +5,10 @@ import { useContext } from 'react'
 import AuthContext from '../context/auth.context'
 import { Col, Row, Container } from 'react-bootstrap'
 import { detect } from 'detect-browser'
+import { useTranslation } from 'react-i18next'
 
 const SettingsLayout: FC = ({ children }) => {
+    const { t } = useTranslation()
     const [[browser, system], setNavigator] = useState<any[]>([null, null])
     const { logout } = useContext(AuthContext)
     useEffect(() => {
@@ -22,18 +24,18 @@ const SettingsLayout: FC = ({ children }) => {
             </Link>
             <Col className={styles.menu} md="3">
                 <Container>
-                    <h1>Настройки</h1>
-                    <Link href="/settings/">Профиль пользователя</Link>
-                    <Link href="/settings/language">Язык</Link>
+                    <h1>{t("titles.settings")}</h1>
+                    <Link href="/settings/">{t("settings.menu.profile")}</Link>
+                    <Link href="/settings/language">{t("settings.menu.language")}</Link>
                     <hr />
                     <div className={styles.logout} onClick={logout}>
-                        Выйти
+                        {t("settings.menu.logout")}
                     </div>
                     <hr />
                     <div className={styles.information}>
-                        <div>Текущая версия: 1.0.0-beta</div>
-                        <div>Браузер: {browser}</div>
-                        <div>Операционная система: {system}</div>
+                        <div>{t("settings.menu.version")}: 1.0.0-beta</div>
+                        <div>{t("settings.menu.browser")}: {browser}</div>
+                        <div>{t("settings.menu.os")}: {system}</div>
                     </div>
                 </Container>
             </Col>

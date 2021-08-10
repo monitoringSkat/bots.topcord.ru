@@ -81,6 +81,16 @@
     margin: 10px 0;
 }
 
+.emptyBots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    height: 30vh;
+    font-size: 30px;
+}
+
 .integrations {
     display: flex;
     align-items: center;

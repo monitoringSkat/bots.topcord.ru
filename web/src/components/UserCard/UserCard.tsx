@@ -4,7 +4,8 @@ import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
 import User from '../../interfaces/user.interface'
 import styles from './UserCard.module.scss'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
     user: User
@@ -14,6 +15,7 @@ interface Props {
 
 const UserCard: React.FC<Props> = ({ user, follow, unfollow }) => {
     const context = useContext(AuthContext)
+    const {t} = useTranslation()
     return (
         <Col>
             <div className={styles['user']}>
@@ -33,14 +35,14 @@ const UserCard: React.FC<Props> = ({ user, follow, unfollow }) => {
                             onClick={() => follow(user)}
                             className={styles['follow']}
                         >
-                            Подписаться
+                            {t("buttons.follow")}
                         </button>
                     ) : (
                         <button
                             onClick={() => unfollow(user)}
                             className={styles['unfollow']}
                         >
-                            Отписаться
+                            {t("buttons.unfollow")}
                         </button>
                     )
                 ) : null}

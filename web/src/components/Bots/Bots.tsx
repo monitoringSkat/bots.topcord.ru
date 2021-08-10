@@ -1,7 +1,8 @@
-import { FC, useState, Component } from 'react'
+import { FC, useState } from 'react'
 import Bot from '../../interfaces/bot.interface'
 import styles from './Bots.module.scss'
 import BotCard from '../BotCard/BotCard'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
     bots: Bot[]
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const Bots: FC<Props> = ({ bots, perPage = 10, position = 'center' }) => {
+    const { t } = useTranslation()
     const [page, setPage] = useState(0)
     const navigation = []
     for (let i = 0; i < Math.ceil(bots.length / perPage); i++) {
@@ -26,7 +28,7 @@ const Bots: FC<Props> = ({ bots, perPage = 10, position = 'center' }) => {
     if (!bots.length)
         return (
             <div className={styles.empty}>
-                ¯\_(ツ)_/¯ <br /> Боты не найдены.{' '}
+                ¯\_(ツ)_/¯ <br /> {t("errors.botsNotFound")}{' '}
             </div>
         )
     return (

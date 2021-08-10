@@ -69,7 +69,7 @@ Home.getInitialProps = async (): Promise<Props> => {
         const topBots = await http.get(`/bots/top?limit=20`)
         const newBots = await http.get(`/bots/new?limit=4`)
         return { topBots: topBots.data, newBots: newBots.data }
-    } catch(e) {
+    } catch (e) {
         return { topBots: [], newBots: [] }
     }
 }

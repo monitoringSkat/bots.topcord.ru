@@ -110,9 +110,7 @@ const AddPage = () => {
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                 open={open}
                 onClose={handleClose}
-                message={`Бот ${bot?.name} был успешно ${
-                    isEdit ? 'обновлен' : 'добавлен'
-                }!`}
+                message={t("add.success")}
                 action={action}
             />
 

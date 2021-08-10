@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 return false
             setUser(data)
             return true
-        } catch(e) {
+        } catch (e) {
             return false
         }
     }

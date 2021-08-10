@@ -3,6 +3,7 @@ import config from '../../config'
 import Tag from '../../interfaces/tag.interface'
 import Layout from '../../layout'
 import styles from '../../../styles/pages/tags.module.scss'
+import { useTranslation } from 'react-i18next'
 interface Props {
     tags: {
         tag: string
@@ -11,10 +12,11 @@ interface Props {
 }
 
 function TagsPage({ tags }: Props) {
+    const { t } = useTranslation()
     return (
         <Layout>
             <div className={styles.container}>
-                <h1>Список тегов доступных на TopCord.</h1>
+                <h1>{t("tags.available")}</h1>
                 <div className={styles.tags}>
                     {tags.map(tag => (
                         <Link href={`/tags/${tag.tag}`} key={tag.tag}>
@@ -35,7 +37,7 @@ TagsPage.getInitialProps = async () => {
         const res = await fetch(`${config.SERVER_URL}/tags`)
         const tags = await res.json()
         return { tags }
-    } catch(e) {
+    } catch (e) {
         return { tags: [] }
     }
 }

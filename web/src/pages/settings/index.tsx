@@ -10,8 +10,10 @@ import config from '../../config'
 import http from '../../api/http'
 import { Col } from 'react-bootstrap'
 import PageWithAuth from '../../hoc/PageWithAuth'
+import { useTranslation } from 'react-i18next'
 
 const SettingsPage = () => {
+    const { t } = useTranslation()
     const { user, setUser } = useContext(AuthContext)
     const [isEdit, setEdit] = useState(false)
     const [open, setOpen] = useState(false)
@@ -122,9 +124,9 @@ const SettingsPage = () => {
                     open={open}
                     autoHideDuration={3000}
                     className={styles.snackbar}
-                    message={`Профиль успешно обновлён!`}
+                    message={t("settings.accountUpdateSuccess")}
                 />
-                <h3>Моя учётная запись</h3>
+                <h3>{t("settings.account")}</h3>
                 <div className={styles.profile}>
                     <div className={styles.avatar}>
                         <img className={styles.avatar} src={user.avatar} />
@@ -133,7 +135,7 @@ const SettingsPage = () => {
                         <div className={styles.header}>
                             <div className={styles.username}>
                                 <Tooltip
-                                    title="Верефицированный"
+                                    title={t("settings.verified") || ""}
                                     placement="bottom"
                                 >
                                     <img
@@ -145,7 +147,7 @@ const SettingsPage = () => {
                                 <span>#{user.discriminator}</span>
                             </div>
                             <button onClick={() => setEdit(true)}>
-                                Редактировать
+                                {t("buttons.edit")}
                             </button>
                         </div>
                         {isEdit ? (
@@ -155,20 +157,20 @@ const SettingsPage = () => {
                                 value={values.bio}
                                 name="bio"
                                 style={{ width: '90%' }}
-                                placeholder="Расскажите немного о том, как вы живете"
+                                placeholder={t("settings.bioPlaceholder")}
                             />
                         ) : (
                             <div className={styles.bio}>
-                                {values.bio || 'Биография отсутствует'}
+                                {values.bio || t("settings.bioNotProvided")}
                             </div>
                         )}
                     </div>
                 </div>
-                <h4>Интеграции</h4>
+                <h4>{t("settings.intergrations")}</h4>
                 <div className={styles.interinputs}>
                     {Object.keys(errors).length > 0 && (
                         <div className={styles.error}>
-                            Были допущены ошибки!
+                            {t("settings.errors")}
                         </div>
                     )}
                     {Integrations.map(({ name }) => (
@@ -180,7 +182,7 @@ const SettingsPage = () => {
                             </div>
                             {isEdit ? (
                                 <Input
-                                    placeholder={`Ссылка на профиль ${name}`}
+                                    placeholder={name}
                                     onChange={handleChange}
                                     name={name.toLowerCase()}
                                     value={(values as any)[name.toLowerCase()]}
@@ -188,7 +190,7 @@ const SettingsPage = () => {
                             ) : (
                                 <span>
                                     {(values as any)[name.toLowerCase()] ||
-                                        'ссылка отсутсвует'}
+                                        t("settings.emptyLink")}
                                 </span>
                             )}
                         </div>
@@ -201,10 +203,10 @@ const SettingsPage = () => {
                         className={styles.controls}
                     >
                         <button type="reset" className={styles.cancel}>
-                            Отмена
+                            {t("buttons.cancel")}
                         </button>
                         <button type="submit" className={styles.save}>
-                            Сохранить изменения
+                            {t("buttons.save")}
                         </button>
                     </form>
                 )}
