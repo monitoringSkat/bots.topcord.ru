@@ -2,7 +2,6 @@
     "name": "server",
     "version": "1.0.0",
     "description": "",
-    "type": "module",
     "scripts": {
         "start": "node ./dist/src/index.js",
         "dev": "cross-env NODE_ENV=development tsnd --respawn ./src/index.ts",
