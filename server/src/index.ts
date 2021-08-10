@@ -19,9 +19,10 @@ import User from './entities/User'
 
 dotenv.config()
 const PORT = Number(process.env.PORT || 5000)
+const __prod__ = process.env.NODE_ENV === "development"
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: __prod__ ? 'http://localhost:3000' : "https://dev.topcord.ru/",
     optionsSuccessStatus: 200
 }
 
