@@ -6,15 +6,19 @@ import checkAuth from '../middlewares/checkAuth.middleware'
 import UserController from '../controllers/UserController'
 import checkPermissions from '../middlewares/checkPermissions'
 import { supportedSocialLinks } from '../constants'
+import getUserInfo from '../utils/get-user-info'
 
 const usersRouter = Router()
 
 usersRouter.get('/me', [checkAuth], async (req: Request, res: Response) => {
     try {
         const userId = (req.user as any).id
+        const { avatar } = await getUserInfo(userId)
         const user = await User.findOne(userId, {
             relations: ['bots', 'following', 'followers', 'bots.comments']
         })
+        user.avatar = `https://cdn.discordapp.com/avatars/${user.id}/${avatar}?size=1024`
+        await user.save()
         res.send(user)
     } catch (e) {
         res.send({})

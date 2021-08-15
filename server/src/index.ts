@@ -31,15 +31,15 @@ const corsOptions = {
 }
 
 orm.createConnection({
-    "type": "postgres",
-    "host": "localhost",
-    "port": 5432,
-    "username": "postgres",
-    "password": "13092005",
-    "database": "topcord",
-    "synchronize": true,
-    "logging": false,
-    "entities": [User, BlackList, Bot, Comment, Tag]
+    type: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    username: 'postgres',
+    password: '13092005',
+    database: 'topcord',
+    synchronize: true,
+    logging: false,
+    entities: [User, BlackList, Bot, Comment, Tag]
 })
     .then(async () => {
         const app = express()
