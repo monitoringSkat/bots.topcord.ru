@@ -1,15 +1,40 @@
+<<<<<<< HEAD
 # bots.topcord.ru
 
 
 ## Structure
 <table>
+=======
+<div style="padding: 5%; margin: 2.5%; 0" align="center">
+    <img src="./github-logo.png" />
+</div>
+
+<h1 align="center">bots.topcord.ru</h1>
+
+<div align="center"> 
+    <a href="https://discord.gg/ryk4K5kRJq">
+        <img src="https://img.shields.io/discord/761596363795988561" />
+    </a>
+       <a href="https://github.com/vitaliyirtlach/riod.js">
+        <img src="https://img.shields.io/github/stars/TopCord-Team/bots.topcord.ru?style=social" />
+    </a>
+</div>
+
+## Structure
+
+<table> 
+>>>>>>> e37538a74f3b27cae23a10b3cecb77d795fec512
   <tr>
      <td>Folder</td>
      <td>Description</td>
   </tr>
   <tr>
     <td><a href="web">/web</a></td>
+<<<<<<< HEAD
     <td>React.js frontend</td>
+=======
+    <td>Next.js frontend</td>
+>>>>>>> e37538a74f3b27cae23a10b3cecb77d795fec512
   </tr>
   <tr>
     <td><a href="server">/server</a></td>
@@ -23,6 +48,7 @@
     <td><a href="desing">/design</a></td>
     <td>Images with design</td>
   </tr>
+<<<<<<< HEAD
 </table>
 
 ## Branches
@@ -37,3 +63,44 @@
 - 🇷🇺 Русский
 - 🇺🇦 Українська
 - 🇬🇧 English
+=======
+  <tr>
+    <td><a href="desing">/api-bot</a></td>
+    <td>Bot for convenient use TopCord API in Disord</td>
+  </tr>
+</table>
+
+## Branches
+
+-   **prod** -> production version.
+-   **dev** -> branch for developers and new features.
+
+## How run locally
+
+1. Clone the repo.
+
+```git
+git clone "https://github.com/TopCord-Team/bots.topcord.ru"
+```
+
+2. Install dependencies
+
+```bash
+  npm install # in root directory
+  cd web && npm install # in web directory
+  cd server && npm install # in server directory
+```
+
+3. Run server and frontend
+
+```bash
+  npm run server # in root directory
+  npm run web # in other terminal
+```
+
+## Languages
+
+-   🇷🇺 Русский
+-   🇺🇦 Українська
+-   🇬🇧 English
+>>>>>>> e37538a74f3b27cae23a10b3cecb77d795fec512

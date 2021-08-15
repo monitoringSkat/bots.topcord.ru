@@ -1,0 +1,15 @@
+.languages {
+    div {
+        padding: 5px 10px;
+        border-radius: 7.5px;
+        background: #282b30;
+        color: white;
+        font-size: 18px;
+        margin: 7.5px 0;
+        cursor: pointer;
+        font-weight: 500;
+    }
+    .active {
+        outline: 2px solid #5865f2;
+    }
+}

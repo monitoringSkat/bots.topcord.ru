@@ -1,0 +1,76 @@
+.intro {
+    background: #23272a;
+    min-height: 450px;
+    padding: 3% 4%;
+    margin-bottom: 1.5%;
+}
+
+.search {
+    padding-top: 2%;
+}
+
+.text {
+    color: white;
+}
+
+.title {
+    color: white;
+    font-size: 54px;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.tags {
+    display: flex;
+    align-items: center;
+}
+
+.tags * {
+    padding: 5px 7.5px;
+    border-radius: 2.5px;
+    background: #5865f2;
+    margin-top: 2.5px;
+    margin-right: 7.5px;
+    font-size: 18px;
+    color: white;
+}
+
+.wumpus {
+    max-width: 350px;
+    position: relative;
+    animation: wumpusFly 2s linear 5s infinite alternate;
+}
+
+@keyframes wumpusFly {
+    0% {
+        top: -5px;
+    }
+    100% {
+        top: 5px;
+    }
+}
+
+.bots {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.bots h2 {
+    margin-left: 3.5%;
+}
+
+.empty {
+    font-size: 36px;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+}
+.hr {
+    border: 2px solid #7289da;
+    margin: 5% 50px 5% 50px;
+}

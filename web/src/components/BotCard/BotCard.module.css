@@ -1,0 +1,99 @@
+.card {
+    width: 20.625em;
+    height: 400px;
+    background: #23272a;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10%;
+    margin: 10px;
+}
+
+.card * {
+    color: white;
+}
+
+.background {
+    background-size: 100% !important;
+    height: 150px;
+    margin: auto;
+    background: #25282c;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 2px solid #23272a;
+}
+
+.info {
+    padding: 0 20px;
+    margin-top: -12.5%;
+    display: flex;
+    align-items: center;
+}
+
+.avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 100%;
+}
+
+.passport {
+    margin-top: 5%;
+}
+
+.botname {
+    margin-left: 15px;
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+}
+
+.statistics,
+.stat {
+    display: flex;
+    align-items: center;
+}
+
+.statistics {
+    margin-left: 15px;
+}
+
+.stat {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.stat img {
+    margin-right: 2.5px;
+}
+
+.description {
+    margin-top: 4%;
+    padding: 0 5px;
+    height: 42.5%;
+    overflow: hidden;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.buttons div {
+    font-size: 18px;
+    padding: 5px;
+    text-align: center;
+}
+
+.invite {
+    width: 50%;
+    border-bottom-left-radius: 10px;
+    background: #3ba55d;
+    color: white;
+}
+
+.view {
+    width: 50%;
+    border-bottom-right-radius: 10px;
+    background: #5865f2;
+    color: white;
+}

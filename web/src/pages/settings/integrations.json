@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Github",
+        "link": "https://github.com/"
+    },
+    {
+        "name": "Reddit",
+        "link": "https://www.reddit.com/user/"
+    },
+    {
+        "name": "Facebook",
+        "link": "https://www.facebook.com/"
+    },
+    {
+        "name": "YouTube",
+        "link": "https://www.youtube.com/channel/"
+    },
+    {
+        "name": "Spotify",
+        "link": "https://open.spotify.com/user/"
+    },
+    {
+        "name": "Steam",
+        "link": "ttps://steamcommunity.com/id/"
+    },
+    {
+        "name": "Telegram",
+        "link": "https://t.me/"
+    },
+    {
+        "name": "Twitch",
+        "link": "https://www.twitch.tv/"
+    },
+    {
+        "name": "Twitter",
+        "link": "https://twitter.com/"
+    },
+    {
+        "name": "VK",
+        "link": "https://vk.com/"
+    }
+]

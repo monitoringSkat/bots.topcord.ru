@@ -1,0 +1,19 @@
+.intro {
+    width: 90%;
+    padding-top: 1.5%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+        color: white;
+    }
+    a {
+        text-align: center;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: 500;
+        background: #ed4245;
+    }
+}

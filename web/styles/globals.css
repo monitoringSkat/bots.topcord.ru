@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import './navbar.css';
+@import './footer.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    scrollbar-width: thin;
+    scrollbar-color: #1d1f23 #23272a;
+}
+
+input::placeholder {
+    color: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: white;
+}
+
+a {
+    color: white !important;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+body {
+    overflow-x: hidden !important;
+    background: #2c2f33;
+}
+
+.form-check {
+    margin: 10px 0;
+}
+
+.dropdown-toggle {
+    background: #5865f2 !important;
+}
+
+.dropdown-item {
+    color: black !important;
+}
+
+.dropdown-item {
+    background-color: #5865f2;
+    color: white !important;
+}
+
+.dropdown-item:hover {
+    background-color: #5865f2;
+}
+
+.dropdown-menu {
+    background-color: #5865f2 !important;
+}
+
+.settings_profile__3vfUF .Input_preview__2UqJa {
+    border: 1px solid #282b30;
+    color: silver;
+    background: #36393e;
+}
+
+h4 {
+    margin: 15px 0;
+}
+
+.text-primary {
+    color: #5865f2 !important;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+.MuiTooltip-popper * {
+    font-size: 15px !important;
+}
+
+.verified {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.MuiSnackbar-root,
+.MuiSnackbarContent-root {
+    background-color: #5865f2 !important;
+    color: white !important;
+    font-size: 18px !important;
+    border-radius: 5px !important;
+    border: 1px solid #1d1f23;
+}
+
+.MuiButton-root {
+    color: white !important;
+}
+
+.modal-dialog *:not(input) {
+    background: #1d1f23 !important;
+    color: white;
+}
+
+.modal-dialog input,
+textarea {
+    background: #36393e !important;
+    color: white;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    font-size: 18px;
+    margin: 5px 0;
+    outline: none;
+    border: 1px solid #36393e;
+    max-height: 500px;
+}
+
+.modal-dialog input::placeholder,
+textarea::placeholder {
+    color: white;
+}
+
+.notfound {
+    font-size: 48px;
+    display: flex;
+    align-items: center;
+    margin: auto 0;
+    height: 70vh;
+    justify-content: center;
+    font-weight: 600;
+    color: white;
+}
+
+@media screen and (max-width: 380px) {
+    .notfound {
+        font-size: 36px;
+    }
+}

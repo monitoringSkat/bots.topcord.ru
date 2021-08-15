@@ -1,0 +1,111 @@
+{
+    "title": "Hoja de bots en Discord",
+    "subtitle": "Añadir bots, votar por ellos. Elige bots. Y todo eso en TopCord.",
+    "tagList": "Lista de etiquetas",
+    "newBots": "Nuevos bots",
+    "topBots": "Top bots",
+    "titles": {
+        "home": "Primario",
+        "bots": "Bots",
+        "add": "Agregar",
+        "edit": "Redactar",
+        "settings": "Ajustes",
+        "partners": "Socios"
+    },
+    "header": {
+        "links": {
+            "main": "Primario",
+            "bots": "Bots",
+            "addBot": "Añadir bot",
+            "community": "Comunidad",
+            "partners": "Socios",
+            "login": "Entrar"
+        }
+    },
+    "inputs": {
+        "searchBot": "Encuentra un bot"
+    },
+    "filters": {
+        "sortBy": "Ordenar por",
+        "reset": "Limpiar el filtro",
+        "library": "Biblioteca",
+        "updatedAt": "Por fecha de actualización",
+        "votes": "Por voces",
+        "guilds": "Por número de servidores",
+        "comments": "Por número de comentarios"
+    },
+    "footer": {
+        "categories": {
+            "info": "Información",
+            "politics": "Política",
+            "links": "Referencias"
+        },
+        "links": {
+            "developers": "Elaborador",
+            "documentation": "Guía de API",
+            "donate": "Donar",
+            "rules": "Reglas",
+            "topinfo": "TopInfo",
+            "support": "Servidor de soporte"
+        }
+    },
+    "add": {
+        "addTitle": "Adición de un bot",
+        "editTitle": "Edición de bot",
+        "id": "ID de cliente",
+        "id_hint": "Ubicado en Discord Developers Portal",
+        "prefix": "Nombre del bot",
+        "shortDescription": "Diseño",
+        "shortDescription_hint": "Número máximo de caracteres 220",
+        "longDescription": "Descripción detallada",
+        "longDescription_hint": "Número mínimo de caracteres 300, soporte Markdown, HTML",
+        "tags": "Etiquetas bot",
+        "tags_hint": "Número máximo de etiquetas 5, número máximo de caracteres en etiquetas 15.coma - separador",
+        "inviteURL": "Enlace para agregar un bot",
+        "inviteURL_hint": "Enlace para agregar un bot al servidor del usuario",
+        "library": "Biblioteca",
+        "backgroundURL": "Fondo en la tarjeta bot",
+        "backgroundURL_hint": "enlace de imagen",
+        "developers": "Desarrolladores de bot",
+        "developers_hint": "Lista de id de usuario.coma - separador",
+        "supportServerURL": "Servidor de soporte",
+        "supportServerURL_hint": "enlace al servidor del bot, donde los usuarios pueden obtener comentarios, enviar un error, etc.",
+        "githubURL": "Código fuente",
+        "githubURL_hint": "Enlace al repositorio Github",
+        "websiteURL": "Sitio web del bot",
+        "websiteURL_hint": "Enlace al sitio web del bot",
+        "rules": "He leído / leído las reglas",
+        "updateButton": "Actualizar bot",
+        "createButton": "Añadir bot",
+        "redirectTo": "Ir a la página"
+    },
+    "errors": {
+        "botsNotFound": "No se encontraron bots",
+        "sameId": "¡Ese ID ya existe!"
+    },
+    "buttons": {
+        "edit": "redactar",
+        "follow": "Suscribirse",
+        "unfollow": "Darse de baja",
+        "ban": "Prohibir",
+        "unban": "Romper"
+    },
+    "roles": {
+        "admin": "Administración",
+        "moderator": "Moderador",
+        "member": "Participante",
+        "developer": "Elaborador"
+    },
+    "settings": {
+        "intergrations": "Integración",
+        "emptyBio": "Biografía ausente",
+        "menu": {
+            "profile": "Perfil de usuario",
+            "language": "Idioma",
+            "logout": "Salir",
+            "version": "Versión actual",
+            "os": "Sistema operativo",
+            "browser": "Navegador"
+        }
+    }
+}

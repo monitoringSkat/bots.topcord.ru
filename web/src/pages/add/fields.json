@@ -1,0 +1,104 @@
+[
+    {
+        "type": "input",
+        "name": "id",
+        "required": true,
+        "hint": "находится на Discord Developer Portal",
+        "placeholder": "Клиент ID"
+    },
+    {
+        "type": "input",
+        "name": "prefix",
+        "required": true,
+        "placeholder": "Префикс бота"
+    },
+    {
+        "type": "input",
+        "name": "shortDescription",
+        "required": true,
+        "hint": "максимальное количество символов 220",
+        "placeholder": "Краткое описание"
+    },
+    {
+        "type": "textarea",
+        "name": "longDescription",
+        "required": true,
+        "hint": "минимальное количество символов 300, поддержка Markdown, HTML",
+        "placeholder": "Детальное описание"
+    },
+    {
+        "type": "input",
+        "name": "tags",
+        "required": true,
+        "hint": "максимальное количество тегов 5, максимальная количество символов в теги 15. “запятая” - разделитель",
+        "placeholder": "Теги бота"
+    },
+    {
+        "type": "input",
+        "name": "inviteURL",
+        "required": true,
+        "hint": "ссылка на добавления бота на сервер пользователя",
+        "placeholder": "Ссылка на добавления бота"
+    },
+    {
+        "type": "select",
+        "name": "library",
+        "required": true,
+        "hint": "",
+        "placeholder": "Библиотека",
+        "options": [
+            "discord.js",
+            "discord.py",
+            "discordoo",
+            "Javacord",
+            "Eris",
+            "JDA",
+            "Discord4J",
+            "discordcr",
+            "Discord.Net",
+            "DiscordGo",
+            "DSharpPlus",
+            "RestCord",
+            "Discordia",
+            "disco",
+            "discordrb",
+            "serenity",
+            "Sword"
+        ]
+    },
+    {
+        "type": "input",
+        "name": "backgroundURL",
+        "required": false,
+        "hint": "ссылка на изображение",
+        "placeholder": "Задний фон в карточке бота"
+    },
+    {
+        "type": "input",
+        "name": "developers",
+        "required": false,
+        "hint": "Список ID пользователей. “запятая” - разделитель",
+        "placeholder": "Разработчики бота"
+    },
+    {
+        "type": "input",
+        "name": "supportServerURL",
+        "required": false,
+        "hint": "ссылка на сервер бота, где пользователи могут получить обратную связь, отправить баг и тд.",
+        "placeholder": "Сервер поддержки"
+    },
+    {
+        "type": "input",
+        "name": "githubURL",
+        "required": false,
+        "hint": "Ссылка на Github репозиторий",
+        "placeholder": "Исходный код "
+    },
+    {
+        "type": "input",
+        "name": "websiteURL",
+        "required": false,
+        "hint": "Ссылка на сайт бота",
+        "placeholder": "Веб-сайт бота"
+    }
+]

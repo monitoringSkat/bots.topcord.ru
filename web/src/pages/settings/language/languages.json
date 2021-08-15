@@ -1,0 +1,32 @@
+[
+    {
+        "name": "English",
+        "id": "en",
+        "icon": "🇬🇧"
+    },
+    {
+        "name": "Russian",
+        "id": "ru",
+        "icon": "🇷🇺"
+    },
+    {
+        "name": "Ukrainian",
+        "id": "ua",
+        "icon": "🇺🇦"
+    },
+    {
+        "name": "Spanish",
+        "id": "sp",
+        "icon": "🇪🇸"
+    },
+    {
+        "name": "Lithuanian",
+        "id": "lt",
+        "icon": "🇱🇹"
+    },
+    {
+        "name": "Estonian",
+        "id": "es",
+        "icon": "🇪🇪"
+    }
+]

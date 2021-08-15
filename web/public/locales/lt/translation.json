@@ -1,0 +1,111 @@
+{
+    "title": "Discord Botų lapas.",
+    "subtitle": "Pridėkite botai, balsuokite už juos. Pasirinkite botai. visa tai yra TopCord.",
+    "tagList": "Žymų sąrašas",
+    "newBots": "Naujos botai",
+    "topBots": "Populiariausi botai",
+    "titles": {
+        "home": "Pagrindinis",
+        "bots": "Botai",
+        "add": "Pridėti bota",
+        "edit": "Redaguoti",
+        "settings": "Nustatymai",
+        "partners": "Partneriai"
+    },
+    "header": {
+        "links": {
+            "main": "Pagrindinis",
+            "bots": "Botai",
+            "addBot": "Pridėti bota",
+            "community": "Bendruomenė",
+            "partners": "Partneriai",
+            "login": "Įeti į paskyra"
+        }
+    },
+    "inputs": {
+        "searchBot": "Rasti bota"
+    },
+    "filters": {
+        "sortBy": "Rūšiuoti paga",
+        "reset": "Išvalyti filtrą",
+        "library": "Biblioteka",
+        "updatedAt": "Pagal atnaujinimo datą",
+        "votes": "Pagal balsus",
+        "guilds": "Pagal serverio kiekį",
+        "comments": "Pagal kommentariu skaičius"
+    },
+    "footer": {
+        "categories": {
+            "info": "Informacija",
+            "politics": "Politika",
+            "links": "Nuorodai"
+        },
+        "links": {
+            "developers": "Kūrėjai",
+            "documentation": "api instrukcija",
+            "donate": "Paaukoti kūrejams",
+            "rules": "Taisyklės",
+            "topinfo": "Topinfo",
+            "support": "Pagalbos serveris"
+        }
+    },
+    "add": {
+        "addTitle": "Pridedėti bota",
+        "editTitle": "Redaguoti bota",
+        "id": "Kliento ID",
+        "id_hint": "Ant Discord developer portalas",
+        "prefix": "Botu vardas",
+        "shortDescription": "Trumpos aprašymas",
+        "shortDescription_hint": "Maksimalus simbolių skaičius 220",
+        "longDescription": "Išsamus aprašymas е",
+        "longDescription_hint": "Minimalus simbolių skaičius 300, palaikymas už Markdown, HTML",
+        "tags": "Botu žymos",
+        "tags_hint": "Maksimalus žymių skaičius 5, maksimalus simbolių skaičius žymėse 15. kableliais - separatorius",
+        "inviteURL": "Nuoroda į boto pridėjimą",
+        "inviteURL_hint": "Botu nuoroda",
+        "library": "Biblioteka",
+        "backgroundURL": "Atgal fonas bot kortelėje",
+        "backgroundURL_hint": "Nuoroda į nuotrauka",
+        "developers": "Botu kūrėjai",
+        "developers_hint": "СVartotojo ID sąrašas. Kablėlis - separatorius",
+        "supportServerURL": "Pagalbos serveris",
+        "supportServerURL_hint": "Nuoroda į botu serverį, kur vartotojai gali gauti atsiliepimus, siųsti klaidą ir pan.",
+        "githubURL": "Исходный код",
+        "githubURL_hint": "Nuoroda į GitHub saugyklą",
+        "websiteURL": "Botu svėtaine",
+        "websiteURL_hint": "Botu svėtaine nuoroda",
+        "rules": "Sužinojau / susipažinau su taisyklėmis",
+        "updateButton": "Atnaujinti bota",
+        "createButton": "Pridėti bota",
+        "redirectTo": "Eiti į puslapį"
+    },
+    "errors": {
+        "botsNotFound": "Botai nerandami.",
+        "sameId": "Toks ID jau yra!"
+    },
+    "buttons": {
+        "edit": "Redaguoti",
+        "follow": "Prenumeruoti",
+        "unfollow": "Atsisakyti prenumeratos",
+        "ban": "Užbluokoti",
+        "unban": "Atbluokoti"
+    },
+    "roles": {
+        "admin": "Adminas",
+        "moderator": "Moderatorius",
+        "member": "Dalyvis",
+        "developer": "Kūrėjas"
+    },
+    "settings": {
+        "intergrations": "Integracijos",
+        "emptyBio": "Biografijos nėra",
+        "menu": {
+            "profile": "Vartotojo profilis",
+            "language": "Kalba",
+            "logout": "Išėiti",
+            "version": "Dabartinė versija",
+            "os": "Operacinė sistema ",
+            "browser": "Naršyklė"
+        }
+    }
+}

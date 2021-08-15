@@ -1,0 +1,34 @@
+{
+    "name": "bots.topcord.ru",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "directories": {
+        "doc": "docs",
+        "server": "server",
+        "web": "web",
+        "design": "design"
+    },
+    "scripts": {
+        "prettier": "npx prettier --write .",
+        "prettier-lint": "npx prettier --check .",
+        "prepare": "husky install",
+        "web": "cd web && npm run dev",
+        "server": "cd server && npm run dev"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TopCord-Team/bots.topcord.ru.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/TopCord-Team/bots.topcord.ru/issues"
+    },
+    "homepage": "https://github.com/TopCord-Team/bots.topcord.ru#readme",
+    "devDependencies": {
+        "husky": "^6.0.0",
+        "prettier": "2.3.2"
+    }
+}
