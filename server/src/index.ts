@@ -73,7 +73,7 @@ orm.createConnection({
         const client = await bootstrapBot()
 
         passport.use(DiscordStrategy)
-        app.use(cors(corsOptions))
+        app.use(cors(options))
         app.use(compression())
 
         app.use(bodyParser.urlencoded({ extended: false }))
