@@ -15,7 +15,7 @@
         "prepare": "husky install",
         "web": "cd web && npm start",
         "server": "cd server && npm start",
-        "build-web": "cd web && npm run build",
+        "build-web": "cd web && npm run build"
     },
     "repository": {
         "type": "git",
