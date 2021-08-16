@@ -51,6 +51,7 @@
         "typescript": "^4.3.4"
     },
     "dependencies": {
+        "cors-express": "^0.2.2",
         "express-validator": "^6.12.0"
     }
 }
