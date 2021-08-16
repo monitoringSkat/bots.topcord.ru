@@ -3,7 +3,7 @@ import express from 'express'
 import session from 'express-session'
 import passport from 'passport'
 import * as orm from 'typeorm'
-import cors from 'cors-express'
+import cors from 'cors'
 import bodyParser from 'body-parser'
 import DiscordStrategy from './strategies/discord.strategy'
 import botsRouter from './routes/bots.route'
@@ -25,32 +25,9 @@ dotenv.config()
 const PORT = Number(process.env.PORT || 5000)
 const __prod__ = process.env.NODE_ENV === 'development'
 
-// const corsOptions = {
-//     origin: !__prod__ ? 'http://localhost:3000' : 'https://bots.topcord.ru',
-//     optionsSuccessStatus: 200
-// }
-const options = {
-    allow : {
-        origin: '*',
-        methods: 'GET,PATCH,PUT,POST,DELETE,HEAD,OPTIONS',
-        headers: 'Content-Type, Authorization, Content-Length, X-Requested-With, X-HTTP-Method-Override'
-    },
-    expose :{
-        headers : null
-    },
-    max : {
-        age : null
-    },
-    options : function(req, res, next){
-        if (req.method == 'OPTIONS') {
-            res.status(200).end();
-        } else {
-            next();
-        }
-    },
-    specials : {
-        powered : null
-    }
+const corsOptions = {
+    origin: !__prod__ ? 'http://localhost:3000' : 'https://bots.topcord.ru',
+    optionsSuccessStatus: 200
 }
 
 
@@ -73,7 +50,7 @@ orm.createConnection({
         const client = await bootstrapBot()
 
         passport.use(DiscordStrategy)
-        app.use(cors(options))
+        // app.use(cors(corsOptions))
         app.use(compression())
 
         app.use(bodyParser.urlencoded({ extended: false }))
