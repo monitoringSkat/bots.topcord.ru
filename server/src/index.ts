@@ -26,7 +26,7 @@ const PORT = Number(process.env.PORT || 5000)
 const __prod__ = process.env.NODE_ENV === 'development'
 
 const corsOptions = {
-    origin: !__prod__ ? 'http://localhost:3000' : 'https://bots.topcord.ru',
+    origin: 'https://bots.topcord.ru',
     optionsSuccessStatus: 200
 }
 
@@ -50,7 +50,7 @@ orm.createConnection({
         const client = await bootstrapBot()
 
         passport.use(DiscordStrategy)
-        app.use(cors())
+        app.use(cors(corsOptions))
         app.use(compression())
 
         app.use(bodyParser.urlencoded({ extended: false }))
