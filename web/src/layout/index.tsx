@@ -38,7 +38,20 @@ const Layout: FC<Props> = ({ children, title, description, image }) => (
             <meta property="og:image" content={image} />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://bots.topcord.ru/" />
-
+            <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183237060-1">
+              </script>
+              <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+              
+                gtag('config', 'UA-183237060-1');
+              </script>`
+            }}
+            />
             <link
                 rel="shortcut icon"
                 href="/assets/favicon.png"
