@@ -39,15 +39,15 @@ const approve: Command = {
         const havePermission = message.member.roles.cache.find(role =>
             ['Модератор'].includes(role.name)
         )
+        if (!bot)
+        return message.channel.send(
+            JSON.stringify(new BotNotFoundException())
+        )
 
         if(!havePermission) {
-            return message.reply('<a:no:784090411081531412>' + ` Иди нахуй`)
+            return message.channel.send('<a:no:784090411081531412>' + ` Иди нахуй`)
         }
 
-        if (!bot)
-            return message.channel.send(
-                JSON.stringify(new BotNotFoundException())
-            )
         if(bot.verified === true) {
             return message.reply('<a:no:784090411081531412>' + ` Бот уже проверен!`)
         }

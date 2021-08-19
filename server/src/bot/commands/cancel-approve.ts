@@ -4,7 +4,7 @@ import Command from '../../interfaces/bot/command.interface'
 import BotNotFoundException from '../../exceptions/bot-not-found.exception'
 
 const cancelApprove: Command = {
-    name: 'cancel-approve',
+    name: 'decline',
     async execute(client, message, [id, ...reason]) {
         const bot = await Bot.findOne(id, { relations: ['owner'] })
         if (!bot)
@@ -34,6 +34,14 @@ const cancelApprove: Command = {
             .setThumbnail(bot.avatar)
 
         const channel: any = client.channels.cache.get('846093367485923348')
+
+        const havePermission = message.member.roles.cache.find(role =>
+            ['Модератор'].includes(role.name)
+        )
+
+        if(!havePermission) {
+            return message.channel.send('<a:no:784090411081531412>' + ` Иди нахуй`)
+        }
 
         channel.send(embed)
         client.guilds.cache
