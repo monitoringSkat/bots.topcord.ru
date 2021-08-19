@@ -36,6 +36,14 @@ const approve: Command = {
 
         const channel: any = client.channels.cache.get(parsed.BOT_ADD_CHANNEL)
 
+        const havePermission = message.member.roles.cache.find(role =>
+            ['Модератор'].includes(role.name)
+        )
+
+        if(!havePermission) {
+            return message.reply('<a:no:784090411081531412>' + ` Иди нахуй`)
+        }
+
         if (!bot)
             return message.channel.send(
                 JSON.stringify(new BotNotFoundException())
