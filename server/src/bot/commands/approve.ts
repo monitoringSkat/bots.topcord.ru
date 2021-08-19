@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import { MessageEmbed } from 'discord.js'
 import Command from '../../interfaces/bot/command.interface'
 import BotNotFoundException from '../../exceptions/bot-not-found.exception'
+import botsRouter from '../../routes/bots.route'
 
 const { parsed } = dotenv.config()
 
@@ -39,6 +40,9 @@ const approve: Command = {
             return message.channel.send(
                 JSON.stringify(new BotNotFoundException())
             )
+        if(bot.verified === true) {
+            return message.reply('<a:no:784090411081531412>' + ` Бот уже проверен!`)
+        }
         bot.verified = true
         await bot.save()
         client.guilds.cache
@@ -46,6 +50,7 @@ const approve: Command = {
             .member(bot.owner.id)
             .send(embedmember)
         channel.send(embed)
+        return message.reply('<a:yes:784090427934244865>' + ` Успешно :)`)
     }
 }
 export default approve

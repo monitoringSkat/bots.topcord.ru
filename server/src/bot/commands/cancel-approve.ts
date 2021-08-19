@@ -40,6 +40,7 @@ const cancelApprove: Command = {
             .get('761596363795988561')
             .member(bot.owner.id)
             .send(embedmember)
+        return message.reply('<a:yes:784090427934244865>' + ` Успешно :)`)
     }
 }
 export default cancelApprove
