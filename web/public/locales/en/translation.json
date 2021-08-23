@@ -7,17 +7,18 @@
     "titles": {
         "home": "Home",
         "bots": "Bots",
-        "add": "Add",
+        "add": "Add bot",
         "edit": "Edit",
         "settings": "Settings",
-        "partners": "Partners"
+        "partners": "Partners",
+        "comments": "Comments"
     },
     "header": {
         "links": {
             "main": "Home",
             "bots": "Bots",
             "addBot": "Add bot",
-            "community": "Community ",
+            "community": "Community",
             "partners": "Partners",
             "login": "Login"
         }
@@ -54,7 +55,7 @@
         "editTitle": "Editing a bot",
         "id": "Client ID",
         "id_hint": "You can get Client ID from the Discord Developer Portal",
-        "prefix": "Bot's prefix",
+        "prefix": "Prefix",
         "shortDescription": "Brief description",
         "shortDescription_hint": "maximum number of characters is 220",
         "longDescription": "Detailed description",
@@ -75,23 +76,31 @@
         "websiteURL": "Website URL",
         "websiteURL_hint": "URL to bot site",
         "rules": "I have read the rules",
-        "updateButton": "Update",
-        "createButton": "Submit",
-        "redirectTo": "View"
+        "updateButton": "Update bot",
+        "createButton": "Add bot",
+        "redirectTo": "Go to page",
+        "success": "Success!"
     },
     "errors": {
-        "botsNotFound": "Bots not found.",
-        "sameId": "Such ID already exists!"
+        "botsNotFound": "No bots found.",
+        "sameId": "Such ID already exists!",
+        "botNotFound": "Bot not found!",
+        "userNotFound": "User not found!",
+        "commentLimit": "You have exceeded the comment limit!"
     },
     "buttons": {
         "edit": "Edit",
-        "follow": "Subscribe",
-        "unfollow": "Unsubscribe",
+        "follow": "Follow",
+        "unfollow": "Unfollow",
         "ban": "Ban",
-        "unban": "Unban"
-    },
-    "tags": {
-        "available": ""
+        "unban": "Unban",
+        "view": "View",
+        "public": "Publish",
+        "delete": "Delete",
+        "report": "Report",
+        "cancel": "Cancel",
+        "save": "Save changes",
+        "logout": "Logout"
     },
     "roles": {
         "admin": "Administrator",
@@ -99,16 +108,53 @@
         "member": "Member",
         "developer": "Developer"
     },
+    "tags": {
+        "available": "List of tags available on TopCord.",
+        "bytag": "Bots by tag",
+        "back": "Back to the list of bots"
+    },
     "settings": {
         "intergrations": "Integrations",
-        "emptyBio": "No biography",
+        "errors": "Errors were made!",
+        "emptyLink": "link is missing",
         "menu": {
             "profile": "User Profile",
             "language": "Language",
             "logout": "Logout",
             "version": "Current version",
-            "os": "Operating system",
+            "os": "OS",
             "browser": "Browser"
-        }
+        },
+        "account": "My Account",
+        "accountUpdateSuccess": "Account successfully updated!",
+        "verified": "Verified",
+        "bioPlaceholder": "Tell us a little bit about you",
+        "bioNotProvided": "No biography"
+    },
+    "botCard": {
+        "invite": "Invite",
+        "view": "View"
+    },
+    "reportModal": {
+        "title": "Report a bot",
+        "success": "Report successfully sent!",
+        "placeholder": "Your report",
+        "send": "Submit",
+        "close": "Close"
+    },
+    "botPage": {
+        "prefix": "Prefix",
+        "library": "Library",
+        "developers": "Developers",
+        "basedOn": "Based on {count} reviews"
+    },
+    "team": "TopCord Team",
+    "userPage": {
+        "followers": "Followers",
+        "following": "Following",
+        "listEmpty": "The list is empty.",
+        "followersCount": "{count} followers",
+        "followingCount": "{count} following",
+        "emptyBotList": "The user has no bots"
     }
 }
