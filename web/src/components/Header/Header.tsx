@@ -27,9 +27,7 @@ const Header = () => {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
                     <Link href="/bots">{t('header.links.bots')}</Link>
-                    {user.id && (
-                        <Link href="/add">{t('header.links.addBot')}</Link>
-                    )}
+                    <Link href="/add">{t('header.links.addBot')}</Link>
                     <Link href="https://discord.gg/ZDvQTzrG4k">
                         {t('header.links.community')}
                     </Link>
