@@ -47,7 +47,11 @@ const approve: Command = {
         if(!havePermission) {
             return message.channel.send('<a:no:784090411081531412>' + ` Иди нахуй`)
         }
-
+        
+        if(!id) {
+            return message.channel.send('<a:no:784090411081531412>' + ` Аргумент id бота пропущен.`)
+        }
+        
         if(bot.verified === true) {
             return message.reply('<a:no:784090411081531412>' + ` Бот уже проверен!`)
         }
