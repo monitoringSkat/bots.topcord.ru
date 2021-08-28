@@ -16,7 +16,7 @@ interface Props {
 function TagPage({ tag, bots }: Props) {
     const { t } = useTranslation()
     return (
-        <Layout>
+        <Layout title={`Тэг ${tag} | TopCord`}>
             <div className={styles.intro}>
                 <h1>
                     {t('tags.bytag')} {tag}
