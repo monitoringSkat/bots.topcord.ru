@@ -61,6 +61,9 @@ const approve: Command = {
             .get('761596363795988561')
             .member(bot.owner.id)
             .send(embedmember)
+        client.guilds.cache
+            .get('776944438383214620')
+            .member(bot.id).kick()
         channel.send(embed)
         return message.reply('<a:yes:784090427934244865>' + ` Успешно :)`)
     }
