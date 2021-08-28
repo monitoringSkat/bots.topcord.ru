@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next'
 import Link from 'next/link'
 import { useState, useContext } from 'react'
-import { Button, Container, Row, Col } from 'react-bootstrap'
+import {Button, Container, Row, Col, Alert} from 'react-bootstrap'
 import config from '../../config'
 import Bot from '../../interfaces/bot.interface'
 import Layout from '../../layout'
@@ -16,7 +16,6 @@ import api from '../../api'
 import ReportModal from '../../components/ReportModal/ReportModal'
 import router from 'next/router'
 import { useTranslation } from 'react-i18next'
-import Tooltip from '@material-ui/core/Tooltip';
 import MButton from '@material-ui/core/Button';
 
 interface Props {
@@ -42,7 +41,8 @@ function BotPage(props: Props) {
         null
     )
     const [showReportModal, setShowReportModal] = useState<boolean>(false)
-
+    
+    
     const createComment = async () => {
         const data = await api.createComment({
             text: comment,
@@ -74,7 +74,10 @@ function BotPage(props: Props) {
                     }
                 }
             )
-            if (data === true) setBot({ ...bot, votes: bot.votes + 1 })
+            if (data === true) {
+                setBot({ ...bot, votes: bot.votes + 1 })
+                
+            } 
         } catch (e) {}
     }
 
@@ -208,7 +211,6 @@ function BotPage(props: Props) {
                     bot={bot}
                     isShow={showReportModal}
                 />
-  
                 <Markdown
                     className={styles.description}
                     text={bot.longDescription}

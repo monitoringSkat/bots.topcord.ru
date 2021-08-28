@@ -7,6 +7,7 @@ import SearchBotsInput from '../components/SearchBotsInput/SearchBotsInput'
 import { Container, Col, Row } from 'react-bootstrap'
 import http from '../api/http'
 import { useTranslation } from 'react-i18next'
+import Button from '@material-ui/core/Button'
 interface Props {
     topBots: Bot[]
     newBots: Bot[]
@@ -27,7 +28,7 @@ const Home = ({ newBots, topBots }: Props) => {
                         <div className={styles.subtitle}>{t('subtitle')}</div>
                         <SearchBotsInput placeholder={t('inputs.searchBot')} />
                         <div className={styles.tags}>
-                            <Link href="/tags">{t('tagList')}</Link>
+                            <Button variant="contained" color="primary" href="/tags">{t('tagList')}</Button>
                         </div>
                     </Col>
                     <Col className={styles.wumpus_col}>
@@ -48,7 +49,7 @@ const Home = ({ newBots, topBots }: Props) => {
                 )}
                 {newBots.length > 0 && (
                     <>
-                        <h2>{t('newBots')}</h2>
+                        <h2 className={styles.bots_adadtext} >{t('newBots')}</h2>
                         <Bots bots={newBots} />
                     </>
                 )}

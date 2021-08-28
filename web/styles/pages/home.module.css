@@ -29,14 +29,11 @@
     align-items: center;
 }
 
-.tags * {
-    padding: 5px 7.5px;
-    border-radius: 2.5px;
-    background: #5865f2;
-    margin-top: 2.5px;
-    margin-right: 7.5px;
-    font-size: 18px;
-    color: white;
+.tags a {
+    background: #2C2F33;
+}
+.tags a:hover {
+    background: #23272A;
 }
 
 .wumpus {
@@ -68,7 +65,7 @@
     color: white;
     text-align: center;
     font-weight: 600;
-}
+}   
 .hr {
     border: 2px solid #7289da;
     margin: 5% 50px 5% 50px;
