@@ -28,10 +28,10 @@ const approve: Command = {
                 { name: '\u200B', value: '\u200B' },
                 { name: 'Prefix', value: bots.map((bot) => bot.name), inline: true },
                 { name: '\u200B', value: '\u200B' },
-                { name: 'ShortDescription', value: bots.map((bot) => bot.shortDescription), inline: true },
-                { name: '\u200B', value: '\u200B' },
                 { name: 'Invite', value: bots.map((bot) => bot.inviteURL), inline: true },
             )
+            .setColor(" #2F3136")
+            .setTimestamp();
         message.reply(embed)
     }
 }
