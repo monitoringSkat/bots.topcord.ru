@@ -23,11 +23,8 @@ const approve: Command = {
             .setTitle("Очередь")
             .addFields(
                 { name: 'ID', value: bots.map((bot) => bot.id), inline: true },
-                { name: '\u200B', value: '\u200B' },
                 { name: 'Name', value: bots.map((bot) => bot.name), inline: true },
-                { name: '\u200B', value: '\u200B' },
                 { name: 'Prefix', value: bots.map((bot) => bot.prefix), inline: true },
-                { name: '\u200B', value: '\u200B' },
                 { name: 'Invite', value: bots.map((bot) => bot.inviteURL), inline: true },
             )
             .setColor(" #2F3136")
