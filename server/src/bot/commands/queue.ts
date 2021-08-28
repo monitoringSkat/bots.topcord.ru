@@ -28,6 +28,7 @@ const approve: Command = {
                 { name: 'ShortDescription', value: bots.map((bot) => bot.shortDescription), inline: true },
                 { name: 'Invite', value: bots.map((bot) => bot.inviteURL), inline: true },
             )
+        message.reply(embed)
     }
 }
 export default approve
