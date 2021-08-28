@@ -29,8 +29,16 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        img {
+        color: white !important;
+        margin-top: 5%;
+        a {
             margin-right: 7.5px;
+            background: #7289da !important;
+        }
+        span {
+            color: white !important;
+        }
+        img {
             width: 20px;
             margin-top: 2.5px;
             cursor: pointer;

@@ -16,6 +16,8 @@ import api from '../../api'
 import ReportModal from '../../components/ReportModal/ReportModal'
 import router from 'next/router'
 import { useTranslation } from 'react-i18next'
+import Tooltip from '@material-ui/core/Tooltip';
+import MButton from '@material-ui/core/Button';
 
 interface Props {
     bot: Bot
@@ -156,28 +158,6 @@ function BotPage(props: Props) {
                             </Link>
                         ))}
                     </div>
-                    <div className={styles.links}>
-                        {bot.inviteURL && (
-                            <Link href={bot.inviteURL}>
-                                <img src="/assets/add-bot.svg" />
-                            </Link>
-                        )}
-                        {bot.supportServerURL && (
-                            <Link href={bot.supportServerURL}>
-                                <img src="/assets/discord-logo.svg" />
-                            </Link>
-                        )}
-                        {bot.githubURL && (
-                            <Link href={bot.githubURL}>
-                                <img src="/assets/github-logo.svg" />
-                            </Link>
-                        )}
-                        {bot.websiteURL && (
-                            <Link href={bot.websiteURL}>
-                                <img src="/assets/link.svg" />
-                            </Link>
-                        )}
-                    </div>
                     <div className={styles.additional}>
                         <div>
                             {t('botPage.prefix')}: <span>{bot.prefix}</span>
@@ -189,14 +169,36 @@ function BotPage(props: Props) {
                         <div className={styles.developers}>
                             {t('botPage.developers')}:
                             {bot.developers.map(developer => (
-                                <Link
-                                    key={developer.id}
-                                    href={`/users/${developer.id}`}
-                                >
-                                    <img src={developer.avatar} />
-                                </Link>
+                                    <Link
+                                        key={developer.id}
+                                        href={`/users/${developer.id}`}
+                                    >
+                                        <img src={developer.avatar} />
+                                    </Link>
                             ))}
                         </div>
+                        <div className={styles.links}>
+                            {bot.inviteURL && (
+                                <MButton href={bot.inviteURL} color="primary"  startIcon={<img src="/assets/add-bot.svg" />}  variant="contained" >
+                                    {t('buttons.addbot')}
+                                </MButton>
+                            )}
+                            {bot.supportServerURL && (
+                                <MButton href={bot.supportServerURL} color="primary"  startIcon={<img src="/assets/discord-logo.svg" />}  variant="contained" >
+                                    {t('buttons.support')}
+                                </MButton>
+                            )}
+                            {bot.githubURL && (
+                                <MButton href={bot.githubURL} color="primary"  startIcon={<img src="/assets/github-logo.svg" />}  variant="contained" >
+                                    {t('buttons.github')}
+                                </MButton>
+                            )}
+                            {bot.websiteURL && (
+                                <MButton href={bot.websiteURL} color="primary"  startIcon={<img src="/assets/link.svg" />}  variant="contained" >
+                                    {t('buttons.website')}
+                                </MButton>
+                            )}
+                        </div>   
                     </div>
                 </div>
             </div>
