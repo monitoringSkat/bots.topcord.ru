@@ -12,6 +12,7 @@ const approve: Command = {
         const bots = await Bot.find({
             where: { verified: false }
         })
+        const searchedbot = await Bot.findOne(id)
         const havePermission = message.member.roles.cache.find(role =>
             ['Модератор'].includes(role.name)
         )
@@ -19,17 +20,29 @@ const approve: Command = {
         if(!havePermission) {
             return message.channel.send('<a:no:784090411081531412>' + ` Иди нахуй`)
         }
-        const embed = new MessageEmbed()
-            .setTitle("Очередь")
-            .addFields(
-                { name: 'ID', value: bots.map((bot) => bot.id), inline: true },
-                { name: 'Name', value: bots.map((bot) => bot.name), inline: true },
-                { name: 'Prefix', value: bots.map((bot) => bot.prefix), inline: true },
-                { name: 'Invite', value: bots.map((bot) => bot.inviteURL), inline: true },
-            )
-            .setColor(" #2F3136")
-            .setTimestamp();
-        message.reply(embed)
+        if(id) {
+            const embed = new MessageEmbed()
+                .setTitle("Бот " + searchedbot.name )
+                .addFields(
+                    { name: 'ID', value: searchedbot.id, inline: true },
+                    { name: 'Name', value:  searchedbot.name, inline: true },
+                    { name: 'Prefix', value:   searchedbot.prefix, inline: true },
+                    { name: 'Invite', value:  searchedbot.inviteURL, inline: true },
+                )
+                .setColor(" #2F3136")
+                .setTimestamp();
+            message.reply(embed)
+        } else {
+            const embed = new MessageEmbed()
+                .setTitle("Очередь")
+                .addFields(
+                    { name: 'ID', value: bots.map((bot) => bot.id), inline: true }
+                )
+                .setColor(" #2F3136")
+                .setTimestamp();
+            message.reply(embed)
+        }
+
     }
 }
 export default approve
