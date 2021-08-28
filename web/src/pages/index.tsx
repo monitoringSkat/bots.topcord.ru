@@ -16,7 +16,7 @@ const Home = ({ newBots, topBots }: Props) => {
     const { t } = useTranslation()
     return (
         <Layout
-            title="Главная"
+            title="Лист ботов дискорд | TopCord"
             description="Bots.topcord.ru - мониторинг ботов дискорд. Вы можете подобрать для своего сервера бота из нашего списка, найти его в поиске, либо по тегам. "
             image="/assets/favicon.png"
         >

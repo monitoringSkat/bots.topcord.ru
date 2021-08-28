@@ -20,10 +20,8 @@ const Layout: FC<Props> = ({ children, title, description, image }) => (
                 content="initial-scale=1.0, width=device-width"
             />
 
-            <meta
-                name="keywords"
-                content="discord, дискорд, дискорд боты, боты дискорд, лист ботов дискорд, русские дискорд боты, список ботов дискорд, топовые боты дискорд, bots discord, discord bots"
-            />
+            <meta name="keywords"
+                  content="дискорд, discord, боты дискорд, дискорд боты, боты для дискорда, скачать бота дискорд, скачать дискорд, лист ботов дискорд, топ ботов дискорд, русские боты дискорд, список русских ботов дискорд, лучшие боты дискорд, discord bots, bots discord, top bots, discordbots, botsfordiscord, cool discord bots, Лист ботов дискорд, Список ботов для дискорд, мониторинг ботов в дискорд, topcord" />
             <meta name="description" content={description} />
 
             <meta name="msapplication-tooltip" content={`${title} | TopCord`} />
