@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import './navbar.css';
 @import './footer.css';
@@ -8,7 +10,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     scrollbar-width: thin;
     scrollbar-color: #1d1f23 #23272a;
 }

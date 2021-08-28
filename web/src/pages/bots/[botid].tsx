@@ -100,112 +100,113 @@ function BotPage(props: Props) {
             description={bot.shortDescription}
             image={bot.avatar}
         >
+            <div className={styles.info}>
+                <div className={styles['avatar-container']}>
+                    <img className={styles.avatar} src={bot.avatar} />
+                    {user.id === bot.owner.id && (
+                        <button
+                            onClick={() =>
+                                router.push(`/add?botId=${bot.id}`)
+                            }
+                            className={styles.edit}
+                        >
+                            {t('buttons.edit')}
+                        </button>
+                    )}
+                    {user.id === bot.owner.id ||
+                    ['moderator', 'admin'].includes(
+                        user.role.toLowerCase()
+                    ) ? (
+                        <button onClick={remove} className={styles.delete}>
+                            {t('buttons.delete')}
+                        </button>
+                    ) : null}
+
+                    {user.id !== bot.owner.id && (
+                        <button
+                            onClick={() => setShowReportModal(true)}
+                            className={styles.report}
+                        >
+                            {t('buttons.report')}
+                        </button>
+                    )}
+                </div>
+                <div className={styles.passport}>
+                    <div className={styles.header}>
+                        <div className={styles.name}>{bot.name}</div>
+                        <div className={styles.votes} onClick={vote}>
+                            {bot.votes}
+                            <img src={'/assets/vote.svg'} />
+                        </div>
+                    </div>
+                    <div className={styles['header-stars']}>
+                        <Stars count={rating} />
+                        <div>
+                            {t('botPage.basedOn').replace(
+                                '{count}',
+                                `${bot.comments.length}`
+                            )}
+                        </div>
+                    </div>
+                    <div className={styles.tags}>
+                        {bot.tags.map(({ name }) => (
+                            <Link href={`/tags/${name}`}>
+                                {name.slice(0, 1).toUpperCase() +
+                                name.slice(1).toLowerCase()}
+                            </Link>
+                        ))}
+                    </div>
+                    <div className={styles.links}>
+                        {bot.inviteURL && (
+                            <Link href={bot.inviteURL}>
+                                <img src="/assets/add-bot.svg" />
+                            </Link>
+                        )}
+                        {bot.supportServerURL && (
+                            <Link href={bot.supportServerURL}>
+                                <img src="/assets/discord-logo.svg" />
+                            </Link>
+                        )}
+                        {bot.githubURL && (
+                            <Link href={bot.githubURL}>
+                                <img src="/assets/github-logo.svg" />
+                            </Link>
+                        )}
+                        {bot.websiteURL && (
+                            <Link href={bot.websiteURL}>
+                                <img src="/assets/link.svg" />
+                            </Link>
+                        )}
+                    </div>
+                    <div className={styles.additional}>
+                        <div>
+                            {t('botPage.prefix')}: <span>{bot.prefix}</span>
+                        </div>
+                        <div>
+                            {t('botPage.library')}:{' '}
+                            <span>{bot.library}</span>
+                        </div>
+                        <div className={styles.developers}>
+                            {t('botPage.developers')}:
+                            {bot.developers.map(developer => (
+                                <Link
+                                    key={developer.id}
+                                    href={`/users/${developer.id}`}
+                                >
+                                    <img src={developer.avatar} />
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
             <Container>
                 <ReportModal
                     setShow={setShowReportModal}
                     bot={bot}
                     isShow={showReportModal}
                 />
-                <div className={styles.info}>
-                    <div className={styles['avatar-container']}>
-                        <img className={styles.avatar} src={bot.avatar} />
-                        {user.id === bot.owner.id && (
-                            <button
-                                onClick={() =>
-                                    router.push(`/add?botId=${bot.id}`)
-                                }
-                                className={styles.edit}
-                            >
-                                {t('buttons.edit')}
-                            </button>
-                        )}
-                        {user.id === bot.owner.id ||
-                        ['moderator', 'admin'].includes(
-                            user.role.toLowerCase()
-                        ) ? (
-                            <button onClick={remove} className={styles.delete}>
-                                {t('buttons.delete')}
-                            </button>
-                        ) : null}
-
-                        {user.id !== bot.owner.id && (
-                            <button
-                                onClick={() => setShowReportModal(true)}
-                                className={styles.report}
-                            >
-                                {t('buttons.report')}
-                            </button>
-                        )}
-                    </div>
-                    <div className={styles.passport}>
-                        <div className={styles.header}>
-                            <div className={styles.name}>{bot.name}</div>
-                            <div className={styles.votes} onClick={vote}>
-                                {bot.votes}
-                                <img src={'/assets/vote.svg'} />
-                            </div>
-                        </div>
-                        <div className={styles['header-stars']}>
-                            <Stars count={rating} />
-                            <div>
-                                {t('botPage.basedOn').replace(
-                                    '{count}',
-                                    `${bot.comments.length}`
-                                )}
-                            </div>
-                        </div>
-                        <div className={styles.tags}>
-                            {bot.tags.map(({ name }) => (
-                                <Link href={`/tags/${name}`}>
-                                    {name.slice(0, 1).toUpperCase() +
-                                        name.slice(1).toLowerCase()}
-                                </Link>
-                            ))}
-                        </div>
-                        <div className={styles.links}>
-                            {bot.inviteURL && (
-                                <Link href={bot.inviteURL}>
-                                    <img src="/assets/add-bot.svg" />
-                                </Link>
-                            )}
-                            {bot.supportServerURL && (
-                                <Link href={bot.supportServerURL}>
-                                    <img src="/assets/discord-logo.svg" />
-                                </Link>
-                            )}
-                            {bot.githubURL && (
-                                <Link href={bot.githubURL}>
-                                    <img src="/assets/github-logo.svg" />
-                                </Link>
-                            )}
-                            {bot.websiteURL && (
-                                <Link href={bot.websiteURL}>
-                                    <img src="/assets/link.svg" />
-                                </Link>
-                            )}
-                        </div>
-                        <div className={styles.additional}>
-                            <div>
-                                {t('botPage.prefix')}: <span>{bot.prefix}</span>
-                            </div>
-                            <div>
-                                {t('botPage.library')}:{' '}
-                                <span>{bot.library}</span>
-                            </div>
-                            <div className={styles.developers}>
-                                {t('botPage.developers')}:
-                                {bot.developers.map(developer => (
-                                    <Link
-                                        key={developer.id}
-                                        href={`/users/${developer.id}`}
-                                    >
-                                        <img src={developer.avatar} />
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  
                 <Markdown
                     className={styles.description}
                     text={bot.longDescription}
