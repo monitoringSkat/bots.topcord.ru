@@ -13,8 +13,6 @@ const cancelApprove: Command = {
             return message.channel.send(
                 JSON.stringify(new BotNotFoundException())
             )
-        bot.verified = false
-        await bot.save()
         const embed = new MessageEmbed()
             .addField('Причина', reason.join(' ') || 'Причины нету')
             .addField('Бот', bot.name)
@@ -51,6 +49,8 @@ const cancelApprove: Command = {
             .member(bot.owner.id)
             .send(embedmember)
         return message.reply('<a:yes:784090427934244865>' + ` Успешно :)`)
+        bot.verified = false
+        await bot.save()
     }
 }
 export default cancelApprove
