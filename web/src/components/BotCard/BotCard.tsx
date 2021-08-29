@@ -16,7 +16,7 @@ const BotCard: FC<Props> = ({ bot }) => {
                 className={styles.background}
                 style={{
                     backgroundImage: bot.backgroundURL
-                        ? `url('${bot.backgroundURL}')`
+                        ? `linear-gradient(transparent, 80%, #000000), url('${bot.backgroundURL}')`
                         : `url(/assets/default-bot-background.jpg)`
                 }}
             />

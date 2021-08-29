@@ -1,0 +1,9 @@
+{
+    "name": "Bots.topcord.ru",
+    "short_name": "Topcord",
+    "theme_color": "#7289da",
+    "background_color": "#222831",
+    "display": "browser",
+    "scope": "/",
+    "start_url": "/"
+}

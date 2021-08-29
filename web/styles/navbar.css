@@ -2,7 +2,8 @@
     padding-top: 0.75%;
     padding-bottom: 0.75%;
     min-width: 75px;
-    background-color: #7289DA !important;
+    min-height: 80px;
+    background-color: #5167B8 !important;
 }
 .link:hover {
     cursor: pointer;

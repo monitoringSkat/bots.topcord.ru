@@ -39,7 +39,7 @@ a:hover {
 
 body {
     overflow-x: hidden !important;
-    background: #2c2f33;
+    background: #222831;
 }
 
 .form-check {
@@ -47,7 +47,8 @@ body {
 }
 
 .dropdown-toggle {
-    background: #5865f2 !important;
+    background: #23272A !important;
+    border: none;
 }
 
 .dropdown-item {
@@ -55,20 +56,20 @@ body {
 }
 
 .dropdown-item {
-    background-color: #5865f2;
+    background-color: #23272A;
     color: white !important;
 }
 
 .dropdown-item:hover {
-    background-color: #5865f2;
+    background-color: #393E46;
 }
 
 .dropdown-menu {
-    background-color: #5865f2 !important;
+    background-color: #23272A !important;
+    border: none;
 }
 
 .settings_profile__3vfUF .Input_preview__2UqJa {
-    border: 1px solid #282b30;
     color: silver;
     background: #36393e;
 }
@@ -102,7 +103,6 @@ h4 {
     color: white !important;
     font-size: 18px !important;
     border-radius: 5px !important;
-    border: 1px solid #1d1f23;
 }
 
 .MuiButton-root {

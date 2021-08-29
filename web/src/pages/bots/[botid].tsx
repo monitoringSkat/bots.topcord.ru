@@ -33,7 +33,7 @@ function BotPage(props: Props) {
     if (!props.bot)
         return (
             <Layout title={'Bot not found!'}>
-                <div className="notfound">{t('errors.botNotFound')}</div>
+                    <div className="notfound">{t('errors.botNotFound')}</div>
             </Layout>
         )
 
