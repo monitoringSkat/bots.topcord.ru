@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next'
 import Link from 'next/link'
 import { useState, useContext } from 'react'
-import {Button, Container, Row, Col, Alert} from 'react-bootstrap'
+import {Button, Container, Row, Col, Alert, Modal} from 'react-bootstrap'
 import config from '../../config'
 import Bot from '../../interfaces/bot.interface'
 import Layout from '../../layout'
@@ -17,6 +17,11 @@ import ReportModal from '../../components/ReportModal/ReportModal'
 import router from 'next/router'
 import { useTranslation } from 'react-i18next'
 import MButton from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 interface Props {
     bot: Bot
@@ -41,8 +46,20 @@ function BotPage(props: Props) {
         null
     )
     const [showReportModal, setShowReportModal] = useState<boolean>(false)
-    
-    
+    const [open, setOpen] = useState<boolean>(false);
+
+    const confirmOpen = () => {
+        setOpen(true);
+    };
+
+    const confirmAccept = () => {
+        setOpen(false);
+        remove();
+    };
+    const confirmClose = () => {
+        setOpen(false);
+    }
+
     const createComment = async () => {
         const data = await api.createComment({
             text: comment,
@@ -92,7 +109,7 @@ function BotPage(props: Props) {
         const comments = bot.comments.filter(c => c.id !== comment.id)
         setBot({ ...bot, comments })
     }
-
+    
     const remove = async () => {
         const data = await api.deleteBot(bot?.id)
         if (!data) return
@@ -122,7 +139,7 @@ function BotPage(props: Props) {
                     ['moderator', 'admin'].includes(
                         user.role.toLowerCase()
                     ) ? (
-                        <button onClick={remove} className={styles.delete}>
+                        <button onClick={confirmOpen} className={styles.delete}>
                             {t('buttons.delete')}
                         </button>
                     ) : null}
@@ -211,6 +228,31 @@ function BotPage(props: Props) {
                     bot={bot}
                     isShow={showReportModal}
                 />
+
+                <Dialog 
+                    open={open}
+                    onClose={confirmClose}
+                    aria-labelledby="alert-confirm-delete"
+                    aria-describedby="alert-confirm-description"
+                    className={styles.confirmdelete}
+                >
+                    <DialogTitle id="alert-dialog-title">{"Вы точно хотите удалить бота?"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Бот будет полностью удален с мониторинга, будут утеряны все оценки от пользователей, комментарии, рейтинг и т.д
+                            Вы точно хотите это сделать?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <MButton onClick={confirmClose} color="primary">
+                            Нет
+                        </MButton>
+                        <MButton onClick={confirmAccept} color="primary" autoFocus>
+                            Да
+                        </MButton>
+                    </DialogActions>
+                </Dialog>
+                
                 <Markdown
                     className={styles.description}
                     text={bot.longDescription}
