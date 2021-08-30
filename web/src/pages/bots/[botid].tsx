@@ -24,7 +24,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import data from 'emoji-mart/data/google.json'
 import "emoji-mart/css/emoji-mart.css";
-import { Picker } from "emoji-mart";
+import { Picker, Emoji } from "emoji-mart";
 
 interface Props {
     bot: Bot
