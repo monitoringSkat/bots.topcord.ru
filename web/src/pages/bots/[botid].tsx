@@ -60,7 +60,7 @@ function BotPage(props: Props) {
                 emoji="point_up"
                 theme="dark"
                 style={{position: 'absolute', right: '0'}}
-                onSelect={setComment(comment + (emoji as any).native)}
+                onSelect={(emoji) => (setComment(comment + (emoji as any).native))}
                 set='google'
             />
         );
