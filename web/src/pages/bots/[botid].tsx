@@ -91,11 +91,18 @@ function BotPage(props: Props) {
                 emoji="point_up"
                 theme="dark"
                 style={{ position: 'absolute', right: '0'}}
-                onSelect={(emoji) => (setComment(comment + (emoji as any).native))}
+                onSelect={emojiOnSelect}
                 set='google'
                 custom={customEmojis}
             />
         );
+    }
+    function emojiOnSelect(emoji: any) {
+        if(emoji.custom) {
+            return setComment(comment + (emoji as any).colons)
+        } else {
+            return setComment(comment + (emoji as any).native)
+        }
     }
 
     function triggerPicker(event: any) {
@@ -315,7 +322,7 @@ function BotPage(props: Props) {
                 />
                 <div className={styles.comments}>
                     <h3>{t('titles.comments')}</h3>
-                    {user.id && (
+                    {/*{user.id && (*/}
                         <div className={styles['write-comment']}>
                             {limitedComments !== null && (
                                 <div className={styles.error}>
@@ -357,7 +364,7 @@ function BotPage(props: Props) {
                                 </button>
                             </div>
                         </div>
-                    )}
+                    {/*)}*/}
                     {bot.comments.map(comment => (
                         <Comment
                             comment={comment}
