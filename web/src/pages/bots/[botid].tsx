@@ -110,7 +110,7 @@ function BotPage(props: Props) {
     }
 
     const createComment = async () => {
-        if (comment.lenght > 120) return alert('сука ты дебил блять')
+        if (comment.length > 120) return alert('сука ты дебил блять')
         const data = await api.createComment({
             text: comment,
             rating: stars,
