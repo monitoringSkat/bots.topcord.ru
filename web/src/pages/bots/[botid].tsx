@@ -30,6 +30,32 @@ interface Props {
     bot: Bot
 }
 
+
+const customEmojis = [
+    {
+        name: 'klass',
+        short_names: ['klass', 'kl'],
+        text: '',
+        emoticons: [],
+        keywords: [''],
+        imageUrl: 'https://bots.topcord.ru/assets/emoji/',
+        customCategory: 'TopCord'
+    },
+    {
+        name: 'Test Flag',
+        short_names: ['test'],
+        text: '',
+        emoticons: [],
+        keywords: ['test', 'flag'],
+        spriteUrl: 'https://unpkg.com/emoji-datasource-twitter@4.0.4/img/twitter/sheets-256/64.png',
+        sheet_x: 1,
+        sheet_y: 1,
+        size: 64,
+        sheetColumns: 52,
+        sheetRows: 52,
+    },
+]
+
 function BotPage(props: Props) {
     const { t } = useTranslation()
 
@@ -59,7 +85,7 @@ function BotPage(props: Props) {
                 title="Выберите эмодзи"
                 emoji="point_up"
                 theme="dark"
-                style={{ position: 'absolute', right: '0'}}
+                style={{ position: 'absolute', right: '0', zIndex: '1000'}}
                 onSelect={(emoji) => (setComment(comment + (emoji as any).native))}
                 set='google' 
             />
@@ -90,6 +116,8 @@ function BotPage(props: Props) {
             botId: bot.id
         })
         if (!data) return setLimitedComments(t('errors.commentLimit'))
+        if (data.text.lenght > 120) return alert('сука ты дебил блять?')
+
         setBot({ ...bot, comments: [data, ...bot.comments] })
         setComment('')
         setStars(0)
