@@ -22,6 +22,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import data from 'emoji-mart/data/google.json'
+import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
 
 interface Props {
     bot: Bot
@@ -46,7 +49,27 @@ function BotPage(props: Props) {
         null
     )
     const [showReportModal, setShowReportModal] = useState<boolean>(false)
+    const [emojiPickerState, SetEmojiPicker] = useState(false);
     const [open, setOpen] = useState<boolean>(false);
+
+    let emojiPicker;
+    if (emojiPickerState) {
+        emojiPicker = (
+            <Picker
+                title="Выберите эмодзи"
+                emoji="point_up"
+                theme="dark"
+                style={{ position: 'absolute', right: '0'}}
+                onSelect={emoji => setComment(comment + emoji.native)}
+                data={data}
+            />
+        );
+    }
+
+    function triggerPicker(event) {
+        event.preventDefault();
+        SetEmojiPicker(!emojiPickerState);
+    }
 
     const confirmOpen = () => {
         setOpen(true);
@@ -259,7 +282,7 @@ function BotPage(props: Props) {
                 />
                 <div className={styles.comments}>
                     <h3>{t('titles.comments')}</h3>
-                    {user.id && (
+                    {/*{user.id && (*/}
                         <div className={styles['write-comment']}>
                             {limitedComments !== null && (
                                 <div className={styles.error}>
@@ -273,6 +296,8 @@ function BotPage(props: Props) {
                                     placeholder="Написать комментарий"
                                     onChange={e => setComment(e.target.value)}
                                 />
+                                <MButton onClick={triggerPicker} style={{ marginRight: '2%'}} >💅</MButton>
+                                {emojiPicker}
                             </div>
                             <div className={styles.rating}>
                                 <div className={styles.stars}>
@@ -293,7 +318,7 @@ function BotPage(props: Props) {
                                 </button>
                             </div>
                         </div>
-                    )}
+                    {/*)}*/}
                     {bot.comments.map(comment => (
                         <Comment
                             comment={comment}
