@@ -60,13 +60,13 @@ function BotPage(props: Props) {
                 emoji="point_up"
                 theme="dark"
                 style={{ position: 'absolute', right: '0'}}
-                onSelect={(emoji) => (setComment(comment + emoji.native))}
-                data={data}
+                onSelect={(emoji) => (setComment(comment + (emoji as any).native))}
+                set='google' 
             />
         );
     }
 
-    function triggerPicker(event) {
+    function triggerPicker(event: any) {
         event.preventDefault();
         SetEmojiPicker(!emojiPickerState);
     }
