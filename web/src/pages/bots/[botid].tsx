@@ -30,37 +30,6 @@ interface Props {
     bot: Bot
 }
 
-
-const customEmojis = [
-    {
-        name: 'klass',
-        short_names: ['klass', 'kl'],
-        text: '',
-        emoticons: [],
-        keywords: [''],
-            imageUrl: 'https://bots.topcord.ru/assets/emoji/857138992066461707.png',
-        customCategory: 'TopCord'
-    },
-    {
-        name: 'hmmmm',
-        short_names: ['hm', 'kavo'],
-        text: '',
-        emoticons: [],
-        keywords: [''],
-        imageUrl: 'https://bots.topcord.ru/assets/emoji/857139699528237096.png',
-        customCategory: 'TopCord'
-    },
-    {
-        name: 'plak',
-        short_names: ['cry'],
-        text: '',
-        emoticons: [],
-        keywords: [''],
-        imageUrl: 'https://bots.topcord.ru/assets/emoji/811892849166647296.png',
-        customCategory: 'TopCord'
-    }
-]
-
 function BotPage(props: Props) {
     const { t } = useTranslation()
 
@@ -90,19 +59,11 @@ function BotPage(props: Props) {
                 title="Выберите эмодзи"
                 emoji="point_up"
                 theme="dark"
-                style={{ position: 'absolute', right: '0'}}
-                onSelect={emojiOnSelect}
+                style={{position: 'absolute', right: '0'}}
+                onSelect={setComment(comment + (emoji as any).native)}
                 set='google'
-                custom={customEmojis}
             />
         );
-    }
-    function emojiOnSelect(emoji: any) {
-        if(emoji.custom) {
-            return setComment(comment + <img src={emoji.imageUrl} />)
-        } else {
-            return setComment(comment + (emoji as any).native)
-        }
     }
 
     function triggerPicker(event: any) {
