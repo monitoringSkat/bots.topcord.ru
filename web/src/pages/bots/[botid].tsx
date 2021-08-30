@@ -110,7 +110,6 @@ function BotPage(props: Props) {
     }
 
     const createComment = async () => {
-        if (comment.length > 50) return alert('сука ты дебил блять')
         const data = await api.createComment({
             text: comment,
             rating: stars,
@@ -325,6 +324,12 @@ function BotPage(props: Props) {
                                     onChange={e => setComment(e.target.value)}
                                 />
                                 <MButton onClick={triggerPicker} style={{ marginRight: '2%'}} >💅</MButton>
+                                {comment.length < 80 && (
+                                    <MButton style={{ float: 'right'}} >{comment.length} \ 80</MButton>
+                                )}
+                                {comment.length > 80 && (
+                                    <MButton className={styles.limit} style={{ float: 'right'}} >{comment.length} \ 80</MButton>
+                                )}
                                 {emojiPicker}
                             </div>
                             <div className={styles.rating}>
@@ -337,7 +342,7 @@ function BotPage(props: Props) {
                                 </div>
                                 <button
                                     disabled={
-                                        comment.length === 0 || stars === 0
+                                        comment.length === 0 || stars === 0 || comment.length > 80
                                     }
                                     className={styles.post}
                                     onClick={createComment}
