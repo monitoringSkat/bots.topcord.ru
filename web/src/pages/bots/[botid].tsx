@@ -38,7 +38,7 @@ const customEmojis = [
         text: '',
         emoticons: [],
         keywords: [''],
-        imageUrl: 'https://bots.topcord.ru/assets/emoji/857138992066461707.png',
+            imageUrl: 'https://bots.topcord.ru/assets/emoji/857138992066461707.png',
         customCategory: 'TopCord'
     },
     {
@@ -99,7 +99,7 @@ function BotPage(props: Props) {
     }
     function emojiOnSelect(emoji: any) {
         if(emoji.custom) {
-            return setComment(comment + (emoji as any).colons)
+            return setComment(comment + <img src={emoji.imageUrl} />)
         } else {
             return setComment(comment + (emoji as any).native)
         }
@@ -322,7 +322,7 @@ function BotPage(props: Props) {
                 />
                 <div className={styles.comments}>
                     <h3>{t('titles.comments')}</h3>
-                    {/*{user.id && (*/}
+                    {user.id && (
                         <div className={styles['write-comment']}>
                             {limitedComments !== null && (
                                 <div className={styles.error}>
@@ -364,7 +364,7 @@ function BotPage(props: Props) {
                                 </button>
                             </div>
                         </div>
-                    {/*)}*/}
+                    )}
                     {bot.comments.map(comment => (
                         <Comment
                             comment={comment}
