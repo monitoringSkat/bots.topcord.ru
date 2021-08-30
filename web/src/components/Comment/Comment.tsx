@@ -69,9 +69,7 @@ const Comment: React.FC<Props> = ({
                             <div>{comment.author.username} </div>
                         </Link>
                     </div>
-                    {isAuthor || ['moderator', 'admin'].includes(
-                        user.role.toLowerCase()
-                    )  && (
+                    {isAuthor && (
                         <div className={styles['comment-controls']}>
                             {isEdit ? (
                                 <img
