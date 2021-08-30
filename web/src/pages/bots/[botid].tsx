@@ -38,22 +38,27 @@ const customEmojis = [
         text: '',
         emoticons: [],
         keywords: [''],
-        imageUrl: 'https://bots.topcord.ru/assets/emoji/',
+        imageUrl: 'https://bots.topcord.ru/assets/emoji/857138992066461707.png',
         customCategory: 'TopCord'
     },
     {
-        name: 'Test Flag',
-        short_names: ['test'],
+        name: 'hmmmm',
+        short_names: ['hm', 'kavo'],
         text: '',
         emoticons: [],
-        keywords: ['test', 'flag'],
-        spriteUrl: 'https://unpkg.com/emoji-datasource-twitter@4.0.4/img/twitter/sheets-256/64.png',
-        sheet_x: 1,
-        sheet_y: 1,
-        size: 64,
-        sheetColumns: 52,
-        sheetRows: 52,
+        keywords: [''],
+        imageUrl: 'https://bots.topcord.ru/assets/emoji/857139699528237096.png',
+        customCategory: 'TopCord'
     },
+    {
+        name: 'plak',
+        short_names: ['cry'],
+        text: '',
+        emoticons: [],
+        keywords: [''],
+        imageUrl: 'https://bots.topcord.ru/assets/emoji/811892849166647296.png',
+        customCategory: 'TopCord'
+    }
 ]
 
 function BotPage(props: Props) {
