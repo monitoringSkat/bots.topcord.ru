@@ -282,7 +282,7 @@ function BotPage(props: Props) {
                 />
                 <div className={styles.comments}>
                     <h3>{t('titles.comments')}</h3>
-                    {/*{user.id && (*/}
+                    {user.id && (
                         <div className={styles['write-comment']}>
                             {limitedComments !== null && (
                                 <div className={styles.error}>
@@ -318,7 +318,7 @@ function BotPage(props: Props) {
                                 </button>
                             </div>
                         </div>
-                    {/*)}*/}
+                    )}
                     {bot.comments.map(comment => (
                         <Comment
                             comment={comment}
