@@ -110,13 +110,13 @@ function BotPage(props: Props) {
     }
 
     const createComment = async () => {
+        if (comment.lenght > 120) return alert('сука ты дебил блять')
         const data = await api.createComment({
             text: comment,
             rating: stars,
             botId: bot.id
         })
         if (!data) return setLimitedComments(t('errors.commentLimit'))
-        if (data.text.lenght > 120) return alert('сука ты дебил блять?')
 
         setBot({ ...bot, comments: [data, ...bot.comments] })
         setComment('')
