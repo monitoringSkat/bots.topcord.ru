@@ -69,12 +69,11 @@ const Comment: React.FC<Props> = ({
                             <div>{comment.author.username} </div>
                         </Link>
                     </div>
-                    {isAuthor && (
+                    {isAuthor || ['moderator', 'admin'].includes(
+                        user.role.toLowerCase()
+                    )  && (
                         <div className={styles['comment-controls']}>
-                            {isEdit ||
-                            ['moderator', 'admin'].includes(
-                                user.role.toLowerCase()
-                            ) ? (
+                            {isEdit ? (
                                 <img
                                     src="/assets/tick.svg"
                                     className={styles['comment-tick']}
