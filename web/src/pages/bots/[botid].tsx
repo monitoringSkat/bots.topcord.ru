@@ -92,7 +92,8 @@ function BotPage(props: Props) {
                 theme="dark"
                 style={{ position: 'absolute', right: '0'}}
                 onSelect={(emoji) => (setComment(comment + (emoji as any).native))}
-                set='google' 
+                set='google'
+                custom={customEmojis}
             />
         );
     }
