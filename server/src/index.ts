@@ -26,10 +26,9 @@ const PORT = Number(process.env.PORT || 5000)
 const __prod__ = process.env.NODE_ENV === 'production'
 
 const corsOptions = {
-    origin: __prod__ ? 'https://bots.topcord.ru' : "http://localhost:3000",
+    origin: __prod__ ? 'https://bots.topcord.ru' : 'http://localhost:3000',
     optionsSuccessStatus: 200
 }
-
 
 orm.createConnection({
     type: 'postgres',

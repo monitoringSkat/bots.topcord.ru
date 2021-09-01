@@ -14,7 +14,7 @@ interface Props {
 function TagsPage({ tags }: Props) {
     const { t } = useTranslation()
     return (
-        <Layout title="Список тегов | TopCord" >
+        <Layout title="Список тегов | TopCord">
             <div className={styles.container}>
                 <h1>{t('tags.available')}</h1>
                 <div className={styles.tags}>

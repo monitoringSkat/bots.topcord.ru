@@ -27,7 +27,13 @@ const Home = ({ newBots, topBots }: Props) => {
                         <div className={styles.subtitle}>{t('subtitle')}</div>
                         <SearchBotsInput placeholder={t('inputs.searchBot')} />
                         <div className={styles.tags}>
-                            <Button variant="contained" color="primary" href="/tags">{t('tagList')}</Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                href="/tags"
+                            >
+                                {t('tagList')}
+                            </Button>
                         </div>
                     </Col>
                     <Col className={styles.wumpus_col}>
@@ -39,7 +45,13 @@ const Home = ({ newBots, topBots }: Props) => {
                     </Col>
                 </Row>
             </Container>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#5167B8"  fill-opacity="1" d="M0,224L48,197.3C96,171,192,117,288,133.3C384,149,480,235,576,245.3C672,256,768,192,864,165.3C960,139,1056,149,1152,160C1248,171,1344,181,1392,186.7L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path
+                    fill="#5167B8"
+                    fill-opacity="1"
+                    d="M0,224L48,197.3C96,171,192,117,288,133.3C384,149,480,235,576,245.3C672,256,768,192,864,165.3C960,139,1056,149,1152,160C1248,171,1344,181,1392,186.7L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+                ></path>
+            </svg>
             <div className={styles.bots}>
                 {newBots.length === 0 && topBots.length === 0 && (
                     <div className={styles.empty}>
@@ -48,7 +60,7 @@ const Home = ({ newBots, topBots }: Props) => {
                 )}
                 {newBots.length > 0 && (
                     <>
-                        <h2 className={styles.bots_adadtext} >{t('newBots')}</h2>
+                        <h2 className={styles.bots_adadtext}>{t('newBots')}</h2>
                         <Bots bots={newBots} />
                     </>
                 )}

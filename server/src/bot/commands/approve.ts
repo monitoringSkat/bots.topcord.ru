@@ -40,20 +40,26 @@ const approve: Command = {
             ['Модератор'].includes(role.name)
         )
         if (!bot)
-        return message.channel.send(
-            JSON.stringify(new BotNotFoundException())
-        )
+            return message.channel.send(
+                JSON.stringify(new BotNotFoundException())
+            )
 
-        if(!havePermission) {
-            return message.channel.send('<a:no:784090411081531412>' + ` Иди нахуй`)
+        if (!havePermission) {
+            return message.channel.send(
+                '<a:no:784090411081531412>' + ` Иди нахуй`
+            )
         }
-        
-        if(!id) {
-            return message.channel.send('<a:no:784090411081531412>' + ` Аргумент id бота пропущен.`)
+
+        if (!id) {
+            return message.channel.send(
+                '<a:no:784090411081531412>' + ` Аргумент id бота пропущен.`
+            )
         }
-        
-        if(bot.verified === true) {
-            return message.reply('<a:no:784090411081531412>' + ` Бот уже проверен!`)
+
+        if (bot.verified === true) {
+            return message.reply(
+                '<a:no:784090411081531412>' + ` Бот уже проверен!`
+            )
         }
         bot.verified = true
         await bot.save()
@@ -61,9 +67,7 @@ const approve: Command = {
             .get('761596363795988561')
             .member(bot.owner.id)
             .send(embedmember)
-        client.guilds.cache
-            .get('776944438383214620')
-            .member(bot.id).kick()
+        client.guilds.cache.get('776944438383214620').member(bot.id).kick()
         channel.send(embed)
         return message.reply('<a:yes:784090427934244865>' + ` Успешно :)`)
     }

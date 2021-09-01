@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useContext } from 'react'
 import AuthContext from '../../context/auth.context'
 import config from '../../config'
-import {Button} from "@material-ui/core";
+import { Button } from '@material-ui/core'
 
 const Header = () => {
     const { t } = useTranslation()
@@ -27,7 +27,7 @@ const Header = () => {
             />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="mr-auto">
-                    <Button href="/add" >{t('header.links.addBot')}</Button>
+                    <Button href="/add">{t('header.links.addBot')}</Button>
                     <Button href="/bots">{t('header.links.bots')}</Button>
                     <Button href="https://discord.gg/ZDvQTzrG4k">
                         {t('header.links.community')}

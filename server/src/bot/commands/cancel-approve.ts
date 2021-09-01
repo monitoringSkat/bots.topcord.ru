@@ -26,7 +26,9 @@ const cancelApprove: Command = {
         const embedmember = new MessageEmbed()
             .addField('Причина', reason.join(' ') || 'Причины нету')
             .addField('Бот', bot.name)
-            .setDescription('**Когда вы исправите причину, уведомите об этом модераторов, чтобы они перепроверили вашего бота по новой!!!**')
+            .setDescription(
+                '**Когда вы исправите причину, уведомите об этом модераторов, чтобы они перепроверили вашего бота по новой!!!**'
+            )
             .setThumbnail(bot.avatar)
             .setTimestamp()
             .setTitle('Ваш бот был отклонен')
@@ -40,8 +42,10 @@ const cancelApprove: Command = {
             ['Модератор'].includes(role.name)
         )
 
-        if(!havePermission) {
-            return message.channel.send('<a:no:784090411081531412>' + ` Иди нахуй`)
+        if (!havePermission) {
+            return message.channel.send(
+                '<a:no:784090411081531412>' + ` Иди нахуй`
+            )
         }
 
         channel.send(embed)

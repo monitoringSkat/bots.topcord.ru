@@ -48,7 +48,7 @@ body {
 }
 
 .dropdown-toggle {
-    background: #23272A !important;
+    background: #23272a !important;
     border: none;
 }
 
@@ -57,16 +57,16 @@ body {
 }
 
 .dropdown-item {
-    background-color: #23272A;
+    background-color: #23272a;
     color: white !important;
 }
 
 .dropdown-item:hover {
-    background-color: #393E46;
+    background-color: #393e46;
 }
 
 .dropdown-menu {
-    background-color: #23272A !important;
+    background-color: #23272a !important;
     border: none;
 }
 
@@ -151,4 +151,3 @@ textarea::placeholder {
         font-size: 36px;
     }
 }
-

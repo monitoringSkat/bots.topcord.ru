@@ -1,4 +1,4 @@
-import "emoji-mart/css/emoji-mart.css";
+import 'emoji-mart/css/emoji-mart.css'
 import '../../styles/globals.css'
 import type { AppProps } from 'next/app'
 import NextNprogress from 'nextjs-progressbar'

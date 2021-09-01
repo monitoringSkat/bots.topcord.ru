@@ -30,15 +30,21 @@ const Comment: React.FC<Props> = ({
     const { user } = useContext(AuthContext)
     const isAuthor = user.id === comment.author.id
     const [commentary, setCommentary] = useState(comment)
-    const [parsedText, setParsedText] = useState("")
-
+    const [parsedText, setParsedText] = useState('')
 
     useEffect(() => {
-        const parsed = comment.text.split(' ').map((word) => {
-            const isEmoji = word.startsWith(":") && word.endsWith(":")
-            if (!isEmoji) return word
-            return word.split(':').filter(Boolean).map(emoji => `<img src="${emojisMap[emoji]}" />`).join(" ")
-        }).join(' ')
+        const parsed = comment.text
+            .split(' ')
+            .map(word => {
+                const isEmoji = word.startsWith(':') && word.endsWith(':')
+                if (!isEmoji) return word
+                return word
+                    .split(':')
+                    .filter(Boolean)
+                    .map(emoji => `<img src="${emojisMap[emoji]}" />`)
+                    .join(' ')
+            })
+            .join(' ')
         setParsedText(parsed)
     }, [comment.text])
 
@@ -121,7 +127,10 @@ const Comment: React.FC<Props> = ({
                             value={commentary.text}
                         />
                     ) : (
-                        <div className={styles['comment-text']} dangerouslySetInnerHTML={{ __html: parsedText }}/>
+                        <div
+                            className={styles['comment-text']}
+                            dangerouslySetInnerHTML={{ __html: parsedText }}
+                        />
                     )}
                 </>
                 {!isEdit && (

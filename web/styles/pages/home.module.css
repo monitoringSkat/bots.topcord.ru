@@ -1,5 +1,5 @@
 .intro {
-    background: #5167B8;
+    background: #5167b8;
     min-height: 250px;
     padding: 3% 4%;
 }
@@ -31,10 +31,10 @@
 }
 
 .tags a {
-    background: #2C2F33;
+    background: #2c2f33;
 }
 .tags a:hover {
-    background: #23272A;
+    background: #23272a;
 }
 
 .wumpus {
@@ -66,7 +66,7 @@
     color: white;
     text-align: center;
     font-weight: 600;
-}   
+}
 .hr {
     border: 2px solid #7289da;
     margin: 5% 50px 5% 50px;
