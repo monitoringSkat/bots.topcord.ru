@@ -7,6 +7,8 @@ import Stars from '../Stars/Stars'
 import styles from './Comment.module.scss'
 import api from '../../api'
 import { useState } from 'react'
+import { emojisMap } from '../../data/emojis'
+import { useEffect } from 'react'
 
 interface Props {
     comment: IComment
@@ -28,11 +30,23 @@ const Comment: React.FC<Props> = ({
     const { user } = useContext(AuthContext)
     const isAuthor = user.id === comment.author.id
     const [commentary, setCommentary] = useState(comment)
+    const [parsedText, setParsedText] = useState("")
+
+
+    useEffect(() => {
+        const parsed = comment.text.split(' ').map((word) => {
+            const isEmoji = word.startsWith(":") && word.endsWith(":")
+            if (!isEmoji) return word
+            return word.split(':').filter(Boolean).map(emoji => `<img src="${emojisMap[emoji]}" />`).join(" ")
+        }).join(' ')
+        setParsedText(parsed)
+    }, [comment.text])
 
     const edit = async () => {
         const data = await api.editComment(commentary, botId)
         if (!data) return
         onCommentUpdate?.(commentary)
+        setParsedText(commentary.text)
         setCommentEdit?.(null)
     }
 
@@ -95,7 +109,7 @@ const Comment: React.FC<Props> = ({
                 <div className={styles.stars}>
                     <Stars max={5} count={comment.rating} />
                 </div>
-                <div className={styles['comment-text']}>
+                <>
                     {isEdit ? (
                         <textarea
                             onChange={e =>
@@ -107,9 +121,9 @@ const Comment: React.FC<Props> = ({
                             value={commentary.text}
                         />
                     ) : (
-                        comment.text
+                        <div className={styles['comment-text']} dangerouslySetInnerHTML={{ __html: parsedText }}/>
                     )}
-                </div>
+                </>
                 {!isEdit && (
                     <div className={styles['comment-rating']}>
                         <div

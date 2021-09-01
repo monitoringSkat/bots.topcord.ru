@@ -18,7 +18,7 @@ const createBot: Event = {
             .setTitle('Добавлен бот')
             .setColor('#008000')
         const channel: any = client.channels.cache.get(parsed.BOT_ADD_CHANNEL)
-        const modchannel: any = client.channels.cache.get("881275215877906463")
+        const modchannel: any = client.channels.cache.get(parsed.MOD_CHANNEL)
         modchannel.send("<@&761596581145083914> Бот " + bot.name + " был добавлен. **t!queue " + bot.id + "**" )
         modchannel.send(bot.id)
         channel.send(embed)

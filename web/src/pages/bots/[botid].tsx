@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next'
 import Link from 'next/link'
 import { useState, useContext } from 'react'
-import {Button, Container, Row, Col, Alert, Modal} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 import config from '../../config'
 import Bot from '../../interfaces/bot.interface'
 import Layout from '../../layout'
@@ -22,9 +22,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import data from 'emoji-mart/data/google.json'
-import "emoji-mart/css/emoji-mart.css";
 import { Picker } from "emoji-mart";
+import { customEmojis } from "../../data/emojis"
 
 interface Props {
     bot: Bot
@@ -45,26 +44,10 @@ function BotPage(props: Props) {
     const [bot, setBot] = useState<Bot>(props.bot)
     const [stars, setStars] = useState(0)
     const [limitedComments, setLimitedComments] = useState<null | string>(null)
-    const [editableComment, setEditableComment] = useState<IComment | null>(
-        null
-    )
+    const [editableComment, setEditableComment] = useState<IComment | null>(null)
     const [showReportModal, setShowReportModal] = useState<boolean>(false)
     const [emojiPickerState, SetEmojiPicker] = useState(false);
     const [open, setOpen] = useState<boolean>(false);
-
-    let emojiPicker;
-    if (emojiPickerState) {
-        emojiPicker = (
-            <Picker
-                title="Выберите эмодзи"
-                emoji="point_up"
-                theme="dark"
-                style={{position: 'absolute', right: '0'}}
-                onSelect={(emoji) => (setComment(comment + (emoji as any).native))}
-                set='google'
-            />
-        );
-    }
 
     function triggerPicker(event: any) {
         event.preventDefault();
@@ -138,6 +121,10 @@ function BotPage(props: Props) {
         const data = await api.deleteBot(bot?.id)
         if (!data) return
         router.push('/users/me')
+    }
+
+    const selectEmoji = (emoji: any) => {
+        setComment(comment + (emoji.native ? emoji.native : emoji.colons))
     }
 
     return (
@@ -297,14 +284,6 @@ function BotPage(props: Props) {
                                     placeholder="Написать комментарий"
                                     onChange={e => setComment(e.target.value)}
                                 />
-                                <MButton onClick={triggerPicker} style={{ marginRight: '2%'}} >💅</MButton>
-                                {comment.length < 80 && (
-                                    <MButton style={{ float: 'right'}} >{comment.length} \ 80</MButton>
-                                )}
-                                {comment.length > 80 && (
-                                    <MButton className={styles.limit} style={{ float: 'right'}} >{comment.length} \ 80</MButton>
-                                )}
-                                {emojiPicker}
                             </div>
                             <div className={styles.rating}>
                                 <div className={styles.stars}>
@@ -314,9 +293,11 @@ function BotPage(props: Props) {
                                         onClick={setStars}
                                     />
                                 </div>
+                                <MButton onClick={triggerPicker} style={{ marginRight: '2%'}} >💅</MButton>
+                                <MButton className={comment.length > 130 ? styles.limit : ""} style={{ float: 'right'}} >{comment.length} \ 130</MButton>
                                 <button
                                     disabled={
-                                        comment.length === 0 || stars === 0 || comment.length > 80
+                                        comment.length === 0 || stars === 0 || comment.length > 130
                                     }
                                     className={styles.post}
                                     onClick={createComment}
@@ -324,6 +305,17 @@ function BotPage(props: Props) {
                                     {t('buttons.public')}
                                 </button>
                             </div>
+                            {emojiPickerState && (
+                                <Picker
+                                    title="Выберите эмодзи"
+                                    emoji="point_up"
+                                    theme="dark"
+                                    custom={customEmojis}
+                                    style={{position: 'absolute', right: '0'}}
+                                    onSelect={selectEmoji}
+                                    set='google'
+                                />
+                            )}
                         </div>
                     )}
                     {bot.comments.map(comment => (

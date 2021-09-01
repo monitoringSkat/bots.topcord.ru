@@ -23,10 +23,10 @@ import Tag from './entities/Tag'
 
 dotenv.config()
 const PORT = Number(process.env.PORT || 5000)
-const __prod__ = process.env.NODE_ENV === 'development'
+const __prod__ = process.env.NODE_ENV === 'production'
 
 const corsOptions = {
-    origin: 'https://bots.topcord.ru',
+    origin: __prod__ ? 'https://bots.topcord.ru' : "http://localhost:3000",
     optionsSuccessStatus: 200
 }
 

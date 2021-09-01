@@ -1,10 +1,11 @@
 <<<<<<< HEAD
+
 # bots.topcord.ru
 
-
 ## Structure
-<table>
-=======
+
+# <table>
+
 <div style="padding: 5%; margin: 2.5%; 0" align="center">
     <img src="./github-logo.png" />
 </div>
@@ -52,18 +53,20 @@
 </table>
 
 ## Branches
-- __prod__ -> production version.
-- __dev__ -> branch for developers and new features.
+
+-   **prod** -> production version.
+-   **dev** -> branch for developers and new features.
 
 ## How run locally
+
 1. Clone the repo.
 2. soon...
 
 ## Languages
-- 🇷🇺 Русский
-- 🇺🇦 Українська
-- 🇬🇧 English
-=======
+
+-   🇷🇺 Русский
+-   🇺🇦 Українська
+-   # 🇬🇧 English
   <tr>
     <td><a href="desing">/api-bot</a></td>
     <td>Bot for convenient use TopCord API in Disord</td>
@@ -103,4 +106,4 @@ git clone "https://github.com/TopCord-Team/bots.topcord.ru"
 -   🇷🇺 Русский
 -   🇺🇦 Українська
 -   🇬🇧 English
->>>>>>> e37538a74f3b27cae23a10b3cecb77d795fec512
+    > > > > > > > e37538a74f3b27cae23a10b3cecb77d795fec512

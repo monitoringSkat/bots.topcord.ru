@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 import Bot from '../../interfaces/bot.interface'
 import styles from './Bots.module.scss'
 import BotCard from '../BotCard/BotCard'

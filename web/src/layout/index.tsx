@@ -1,8 +1,7 @@
 import { FC } from 'react'
-import Head from 'next/head'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
-
+import Head from "next/head"
 interface Props {
     title?: string
     description?: string
@@ -14,7 +13,7 @@ const Layout: FC<Props> = ({ children, title, description, image }) => (
         <Head>
             <title>{title || 'TOPCORD'}</title>
             {/* Meta */}
-            <meta http-equiv="content-language" content="ru" />
+            <meta httpEquiv="content-language" content="ru" />
             <meta
                 name="viewport"
                 content="initial-scale=1.0, width=device-width"
@@ -39,39 +38,6 @@ const Layout: FC<Props> = ({ children, title, description, image }) => (
             <meta property="og:image" content={image} />
             <meta property="og:type" content="website" />
             <meta property="og:url" content="https://bots.topcord.ru/" />
-            <script
-            dangerouslySetInnerHTML={{
-              __html: `
-              <script async src="https://www.googletagmanager.com/gtag/js?id=UA-183237060-1">
-              </script>
-              <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-              
-                gtag('config', 'UA-183237060-1');
-              </script>`
-            }}
-            />
-            <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                <script async type="text/javascript" >
-                (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-                m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-                (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-                ym(70435240, "init", {
-                        clickmap:true,
-                        trackLinks:true,
-                        accurateTrackBounce:true,
-                        webvisor:true
-                });
-                </script>
-                <noscript><div><img src="https://mc.yandex.ru/watch/70435240" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-                `
-            }}
-            />
             <link
                 rel="shortcut icon"
                 href="/assets/favicon.png"
