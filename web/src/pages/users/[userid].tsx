@@ -29,7 +29,7 @@ const UserPage = ({ token, userid }: Props) => {
     const [loading, setLoading] = useState(false)
     const [notFound, setNotFound] = useState(false)
     const { t } = useTranslation()
-
+    console.log(user)
     const getUser = async () => {
         try {
             const data = await api.getUser(userid, token)
@@ -181,7 +181,8 @@ const UserPage = ({ token, userid }: Props) => {
                     <div className={styles.integrations}>
                         {Object.keys(user?.social || {}).map(key => {
                             const link = (user?.social as any)[key]
-                            if (!link.trim().length) return
+                            console.log(link)
+                            if (!link?.trim().length || !link) return
                             return (
                                 <Link key={link} href={link}>
                                     <img src={`/assets/logos/${key}.png`} />

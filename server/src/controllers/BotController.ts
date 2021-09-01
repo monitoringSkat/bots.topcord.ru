@@ -178,9 +178,12 @@ async function update(req: Request, res: Response) {
         })
     )
     const bot = await Bot.findOne(req.params.id, { relations: ['owner'] })
+    if (!bot) return res.send(new BotNotFoundException())
+    const { avatar, username } = await getUserInfo(bot.id)
     if (bot.owner.id !== (req.user as any).id)
         return res.send(new PermissionsDenied('You are not owner!'))
-    bot.name = req.body.name
+    bot.name = username
+    bot.avatar = `https://cdn.discordapp.com/avatars/${bot.id}/${avatar}`
     bot.prefix = req.body.prefix
     bot.shortDescription = req.body.shortDescription
     bot.longDescription = req.body.longDescription

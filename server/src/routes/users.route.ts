@@ -133,14 +133,13 @@ usersRouter.put(
             return res.status(400).json({ errors: errors.array() })
         const user = req.user as User
         const { bio, ...social } = req.body
-        const filteredSocial = Object.entries(social).filter(
-            ([, value]) =>
-                Boolean(value) && supportedSocialLinks.includes(value as string)
-        )
+
+        const filteredSocial = Object.entries(social).filter(([key]) => supportedSocialLinks.includes(key as string))
         const socialObject = user.social
         filteredSocial.forEach(([key, val]) => {
-            socialObject[key] = val
+            socialObject[key] = val || null
         })
+        console.log(socialObject)
         user.bio = bio
         user.social = socialObject
         await user.save()
