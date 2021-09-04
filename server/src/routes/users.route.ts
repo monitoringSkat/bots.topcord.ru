@@ -134,7 +134,9 @@ usersRouter.put(
         const user = req.user as User
         const { bio, ...social } = req.body
 
-        const filteredSocial = Object.entries(social).filter(([key]) => supportedSocialLinks.includes(key as string))
+        const filteredSocial = Object.entries(social).filter(([key]) =>
+            supportedSocialLinks.includes(key as string)
+        )
         const socialObject = user.social
         filteredSocial.forEach(([key, val]) => {
             socialObject[key] = val || null
