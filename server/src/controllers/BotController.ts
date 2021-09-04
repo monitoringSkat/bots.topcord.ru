@@ -265,12 +265,12 @@ async function getBotsByQuery(req: Request, res: Response) {
 async function setBotGuilds(req: Request, res: Response) {
     try {
         const { token, guilds } = req.body
-        const { botId }: any = verify(token as string, 'secret-key') 
+        const { botId }: any = verify(token as string, 'secret-key')
         const bot = await Bot.findOne(botId)
         bot.guildsCount = +guilds
-        await bot.save() 
+        await bot.save()
         res.send('Done')
-    } catch(e) {
+    } catch (e) {
         return res.send('token is not valid')
     }
 }
